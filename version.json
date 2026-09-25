@@ -1,0 +1,22 @@
+{
+  "versio": "7.2",
+  "pohja": "v7.1 FIX - ei layout muutosta",
+  "pvm": "2026-09-25",
+  "ominaisuudet": [
+    "FIX: version.json aina olemassa -> ei 404 GitHub Pagesissa",
+    "FIX: vaylat.json aina olemassa -> pituus ei katoa",
+    "FIX: saa.json full rakenne (wind, humidity) yhteensopiva frontin kanssa",
+    "FIX: embed siivous - poistaa tuplat ja injektoi vain kerran",
+    "FIRST PAINT LATEST embedded säilytetty",
+    "saa.json LIVE Open-Meteo selaimessa + Python fallback",
+    "udisc_top5.json aina olemassa"
+  ],
+  "data": {
+    "tulos_kirjatut": 1144,
+    "laskenta": "586+62+80+416=1144",
+    "pituus_total": 1248,
+    "saa_temp": 14
+  },
+  "status": "v7.2 FIX OK",
+  "ajettu": "2026-09-25T16:23:56.662935+00:00"
+}
