@@ -1,0 +1,18 @@
+{
+  "paikka": "Luoma-aho",
+  "koordinaatit": {
+    "lat": 63.077361313935,
+    "lon": 23.869258564394357
+  },
+  "nyky": {
+    "temp_c": 11.6,
+    "wind_ms": 15.1,
+    "humidity": 82,
+    "precipitation_mm": 0.0,
+    "weather_code": 3,
+    "kuvaus": "Pilvistä",
+    "lahde": "Open-Meteo"
+  },
+  "paivitetty": "2026-09-25T18:35:44.795264+00:00",
+  "api": "https://api.open-meteo.com/v1/forecast?latitude=63.077361313935&longitude=23.869258564394357&current=temperature_2m,wind_speed_10m,relative_humidity_2m,precipitation,weather_code&timezone=Europe/Helsinki"
+}
