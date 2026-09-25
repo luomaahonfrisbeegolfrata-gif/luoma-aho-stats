@@ -3,26 +3,31 @@
     "pos": 1,
     "username": "@kantanen8",
     "score": 35,
-    "date": "Jul 6 2026"
+    "date": "Jul 6 2026",
+    "lahde": "DYNAMIC - haetaan livenä"
   },
   {
     "pos": 2,
     "username": "@valkoparta",
-    "score": 36
+    "score": 36,
+    "lahde": "DYNAMIC"
   },
   {
     "pos": 3,
     "username": "@mattiasss",
-    "score": 36
+    "score": 36,
+    "lahde": "DYNAMIC"
   },
   {
     "pos": 4,
     "username": "@dashyy",
-    "score": 38
+    "score": 38,
+    "lahde": "DYNAMIC"
   },
   {
     "pos": 5,
     "username": "@tuohimaa",
-    "score": 39
+    "score": 39,
+    "lahde": "DYNAMIC"
   }
 ]
