@@ -5,8 +5,8 @@
   "metrix_43119": 80,
   "udisc": 416,
   "laskenta": "586+62+80+416=1144",
-  "paivitetty": "2026-09-25T16:33:28.931815+00:00",
-  "lahde": "v7.3 FIX - ei embed",
+  "paivitetty": "2026-09-25T16:45:59.934942+00:00",
+  "lahde": "v7.4 SAFE FIX",
   "urls": {
     "44010": "https://discgolfmetrix.com/course/44010",
     "44763": "https://discgolfmetrix.com/course/44763",
@@ -19,5 +19,5 @@
     "poikkeama": 0,
     "dynaaminen": true
   },
-  "versio": "7.3"
+  "versio": "7.4"
 }

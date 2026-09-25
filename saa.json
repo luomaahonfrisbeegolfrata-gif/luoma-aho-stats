@@ -13,6 +13,6 @@
     "kuvaus": "Puolipilvistä",
     "lahde": "fallback - rakenne yhteensopiva"
   },
-  "paivitetty": "2026-09-25T16:33:28.931829+00:00",
+  "paivitetty": "2026-09-25T16:45:59.934957+00:00",
   "api": "https://api.open-meteo.com/v1/forecast?latitude=63.0772&longitude=23.867&current=temperature_2m,wind_speed_10m,relative_humidity_2m,precipitation,weather_code&timezone=Europe/Helsinki"
 }
