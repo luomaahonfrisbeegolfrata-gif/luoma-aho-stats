@@ -1,0 +1,58 @@
+name: Deploy Pages v5.1 FIX
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '*/5 * * * *'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  update-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          
+      - name: Install deps
+        run: pip install requests
+
+      - name: Update data (dynamic)
+        run: |
+          python fetch_data.py
+          echo "Data updated:"
+          ls -lh data/
+
+      - name: Commit data if changed
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@luoma-aho.fi"
+          git add data/*.json
+          git diff --staged --quiet || (git commit -m "auto data v5.1" && git push)
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

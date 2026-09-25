@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>React Artifact</title>
@@ -15,9 +12,168 @@ iframe[src*="foreca.fi"] { display: none !important; }
 .foreca-compact { display:flex !important; }
 </style>
 <script id="foreca-dynamic-compact">
-/* FIX v5.1 SAFE - foreca compact disabled to prevent Firefox crash - data comes from data/saa.json */
+// 1. Kaikki data dynaamisesti + 2. Foreca kompaktina korttina
 (function(){
-  console.log('foreca-dynamic-compact disabled for stability, using data/saa.json');
+  function parseForecaTemp(htmlText){
+    try{
+      // Yritä löytää lämpötila Forecan HTML:stä
+      let m = htmlText.match(/(-?\d{1,2}(?:\.\d)?)\s*°C/);
+      if(m) return m[1];
+      m = htmlText.match(/"temp"\s*:\s*(-?\d+)/i);
+      if(m) return m[1];
+      return null;
+    }catch(e){ return null; }
+  }
+
+  async function fetchForecaLive(){
+    const urls = [
+      'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://www.foreca.fi/Finland/Alajarvi/Luoma-aho/details'),
+      'https://corsproxy.io/?' + encodeURIComponent('https://www.foreca.fi/Finland/Alajarvi/Luoma-aho/details')
+    ];
+    for(let u of urls){
+      try{
+        const r = await fetch(u, {cache:'no-store'});
+        if(!r.ok) continue;
+        const t = await r.text();
+        if(t && t.length>1000){
+          const temp = parseForecaTemp(t);
+          if(temp) return {temp: temp, raw: t};
+        }
+      }catch(e){}
+    }
+    return null;
+  }
+
+  async function fetchOpenMeteo(){
+    try{
+      // Alajärvi 63.077235,23.8669964
+      const url = 'https://api.open-meteo.com/v1/forecast?latitude=63.0772&longitude=23.867&current=temperature_2m,wind_speed_10m,relative_humidity_2m,precipitation,weather_code&hourly=temperature_2m,weather_code&timezone=Europe%2FHelsinki&forecast_days=1';
+      const r = await fetch(url, {cache:'no-store'});
+      const j = await r.json();
+      return j;
+    }catch(e){ return null; }
+  }
+
+  function createCompactCard(){
+    // Etsi Forecan container
+    const iframes = document.querySelectorAll('iframe[src*="foreca.fi"]');
+    if(iframes.length===0) return null;
+    const container = iframes[0].parentElement;
+    if(!container) return null;
+
+    // Tyhjennä ja luo kompakti rakenne - 100% sama koko kuin alkuperäinen kortti
+    container.innerHTML = '';
+    container.style.cssText = 'display:flex;flex-direction:column;background:#fff;border-radius:12px;height:100%;overflow:hidden;';
+    
+    const card = document.createElement('div');
+    card.id = 'foreca-compact-live';
+    card.style.cssText = 'padding:12px;display:flex;flex-direction:column;height:100%;background:#fff;';
+    card.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:10px;font-weight:800;letter-spacing:0.08em;color:#6c757d">SÄÄ - LUOMA-AHO</span>
+        <span style="font-size:9px;background:#0d6efd;color:#fff;padding:3px 6px;border-radius:4px;font-weight:800;letter-spacing:0.02em">FORECA</span>
+      </div>
+      <div style="margin-top:8px;font-size:10px;font-weight:600;color:#6c757d">Luoma-aho - Alajärvi</div>
+      <div style="font-size:9px;color:#adb5bd;margin-top:2px">63.07°N 23.87°E • Frisbeegolfrata</div>
+      
+      <div style="margin-top:14px;display:flex;align-items:baseline;gap:8px">
+        <div id="foreca-temp" style="font-size:32px;font-weight:900;letter-spacing:-0.03em;line-height:1">--°C</div>
+        <div id="foreca-icon" style="font-size:20px">⛅</div>
+      </div>
+      <div id="foreca-cond" style="font-size:12px;font-weight:700;margin-top:4px">Ladataan...</div>
+      <div id="foreca-wind" style="font-size:11px;color:#6c757d;margin-top:2px">Tuuli -- m/s</div>
+      
+      <div id="foreca-hourly" style="margin-top:12px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
+        <div style="background:#f8f9fa;border-radius:10px;padding:6px;text-align:center"><div style="font-size:8px;font-weight:700;color:#adb5bd">12:00</div><div style="font-size:12px;margin-top:2px">☁️</div><div class="hour-temp" style="font-size:10px;font-weight:800;margin-top:2px">--°</div></div>
+        <div style="background:#f8f9fa;border-radius:10px;padding:6px;text-align:center"><div style="font-size:8px;font-weight:700;color:#adb5bd">15:00</div><div style="font-size:12px;margin-top:2px">⛅</div><div class="hour-temp" style="font-size:10px;font-weight:800;margin-top:2px">--°</div></div>
+        <div style="background:#f8f9fa;border-radius:10px;padding:6px;text-align:center"><div style="font-size:8px;font-weight:700;color:#adb5bd">18:00</div><div style="font-size:12px;margin-top:2px">🌧️</div><div class="hour-temp" style="font-size:10px;font-weight:800;margin-top:2px">--°</div></div>
+        <div style="background:#f8f9fa;border-radius:10px;padding:6px;text-align:center"><div style="font-size:8px;font-weight:700;color:#adb5bd">21:00</div><div style="font-size:12px;margin-top:2px">🌙</div><div class="hour-temp" style="font-size:10px;font-weight:800;margin-top:2px">--°</div></div>
+      </div>
+      
+      <div style="margin-top:auto;padding-top:12px">
+        <div style="display:flex;justify-content:space-between;font-size:10px;margin-top:6px"><span style="color:#6c757d;font-weight:600">Kosteus</span><span id="foreca-hum" style="font-weight:700">--%</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:10px;margin-top:4px"><span style="color:#6c757d;font-weight:600">Sade 24h</span><span id="foreca-rain" style="font-weight:700">-- mm</span></div>
+        <a href="https://www.foreca.fi/Finland/Alajarvi/Luoma-aho/details" target="_blank" rel="noopener" style="margin-top:12px;display:flex;align-items:center;justify-content:center;gap:6px;background:#111;color:#fff;text-align:center;padding:8px;border-radius:9999px;font-size:11px;font-weight:700;text-decoration:none">Avaa Foreca <span style="font-size:14px">→</span></a>
+        <div id="foreca-updated" style="margin-top:6px;font-size:8px;color:#adb5bd;text-align:center;line-height:1.3">Päivitetään 5min välein • Säädata © Foreca / Open-Meteo</div>
+      </div>
+    `;
+    container.appendChild(card);
+    return card;
+  }
+
+  async function updateForecaCard(){
+    const tempEl = document.getElementById('foreca-temp');
+    const condEl = document.getElementById('foreca-cond');
+    const windEl = document.getElementById('foreca-wind');
+    const humEl = document.getElementById('foreca-hum');
+    const rainEl = document.getElementById('foreca-rain');
+    const updEl = document.getElementById('foreca-updated');
+    const hourTemps = document.querySelectorAll('.hour-temp');
+    if(!tempEl) return;
+
+    // 1. Yritä Foreca live
+    let data = await fetchForecaLive();
+    if(data && data.temp){
+      tempEl.textContent = data.temp + '°C';
+      condEl.textContent = 'Puolipilvistä';
+      updEl.textContent = 'Päivitetty: ' + new Date().toLocaleTimeString('fi-FI') + ' • Foreca live 5min';
+    }
+
+    // 2. Open-Meteo tarkempi data (varmasti toimii)
+    const meteo = await fetchOpenMeteo();
+    if(meteo && meteo.current){
+      const c = meteo.current;
+      tempEl.textContent = Math.round(c.temperature_2m) + '°C';
+      windEl.textContent = 'Tuuli ' + c.wind_speed_10m.toFixed(1) + ' m/s • Kosteus ' + c.relative_humidity_2m + '%';
+      if(humEl) humEl.textContent = c.relative_humidity_2m + '%';
+      if(rainEl) rainEl.textContent = (c.precipitation||0) + ' mm';
+      
+      // Weather code to text
+      const codes = {0:'Selkeää',1:'Melkein selkeää',2:'Puolipilvistä',3:'Pilvistä',45:'Sumua',51:'Tihkua',61:'Sadetta',71:'Lumisadetta',80:'Sadekuuroja',95:'Ukkosta'};
+      condEl.textContent = codes[c.weather_code] || 'Puolipilvistä';
+      
+      // Hourly
+      if(meteo.hourly && meteo.hourly.temperature_2m){
+        const now = new Date().getHours();
+        const idx = [12,15,18,21].map(h => {
+          // Find closest hour index
+          return h;
+        });
+        hourTemps.forEach((el,i)=>{
+          const h = [12,15,18,21][i];
+          const temp = meteo.hourly.temperature_2m[h] || '--';
+          el.textContent = Math.round(temp) + '°';
+        });
+      }
+      
+      if(updEl) updEl.textContent = 'Päivitetty: ' + new Date().toLocaleTimeString('fi-FI') + ' • 5min välein • Open-Meteo + Foreca';
+    }
+  }
+
+  function init(){
+    // Odota että React renderöi
+    setTimeout(()=>{
+      const card = createCompactCard();
+      if(card){
+        updateForecaCard();
+        // 5min välein päivitys - kuten muutkin kortit 300000ms
+        setInterval(updateForecaCard, 300000);
+      }
+    }, 800);
+    // Retry jos iframe vielä latautuu myöhemmin
+    setTimeout(()=>{
+      if(!document.getElementById('foreca-compact-live')){
+        const card = createCompactCard();
+        if(card) updateForecaCard();
+      }
+    }, 2500);
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  }else{
+    init();
+  }
 })();
 </script>
 
@@ -39,18 +195,6 @@ a[aria-label^="Tähti"], a[aria-label*="Tähti 4.7"], a[aria-label*="Tähti"] {
   display: none !important;
 }
 </style>
-
-
-
-
-
-
-
-
-
-
-<script id="latest-embedded-data" type="application/json">{"tilastot": {"tulos_kirjatut_ja_kierrosten_maara": 1144, "metrix_44010": 586, "metrix_44763": 62, "metrix_43119": 80, "udisc": 416, "laskenta": "586+62+80+416=1144", "paivitetty": "2026-09-25T14:45:47.620270+00:00", "lahde": "v7.1 LIVE FIRST PAINT + SAA + TOP5", "urls": {"44010": "https://discgolfmetrix.com/course/44010", "44763": "https://discgolfmetrix.com/course/44763", "43119": "https://discgolfmetrix.com/course/43119", "udisc": "https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx"}}, "vaylat": {"par": [4, 3, 3, 3, 3, 3, 3, 3, 4, 3, 5, 4], "par_total": 41, "par_total_display": 46, "pituus": [125, 103, 72, 57, 94, 96, 103, 80, 116, 85, 197, 120], "pituus_ft": [410, 338, 236, 189, 308, 315, 336, 264, 381, 279, 646, 394], "pituus_total": 1248, "pituus_label": "Pituus Par yläpuolella", "avg": [4.7, 3.8, 3.7, 3.4, 3.6, 4.3, 4.2, 3.6, 5.2, 4.3, 6.6, 4.4], "lahde": "fallback v4.0 + UDisc 143835 1248m", "paivitetty": "2026-09-25T14:45:47.617121+00:00"}, "version": {"versio": "7.1", "pohja": "v7.0 FIRST PAINT LATEST", "pvm": "2026-09-25", "ominaisuudet": ["FIRST PAINT LATEST embedded", "saa.json LIVE Open-Meteo", "udisc_top5 LIVE scrape"], "data": {"tulos_kirjatut": 1144, "laskenta": "586+62+80+416=1144", "pituus_total": 1248, "saa_temp": 14}, "status": "v7.1 LIVE OK", "ajettu": "2026-09-25T14:45:47.620727+00:00"}, "saa": {"paikka": "Luoma-aho", "nyky": {"temp_c": 14, "lahde": "fallback"}, "paivitetty": "2026-09-25"}, "udisc_top5": [{"pos": 1, "username": "@kantanen8", "score": 35, "date": "Jul 6 2026"}, {"pos": 2, "username": "@valkoparta", "score": 36}, {"pos": 3, "username": "@mattiasss", "score": 36}, {"pos": 4, "username": "@dashyy", "score": 38}, {"pos": 5, "username": "@tuohimaa", "score": 39}], "embedded_at": "2026-09-25T14:45:47.726442+00:00"}</script>
-<script id="latest-data-bundle">window.__LATEST_DATA__ = {"tilastot": {"tulos_kirjatut_ja_kierrosten_maara": 1144, "metrix_44010": 586, "metrix_44763": 62, "metrix_43119": 80, "udisc": 416, "laskenta": "586+62+80+416=1144", "paivitetty": "2026-09-25T14:45:47.620270+00:00", "lahde": "v7.1 LIVE FIRST PAINT + SAA + TOP5", "urls": {"44010": "https://discgolfmetrix.com/course/44010", "44763": "https://discgolfmetrix.com/course/44763", "43119": "https://discgolfmetrix.com/course/43119", "udisc": "https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx"}}, "vaylat": {"par": [4, 3, 3, 3, 3, 3, 3, 3, 4, 3, 5, 4], "par_total": 41, "par_total_display": 46, "pituus": [125, 103, 72, 57, 94, 96, 103, 80, 116, 85, 197, 120], "pituus_ft": [410, 338, 236, 189, 308, 315, 336, 264, 381, 279, 646, 394], "pituus_total": 1248, "pituus_label": "Pituus Par yläpuolella", "avg": [4.7, 3.8, 3.7, 3.4, 3.6, 4.3, 4.2, 3.6, 5.2, 4.3, 6.6, 4.4], "lahde": "fallback v4.0 + UDisc 143835 1248m", "paivitetty": "2026-09-25T14:45:47.617121+00:00"}, "version": {"versio": "7.1", "pohja": "v7.0 FIRST PAINT LATEST", "pvm": "2026-09-25", "ominaisuudet": ["FIRST PAINT LATEST embedded", "saa.json LIVE Open-Meteo", "udisc_top5 LIVE scrape"], "data": {"tulos_kirjatut": 1144, "laskenta": "586+62+80+416=1144", "pituus_total": 1248, "saa_temp": 14}, "status": "v7.1 LIVE OK", "ajettu": "2026-09-25T14:45:47.620727+00:00"}, "saa": {"paikka": "Luoma-aho", "nyky": {"temp_c": 14, "lahde": "fallback"}, "paivitetty": "2026-09-25"}, "udisc_top5": [{"pos": 1, "username": "@kantanen8", "score": 35, "date": "Jul 6 2026"}, {"pos": 2, "username": "@valkoparta", "score": 36}, {"pos": 3, "username": "@mattiasss", "score": 36}, {"pos": 4, "username": "@dashyy", "score": 38}, {"pos": 5, "username": "@tuohimaa", "score": 39}], "embedded_at": "2026-09-25T14:45:47.726442+00:00"}; window.__LATEST_VERSION__ = "7.1"; console.log("v7.1 LIVE embedded", window.__LATEST_VERSION__, "586+62+80+416=1144");</script>
 </head>
 <body>
   <div id="root"></div>
@@ -67,26 +211,70 @@ Error generating stack: `+n.message+`
         .font-inter { font-family: 'Inter', sans-serif; }
       `}),v("header",{className:"sticky top-0 z-50 w-full bg-black border-b border-white/[0.12]",children:[o("div",{className:"h-[3px] w-full bg-white"}),o("div",{className:"mx-auto max-w-[1480px] px-4 sm:px-6 lg:px-8",children:v("div",{className:"flex h-[76px] md:h-[92px] items-center justify-between gap-4",children:[v("a",{href:"#",className:"flex items-center gap-[12px] shrink-0 group",children:[v("div",{className:"relative shrink-0",children:[o("img",{src:V2,alt:"Luoma-ahon Frisbeegolfrata logo",className:"h-[54px] w-[54px] md:h-[72px] md:w-[72px] object-contain rounded-full bg-white shadow-[0_0_0_2px_white] group-hover:shadow-[0_0_0_2px_white,0_0_20px_rgba(255,255,255,0.25)] transition-all duration-300"}),o("div",{className:"absolute inset-0 rounded-full border border-white/10 pointer-events-none"})]}),v("div",{className:"flex flex-col leading-[1.05] font-inter",children:[o("span",{className:"text-white font-bold text-[14px] md:text-[19px] tracking-[0.5px] whitespace-nowrap",children:"Luoma-ahon"}),o("span",{className:"text-white font-bold text-[11.5px] md:text-[15px] tracking-[0.5px] whitespace-nowrap -mt-[1px] md:-mt-[2px] opacity-95",children:"Frisbeegolfrata est. 2025"})]})]}),v("div",{className:"flex items-center gap-[10px] md:gap-[12px] flex-wrap justify-end shrink-0 max-w-[180px] sm:max-w-[380px] md:max-w-none",children:[o("a",{href:Ao,target:"_blank",rel:"noopener noreferrer","aria-label":"Google Maps",className:cb,children:o("img",{src:z2,alt:"Google Maps",className:Ct})}),o("a",{href:to,target:"_blank",rel:"noopener noreferrer","aria-label":"Parkdly",className:pb,children:o("img",{src:X2,alt:"Parkdly",className:"w-full h-full object-contain rounded-[12px] block"})}),o("a",{href:ro,target:"_blank",rel:"noopener noreferrer","aria-label":"Rata-kuvat",className:ib,children:o("img",{src:y2,alt:"Rata-kuvat",className:"w-full h-full object-cover rounded-[7px] block"})}),o("a",{href:eo,target:"_blank",rel:"noopener noreferrer","aria-label":"Löytökiekot",className:Hb,children:o("img",{src:O2,alt:"Löytökiekot",className:Ct})}),o("a",{href:t,target:e,rel:"noopener noreferrer","aria-label":"YouTube",className:xb,children:o("img",{src:N2,alt:"YouTube",className:Ct})}),o("a",{href:A,target:r,rel:"noopener noreferrer","aria-label":"Instagram",className:kb,children:o("img",{src:q2,alt:"Instagram",className:Ct})}),o("a",{href:ao,target:"_blank",rel:"noopener noreferrer","aria-label":"Frisbeegolfradat.fi",className:lb,children:o("img",{src:G2,alt:"Frisbeegolfradat.fi",className:Ct})}),o("a",{href:mt,target:"_blank",rel:"noopener noreferrer","aria-label":"UDisc",className:Sb,children:o("img",{src:w2,alt:"Luoma-ahon Frisbeegolfrata - Alajärvi, Finland | UDisc Disc Golf Course Directory",className:Ct})}),o("a",{href:et,target:"_blank",rel:"noopener noreferrer","aria-label":"Metrix",className:db,children:o("img",{src:s2,alt:"Metrix",className:Ct})}),v("a",{href:R2,target:"_blank",rel:"noopener noreferrer","aria-label":`Tähti ${yP.toFixed(1)}`,className:vb,children:[o("svg",{width:"16",height:"16",viewBox:"0 0 24 24",fill:"#f97316",stroke:"#f97316",strokeWidth:"1.2",className:"shrink-0","aria-hidden":"true",children:o("polygon",{points:"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"})}),o("span",{className:"font-inter font-bold text-[13px] md:text-[14px] leading-none text-[#111] tracking-[-0.01em]",children:yP.toFixed(1)})]})]})]})})]}),o("main",{className:"bg-[#f8f9fa] min-h-[calc(100vh-95px)]",children:v("div",{className:"mx-auto max-w-[1280px] px-[24px] py-[24px]",children:[o("div",{className:"mb-3",children:o("span",{className:"font-inter font-extrabold text-[11px] tracking-[0.05em] text-[#111] uppercase opacity-100",children:"TILASTOT"})}),v("div",{className:"grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-[16px]",children:[v("div",{className:"bg-white rounded-[16px] border border-[#e9ecef] shadow-[0_1px_3px_rgba(0,0,0,0.06)] flex flex-col h-[108px] p-[12px] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:-translate-y-[2px] transition-all duration-200",children:[o("div",{className:"font-inter font-semibold text-[11px] uppercase tracking-[0.06em] text-[#6c757d] text-center leading-[1.2] min-h-[28px] flex items-center justify-center",children:me[0]}),o("div",{className:"flex flex-col items-center justify-center flex-1 w-full",children:o("div",{className:"font-inter font-bold text-[30px] leading-none text-[#111] text-center tracking-[-0.02em]",children:L})})]}),v("div",{className:"bg-white rounded-[16px] border border-[#e9ecef] shadow-[0_1px_3px_rgba(0,0,0,0.06)] flex flex-col h-[108px] p-[12px] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:-translate-y-[2px] transition-all duration-200",children:[o("div",{className:"font-inter font-semibold text-[11px] uppercase tracking-[0.06em] text-[#6c757d] text-center leading-[1.2] min-h-[28px] flex items-center justify-center",children:me[1]}),o("div",{className:"flex flex-col items-center justify-center flex-1 w-full",children:o("div",{className:"font-inter font-bold text-[30px] leading-none text-[#111] text-center tracking-[-0.02em]",children:Y2})})]}),(()=>{let Q=(L||1140)*80,m=Math.floor(Q/60),D=Q%60,T=Math.floor(m/24),J=m%24,G=(N)=>N.toLocaleString("fi-FI");return v("div",{className:"bg-white rounded-[16px] border border-[#e9ecef] shadow-[0_1px_3px_rgba(0,0,0,0.06)] flex flex-col h-[108px] p-[12px] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:-translate-y-[2px] transition-all duration-200",children:[o("div",{className:"font-inter font-semibold text-[11px] uppercase tracking-[0.06em] text-[#6c757d] text-center leading-[1.2] min-h-[28px] flex items-center justify-center",children:me[2]}),v("div",{className:"flex flex-col items-center justify-center flex-1 w-full gap-[2px]",children:[o("div",{className:"font-inter font-bold text-[22px] leading-none text-[#111] text-center tracking-[-0.02em]",children:T>0?`${G(T)} pv ${J} h`:`${G(m)} h`}),v("div",{className:"font-inter font-bold text-[12px] leading-none text-[#212529] text-center",children:[G(m)," h ",D>0?`${D} min`:""," · ",G(Q)," min"]})]})]})})(),(()=>{let k=(m)=>m.toLocaleString("fi-FI"),U=(m)=>{if(m>=1e6)return`${(m/1e6).toFixed(2).replace(".",",")} M`;if(m>=1000)return`${(m/1000).toFixed(1).replace(".",",")} k`;return k(m)},Q=m2||L*(Xn||2976);return v("div",{className:"bg-white rounded-[16px] border border-[#e9ecef] shadow-[0_1px_3px_rgba(0,0,0,0.06)] flex flex-col h-[108px] p-[12px] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:-translate-y-[2px] transition-all duration-200",children:[o("div",{className:"font-inter font-semibold text-[11px] uppercase tracking-[0.06em] text-[#6c757d] text-center leading-[1.2] min-h-[28px] flex items-center justify-center",children:me[3]}),v("div",{className:"flex flex-col items-center justify-center flex-1 w-full gap-[1px]",children:[o("div",{className:"font-inter font-bold text-[22px] leading-none text-[#111] text-center tracking-[-0.02em]",children:U(Q)}),v("div",{className:"font-inter font-semibold text-[10px] leading-none text-[#212529] text-center mt-[1px]",children:[k(Q)," askelta"]})]})]})})(),(()=>{let k=(Q)=>Q.toLocaleString("fi-FI"),U=L*2.5;return v("div",{className:"bg-white rounded-[16px] border border-[#e9ecef] shadow-[0_1px_3px_rgba(0,0,0,0.06)] flex flex-col h-[108px] p-[12px] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:-translate-y-[2px] transition-all duration-200",children:[o("div",{className:"font-inter font-semibold text-[11px] uppercase tracking-[0.06em] text-[#6c757d] text-center leading-[1.2] min-h-[28px] flex items-center justify-center",children:me[4]}),o("div",{className:"flex flex-col items-center justify-center flex-1 w-full",children:v("div",{className:"font-inter font-bold text-[24px] leading-none text-[#111] text-center tracking-[-0.02em]",children:[k(Math.round(U))," km"]})})]})})()]}),v("div",{className:"hidden",children:[o("a",{href:"https://discgolfmetrix.com/course/43119",target:"_blank",rel:"noopener",children:"https://discgolfmetrix.com/course/43119"}),o("a",{href:"https://discgolfmetrix.com/course/44010",target:"_blank",rel:"noopener",children:"Metrix"}),o("a",{href:"https://discgolfmetrix.com/course/44763",target:"_blank",rel:"noopener",children:"Metrix"}),o("a",{href:"https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx",target:"_blank",rel:"noopener",children:"Luoma-ahon Frisbeegolfrata - Alajärvi, Finland | UDisc Disc Golf Course Directory"}),o("a",{href:"https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/leaderboard?layoutId=143835&dateRange=all&limit=100",target:"_blank",rel:"noopener",children:"Luoma-ahon Frisbeegolfrata | Course Leaderboard"}),o("a",{href:"https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/v2/layouts/143835",target:"_blank",rel:"noopener",children:"Luoma-ahon Frisbeegolfrata | Course Layout"})]}),o("div",{className:"mt-[24px] mb-3",children:o("span",{className:"font-inter font-extrabold text-[11px] tracking-[0.05em] text-[#111] uppercase opacity-100",children:"RATA & TULOKSET"})}),v("div",{className:"grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-[16px]",children:[v("div",{className:"bg-white rounded-[16px] border border-[#e9ecef] shadow-[0_1px_3px_rgba(0,0,0,0.06)] flex flex-col overflow-hidden h-[320px] md:h-[360px] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:-translate-y-[2px] transition-all duration-200",children:[o("div",{className:"h-[40px] shrink-0 flex items-center justify-center border-b border-[#f1f3f5] px-3",children:o("span",{className:"font-inter font-semibold text-[11px] uppercase tracking-[0.06em] text-[#6c757d] text-center",children:"RATAINFO"})}),o("div",{className:"flex-1 overflow-hidden p-[10px_14px] flex flex-col justify-between h-full",children:v("div",{className:"font-inter text-[11px] leading-relaxed text-[#212529] flex flex-col justify-between h-full py-2",children:[o("p",{className:"m-0",children:"Kalliopohjaisessa mäkisessä mäntymetsä maastossa."}),o("p",{className:"m-0",children:"Tekninen / vaativa mutta helposti lähestyttävä."}),o("p",{className:"m-0",children:"Pienellä alueella jossa olemattomat siirtymät."}),o("p",{className:"m-0",children:"Loistava kunto metsäradaksi."}),o("p",{className:"m-0",children:"Väylien pituudet 57 - 197m"}),o("p",{className:"m-0",children:"OB:t ja Mandot haastavat pelaajan päätöksentekoa."}),o("p",{className:"m-0",children:"Tekniikka, kiekko kontrolli ja heittovalinnat avainasemassa onnistumiseen."}),o("p",{className:"m-0",children:"Lähes päivittäinen ylläpito ja kehitys keväästä alkaen"})]})})]}),v("div",{className:"bg-white rounded-[16px] border border-[#e9ecef] shadow-[0_1px_3px_rgba(0,0,0,0.06)] flex flex-col overflow-hidden h-[320px] md:h-[360px] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:-translate-y-[2px] transition-all duration-200",children:[v("div",{className:"shrink-0 flex flex-col items-center justify-center border-b border-[#f1f3f5] px-3 py-[10px]",children:[o("div",{className:"font-inter font-semibold text-[10px] md:text-[11px] uppercase tracking-[0.06em] text-[#6c757d] text-center leading-[1.1]",children:"VÄYLÄOPASTE TOP 5"}),v("div",{className:"mt-2 flex items-center gap-2",children:[o("span",{className:"text-[11px] font-bold font-inter text-[#111]",children:"Par rating"}),o("a",{href:et,target:"_blank",rel:"noopener",title:`Rating: tulos ${Ab} = ${sP} | Metrix`,className:"bg-green-600 text-white px-2.5 py-0.5 rounded-full text-xs font-bold font-inter hover:bg-green-700 transition-colors",children:sP})]})]}),o("div",{className:"flex-1 overflow-y-auto p-[12px] flex flex-col",children:_2?o("div",{className:"space-y-[8px] animate-pulse",children:[1,2,3,4,5].map((k)=>v("div",{className:"flex items-center gap-3 py-[8px] px-[4px] border-b border-[#f1f3f5]",children:[o("div",{className:"w-[20px] h-[20px] rounded-full bg-[#f1f3f5]"}),v("div",{className:"flex-1 space-y-[4px]",children:[o("div",{className:"h-[10px] bg-[#f1f3f5] rounded w-[70%]"}),o("div",{className:"h-[8px] bg-[#f1f3f5] rounded w-[40%]"})]}),o("div",{className:"w-[30px] h-[12px] bg-[#f1f3f5] rounded"})]},k))}):o("div",{className:"flex-1",children:o("div",{className:"space-y-0",children:$2.slice(0,5).map((k)=>v("div",{className:"flex items-center gap-[10px] py-[8px] px-[4px] border-b border-[#f1f3f5] last:border-b-0",children:[o("div",{className:"w-[20px] h-[20px] rounded-full bg-black text-white flex items-center justify-center text-[11px] font-bold font-inter shrink-0",children:k.pos}),v("div",{className:"flex-1 min-w-0",children:[o("div",{className:"font-inter font-semibold text-[13px] text-[#212529] leading-[1.2] truncate",children:k.name}),o("div",{className:"font-inter text-[10px] text-[#adb5bd] leading-[1.1] mt-[2px]",children:k.date})]}),v("div",{className:"text-right shrink-0 flex flex-col items-end",children:[o("div",{className:"font-inter font-bold text-[14px] text-[#111] leading-none",children:k.score}),o("div",{className:"font-inter text-[10px] text-[#6c757d] mt-[2px]",children:k.diff})]})]},`${k.pos}-${k.name}-${k.score}`))})})})]}),v("div",{className:"bg-white rounded-[16px] border border-[#e9ecef] shadow-[0_1px_3px_rgba(0,0,0,0.06)] flex flex-col overflow-hidden h-[320px] md:h-[360px] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:-translate-y-[2px] transition-all duration-200",children:[v("div",{className:"shrink-0 flex flex-col items-center justify-center border-b border-[#f1f3f5] px-3 py-[10px]",children:[o("div",{className:"font-inter font-semibold text-[10px] md:text-[11px] uppercase tracking-[0.06em] text-[#6c757d] text-center leading-[1.1]",children:"VÄYLÄOPASTE 2 KIERROSTA TOP 5"}),v("div",{className:"mt-2 flex items-center gap-2",children:[o("span",{className:"text-[11px] font-bold font-inter text-[#111]",children:"Par rating"}),o("a",{href:vt,target:"_blank",rel:"noopener",title:`Rating: tulos ${nb} = ${TP} | Metrix 2 kierrosta`,className:"bg-green-600 text-white px-2.5 py-0.5 rounded-full text-xs font-bold font-inter hover:bg-green-700 transition-colors",children:TP})]})]}),o("div",{className:"flex-1 overflow-y-auto p-[12px] flex flex-col",children:ab?o("div",{className:"space-y-[8px] animate-pulse",children:[1,2,3,4,5].map((k)=>v("div",{className:"flex items-center gap-3 py-[8px] px-[4px] border-b border-[#f1f3f5]",children:[o("div",{className:"w-[20px] h-[20px] rounded-full bg-[#f1f3f5]"}),v("div",{className:"flex-1 space-y-[4px]",children:[o("div",{className:"h-[10px] bg-[#f1f3f5] rounded w-[70%]"}),o("div",{className:"h-[8px] bg-[#f1f3f5] rounded w-[40%]"})]}),o("div",{className:"w-[30px] h-[12px] bg-[#f1f3f5] rounded"})]},k))}):o("div",{className:"flex-1",children:o("div",{className:"space-y-0",children:eb.slice(0,5).map((k)=>v("div",{className:"flex items-center gap-[10px] py-[8px] px-[4px] border-b border-[#f1f3f5] last:border-b-0",children:[o("div",{className:"w-[20px] h-[20px] rounded-full bg-black text-white flex items-center justify-center text-[11px] font-bold font-inter shrink-0",children:k.pos}),v("div",{className:"flex-1 min-w-0",children:[o("div",{className:"font-inter font-semibold text-[13px] text-[#212529] leading-[1.2] truncate",children:k.name}),o("div",{className:"font-inter text-[10px] text-[#adb5bd] leading-[1.1] mt-[2px]",children:k.date})]}),v("div",{className:"text-right shrink-0 flex flex-col items-end",children:[o("div",{className:"font-inter font-bold text-[14px] text-[#111] leading-none",children:k.score}),o("div",{className:"font-inter text-[10px] text-[#6c757d] mt-[2px]",children:k.diff})]})]},`${k.pos}-${k.name}-${k.score}-2`))})})})]}),v("div",{className:"bg-white rounded-[16px] border border-[#e9ecef] shadow-[0_1px_3px_rgba(0,0,0,0.06)] flex flex-col overflow-hidden h-[320px] md:h-[360px] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:-translate-y-[2px] transition-all duration-200",children:[o("div",{className:"h-[40px] shrink-0 flex items-center justify-center border-b border-[#f1f3f5] px-3",children:o("span",{className:"font-inter font-semibold text-[11px] uppercase tracking-[0.06em] text-[#6c757d] text-center",children:"UDISC LEADERBOARD TOP 10"})}),o("div",{className:"flex-1 overflow-auto p-[12px] flex flex-col",children:bb?o("div",{className:"space-y-[8px] animate-pulse",children:[1,2,3,4].map((k)=>v("div",{className:"flex items-center gap-[10px] py-[8px] px-[4px] border-b border-[#f1f3f5]",children:[o("div",{className:"w-[20px] h-[20px] rounded-full bg-[#f1f3f5]"}),v("div",{className:"flex-1 space-y-[4px]",children:[o("div",{className:"h-[10px] bg-[#f1f3f5] rounded w-[60%]"}),o("div",{className:"h-[8px] bg-[#f1f3f5] rounded w-[40%]"})]}),o("div",{className:"w-[30px] h-[12px] bg-[#f1f3f5] rounded"})]},k))}):o("div",{className:"flex-1",children:o("div",{className:"space-y-0",children:ub.slice(0,10).map((k)=>v("div",{className:"flex items-center gap-[10px] py-[8px] px-[4px] border-b border-[#f1f3f5] last:border-b-0",children:[o("div",{className:"w-[20px] h-[20px] rounded-full bg-black text-white flex items-center justify-center text-[11px] font-bold font-inter shrink-0",children:k.pos}),v("div",{className:"flex-1 min-w-0",children:[o("div",{className:"font-inter font-bold text-[13px] text-[#212529] leading-[1.2] truncate",children:k.username}),o("div",{className:"font-inter text-[11px] text-[#adb5bd] leading-[1.1] mt-[2px]",children:k.date})]}),o("div",{className:"text-right shrink-0",children:o("div",{className:"font-inter font-bold text-[14px] text-[#111] leading-none",children:k.score})})]},`${k.pos}-${k.username}-${k.score}`))})})})]}),v("div",{className:"bg-white rounded-[16px] border border-[#e9ecef] shadow-[0_1px_3px_rgba(0,0,0,0.06)] flex flex-col overflow-hidden h-[320px] md:h-[360px] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:-translate-y-[2px] transition-all duration-200",children:[v("div",{className:"h-[40px] shrink-0 flex items-center justify-center border-b border-[#f1f3f5] px-3 gap-2",children:[o("span",{className:"font-inter font-semibold text-[11px] uppercase tracking-[0.06em] text-[#6c757d] text-center",children:"SÄÄ · LUOMA-AHO"}),o("span",{className:"inline-flex items-center justify-center bg-[#0a4da1] text-white rounded-[6px] px-[6px] py-[3px] font-inter font-bold text-[9px] leading-none tracking-[0.02em]",children:"FORECA"})]}),v("div",{className:"flex-1 relative overflow-hidden bg-[#f8f9fa] flex flex-col",children:[o("iframe",{src:mr,style:{width:"100%",height:"100%",border:0},title:"Foreca sää Luoma-aho",loading:"lazy",referrerPolicy:"no-referrer-when-downgrade",onLoad:()=>Kb(!0),onError:()=>BP(!0),className:`absolute inset-0 w-full h-full border-0 ${sn?"opacity-0 pointer-events-none":"opacity-100"}`}),o("div",{className:`absolute inset-0 flex flex-col bg-white transition-opacity duration-300 ${Ir&&!sn?"opacity-0 pointer-events-none":"opacity-100"}`,children:v("div",{className:"flex-1 p-[14px] flex flex-col",children:[v("div",{className:"flex items-start justify-between gap-2",children:[v("div",{children:[o("div",{className:"font-inter font-bold text-[14px] text-[#111] leading-[1.1]",children:"Luoma-aho · Alajärvi"}),o("div",{className:"font-inter text-[11px] text-[#6c757d] mt-[3px] leading-[1.2]",children:"63.07°N 23.87°E · Frisbeegolfrata"})]}),o("div",{className:"w-[36px] h-[36px] rounded-full bg-[#f1f3f5] flex items-center justify-center text-[18px]",children:"⛅"})]}),v("div",{className:"mt-[14px] flex items-end gap-[10px]",children:[o("div",{className:"font-inter font-bold text-[42px] leading-none text-[#111] tracking-[-0.02em]",children:JP?"--":It.temp||"––°"}),v("div",{className:"mb-[6px] flex flex-col gap-[2px]",children:[o("div",{className:"font-inter font-semibold text-[12px] text-[#212529] leading-none",children:JP?"Haetaan...":It.condition||"Sää Luoma-aho"}),o("div",{className:"font-inter text-[10px] text-[#6c757d] leading-none",children:It.wind?`Tuuli ${It.wind}`:"Päivittyy 10min välein"})]})]}),v("div",{className:"mt-[12px] grid grid-cols-3 gap-[6px]",children:[v("div",{className:"rounded-[8px] bg-[#f8f9fa] border border-[#f1f3f5] p-[6px] text-center",children:[o("div",{className:"font-inter text-[9px] text-[#adb5bd] uppercase tracking-[0.05em]",children:"Tänään"}),o("div",{className:"font-inter font-semibold text-[11px] text-[#212529] mt-[2px]",children:It.dateLabel||new Date().toLocaleDateString("fi-FI")})]}),v("div",{className:"rounded-[8px] bg-[#f8f9fa] border border-[#f1f3f5] p-[6px] text-center",children:[o("div",{className:"font-inter text-[9px] text-[#adb5bd] uppercase tracking-[0.05em]",children:"Rata"}),o("div",{className:"font-inter font-semibold text-[11px] text-[#212529] mt-[2px]",children:"Metsärata"})]}),v("div",{className:"rounded-[8px] bg-[#f8f9fa] border border-[#f1f3f5] p-[6px] text-center",children:[o("div",{className:"font-inter text-[9px] text-[#adb5bd] uppercase tracking-[0.05em]",children:"Tila"}),o("div",{className:`font-inter font-semibold text-[11px] mt-[2px] ${It.isLive?"text-[#16a34a]":"text-[#6c757d]"}`,children:It.isLive?"Live":"Fallback"})]})]}),v("div",{className:"mt-auto",children:[v("a",{href:mr,target:"_blank",rel:"noopener",className:"inline-flex w-full items-center justify-center gap-[6px] bg-black text-white rounded-[10px] px-[14px] py-[10px] font-inter font-bold text-[12px] leading-none hover:bg-[#212529] transition-colors",children:["Avaa Foreca",o("span",{className:"text-[14px] leading-none",children:"→"})]}),v("div",{className:"mt-[8px] font-inter text-[9px] text-[#adb5bd] text-center leading-[1.3]",children:["Säädata © Foreca · Alajärvi Luoma-aho",o("br",{}),"Foreca saattaa estää upotuksen – linkki avaa täyden ennusteen"]})]})]})}),Ir&&!sn&&o("div",{className:"absolute bottom-[8px] right-[8px] z-10",children:o("a",{href:mr,target:"_blank",rel:"noopener",className:"inline-flex items-center justify-center bg-black/80 backdrop-blur text-white rounded-[8px] px-[10px] py-[6px] font-inter font-bold text-[10px] leading-none hover:bg-black transition-colors",children:"Foreca →"})})]}),v("div",{className:"h-[32px] shrink-0 flex items-center justify-between border-t border-[#f1f3f5] px-[12px] bg-[#f8f9fa]",children:[o("span",{className:"font-inter text-[9px] text-[#adb5bd]",children:"Sää · Foreca Luoma-aho"}),o("a",{href:mr,target:"_blank",rel:"noopener",className:"font-inter text-[9px] font-semibold text-[#111] hover:underline",children:"foreca.fi →"})]})]})]}),o("div",{className:"mt-[24px] grid grid-cols-1 xl:grid-cols-1 gap-[16px]",children:v("div",{className:"bg-white rounded-[16px] border border-[#e9ecef] shadow-[0_1px_3px_rgba(0,0,0,0.06)] flex flex-col overflow-visible h-auto hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-all duration-200",children:[o("div",{className:"min-h-[48px] shrink-0 flex flex-wrap items-center justify-between border-b border-[#f1f3f5] px-[14px] py-[8px] gap-2",children:v("div",{className:"flex items-center gap-[10px] flex-wrap",children:[o("span",{className:"font-inter font-bold text-[12px] tracking-[0.06em] text-[#111] uppercase",children:"VÄYLÄTILASTO"}),o("span",{className:"inline-flex items-center bg-[#f1f3f5] text-[#212529] rounded-[6px] px-[6px] py-[2px] font-inter font-bold text-[9px]",children:"12 väylää · Par 41"}),o("span",{className:`inline-flex items-center rounded-[6px] px-[6px] py-[2px] font-inter font-bold text-[9px] ${GP?"bg-[#16a34a] text-white":"bg-[#e9ecef] text-[#495057]"}`,children:GP?"Live tarkistus":"Fallback"})]})}),o("div",{className:"p-[10px] md:p-[14px] overflow-x-auto",children:(()=>{let k=[4,3,3,3,3,3,3,3,4,3,5,4],U=[4.51,3.79,3.53,3.4,3.56,4.16,4.04,3.47,4.81,4.08,6.23,4.28],Q=U.map((O,V)=>O-k[V]),m=k.reduce((O,V)=>O+V,0),D=U.reduce((O,V)=>O+V,0),T=D-m,J=Q.map((O,V)=>({v:O,i:V})).sort((O,V)=>O.v-V.v).map((O)=>O.i),G=Array(12).fill(0);J.forEach((O,V)=>{G[O]=V+1});let N=(O)=>{if(O<=3)return"bg-emerald-500 text-white border-emerald-600";if(O<=6)return"bg-yellow-400 text-gray-900 border-yellow-500";if(O<=9)return"bg-orange-400 text-white border-orange-500";return"bg-red-500 text-white border-red-600"},H=[2,0,1,7,0,1,1,3,2,0,0,5],w=[15,0,6,16,5,0,2,9,13,0,5,13],R=[3,2,4,4,3,1,1,4,4,2,2,5],C=[15,11,16,9,17,9,8,13,13,7,4,14],Z=[33,31,46,13,38,21,36,46,32,17,19,41],iA=[7,6,7,6,7,5,6,7,6,6,6,7],BA=[8,16,9,13,12,9,12,12,7,14,14,10],Qt=[17,37,17,44,25,33,29,20,25,27,26,20],ht=[4,5,3,4,4,6,6,3,4,5,5,2],at=[125,125,125,124,125,125,125,125,125,127,124,125],HA=H.map((O,V)=>Math.round((H[V]+w[V]+R[V])/at[V]*100)),E=C.map((O,V)=>Math.round((C[V]+Z[V]+iA[V])/at[V]*100)),F=BA.map((O,V)=>Math.round((BA[V]+Qt[V]+ht[V])/at[V]*100)),M=[5,7,6,1,4,11,9,3,8,10,12,2];return v("table",{className:"w-full border-collapse min-w-[720px]",children:[o("thead",{children:v("tr",{className:"font-inter text-[10px] uppercase tracking-[0.06em] text-[#6c757d]",children:[o("th",{className:"text-left py-[10px] px-[12px] font-bold bg-[#f8f9fa] rounded-l-[8px] border-b border-[#e9ecef]",children:"Väylä"}),Array.from({length:12},(O,V)=>o("th",{className:"text-center py-[10px] px-[2px] font-bold bg-[#f8f9fa] border-b border-[#e9ecef]",children:V+1},V)),o("th",{className:"text-center py-[10px] px-[8px] font-bold bg-[#111] text-white rounded-r-[8px] border-b border-[#111]",children:"Tot"})]})}),v("tbody",{className:"font-inter text-[12px]",children:[v("tr",{className:"border-b border-[#f1f3f5] bg-white",children:[o("td",{className:"py-[10px] px-[12px] font-semibold text-[#212529] bg-[#f8f9fa]",children:"Par"}),k.map((O,V)=>o("td",{className:"text-center py-[10px] px-[2px] text-[#212529] bg-white",children:O},V)),o("td",{className:"text-center py-[10px] px-[8px] font-bold bg-white",children:m})]}),v("tr",{className:"border-b border-[#f1f3f5] bg-white",children:[o("td",{className:"py-[10px] px-[12px] font-semibold text-[#212529] bg-[#f8f9fa]",children:"Avg yhdist."}),U.map((O,V)=>o("td",{className:"text-center py-[10px] px-[2px] font-semibold text-[#111] bg-white",children:O.toFixed(2)},V)),o("td",{className:"text-center py-[10px] px-[8px] font-bold text-[#111] bg-white",children:D.toFixed(2)})]}),v("tr",{className:"border-b border-[#e9ecef] bg-white",children:[o("td",{className:"py-[10px] px-[12px] font-bold text-[#111] bg-[#f8f9fa]",children:"HUOM! overPar"}),Q.map((O,V)=>{let bA=G[V],XA=N(bA),Cr=bA===12;return o("td",{className:"text-center py-[6px] px-[2px] bg-white",children:v("span",{className:`inline-flex flex-col items-center justify-center gap-[2px] rounded-[6px] px-[6px] py-[4px] font-bold text-[11px] leading-none border ${XA}`,children:[o("span",{children:O>0?`+${O.toFixed(2)}`:O.toFixed(2)}),Cr&&o("span",{className:"text-[7px] font-extrabold tracking-[0.08em] mt-[1px] bg-red-600 text-white rounded-[3px] px-[3px] py-[1px]",children:"VAIKEIN"})]})},V)}),o("td",{className:"text-center py-[6px] px-[8px] bg-white",children:o("span",{className:"inline-flex rounded-[6px] px-[6px] py-[4px] font-bold text-[11px] bg-[#f1f3f5] text-[#111] border border-[#e9ecef]",children:T>0?`+${T.toFixed(2)}`:T.toFixed(2)})})]}),v("tr",{className:"border-b border-[#f1f3f5] bg-white",children:[o("td",{className:"py-[10px] px-[12px] font-semibold text-[#212529] bg-[#f8f9fa]",children:"Kaikki kierrokset"}),G.map((O,V)=>o("td",{className:"text-center py-[10px] px-[2px] text-[#6c757d] bg-white",children:O},V)),o("td",{className:"text-center py-[10px] px-[8px] text-[#adb5bd] bg-white",children:"—"})]}),v("tr",{className:"border-b border-[#f1f3f5] bg-white",children:[o("td",{className:"py-[10px] px-[12px] font-semibold text-[#212529] bg-[#f8f9fa]",children:"Väyläopaste"}),M.map((O,V)=>o("td",{className:"text-center py-[10px] px-[2px] text-[#6c757d] bg-white",children:O},V)),o("td",{className:"text-center py-[10px] px-[8px] text-[#adb5bd] bg-white",children:"—"})]}),v("tr",{className:"border-b border-[#f1f3f5] bg-white",children:[o("td",{className:"py-[10px] px-[12px] font-semibold text-[#212529] bg-[#f8f9fa]",children:"Birdie%"}),HA.map((O,V)=>v("td",{className:"text-center py-[10px] px-[2px] text-[#212529] bg-white",children:[O,"%"]},V)),v("td",{className:"text-center py-[10px] px-[8px] text-[#6c757d] bg-white",children:[Math.round((H.reduce((O,V)=>O+V,0)+w.reduce((O,V)=>O+V,0)+R.reduce((O,V)=>O+V,0))/at.reduce((O,V)=>O+V,0)*100),"%"]})]}),v("tr",{className:"border-b border-[#f1f3f5] bg-white",children:[o("td",{className:"py-[10px] px-[12px] font-semibold text-[#212529] bg-[#f8f9fa]",children:"Par%"}),E.map((O,V)=>v("td",{className:"text-center py-[10px] px-[2px] text-[#212529] bg-white",children:[O,"%"]},V)),o("td",{className:"text-center py-[10px] px-[8px] text-[#6c757d] bg-white",children:"—"})]}),v("tr",{className:"bg-white",children:[o("td",{className:"py-[10px] px-[12px] font-semibold text-[#212529] bg-[#f8f9fa] rounded-bl-[8px]",children:"Bogey%"}),F.map((O,V)=>v("td",{className:"text-center py-[10px] px-[2px] text-[#6c757d] bg-white",children:[O,"%"]},V)),o("td",{className:"text-center py-[10px] px-[8px] text-[#6c757d] bg-white rounded-br-[8px]",children:"—"})]})]})]})})()}),o("div",{className:"border-t border-[#f1f3f5] bg-[#f8f9fa] p-[10px] rounded-b-[16px]",children:v("div",{className:"flex flex-wrap gap-[10px] items-center",children:[v("div",{className:"flex items-center gap-[5px]",children:[o("span",{className:"w-[14px] h-[14px] rounded-[4px] inline-block bg-emerald-500 border border-emerald-600"}),o("span",{className:"font-inter text-[10px] text-[#212529] font-medium",children:"3 helpointa vihreä (HUOM! solut)"})]}),v("div",{className:"flex items-center gap-[5px]",children:[o("span",{className:"w-[14px] h-[14px] rounded-[4px] inline-block bg-yellow-400 border border-yellow-500"}),o("span",{className:"font-inter text-[10px] text-[#212529] font-medium",children:"3 seuraavaa keltainen"})]}),v("div",{className:"flex items-center gap-[5px]",children:[o("span",{className:"w-[14px] h-[14px] rounded-[4px] inline-block bg-orange-400 border border-orange-500"}),o("span",{className:"font-inter text-[10px] text-[#212529] font-medium",children:"3 seuraavaa oranssi"})]}),v("div",{className:"flex items-center gap-[5px]",children:[o("span",{className:"w-[14px] h-[14px] rounded-[4px] inline-block bg-red-500 border border-red-600"}),o("span",{className:"font-inter text-[10px] text-[#212529] font-medium",children:"3 vaikeinta punainen + VAIKEIN badge"})]})]})})]})})]})})]})}M2.createRoot(document.getElementById("root")).render(o(Z2.default.StrictMode,{children:o(PP,{})}));
 </script>
-  <script>
+  <script>(function(){function m(a){var h=a.getAttribute("href");if(!h)return;try{var u=new URL(h,document.baseURI);if((u.protocol==="http:"||u.protocol==="https:")&&u.host!==location.host){a.target="_blank";a.rel="noopener noreferrer";}}catch(e){}}function s(){document.querySelectorAll("a[href]").forEach(m);}if(document.readyState!=="loading"){s();}else{document.addEventListener("DOMContentLoaded",s);}document.addEventListener("click",function(e){var a=e.target&&e.target.closest&&e.target.closest("a[href]");if(a){m(a);}},true);})();</script>
+  
+
+<script id="pituus-row-inject">
 (function(){
-  // FIX v5.1: safe version without infinite MutationObserver
-  function getLatestData(){
-    try{
-      const cached = localStorage.getItem('luoma-aho-latest');
-      if(cached){
-        const parsed = JSON.parse(cached);
-        return parsed;
-      }
-    }catch(e){}
-    return window.__LATEST_DATA__ || null;
+  const PITUUS = [125,103,72,57,94,96,103,80,116,85,197,120];
+  const PITUUS_TOTAL = 1248;
+  function insertPituus(){
+    const tables = document.querySelectorAll('table');
+    tables.forEach(table=>{
+      const rows = table.querySelectorAll('tr');
+      if(rows.length < 3) return;
+      let parRow = null;
+      rows.forEach((row)=>{
+        const firstCell = row.querySelector('td, th');
+        if(firstCell && firstCell.textContent.trim().toLowerCase() === 'par'){
+          parRow = row;
+        }
+      });
+      if(!parRow) return;
+      const already = Array.from(rows).some(r=>{
+        const fc = r.querySelector('td, th');
+        return fc && fc.textContent.trim().toLowerCase().includes('pituus');
+      });
+      if(already) return;
+      const newRow = document.createElement('tr');
+      newRow.style.background = '#f0f9ff';
+      newRow.style.fontWeight = '600';
+      const labelCell = document.createElement('td');
+      labelCell.textContent = 'Pituus';
+      labelCell.style.fontWeight = '700';
+      labelCell.style.background = '#e0f2fe';
+      newRow.appendChild(labelCell);
+      PITUUS.forEach(len=>{
+        const td = document.createElement('td');
+        td.textContent = len + 'm';
+        td.style.textAlign = 'center';
+        td.style.fontSize = '12px';
+        newRow.appendChild(td);
+      });
+      const totalCell = document.createElement('td');
+      totalCell.textContent = PITUUS_TOTAL + 'm';
+      totalCell.style.fontWeight = '800';
+      totalCell.style.background = '#bae6fd';
+      newRow.appendChild(totalCell);
+      parRow.parentNode.insertBefore(newRow, parRow);
+      console.log('Pituus rivi lisatty');
+    });
   }
-  function renderPituusFromLatest(){
-    // This is now handled by pituus-row-inject safe version, skip here to avoid double observer
-    console.log('renderPituusFromLatest skipped - handled by safe pituus-row-inject');
+  function init(){
+    insertPituus();
+    setTimeout(insertPituus, 1000);
+    setTimeout(insertPituus, 3000);
+    setTimeout(insertPituus, 5000);
   }
-  // No observer - prevents Firefox crash
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    setTimeout(init, 500);
+  }
+  const observer = new MutationObserver(()=>{ insertPituus(); });
+  observer.observe(document.body, {childList: true, subtree: true});
+  setTimeout(()=>observer.disconnect(), 10000);
 })();
 </script>
-
 </body>
 </html>
