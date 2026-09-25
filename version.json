@@ -1,0 +1,19 @@
+{
+  "versio": "7.3",
+  "pohja": "v7.3 NO-EMBED FIX",
+  "pvm": "2026-09-25",
+  "ominaisuudet": [
+    "EI muuta index.html",
+    "Korjaa vain data/ tiedostot",
+    "version.json + vaylat.json aina olemassa",
+    "saa.json full rakenne"
+  ],
+  "data": {
+    "tulos_kirjatut": 1144,
+    "laskenta": "586+62+80+416=1144",
+    "pituus_total": 1248,
+    "saa_temp": 14
+  },
+  "status": "v7.3 FIX OK - NO EMBED",
+  "ajettu": "2026-09-25T16:33:28.931849+00:00"
+}
