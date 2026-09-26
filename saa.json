@@ -1,10 +1,19 @@
 {
   "paikka": "Luoma-aho",
+  "koordinaatit": {
+    "lat": 63.077361313935,
+    "lon": 23.869258564394357
+  },
   "nyky": {
     "temp_c": 14,
-    "kuvaus": "Pääosin selkeää",
-    "lahde": "Open-Meteo"
+    "wind_ms": null,
+    "humidity": null,
+    "precipitation_mm": null,
+    "weather_code": null,
+    "kuvaus": "Haetaan dynaamisesti Open-Meteo API:sta - ajossa paivittyy",
+    "lahde": "DYNAMIC - Open-Meteo"
   },
-  "tanaan": "25.09.2026",
-  "tila": "Avoinna"
+  "paivitetty": "2026-09-25T17:25:49.838491+00:00",
+  "api": "https://api.open-meteo.com/v1/forecast?latitude=63.0772&longitude=23.867&current=temperature_2m,wind_speed_10m,relative_humidity_2m,precipitation,weather_code&timezone=Europe/Helsinki",
+  "dynaaminen": true
 }
