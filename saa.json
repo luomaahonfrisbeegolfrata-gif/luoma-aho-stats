@@ -1,0 +1,10 @@
+{
+  "paikka": "Luoma-aho",
+  "nyky": {
+    "temp_c": 14,
+    "kuvaus": "Pääosin selkeää",
+    "lahde": "Open-Meteo"
+  },
+  "tanaan": "25.09.2026",
+  "tila": "Avoinna"
+}
