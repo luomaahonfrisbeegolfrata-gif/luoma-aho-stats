@@ -1,7 +1,1 @@
-{
-  "paikka": "Luoma-aho",
-  "nyky": {
-    "temp_c": 12,
-    "kuvaus": "Pilvistä"
-  }
-}
+{"paikka":"Luoma-aho","nyky":{"temp_c":12}}
