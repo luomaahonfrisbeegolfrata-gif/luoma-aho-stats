@@ -1,7 +1,7 @@
-name: Update v6 FINAL - 1140/123 TOP5
+name: Auto v10 FLAT
 on:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '*/10 * * * *' # 10min, ei 5min
   workflow_dispatch:
 jobs:
   update:
@@ -13,10 +13,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: pip install requests beautifulsoup4
-      - run: python fetch_data.py
+      - run: pip install requests
+      - run: python fetch_data.py # JUURESSA, ei scripts/
       - run: |
           git config user.name "bot"
           git config user.email "bot@luoma-aho.fi"
-          git add data/*.json
-          git diff --staged --quiet || (git commit -m "auto v6.0 1140/123 TOP5" && git push)
+          git add *.json # FLAT juuressa, ei data/
+          git diff --staged --quiet || (git commit -m "auto v10 $(date -Iseconds) 1140/123" && git push)
