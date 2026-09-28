@@ -26,7 +26,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data.json stats.json hole_stats.json simple.json udisc_stats.csv index.html last_update.txt data/ || true
+          git add -A
           if git diff --staged --quiet; then
             echo "Ei muutoksia"
           else
