@@ -1,9 +1,8 @@
-name: Päivitä sivu tunneittain
-
+name: Päivitä sivu 1s
 on:
   schedule:
-    - cron: '0 * * * *'  # joka tunti, tasalta (UTC)
-  workflow_dispatch: # mahdollistaa käsin ajamisen nappia painamalla
+    - cron: '0 * * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -11,32 +10,26 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Asenna Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
-      - name: Asenna riippuvuudet (jos tulee myöhemmin)
+      - name: Asenna riippuvuudet
         run: |
           pip install --upgrade pip
+          pip install requests beautifulsoup4 pandas lxml
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
       - name: Aja update.py
         run: python update.py
-
-      - name: Commit ja push jos muutoksia
+      - name: Commit ja push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data.json index.html last_update.txt || true
+          git add data.json stats.json hole_stats.json simple.json udisc_stats.csv index.html last_update.txt data/ || true
           if git diff --staged --quiet; then
-            echo "Ei muutoksia - ei commitia"
+            echo "Ei muutoksia"
           else
-            git commit -m "Auto-update: $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git commit -m "Auto-update: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
             git push
           fi
