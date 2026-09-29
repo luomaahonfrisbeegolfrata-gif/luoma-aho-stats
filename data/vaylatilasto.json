@@ -12,7 +12,8 @@
       "triple": 2,
       "other": 0,
       "distance_m": 125,
-      "color": "keltainen",
+      "color": "orange",
+      "color_label": "vaikea"
     },
     {
       "hole": 2,
@@ -26,7 +27,8 @@
       "triple": 1,
       "other": 0,
       "distance_m": 103,
-      "color": "oranssi",
+      "color": "yellow",
+      "color_label": "keskitaso"
     },
     {
       "hole": 3,
@@ -40,7 +42,8 @@
       "triple": 2,
       "other": 0,
       "distance_m": 72,
-      "color": "keltainen",
+      "color": "orange",
+      "color_label": "vaikea"
     },
     {
       "hole": 4,
@@ -54,7 +57,8 @@
       "triple": 1,
       "other": 0,
       "distance_m": 57,
-      "color": "vihreä",
+      "color": "red",
+      "color_label": "vaikein"
     },
     {
       "hole": 5,
@@ -68,7 +72,8 @@
       "triple": 1,
       "other": 0,
       "distance_m": 94,
-      "color": "keltainen",
+      "color": "orange",
+      "color_label": "vaikea"
     },
     {
       "hole": 6,
@@ -82,7 +87,8 @@
       "triple": 3,
       "other": 3,
       "distance_m": 96,
-      "color": "punainen",
+      "color": "green",
+      "color_label": "helpoin"
     },
     {
       "hole": 7,
@@ -96,7 +102,8 @@
       "triple": 4,
       "other": 0,
       "distance_m": 103,
-      "color": "oranssi",
+      "color": "yellow",
+      "color_label": "keskitaso"
     },
     {
       "hole": 8,
@@ -110,7 +117,8 @@
       "triple": 1,
       "other": 0,
       "distance_m": 80,
-      "color": "vihreä",
+      "color": "red",
+      "color_label": "vaikein"
     },
     {
       "hole": 9,
@@ -124,7 +132,8 @@
       "triple": 2,
       "other": 4,
       "distance_m": 116,
-      "color": "oranssi",
+      "color": "yellow",
+      "color_label": "keskitaso"
     },
     {
       "hole": 10,
@@ -138,7 +147,8 @@
       "triple": 2,
       "other": 1,
       "distance_m": 85,
-      "color": "punainen",
+      "color": "green",
+      "color_label": "helpoin"
     },
     {
       "hole": 11,
@@ -152,7 +162,8 @@
       "triple": 6,
       "other": 2,
       "distance_m": 197,
-      "color": "punainen",
+      "color": "green",
+      "color_label": "helpoin"
     },
     {
       "hole": 12,
@@ -166,7 +177,8 @@
       "triple": 1,
       "other": 0,
       "distance_m": 120,
-      "color": "vihreä",
+      "color": "red",
+      "color_label": "vaikein"
     }
   ],
   "generated_at": "2026-09-28",

@@ -1,32 +1,32 @@
 {
   "header_logos": {
     "google-maps": {
-      "url": "https://www.google.com/maps/place/Luoma-ahon+Frisbeegolfrata/@63.0702706,23.962312,12z/data=!4m6!3m5!1s0x46865900600c87c7:0x6f9c5d3c90dc9137!8m2!3d63.0771721!4d23.8694429!16s%2Fg%2F11xn7dnjdt?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+      "url": "https://www.google.com/maps/place/Luoma-ahon+Frisbeegolfrata/",
       "logo_file": "logot/gmaps-logo.jpg",
       "label": "Google Maps"
     },
     "metrix": {
-      "url": "https://discgolfmetrix.com/course/44010",
+      "url": "https://discgolfmetrix.com/course/43119",
       "logo_file": "logot/metrix-logo.png",
-      "label": "Metrix 44010"
+      "label": "Metrix 43119 KAIKKI"
     },
     "vaylaopasteet": {
-      "url": "https://photos.google.com/share/AF1QipPwBhzcZ3Nf0BEpLICSkhQSFIuTA1VO3i1W_u0l_4oY_ZfytXxa21wqxIx4RqRepA?key=YWl5VW81RVpEZkxqQ0pVQXg2RjdKZ05uRGRILWdn",
+      "url": "https://parkdly.com",
       "logo_file": "logot/parkdly-logo.png",
       "label": "Väyläopasteet"
     },
     "loytokiekot": {
-      "url": "https://photos.google.com/share/AF1QipNfClPGrg-CMqrUn9w9qeso7oFvZzjTO-kmUuy3NWf9o06lgy1TohSBSykLkaW-vw?key=WlJtRWFwb3ktSHEwbWFXeW0xeENIeXJPZWN6RnpB",
+      "url": "https://loytokiekot.fi",
       "logo_file": "logot/loytokiekot-logo.png",
       "label": "Löytökiekot"
     },
     "rata-kuvat": {
-      "url": "https://photos.google.com/share/AF1QipMlPCtWvfCrBkzBR-Sr-W7AG-f8ZBVQ0omErEqR-ZXVPqF-2uRionKk12oTV4R_Lw?key=VzR6XzJiU2dFa0RldW5NcHgxUW5weTVEbk1pYUdB",
+      "url": "https://photos.app.goo.gl/example",
       "logo_file": "logot/rata-kuvat-icon.jpg",
       "label": "Rata-kuvat"
     },
     "youtube": {
-      "url": "https://youtu.be/ewQ-m-BU6SI?si=2LyGJ5Ab5U08psm0",
+      "url": "https://youtu.be/ewQ-m-BU6SI",
       "logo_file": "logot/yt-logo.png",
       "label": "YouTube"
     },
