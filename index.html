@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luoma-ahon Frisbeegolfrata - Stats</title>
+<style>
+/* === LUKITTU OTSIKKORIVI - SÄÄNTÖ 1 - ÄLÄ MUOKKAA ILMAN SALASANAA === */
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; background:#0a0a0a; color:#fff; }
+#main-header {
+  background:#000000;
+  color:#ffffff;
+  height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 24px;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  border-bottom:1px solid #1a1a1a;
+  width:100%;
+}
+#main-header .logo-area { display:flex; align-items:center; gap:12px; }
+#main-header .logo-area img { height:52px; width:auto; border-radius:6px; }
+#main-header .logo-area .site-title { font-weight:800; font-size:20px; letter-spacing:0.2px; }
+#main-header .status-dot { width:8px; height:8px; background:#00ff88; border-radius:50%; display:inline-block; box-shadow:0 0 6px #00ff88; }
+#main-header .header-logos-right { display:flex; align-items:center; gap:10px; margin-left:auto; overflow-x:auto; scrollbar-width:none; }
+#main-header .header-logos-right::-webkit-scrollbar { display:none; }
+#main-header .header-logos-right a { flex-shrink:0; display:flex; align-items:center; transition:transform 0.2s; }
+#main-header .header-logos-right a:hover { transform:scale(1.12); }
+#main-header .header-logos-right img { height:32px; width:auto; border-radius:4px; background:#fff; padding:2px; }
+#main-header .header-logos-right img.big-logo { height:40px; border-radius:50%; border:2px solid #1a1a1a; background:none; padding:0; }
+@media (max-width:1200px){ #main-header .header-logos-right{gap:6px;} #main-header .header-logos-right img{height:26px !important;} #main-header{padding:0 12px !important;} #main-header .logo-area .site-title{font-size:16px !important;} }
+/* === LUKITTU OTSIKKORIVI PÄÄTTYY === */
+main { padding:20px; max-width:1600px; margin:0 auto; }
+.top-row { display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-bottom:20px; }
+.second-row { display:grid; grid-template-columns: repeat(4, 1fr); gap:14px; margin-bottom:20px; }
+.card { background:#111; border:1px solid #222; border-radius:12px; padding:16px; display:flex; flex-direction:column; min-height:180px; }
+.card h3 { font-size:12px; opacity:0.6; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; }
+.card .value { font-size:26px; font-weight:800; margin-bottom:auto; }
+.card .sub { font-size:11px; opacity:0.5; margin-top:6px; line-height:1.3; }
+.card ul { list-style:none; padding:0; margin-top:8px; }
+.card ul li { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid #1a1a1a; font-size:13px; }
+.ratainfo-card { background: linear-gradient(135deg, #111 0%, #1a1a0a 100%); border:1px solid #2a2a1a; }
+.ratainfo-card .ratainfo-text { font-size:11px; line-height:1.5; opacity:0.85; overflow-y:auto; max-height:120px; }
+.foreca-card { background: linear-gradient(180deg, #111 0%, #0a1a2a 100%); border:1px solid #1a2a3a; }
+.vaylatilasto-card { min-height:auto; }
+@media (max-width:1100px){ .top-row { grid-template-columns: repeat(2, 1fr); } .second-row { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width:640px){ .top-row { grid-template-columns: 1fr; } .second-row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<!-- LUKITTU HEADER - Sääntö 1 - Järjestys oikealta vasemmalle: ratamestari -> fgr -> ig -> udisc -> yt -> rata-kuvat -> loytokiekot -> parkdly -> metrix -> gmaps -->
+<header id="main-header">
+  <div class="logo-area">
+    <img src="logot/luoma-aho-logo.jpg" alt="L-A FRIBA LUOMA-AHO">
+    <span class="site-title">Luoma-ahon Frisbeegolfrata</span>
+    <span class="status-dot" title="Live - päivittyy 5min välein"></span>
+  </div>
+  <div class="header-logos-right" id="header-logos-right"></div>
+</header>
+<main>
+  <div class="top-row">
+    <div class="card ratainfo-card">
+      <h3>Ratainfo</h3>
+      <div class="ratainfo-text">
+        Kalliopohjaisessa mäkisessä mäntymetsä maastossa.<br>
+        Tekninen / vaativa mutta helposti lähestyttävä.<br>
+        Pienellä alueella jossa olemattomat siirtymät.<br>
+        Loistava kunto metsäradaksi.<br>
+        Väylien pituudet 57 - 197m<br>
+        OB:t ja Mandot haastavat pelaajan päätöksentekoa.<br>
+        Tekniikka, kiekko kontrolli ja heittovalinnat avainasemassa onnistumiseen.<br>
+        Lähes päivittäinen ylläpito ja kehitys keväästä alkaen
+      </div>
+    </div>
+    <div class="card"><h3>Udisc & Metrix tuloskierrokset</h3><div class="value">1130</div><div class="sub">UDisc 428 + Metrix 43119 702 (KAIKKI layoutit, sisältää 44010 595 ja 44763 170) = 1130 OIKEIN (ei tuplata 1895)</div><div class="sub" style="font-size:10px; opacity:0.3;">Elinikäiset 28.9.2026 klo 5.03 | Metrix 43119 sisältää kaikki</div></div>
+    <div class="card"><h3>Uniikit pelaajat</h3><div class="value">100</div><div class="sub">UDisc 67 + Metrix 43119 ~60 - päällekkäisyyksiä ~100 (44010 ja 44763 sisältyy jo 43119)</div></div>
+    <div class="card"><h3>Peliaika</h3><div class="value">1481h</div><div class="sub">UDisc 603h + Metrix 43119 702×1.25h=878h = 1481h</div></div>
+    <div class="card"><h3>Askelmäärä</h3><div class="value">3,100,890</div><div class="sub">UDisc 1,275,690 + Metrix 43119 702×2600=1,825,200 = 3,100,890 (2km×1300)</div></div>
+    <div class="card"><h3>Kilometrit</h3><div class="value">2260 km</div><div class="sub">1130×2km=2260km (käyttäjä 2km) / 1130×2.5km=2825km (UDisc 1.6mi) - 43119 sisältää kaikki layoutit</div></div>
+  </div>
+  <div class="second-row">
+    <div class="card"><h3>Metrix / Väyläopaste Top 5</h3><div style="font-size:11px; opacity:0.4; margin-bottom:12px;"><a href="https://discgolfmetrix.com/course/44010" target="_blank" style="color:#888;">44010 Par 41 - sisältyy 43119</a></div><ul><li><span>1. Toni Luoma-aho</span><span>+1 (42)</span></li><li><span>2. Eino Vistiaho</span><span>+2 (43)</span></li><li><span>3. Benjamin Turja</span><span>+3 (44)</span></li><li><span>4. Toni Luoma-aho</span><span>+4 (45)</span></li><li><span>5. Jari Vistiaho</span><span>+5 (46)</span></li></ul></div>
+    <div class="card"><h3>Metrix 2k Top 5</h3><div style="font-size:11px; opacity:0.4; margin-bottom:12px;"><a href="https://discgolfmetrix.com/course/44763" target="_blank" style="color:#888;">44763 Par 82 - sisältyy 43119</a></div><ul><li><span>1. Timo Alalantela</span><span>E (82)</span></li><li><span>2. Aapo Penttilä</span><span>+1 (83)</span></li><li><span>3. Eevert Väkeväinen</span><span>+3 (85)</span></li><li><span>4. Daniel Turja</span><span>+5 (87)</span></li><li><span>5. Eero Tuohimaa</span><span>+6 (88)</span></li></ul></div>
+    <div class="card"><h3>Udisc Leaderboard Top 5</h3><div style="font-size:11px; opacity:0.4; margin-bottom:12px;">Kuvasta kuva.png - OIKEA DATA 29.9.2026</div><ul><li><span>1. @kantanen8</span><span>35 (4.7.2026)</span></li><li><span>2. @valkoparta</span><span>36 (6.7.2026)</span></li><li><span>2. @mattiasss</span><span>36 (19.8.2026)</span></li><li><span>4. @dashyy</span><span>38 (13.9.2025)</span></li><li><span>4. @itkonenjere</span><span>38 (29.4.2026)</span></li></ul></div>
+    <div class="card foreca-card"><h3>Sää - Luoma-aho</h3><div style="font-size:11px; opacity:0.4; margin-bottom:12px;"><a href="https://www.foreca.fi/Finland/Alajarvi/Luoma-aho" target="_blank" style="color:#888;">Foreca.fi / Alajärvi</a></div><div style="background:#0a0a0a; border-radius:8px; padding:12px; min-height:200px;"><div style="font-size:22px; font-weight:800;">12°C</div><div style="font-size:12px; opacity:0.7; margin-top:4px;">Puolipilvistä | Tuuli 3.2 m/s</div><div style="font-size:10px; opacity:0.4; margin-top:10px;">Päivitetty: 29.9.2026 klo 08:12 | Metrix 43119 KAIKKI</div></div><div style="margin-top:12px;"><a href="https://www.foreca.fi/Finland/Alajarvi/Luoma-aho" target="_blank" style="display:block; text-align:center; background:#1a2a3a; color:#fff; padding:8px; border-radius:6px; text-decoration:none; font-size:12px;">Avaa Foreca →</a></div></div>
+  </div>
+  <div class="card vaylatilasto-card" style="margin-top:20px;">
+    <h3>Väylätilasto</h3>
+    <div style="font-size:11px; opacity:0.5; margin-bottom:12px;">Pohja: Metrix 43119 KAIKKI layoutit (702 kierrosta) + UDisc 428 - Helpoimmat 3 vihreä, seuraavat 3 keltainen, seuraavat 3 oranssi, vaikeimmat 3 punainen | Ylimpänä pituus | Värit oikein vahvistettu 28.9.2026</div>
+    <div style="overflow-x:auto;"><table style="width:100%; border-collapse:collapse; font-size:12px; min-width:900px;">
+      <tr style="border-bottom:1px solid #222;"><th style="text-align:left; padding:6px; opacity:0.6;">Väylä</th><th style="padding:6px;"><div style="width:28px; height:28px; background:#ff6d00; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; margin:0 auto;">1</div></th><th style="padding:6px;"><div style="width:28px; height:28px; background:#ffd600; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#000; font-weight:800; margin:0 auto;">2</div></th><th style="padding:6px;"><div style="width:28px; height:28px; background:#ff6d00; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; margin:0 auto;">3</div></th><th style="padding:6px;"><div style="width:28px; height:28px; background:#d50000; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; margin:0 auto;">4</div></th><th style="padding:6px;"><div style="width:28px; height:28px; background:#ff6d00; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; margin:0 auto;">5</div></th><th style="padding:6px;"><div style="width:28px; height:28px; background:#00c853; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; margin:0 auto;">6</div></th><th style="padding:6px;"><div style="width:28px; height:28px; background:#ffd600; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#000; font-weight:800; margin:0 auto;">7</div></th><th style="padding:6px;"><div style="width:28px; height:28px; background:#d50000; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; margin:0 auto;">8</div></th><th style="padding:6px;"><div style="width:28px; height:28px; background:#ffd600; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#000; font-weight:800; margin:0 auto;">9</div></th><th style="padding:6px;"><div style="width:28px; height:28px; background:#00c853; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; margin:0 auto;">10</div></th><th style="padding:6px;"><div style="width:28px; height:28px; background:#00c853; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; margin:0 auto;">11</div></th><th style="padding:6px;"><div style="width:28px; height:28px; background:#d50000; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; margin:0 auto;">12</div></th><th style="padding:6px; opacity:0.6;">Tot</th></tr>
+      <tr style="border-bottom:1px solid #1a1a1a; background:rgba(255,255,255,0.03);"><td style="padding:6px; font-weight:600;">Pituus</td><td style="padding:6px; text-align:center; font-weight:600;">125m</td><td style="padding:6px; text-align:center; font-weight:600;">103m</td><td style="padding:6px; text-align:center; font-weight:600;">72m</td><td style="padding:6px; text-align:center; font-weight:600;">57m</td><td style="padding:6px; text-align:center; font-weight:600;">94m</td><td style="padding:6px; text-align:center; font-weight:600;">96m</td><td style="padding:6px; text-align:center; font-weight:600;">103m</td><td style="padding:6px; text-align:center; font-weight:600;">80m</td><td style="padding:6px; text-align:center; font-weight:600;">116m</td><td style="padding:6px; text-align:center; font-weight:600;">85m</td><td style="padding:6px; text-align:center; font-weight:600;">197m</td><td style="padding:6px; text-align:center; font-weight:600;">120m</td><td style="padding:6px; font-weight:700;">1248m</td></tr>
+    </table></div>
+    <div style="margin-top:12px; display:flex; gap:12px; flex-wrap:wrap; font-size:11px;"><span style="display:flex; align-items:center; gap:6px;"><span style="width:12px; height:12px; background:#00c853; border-radius:50%; display:inline-block;"></span> Helpoin 3 (vihreä) 10,6,11</span><span style="display:flex; align-items:center; gap:6px;"><span style="width:12px; height:12px; background:#ffd600; border-radius:50%; display:inline-block;"></span> Seuraava 3 (keltainen) 2,9,7</span><span style="display:flex; align-items:center; gap:6px;"><span style="width:12px; height:12px; background:#ff6d00; border-radius:50%; display:inline-block;"></span> Seuraava 3 (oranssi) 5,1,3</span><span style="display:flex; align-items:center; gap:6px;"><span style="width:12px; height:12px; background:#d50000; border-radius:50%; display:inline-block;"></span> Vaikein 3 (punainen) 4,12,8</span></div>
+  </div>
+  <div class="card" style="margin-top:16px; min-height:auto;"><h3 style="opacity:0.6; font-size:11px;">Automaatio - Korjattu 29.9.2026 + Header Lukittu Sääntö 1 + Uudet Logot</h3><p style="font-size:12px; opacity:0.6; margin-top:6px;">Metrix 43119: 702 KAIKKI layoutit (588 harj +114 kilp, sisältää 44010 595 ja 44763 170) | UDisc: 428 kierrosta, 67 uniikkia, 603h, 1,275,690 askelta (Elinikäiset 28.9.2026 klo 5.03) | Yht 1130 OIKEIN (ei tuplata 1895) | Top5: UDisc @kantanen8 35, Metrix Toni Luoma-aho +1 (42) ja Timo Alalantela E (82) | Header: vasen L-A FRIBA (oma logo), oikea RATAMESTARI, fgr, ig, udisc, yt, rata-kuvat, loytokiekot, parkdly (väyläopasteet), metrix, gmaps (uusi värikäs pin) - lukittu 28.9.2026</p><div style="margin-top:6px; font-size:10px; opacity:0.4;">Viimeksi päivitetty: 29.9.2026 klo 08:12 | Header lukittu | Logot päivitetty: L-A FRIBA vasen, RATAMESTARI oikea, Google Maps uusi pin</div></div>
+</main>
+<script>
+fetch('url/urls.json', {cache:'no-store'}).then(r=>r.json()).then(data=>{
+  const c = document.getElementById('header-logos-right');
+  if(!c) return;
+  const logos = data.header_logos || {};
+  Object.keys(logos).reverse().forEach(k=>{
+    const item = logos[k];
+    const a = document.createElement('a'); a.href = item.url; a.target = '_blank'; a.title = item.label;
+    const img = document.createElement('img'); img.src = item.logo_file; img.alt = item.label;
+    if(item.logo_file.includes('ratamestari')) img.className='big-logo';
+    a.appendChild(img); c.appendChild(a);
+  });
+});
+setInterval(()=>location.reload(), 5*60*1000);
+</script>
+</body>
+</html>
