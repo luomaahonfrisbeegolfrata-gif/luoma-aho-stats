@@ -28,7 +28,7 @@
       "other": 0,
       "distance_m": 103,
       "color": "orange",
-      "color_label": "vaikea"
+      "color_label": "vaaativa"
     },
     {
       "hole": 3,
@@ -102,8 +102,8 @@
       "triple": 4,
       "other": 0,
       "distance_m": 103,
-      "color": "yellow",
-      "color_label": "keskitaso"
+      "color": "orange",
+      "color_label": "vaativa"
     },
     {
       "hole": 8,
@@ -133,7 +133,7 @@
       "other": 4,
       "distance_m": 116,
       "color": "orange",
-      "color_label": "vaikea"
+      "color_label": "vaativa"
     },
     {
       "hole": 10,
