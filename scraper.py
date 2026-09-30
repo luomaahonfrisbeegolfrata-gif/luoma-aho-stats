@@ -53,8 +53,11 @@ def make_tiukka(data, out):
         else: return RED
     colors=[col(o) for o in over]
     # TIUKKA: matalampi fig, scale 1.25, pad_inches 0.08
-    fig, ax=plt.subplots(figsize=(16,4.2))
-    fig.patch.set_facecolor('black')
+    fig, ax = plt.subplots(figsize=(16,3.8)) # matala, ei 7 tuumaa
+table.scale(1,1.15) # tiivis
+plt.subplots_adjust(left=0, right=1, top=1, bottom=0) # ei marginaalia
+plt.savefig("vaylatilasto.png", dpi=350, bbox_inches='tight', pad_inches=0, facecolor='black')
+# pad_inches=0 = EI yhtään tyhjää ylä/alapuolella (sulla oli 0.08)
     ax.set_facecolor('black')
     ax.axis('off')
     table=ax.table(cellText=full, loc='center', cellLoc='center')
