@@ -1,144 +1,37 @@
 {
-  "paivitys": "2026-09-30T00:54:11.079857",
   "metrix_44010": {
-    "title": "METRIX / VÄYLÄOPASTE TOP 5 - 44010 Par 41 - sisältyy 43119",
-    "par": 41,
-    "url": "https://discgolfmetrix.com/course/44010",
     "top5": [
       {
         "rank": 1,
         "player": "Toni Luoma-aho",
-        "score": "+1 (42)",
-        "date": "29.4.2026 18:00",
-        "detail": "4 4 3 2 4 3 4 2 4 3 6 3"
-      },
-      {
-        "rank": 2,
-        "player": "Eino Vistiaho",
-        "score": "+2 (43)",
-        "date": "29.4.2026 18:00",
-        "detail": "4 3 4 3 3 2 3 4 4 3 6 4"
-      },
-      {
-        "rank": 3,
-        "player": "Benjamin Turja",
-        "score": "+3 (44)",
-        "date": "5.10.2025 16:00",
-        "detail": "4 3 3 4 3 3 3 2 5 4 6 4"
-      },
-      {
-        "rank": 4,
-        "player": "Toni Luoma-aho",
-        "score": "+4 (45)",
-        "date": "3.4.2026 14:00",
-        "detail": "4 4 3 4 3 4 3 3 4 3 6 4"
-      },
-      {
-        "rank": 5,
-        "player": "Jari Vistiaho",
-        "score": "+5 (46)",
-        "date": "29.4.2026 18:00",
-        "detail": "5 4 3 2 3 5 3 3 4 3 7 4"
+        "score": "+1 (42)"
       }
     ]
   },
   "metrix_44763": {
-    "title": "METRIX 2K TOP 5 - 44763 Par 82 - sisältyy 43119",
-    "par": 82,
-    "url": "https://discgolfmetrix.com/course/44763",
     "top5": [
       {
         "rank": 1,
         "player": "Timo Alalantela",
-        "score": "E (82)",
-        "date": "4.10.2025 13:00",
-        "detail": "4 4 3 2 3 3 3 2 4 3 5 4 / 4 3 2 3 3 3 3 3 4 4 6 4"
-      },
-      {
-        "rank": 2,
-        "player": "Aapo Penttilä",
-        "score": "+1 (83)",
-        "date": "19.10.2025 13:00",
-        "detail": "3 3 3 3 2 4 3 2 3 4 5 4 / 3 3 4 4 4 3 2 3 4 5 5 4"
-      },
-      {
-        "rank": 3,
-        "player": "Eevert Väkeväinen",
-        "score": "+3 (85)",
-        "date": "18.4.2026 13:00",
-        "detail": "3 4 3 4 3 4 3 3 3 3 5 3 / 4 3 3 3 4 4 3 3 4 4 5 4"
-      },
-      {
-        "rank": 4,
-        "player": "Daniel Turja",
-        "score": "+5 (87)",
-        "date": "5.9.2025 18:00",
-        "detail": "7 3 3 4 4 4 3 2 3 4 5 5 / 3 3 3 2 4 4 3 3 4 4 4 3"
-      },
-      {
-        "rank": 5,
-        "player": "Eero Tuohimaa",
-        "score": "+6 (88)",
-        "date": "19.10.2025 13:00",
-        "detail": "4 3 2 3 3 3 3 2 5 5 7 3 / 3 4 3 4 6 3 4 2 4 4 4 4"
+        "score": "E (82)"
       }
     ]
   },
   "udisc": {
-    "title": "UDISC LEADERBOARD TOP 5",
-    "par": 41,
-    "url": "https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx",
     "top5": [
       {
         "rank": 1,
         "player": "@kantanen8",
-        "score": "35",
-        "date": "4.7.2026"
-      },
-      {
-        "rank": 2,
-        "player": "@valkoparta",
-        "score": "36",
-        "date": "6.7.2026"
-      },
-      {
-        "rank": 2,
-        "player": "@mattiasss",
-        "score": "36",
-        "date": "19.8.2026"
-      },
-      {
-        "rank": 4,
-        "player": "@dashyy",
-        "score": "38",
-        "date": "13.9.2025"
-      },
-      {
-        "rank": 4,
-        "player": "@itkonenjere",
-        "score": "38",
-        "date": "29.4.2026"
+        "score": "35"
       }
     ]
   },
   "saa": {
-    "title": "SÄÄ - LUOMA-AHO - Foreca.fi / Alajärvi",
-    "url": "https://www.foreca.fi/Finland/Alajarvi/Luoma-aho",
-    "coords": {
-      "lat": 63.077361313935,
-      "lon": 23.869258564394357
-    },
     "current": {
       "temp": "12°C",
       "feels": "10°C",
       "humidity": "65%",
-      "precip": "0% / 0mm",
-      "cloud": "Puolipilvistä",
-      "wind": "3.2 m/s SW",
-      "gust": "5.1 m/s",
-      "visibility": "15km",
-      "uv": "2"
-    },
-    "source": "Foreca.fi + Open-Meteo"
+      "wind": "3.2 m/s SW"
+    }
   }
 }
