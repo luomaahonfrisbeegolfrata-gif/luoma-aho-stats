@@ -1,32 +1,32 @@
 {
   "header_logos": {
     "google-maps": {
-      "url": "https://www.google.com/maps/place/Luoma-ahon+Frisbeegolfrata/",
+      "url": "https://www.google.com/maps/place/Luoma-ahon+Frisbeegolfrata/@63.0702706,23.962312,12z/data=!4m6!3m5!1s0x46865900600c87c7:0x6f9c5d3c90dc9137!8m2!3d63.0771721!4d23.8694429!16s%2Fg%2F11xn7dnjdt?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
       "logo_file": "logot/gmaps-logo.jpg",
       "label": "Google Maps"
     },
     "metrix": {
-      "url": "https://discgolfmetrix.com/course/43119",
+      "url": "https://discgolfmetrix.com/course/44010",
       "logo_file": "logot/metrix-logo.png",
       "label": "Metrix 43119 KAIKKI"
     },
     "vaylaopasteet": {
-      "url": "https://parkdly.com",
+      "url": "https://photos.app.goo.gl/Gx2C37vA7qXPPK828",
       "logo_file": "logot/parkdly-logo.png",
       "label": "Väyläopasteet"
     },
     "loytokiekot": {
-      "url": "https://loytokiekot.fi",
+      "url": "https://photos.app.goo.gl/48KFNnS4dTv8vazD7",
       "logo_file": "logot/loytokiekot-logo.png",
       "label": "Löytökiekot"
     },
     "rata-kuvat": {
-      "url": "https://photos.app.goo.gl/example",
+      "url": "https://photos.app.goo.gl/trLQoLDHQ7kDzyoV9",
       "logo_file": "logot/rata-kuvat-icon.jpg",
       "label": "Rata-kuvat"
     },
     "youtube": {
-      "url": "https://youtu.be/ewQ-m-BU6SI",
+      "url": "https://youtu.be/ewQ-m-BU6SI?si=2LyGJ5Ab5U08psm0",
       "logo_file": "logot/yt-logo.png",
       "label": "YouTube"
     },
