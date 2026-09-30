@@ -1,5 +1,5 @@
 {
-  "paivitys": "2026-09-30T23:00:00+03:00",
+  "paivitys": "2026-10-01T00:00:00+03:00",
   "metrix_44010": {
     "title": "METRIX / VÄYLÄOPASTE TOP 5 - 44010 Par 41",
     "top5": [
@@ -106,7 +106,7 @@
     ]
   },
   "saa": {
-    "title": "SÄÄ - LUOMA-AHO",
+    "title": "SÄÄ - LUOMA-AHO - Foreca.fi / Alajärvi",
     "current": {
       "temp": "12°C",
       "feels": "10°C",
@@ -117,7 +117,7 @@
       "gust": "5.1 m/s",
       "visibility": "15km",
       "uv": "2",
-      "updated": "30.9. 23:00"
+      "updated": "1.10. 00:00 - LIVE"
     }
   }
 }
