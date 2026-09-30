@@ -11,17 +11,17 @@
       "label": "Metrix 43119 KAIKKI"
     },
     "vaylaopasteet": {
-      "url": "https://photos.app.goo.gl/Gx2C37vA7qXPPK828",
+      "url": "https://photos.google.com/share/AF1QipPwBhzcZ3Nf0BEpLICSkhQSFIuTA1VO3i1W_u0l_4oY_ZfytXxa21wqxIx4RqRepA?key=YWl5VW81RVpEZkxqQ0pVQXg2RjdKZ05uRGRILWdn",
       "logo_file": "logot/parkdly-logo.png",
       "label": "Väyläopasteet"
     },
     "loytokiekot": {
-      "url": "https://photos.app.goo.gl/48KFNnS4dTv8vazD7",
+      "url": "https://photos.google.com/share/AF1QipNfClPGrg-CMqrUn9w9qeso7oFvZzjTO-kmUuy3NWf9o06lgy1TohSBSykLkaW-vw?key=WlJtRWFwb3ktSHEwbWFXeW0xeENIeXJPZWN6RnpB",
       "logo_file": "logot/loytokiekot-logo.png",
       "label": "Löytökiekot"
     },
     "rata-kuvat": {
-      "url": "https://photos.app.goo.gl/trLQoLDHQ7kDzyoV9",
+      "url": "https://photos.google.com/share/AF1QipMlPCtWvfCrBkzBR-Sr-W7AG-f8ZBVQ0omErEqR-ZXVPqF-2uRionKk12oTV4R_Lw?key=VzR6XzJiU2dFa0RldW5NcHgxUW5weTVEbk1pYUdB",
       "logo_file": "logot/rata-kuvat-icon.jpg",
       "label": "Rata-kuvat"
     },
@@ -52,7 +52,7 @@
     }
   },
   "vasen_logo": {
-    "file": "logot/luoma-aho-logo.jpg",
+    "file": "logot/l-a-friba.jpg",
     "label": "L-A FRIBA LUOMA-AHO",
     "url": "https://luomaahonfrisbeegolfrata-gif.github.io/luoma-aho-stats/"
   },
@@ -60,5 +60,6 @@
   "metrix_44010": "https://discgolfmetrix.com/course/44010",
   "metrix_44763": "https://discgolfmetrix.com/course/44763",
   "udisc": "https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx",
-  "foreca": "https://www.foreca.fi/Finland/Alajarvi/Luoma-aho"
+  "foreca": "https://www.foreca.fi/Finland/Alajarvi/Luoma-aho",
+  "https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/manage/stats",
 }
