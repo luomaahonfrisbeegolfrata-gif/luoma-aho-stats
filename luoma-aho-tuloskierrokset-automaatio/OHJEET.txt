@@ -1,0 +1,24 @@
+UDisc & Metrix AUTOMAATTI - 1s / 5min - väylätilasto.png sivun alaosaan
+
+TÄMÄ PAKETTI AUTOMATISOI:
+
+1. UDisc & Metrix tuloskierrokset:
+   - data/tilasto.json: 1130 oikein (428+702), ei tuplata 1895
+   - Laskenta automaattinen scraper.py:ssä
+
+2. Väylätilasto.png sivun alaosaan:
+   - vaylatilasto.png musta pohja, Pituus rivi Väylä ja Par väliin
+   - data/ratatilasto.json
+   - Sijainti: <div id="vaylatilasto-auto"></div> sivun alaosassa
+
+3. Automaatti:
+   - GitHub: 5min välein (.github/workflows/auto-5min.yml)
+   - Sivu: 1s välein (js/ratatilasto.js + js/tilasto.js)
+
+ASENNUS:
+- Lataa kaikki GitHubiin
+- Actions -> Enable workflows -> Run workflow
+- Lisää index.html: <div id="vaylatilasto-auto"></div> + <script src="./js/ratatilasto.js"></script>
+- Logot: logot/ kansio + urls.json määrittää linkit
+
+ANALYYSI: ANALYYSI.md
