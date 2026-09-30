@@ -34,13 +34,13 @@
       });
 
       // Kierrokset, pelaajat, aika, askeleet, km
-      fetch(TILASTO+'?t='+Date.now()).then(r=>r.json()).then(d=>{
-        const set=(id,v)=>{const e=document.getElementById(id); if(e) e.textContent=v;};
-        set('live-kierrokset', d.total || 1130);
-        set('live-pelaajat', d.unique || 100);
-        set('live-aika', (d.playtime||1481)+'h');
-        set('live-askeleet', (d.steps||3100890).toLocaleString('fi-FI'));
-        set('live-km', (d.km||2260)+' km');
+fetch('./data/tilasto.json?t='+Date.now()).then(r=>r.json()).then(d=>{
+  document.getElementById('live-kierrokset').textContent = d.total || d.laskenta.kierrokset.arvo;
+  document.getElementById('live-pelaajat').textContent = d.unique;
+  document.getElementById('live-aika').textContent = d.playtime+'h';
+  document.getElementById('live-askeleet').textContent = d.steps.toLocaleString('fi-FI');
+  document.getElementById('live-km').textContent = d.km+' km';
+});
       });
 
       // PNG alaosaan
