@@ -15,5 +15,9 @@
   "playtime": 1481,
   "steps": 3100890,
   "km": 2260,
-  "updated": "2026-09-30T00:54:11.079857"
+  "laskenta": {
+    "kierrokset": 1130,
+    "kaava":"UDisc 428 + Metrix 43119 702 = 1130 OIKEIN"
+    }
+  }
 }
