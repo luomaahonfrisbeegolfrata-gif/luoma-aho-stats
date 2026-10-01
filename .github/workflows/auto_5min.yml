@@ -1,4 +1,4 @@
-name: data_only_auto_5min_foreca
+name: data_only_auto_5min_dynaaminen
 on:
   schedule:
     - cron: '*/5 * * * *'
@@ -15,16 +15,16 @@ jobs:
           python-version: '3.11'
       - name: install_deps
         run: pip install matplotlib requests
-      - name: fetch_foreca
+      - name: fetch_foreca_dynaaminen
         run: python foreca_fetcher.py
-      - name: fetch_metrix
+      - name: fetch_metrix_dynaaminen
         run: python metrix_fetcher.py
-      - name: generate_png_vari
+      - name: generate_png_dynaaminen
         run: python scraper.py
-      - name: commit
+      - name: commit_dynaaminen
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/foreca.json data/tilasto.json data/top5.json vaylatilasto.png data/vaylatilasto.png || true
-          git diff --staged --quiet || git commit -m "fix foreca puhdas vari palautus $(date +%H:%M)"
+          git add data/tilasto.json data/foreca.json data/top5.json data/ratatilasto.json vaylatilasto.png data/vaylatilasto.png || true
+          git diff --staged --quiet || git commit -m "dynaaminen kaikki, sailytä aiempi jos ei toteudu $(date +%H:%M)"
           git push
