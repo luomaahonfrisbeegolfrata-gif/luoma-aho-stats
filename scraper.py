@@ -27,14 +27,35 @@ def make_tiukka(d, out_path):
         ["Other >3"] + d["Other"] + [d["Tot"]["Other"], f"{d['Pct']['Other']}%"],
     ]
     full = [headers] + rows
+
+    # Varikoodit - palautettu
+    GREEN = "#66BB6A"
+    YELLOW = "#FFEB3B"
+    ORANGE = "#FFA726"
+    RED = "#EF5350"
+    over = [d["Avg"][i] - d["Par"][i] for i in range(12)]
+    so = sorted(over)
+    def col(o):
+        if o <= so[2]:
+            return GREEN
+        elif o <= so[6]:
+            return YELLOW
+        elif o <= so[8]:
+            return ORANGE
+        else:
+            return RED
+    colors = [col(o) for o in over]
+
     fig, ax = plt.subplots(figsize=(16,3.8))
     fig.patch.set_facecolor('black')
     ax.set_facecolor('black')
     ax.axis('off')
+
     table = ax.table(cellText=full, loc='center', cellLoc='center')
     table.auto_set_font_size(False)
     table.set_fontsize(9)
     table.scale(1,1.15)
+
     for i in range(len(full)):
         for j in range(len(headers)):
             cell = table[(i,j)]
@@ -42,9 +63,20 @@ def make_tiukka(d, out_path):
             if i == 0:
                 cell.set_facecolor('#222222')
                 cell.set_text_props(color='white', weight='bold')
-            else:
-                cell.set_facecolor('#0f0f0f')
+            elif i == 1:
+                cell.set_facecolor('#111111')
                 cell.set_text_props(color='white')
+            else:
+                # Vari: Avg ja Difficulty rivit varikoodattu
+                if i in (2,3) and 1 <= j <= 12:
+                    cell.set_facecolor(colors[j-1])
+                    cell.set_text_props(color='black', weight='bold')
+                else:
+                    cell.set_facecolor('#0f0f0f' if i > 2 else '#1a1a1a')
+                    cell.set_text_props(color='white')
+            if j == 0:
+                cell.set_text_props(color='white', weight='bold')
+
     plt.subplots_adjust(left=0, right=1, top=1, bottom=0)
     pathlib.Path(out_path).parent.mkdir(parents=True, exist_ok=True)
     plt.savefig(out_path, dpi=350, bbox_inches='tight', pad_inches=0, facecolor='black')
@@ -54,4 +86,4 @@ make_tiukka(data, 'vaylatilasto.png')
 make_tiukka(data, 'data/vaylatilasto.png')
 make_tiukka(data, 'ratatilasto.png')
 make_tiukka(data, 'data/ratatilasto.png')
-print("PNG tiukka OK")
+print("PNG tiukka vari OK")
