@@ -48,8 +48,7 @@
       }
     ],
     "par": 41,
-    "updated": "2026-10-01T06:15:29.498905",
-    "source": "REAL Metrix 44010 13.10.2026 - PAR 41 yli=+, alle=-"
+    "source": "REAL Metrix 44010"
   },
   "metrix_44763": {
     "top5": [
@@ -100,59 +99,12 @@
       }
     ],
     "par": 82,
-    "updated": "2026-10-01T06:15:29.498913",
-    "source": "REAL Metrix 44763 13.10.2026 - PAR 82"
+    "source": "REAL Metrix 44763"
   },
   "udisc": {
-    "top5": [
-      {
-        "rank": 1,
-        "player": "@kantanen8",
-        "total": 35,
-        "diff": -6,
-        "score": "-6",
-        "display": "35 (-6)",
-        "sort": -6
-      },
-      {
-        "rank": 2,
-        "player": "@valkoparta",
-        "total": 36,
-        "diff": -5,
-        "score": "-5",
-        "display": "36 (-5)",
-        "sort": -5
-      },
-      {
-        "rank": 3,
-        "player": "@mattiasss",
-        "total": 36,
-        "diff": -5,
-        "score": "-5",
-        "display": "36 (-5)",
-        "sort": -5
-      },
-      {
-        "rank": 4,
-        "player": "@dashyy",
-        "total": 38,
-        "diff": -3,
-        "score": "-3",
-        "display": "38 (-3)",
-        "sort": -3
-      },
-      {
-        "rank": 5,
-        "player": "UDisc #5",
-        "total": 39,
-        "diff": -2,
-        "score": "-2",
-        "display": "39 (-2)",
-        "sort": -2
-      }
-    ],
+    "top5": [],
     "par": 41,
-    "updated": "2026-10-01T06:15:29.498919",
-    "source": "REAL UDisc https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/leaderboard?layoutId=143835 - PAR 41"
+    "source": "UDisc layout 143835 vaatii kirjautumisen - haetaan manuaalisesti, ei näytetä väärää kantanen8",
+    "note": "Käytä linkkiä https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/leaderboard?layoutId=143835&dateRange=all&limit=100 - kun kirjaudut, kopioi 5 parasta"
   }
 }
