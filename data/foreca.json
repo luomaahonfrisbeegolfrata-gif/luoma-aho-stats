@@ -1,62 +1,62 @@
 {
-  "paivitys": "2026-10-01T14:52:38.404085",
+  "paivitys": "2026-10-01T15:01:12.737416",
   "lahde": "Foreca Täsmäsää Alajärvi - dynaaminen",
   "current": {
-    "temp": "14°C",
+    "temp": "13°C",
     "feels": "12°",
-    "humidity": "80%",
+    "humidity": "81%",
     "wind": "8.3 m/s",
-    "gust": "16.9 m/s",
+    "gust": "15.1 m/s",
     "precip": "0.0 mm",
     "cloud": "Puolipilvistä"
   },
   "hourly": [
     {
-      "hour": "15",
+      "hour": "16",
       "icon": "⛅",
-      "temp": 15,
-      "wind": 12
+      "temp": 14,
+      "wind": 13
     },
     {
-      "hour": "18",
+      "hour": "19",
       "icon": "⛅",
-      "temp": 13,
-      "wind": 8
-    },
-    {
-      "hour": "21",
-      "icon": "⛅",
-      "temp": 10,
-      "wind": 11
-    },
-    {
-      "hour": "00",
-      "icon": "⛅",
-      "temp": 10,
+      "temp": 12,
       "wind": 7
     },
     {
-      "hour": "03",
+      "hour": "22",
       "icon": "⛅",
       "temp": 10,
       "wind": 12
     },
     {
-      "hour": "06",
+      "hour": "01",
+      "icon": "⛅",
+      "temp": 10,
+      "wind": 8
+    },
+    {
+      "hour": "04",
+      "icon": "⛅",
+      "temp": 10,
+      "wind": 12
+    },
+    {
+      "hour": "07",
       "icon": "⛅",
       "temp": 10,
       "wind": 6
     },
     {
-      "hour": "09",
+      "hour": "10",
       "icon": "⛅",
-      "temp": 10,
-      "wind": 9
+      "temp": 11,
+      "wind": 11
     },
     {
-      "hour": "12",
+      "hour": "13",
       "icon": "⛅",
-      "temp": 12,
+      "temp": 13,
       "wind": 10
     }
   ],
