@@ -1,20 +1,24 @@
 {
-  "count": 3,
   "players": [
     {
-      "player": "Toni Luoma-aho",
-      "hole": 8,
-      "date": "4.7.2026"
-    },
-    {
       "player": "Benjamin Turja",
-      "hole": 3,
-      "date": "15.8.2026"
+      "hole": 4,
     },
     {
-      "player": "@kantanen8",
-      "hole": 5,
-      "date": "4.7.2026"
+      "player": "Julius Luoma-aho",
+      "hole": 4,
+    },
+    {
+      "player": "Pentti Pitkäranta",
+      "hole": 8,
+    }
+    {
+      "player": "Juha Luoma-aho",
+      "hole": 4,
+    }
+    {
+      "player": "Aleksi Lassila",
+      "hole": 4,
     }
   ]
 }
