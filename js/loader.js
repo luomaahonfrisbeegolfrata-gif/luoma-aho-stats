@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const divs = document.querySelectorAll('div');
     for (const div of divs) {
       if (div.textContent.includes('Kalliopohjaisessa')) {
-        div.style.fontSize = '16px';
+        div.style.fontSize = '20px';
         div.style.lineHeight = '1.7';
         div.style.color = '#ccc';
         div.style.maxWidth = '65ch';
