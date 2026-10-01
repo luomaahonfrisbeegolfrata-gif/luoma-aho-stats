@@ -1,16 +1,102 @@
 {
+  "paivitys": "2026-10-01T12:30:00+03:00",
   "metrix_44010": {
     "top5": [
       {
         "rank": 1,
         "player": "Toni Luoma-aho",
         "score": "+1 (42)"
+      },
+      {
+        "rank": 2,
+        "player": "Eino Vistiaho",
+        "score": "+2 (43)"
+      },
+      {
+        "rank": 3,
+        "player": "Benjamin Turja",
+        "score": "+3 (44)"
+      },
+      {
+        "rank": 4,
+        "player": "Toni Luoma-aho",
+        "score": "+4 (45)"
+      },
+      {
+        "rank": 5,
+        "player": "Jari Vistiaho",
+        "score": "+5 (46)"
+      }
+    ]
+  },
+  "metrix_44763": {
+    "top5": [
+      {
+        "rank": 1,
+        "player": "Timo Alalantela",
+        "score": "E (82)"
+      },
+      {
+        "rank": 2,
+        "player": "Aapo Penttila",
+        "score": "+1 (83)"
+      },
+      {
+        "rank": 3,
+        "player": "Eevert Vakevainen",
+        "score": "+3 (85)"
+      },
+      {
+        "rank": 4,
+        "player": "Daniel Turja",
+        "score": "+5 (87)"
+      },
+      {
+        "rank": 5,
+        "player": "Eero Tuohimaa",
+        "score": "+6 (88)"
+      }
+    ]
+  },
+  "udisc": {
+    "top5": [
+      {
+        "rank": 1,
+        "player": "@kantanen8",
+        "score": "35"
+      },
+      {
+        "rank": 2,
+        "player": "@valkoparta",
+        "score": "36"
+      },
+      {
+        "rank": 2,
+        "player": "@mattiasss",
+        "score": "36"
+      },
+      {
+        "rank": 4,
+        "player": "@dashyy",
+        "score": "38"
+      },
+      {
+        "rank": 4,
+        "player": "@itkonenjere",
+        "score": "38"
       }
     ]
   },
   "saa": {
     "current": {
-      "temp": "12°C"
+      "temp": "12°C",
+      "feels": "10°C",
+      "humidity": "65%",
+      "precip": "0%",
+      "cloud": "Puolipilvista",
+      "wind": "3.2 m/s SW",
+      "gust": "5.1 m/s",
+      "updated": "LIVE"
     }
   }
 }
