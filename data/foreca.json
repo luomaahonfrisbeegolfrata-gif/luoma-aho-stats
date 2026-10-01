@@ -1,85 +1,85 @@
 {
-  "paivitys": "2026-10-01T01:38:06.827810",
+  "paivitys": "2026-10-01T08:45:57.449447",
   "lahde": "Foreca Täsmäsää Alajärvi - dynaaminen",
   "current": {
-    "temp": "12°C",
-    "feels": "11°",
-    "humidity": "65%",
-    "wind": "4 m/s",
-    "gust": "8 m/s",
-    "precip": "<0,1 mm",
-    "cloud": "Puolipilvistä"
+    "temp": "11°C",
+    "feels": "9°",
+    "humidity": "81%",
+    "wind": "10.8 m/s",
+    "gust": "22.3 m/s",
+    "precip": "0.0 mm",
+    "cloud": "Selkeää"
   },
   "hourly": [
     {
       "hour": "09",
-      "icon": "⛅",
-      "temp": 12,
-      "wind": 3
+      "icon": "☀️",
+      "temp": 4,
+      "wind": 8
     },
     {
       "hour": "12",
       "icon": "☀️",
-      "temp": 14,
-      "wind": 3
+      "temp": 12,
+      "wind": 11
     },
     {
       "hour": "15",
-      "icon": "☀️",
+      "icon": "⛅",
       "temp": 15,
-      "wind": 4
+      "wind": 12
     },
     {
       "hour": "18",
       "icon": "⛅",
-      "temp": 11,
-      "wind": 3
+      "temp": 14,
+      "wind": 10
     },
     {
       "hour": "21",
-      "icon": "☁️",
+      "icon": "⛅",
       "temp": 10,
-      "wind": 3
+      "wind": 10
     },
     {
       "hour": "00",
-      "icon": "🌙",
-      "temp": 9,
-      "wind": 4
+      "icon": "⛅",
+      "temp": 10,
+      "wind": 6
     },
     {
       "hour": "03",
-      "icon": "☁️",
-      "temp": 9,
-      "wind": 4
+      "icon": "⛅",
+      "temp": 10,
+      "wind": 12
     },
     {
       "hour": "06",
-      "icon": "☁️",
-      "temp": 8,
-      "wind": 3
+      "icon": "⛅",
+      "temp": 10,
+      "wind": 5
     }
   ],
   "daily": [
     {
       "day": "TO 1.10.",
       "max": 15,
-      "min": 5
+      "min": 3
     },
     {
       "day": "PE 2.10.",
-      "max": 16,
-      "min": 8
+      "max": 15,
+      "min": 10
     },
     {
       "day": "LA 3.10.",
-      "max": 12,
-      "min": 8
+      "max": 13,
+      "min": 10
     },
     {
       "day": "SU 4.10.",
-      "max": 14,
-      "min": 4
+      "max": 11,
+      "min": 8
     }
   ]
 }
