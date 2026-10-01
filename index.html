@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luoma-aho FULL AUTO TOP5 SÄÄ</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:16px}
+h1{font-size:20px;margin-bottom:12px}
+h3{font-size:12px;color:#888;margin-bottom:8px}
+.card{background:#111;border:1px solid #222;border-radius:12px;padding:16px}
+.big{font-size:64px;font-weight:900;line-height:1;text-align:center}
+.small{font-size:11px;color:#888;text-align:center;margin-top:8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:800px){.grid2,.grid3{grid-template-columns:1fr}}
+ul{list-style:none}
+li{padding:6px 0;border-bottom:1px solid #222;font-size:13px}
+.sepline{height:1px;background:#222;margin:12px 0}
+.top-label{font-size:11px;font-weight:800;letter-spacing:0.5px;text-align:center}
+</style>
+</head>
+<body>
+
+<h1>Luoma-aho FULL AUTO TOP5 SÄÄ</h1>
+
+<h3>RATAINFO</h3>
+<div class="card" style="margin-bottom:16px;">
+<div style="font-size:13px;line-height:1.6;color:#aaa;">
+Kalliopohjaisessa mäkisessä mäntymetsä maastossa<br>
+Tekninen / vaativa mutta helposti lähestyttävä<br>
+Pienellä alueella jossa olemattomat siirtymät<br>
+Loistava kunto metsäradaksi<br>
+Väylien pituudet 57-197m<br>
+OB:t ja Mandot haastavat päätöksentekoa<br>
+Tekniikka, kiekko kontrolli ja heittovalinnat avainasemassa onnistumiseen
+</div>
+</div>
+
+<!-- 2 KORTTIA VIEREKKÄIN - LAYOUT 100% SAMA KUIN ENNEN -->
+<div class="grid2">
+
+<!-- VASEN: YHDISTETTY - TULOSKIERROKSET YLHÄÄLLÄ, UNIIKIT ALHAALLA, EI INFO-TEKSTIÄ -->
+<div class="card" id="tuloskierrokset-card" style="display:flex;flex-direction:column;min-height:200px;">
+<div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+<div class="top-label">UDISC & METRIX TULOSKIERROKSET - <span style="color:#00ff00;">AUTO 15/5MIN</span></div>
+<div id="live-kierrokset" class="big" style="margin-top:12px;">1130</div>
+</div>
+<div class="sepline"></div>
+<div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+<div class="top-label">UNIIKIT PELAAJAT - <span style="color:#00ff00;">AUTO</span></div>
+<div id="live-pelaajat" class="big" style="margin-top:12px;">100</div>
+</div>
+</div>
+
+<!-- OIKEA: OLI UNIIKIT, NYT HOLE IN ONE - TÄSMÄLLEEN SAMASSA PAIKASSA -->
+<div class="card" id="uniikit-pelaajat-card" style="border-left:3px solid #ffcc00;min-height:200px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+<div class="top-label">HOLE IN ONE - <span style="color:#ffcc00;">MANUAALINEN</span></div>
+<div id="hio-count" class="big" style="color:#ffcc00;margin-top:12px;">3</div>
+<div id="hio-list" style="font-size:12px;color:#aaa;line-height:1.6;margin-top:12px;">
+Toni Luoma-aho #8<br>
+Benjamin Turja #3<br>
+@kantanen8 #5
+</div>
+<div style="font-size:8px;color:#555;margin-top:12px;">Päivitä data/holeinone.json</div>
+</div>
+
+</div>
+
+<!-- MUUT KORTIT - SÄÄ + TOP5 -->
+<div class="grid3">
+<div class="card">
+<div class="top-label">SÄÄ - <span style="color:#00ff00;">AUTO</span></div>
+<div id="saa-content">Ladataan säätä...</div>
+</div>
+
+<div class="card">
+<div class="top-label">METRIX 44010 TOP5 - <span style="color:#00ff00;">AUTO</span> PAR 41</div>
+<ul id="top5-44010"><li>Haetaan...</li></ul>
+</div>
+
+<div class="card">
+<div class="top-label">METRIX 44763 TOP5 - <span style="color:#00ff00;">AUTO</span> PAR 82</div>
+<ul id="top5-44763"><li>Haetaan...</li></ul>
+</div>
+</div>
+
+<div class="grid3">
+<div class="card">
+<div class="top-label">UDISC 143835 TOP5 - <span style="color:#00ff00;">AUTO</span> PAR 41</div>
+<ul id="top5-udisc"><li>Haetaan...</li></ul>
+<div style="font-size:9px;color:#666;margin-top:8px;"><a href="https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/leaderboard?layoutId=143835" style="color:#666;">Avaa UDisc leaderboard 143835</a></div>
+</div>
+
+<div class="card">
+<div class="top-label">PELIAIKA - AUTO</div>
+<div id="live-aika" class="big" style="font-size:36px;">1004h</div>
+</div>
+
+<div class="card">
+<div class="top-label">ASKELEET / KM - AUTO</div>
+<div id="live-askeleet" style="font-size:24px;font-weight:900;text-align:center;">1 300 000</div>
+<div id="live-km" class="small">970 km</div>
+</div>
+</div>
+
+<!-- VÄYLÄTILASTO -->
+<div class="card" style="margin-top:16px;overflow:auto;">
+<div class="top-label" style="text-align:left;">VÄYLÄTILASTO</div>
+<div style="margin-top:12px;">
+<img src="./data/vaylatilasto.png" alt="vaylatilasto" style="width:100%;max-width:900px;">
+<br><br>
+<img src="./data/ratatilasto.png" alt="ratatilasto" style="width:100%;max-width:900px;">
+</div>
+</div>
+
+<script src="./js/ratatilasto.js"></script>
+</body>
+</html>
