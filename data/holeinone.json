@@ -1,25 +1,10 @@
 {
   "count": 5,
   "players": [
-    {
-      "player": "Benjamin Turja",
-      "hole": 4
-    },
-    {
-      "player": "Julius Luoma-aho",
-      "hole": 4
-    },
-    {
-      "player": "Pentti Pitkäranta",
-      "hole": 8
-    },
-    {
-      "player": "Juha Luoma-aho",
-      "hole": 4
-    },
-    {
-      "player": "Aleksi Lassila",
-      "hole": 4
-    }
+    { "player": "Benjamin Turja", "hole": 4 },
+    { "player": "Julius Luoma-aho", "hole": 4 },
+    { "player": "Pentti Pitkäranta", "hole": 8 },
+    { "player": "Juha Luoma-aho", "hole": 4 },
+    { "player": "Aleksi Lassila", "hole": 4 }
   ]
 }
