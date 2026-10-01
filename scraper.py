@@ -1,16 +1,20 @@
-import json, pathlib
+import json
+import pathlib
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 data_path = pathlib.Path('data/ratatilasto.json')
+if not data_path.exists():
+    data_path = pathlib.Path('ratatilasto.json')
 data = json.loads(data_path.read_text(encoding='utf-8'))
 
 def make_tiukka(d, out_path):
     headers = ["Vayla"] + [str(i) for i in range(1,13)] + ["Tot","%"]
     pituus = d.get("Pituus", [125,103,72,57,94,96,103,80,116,85,197,120])
+    tot_p = sum(pituus)
     rows = [
-        ["Pituus"] + [f"{x}m" for x in pituus] + [f"{sum(pituus)}m","-"],
+        ["Pituus"] + [f"{x}m" for x in pituus] + [f"{tot_p}m","-"],
         ["Par"] + d["Par"] + [d["Tot"]["Par"],"-"],
         ["Avg"] + [f"{x:.2f}" for x in d["Avg"]] + [f"{d['Tot']['Avg']:.2f}","-"],
         ["Difficulty"] + d["Difficulty"] + [f"{d['OverPar']:.2f}","-"],
@@ -23,15 +27,6 @@ def make_tiukka(d, out_path):
         ["Other >3"] + d["Other"] + [d["Tot"]["Other"], f"{d['Pct']['Other']}%"],
     ]
     full = [headers] + rows
-    GREEN="#66BB6A"; YELLOW="#FFEB3B"; ORANGE="#FFA726"; RED="#EF5350"
-    over=[d["Avg"][i]-d["Par"][i] for i in range(12)]
-    so=sorted(over)
-    def col(o):
-        if o <= so[2]: return GREEN
-        elif o <= so[6]: return YELLOW
-        elif o <= so[8]: return ORANGE
-        else: return RED
-    colors=[col(o) for o in over]
     fig, ax = plt.subplots(figsize=(16,3.8))
     fig.patch.set_facecolor('black')
     ax.set_facecolor('black')
@@ -42,21 +37,15 @@ def make_tiukka(d, out_path):
     table.scale(1,1.15)
     for i in range(len(full)):
         for j in range(len(headers)):
-            cell=table[(i,j)]
+            cell = table[(i,j)]
             cell.set_edgecolor('#444444')
-            if i==0:
+            if i == 0:
                 cell.set_facecolor('#222222')
                 cell.set_text_props(color='white', weight='bold')
-            elif i in (2,3) and 1 <= j <= 12:
-                cell.set_facecolor(colors[j-1])
-                cell.set_text_props(color='black', weight='bold')
             else:
-                cell.set_facecolor('#0f0f0f' if i>1 else '#111111')
+                cell.set_facecolor('#0f0f0f')
                 cell.set_text_props(color='white')
-            if j==0:
-                cell.set_text_props(color='white', weight='bold')
-    import matplotlib.pyplot as plt
-    plt.subplots_adjust(left=0,right=1,top=1,bottom=0)
+    plt.subplots_adjust(left=0, right=1, top=1, bottom=0)
     pathlib.Path(out_path).parent.mkdir(parents=True, exist_ok=True)
     plt.savefig(out_path, dpi=350, bbox_inches='tight', pad_inches=0, facecolor='black')
     plt.close()
@@ -65,4 +54,4 @@ make_tiukka(data, 'vaylatilasto.png')
 make_tiukka(data, 'data/vaylatilasto.png')
 make_tiukka(data, 'ratatilasto.png')
 make_tiukka(data, 'data/ratatilasto.png')
-print("PNG vari tiukka OK")
+print("PNG tiukka OK")

@@ -1,123 +1,16 @@
 {
-  "paivitys": "2026-10-01T10:00:00+03:00",
   "metrix_44010": {
-    "title": "METRIX / VAYLAOPASTE TOP 5 - 44010 Par 41",
     "top5": [
       {
         "rank": 1,
         "player": "Toni Luoma-aho",
-        "score": "+1 (42)",
-        "date": "29.4.2026"
-      },
-      {
-        "rank": 2,
-        "player": "Eino Vistiaho",
-        "score": "+2 (43)",
-        "date": "29.4.2026"
-      },
-      {
-        "rank": 3,
-        "player": "Benjamin Turja",
-        "score": "+3 (44)",
-        "date": "5.10.2025"
-      },
-      {
-        "rank": 4,
-        "player": "Toni Luoma-aho",
-        "score": "+4 (45)",
-        "date": "3.4.2026"
-      },
-      {
-        "rank": 5,
-        "player": "Jari Vistiaho",
-        "score": "+5 (46)",
-        "date": "29.4.2026"
-      }
-    ]
-  },
-  "metrix_44763": {
-    "title": "METRIX 2K TOP 5 - 44763 Par 82",
-    "top5": [
-      {
-        "rank": 1,
-        "player": "Timo Alalantela",
-        "score": "E (82)",
-        "date": "4.10.2025"
-      },
-      {
-        "rank": 2,
-        "player": "Aapo Penttila",
-        "score": "+1 (83)",
-        "date": "19.10.2025"
-      },
-      {
-        "rank": 3,
-        "player": "Eevert Vakevainen",
-        "score": "+3 (85)",
-        "date": "18.4.2026"
-      },
-      {
-        "rank": 4,
-        "player": "Daniel Turja",
-        "score": "+5 (87)",
-        "date": "5.9.2025"
-      },
-      {
-        "rank": 5,
-        "player": "Eero Tuohimaa",
-        "score": "+6 (88)",
-        "date": "19.10.2025"
-      }
-    ]
-  },
-  "udisc": {
-    "title": "UDISC LEADERBOARD TOP 5",
-    "top5": [
-      {
-        "rank": 1,
-        "player": "@kantanen8",
-        "score": "35",
-        "date": "4.7.2026"
-      },
-      {
-        "rank": 2,
-        "player": "@valkoparta",
-        "score": "36",
-        "date": "6.7.2026"
-      },
-      {
-        "rank": 2,
-        "player": "@mattiasss",
-        "score": "36",
-        "date": "19.8.2026"
-      },
-      {
-        "rank": 4,
-        "player": "@dashyy",
-        "score": "38",
-        "date": "13.9.2025"
-      },
-      {
-        "rank": 4,
-        "player": "@itkonenjere",
-        "score": "38",
-        "date": "29.4.2026"
+        "score": "+1 (42)"
       }
     ]
   },
   "saa": {
-    "title": "SAA - LUOMA-AHO",
     "current": {
-      "temp": "12°C",
-      "feels": "10°C",
-      "humidity": "65%",
-      "precip": "0%",
-      "cloud": "Puolipilvista",
-      "wind": "3.2 m/s SW",
-      "gust": "5.1 m/s",
-      "visibility": "15km",
-      "uv": "2",
-      "updated": "1.10. 10:00 LIVE"
+      "temp": "12°C"
     }
   }
 }
