@@ -17,26 +17,34 @@ async function loadAll(){
     render('top5-udisc',top.udisc?.top5);
   }catch(e){}
 
-  // FORECA WIDGET - korvaa vanhan meteo SAA:n
+  // FORECA PUHDAS - EI IFRAME KOKO SIVUA, EI MAINOKSIA, 190px KIINTEA EI VENYTA
   const sc=document.getElementById('saa-content');
   if(sc){
-    sc.innerHTML = `
-      <div style="margin:-10px -10px -10px -10px; border-radius:12px; overflow:hidden; background:#181818;">
-        <!-- Foreca Täsmäsää Alajärvi - virallinen widget -->
-        <iframe 
-          src="https://www.foreca.fi/Finland/Alajarvi?detail=20251001&quick=true" 
-          style="width:100%; height:420px; border:0; background:#181818; filter:invert(0.9) hue-rotate(180deg);" 
-          loading="lazy"
-          title="Foreca Alajarvi">
-        </iframe>
-        <div style="font-size:9px; color:#666; padding:4px 8px; background:#000; display:flex; justify-content:space-between;">
-          <span>Foreca Täsmäsää™ Luoma-aho, Alajärvi - tarkin Suomen malli</span>
-          <a href="https://www.foreca.fi/Finland/Alajarvi" target="_blank" style="color:#00ff00; text-decoration:none;">Avaa Foreca →</a>
+    try{
+      const fc=await fetch('./data/foreca.json?t='+Date.now()).then(r=>r.json());
+      const cur=fc.current;
+      sc.innerHTML = `
+        <div style="display:flex; flex-direction:column; height:175px; overflow:hidden; background:#0f0f0f;">
+          <div style="display:flex; justify-content:space-between;">
+            <div><div style="font-size:26px; font-weight:900; color:#fff;">${cur.temp}</div><div style="font-size:9px; color:#888;">Tuntuu ${cur.feels} • ${cur.cloud}</div></div>
+            <div style="text-align:right; font-size:9px; color:#aaa; line-height:1.3;"><div>Tuuli ${cur.wind}</div><div>Puuskat ${cur.gust}</div><div>Sade ${cur.precip}</div><div style="color:#00ff00; font-weight:700;">Foreca LIVE</div></div>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-top:8px; border-top:1px solid #222; padding-top:5px;">
+            ${fc.hourly.map(h=>`<div style="text-align:center; flex:1;"><div style="font-size:8px; color:#666;">${h.hour}</div><div style="font-size:12px;">${h.icon}</div><div style="font-size:9px; color:#fff; font-weight:700;">${h.temp}°</div></div>`).join('')}
+          </div>
+          <div style="margin-top:auto; border-top:1px solid #222; padding-top:3px; display:flex; justify-content:space-between; font-size:8px; color:#666;">
+            ${fc.daily.map(d=>`<span>${d.day} ${d.max}/${d.min}°</span>`).join('')}
+          </div>
         </div>
-      </div>
-    `;
+      `;
+    }catch(e){ sc.innerHTML='<div style="font-size:11px; color:#666; text-align:center;">Foreca lataa...</div>'; }
   }
-
+  // Vaylatilasto cache bust
   try{const img=document.getElementById('vayla-live-img');if(img) img.src='./vaylatilasto.png?t='+Date.now();}catch(e){}
 }
-loadAll();setInterval(loadAll,30000);
+loadAll();setInterval(loadAll,300000);
+
+// ESTA RIVIN VENYMINEN - korjaa grid-4 align-items
+const style=document.createElement('style');
+style.textContent='.grid-4{align-items:start !important;} .grid-4 .card{height:auto !important; min-height:200px; max-height:220px; overflow:hidden;} #saa-content{max-height:180px; overflow:hidden;}';
+document.head.appendChild(style);
