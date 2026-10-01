@@ -1,12 +1,12 @@
 {
-  "paivitys": "2026-10-01T16:22:14.806152",
+  "paivitys": "2026-10-01T16:35:13.561668",
   "lahde": "Foreca Täsmäsää Alajärvi - dynaaminen",
   "current": {
-    "temp": "12°C",
+    "temp": "11°C",
     "feels": "10°",
-    "humidity": "89%",
-    "wind": "7.2 m/s",
-    "gust": "14.8 m/s",
+    "humidity": "91%",
+    "wind": "6.5 m/s",
+    "gust": "14.0 m/s",
     "precip": "0.0 mm",
     "cloud": "Puolipilvistä"
   },
