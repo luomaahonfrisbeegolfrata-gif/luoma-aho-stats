@@ -41,8 +41,8 @@ async function loadAll(){
         // Muuta oikea kortti (oli uniikit) -> HOLE IN ONE samassa paikassa
         uniikitCard.innerHTML = `
           <div style="font-size:11px;font-weight:800;letter-spacing:0.5px;text-align:center;">HOLE IN ONE - <span style="color:#ffcc00;">MANUAALINEN</span></div>
-          <div id="hio-count" style="font-size:64px;font-weight:900;color:#ffcc00;line-height:1;margin:16px 0;text-align:center;">3</div>
-          <div id="hio-list" style="font-size:11px;color:#aaa;line-height:1.6;text-align:center;">Ladataan HIO...</div>
+          <div id="hio-count" style="font-size:36px;font-weight:600;color:#ffcc00;line-height:1;margin:16px 0;text-align:center;">3</div>
+          <div id="hio-list" style="font-size:15px;color:#aaa;line-height:1.8;text-align:center;">Ladataan HIO...</div>
           <div style="font-size:8px;color:#555;margin-top:8px;text-align:center;">Päivitä data/holeinone.json</div>
         `;
         uniikitCard.style.borderLeft='3px solid #ffcc00';
