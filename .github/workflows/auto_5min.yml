@@ -1,34 +1,26 @@
-name: data_only_auto_5min_dynaaminen
+name: Update foreca 5min
 on:
   schedule:
     - cron: '*/5 * * * *'
   workflow_dispatch:
+
 jobs:
   update:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
+      
+      - uses: actions/setup-python@v4
         with:
-          fetch-depth: 0
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: install_deps
-        run: pip install matplotlib requests
-      - name: fetch_foreca_dynaaminen
-        run: python foreca_fetcher.py
-      - name: fetch_metrix_dynaaminen
-        run: python metrix_fetcher.py
-      - name: generate_png_dynaaminen
-        run: python scraper.py
-      - name: commit_dynaaminen
+          python-version: '3.10'
+          
+      - run: pip install requests
+      
+      - run: python foreca_fetcher.py
+      
+      - name: Commit & Push if changed
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/tilasto.json data/foreca.json data/top5.json data/ratatilasto.json vaylatilasto.png data/vaylatilasto.png || true
-          git diff --staged --quiet && echo "ei muutoksia" && exit 0
-          git commit -m "dynaaminen harjoitus erikseen $(date +%H:%M)"
-          git pull --rebase origin main || git pull --rebase origin master || true
-          git push || (git pull --rebase origin main && git push)
+          git config --global user.name 'foreca-bot'
+          git config --global user.email 'bot@luoma-aho.fi'
+          git add data/foreca.json
+          git diff --staged --quiet || (git commit -m "foreca auto 5min $(date -u +%Y-%m-%dT%H:%M:%SZ)" && git push)
