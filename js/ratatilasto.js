@@ -24,12 +24,12 @@ async function loadAll(){
         // Rakenna yhdistetty ilman info-tekstiä - isot luvut
         tulosCard.innerHTML = `
           <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8px 0;">
-            <div style="font-size:11px;font-weight:800;letter-spacing:0.5px;">UDISC & METRIX TULOSKIERROKSET - <span style="color:#00ff00;">AUTO 15/5MIN</span></div>
+            <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;">UDISC & METRIX TULOSKIERROKSET - <span style="color:#00ff00;">AUTO 15/5MIN</span></div>
             <div id="live-kierrokset" style="font-size:64px;font-weight:900;line-height:1;margin-top:8px;">${tulosEl.textContent}</div>
           </div>
           <div style="height:1px;background:#222;margin:8px 0;"></div>
           <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8px 0;">
-            <div style="font-size:11px;font-weight:800;letter-spacing:0.5px;">UNIIKIT PELAAJAT - <span style="color:#00ff00;">AUTO</span></div>
+            <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;">UNIIKIT PELAAJAT - <span style="color:#00ff00;">AUTO</span></div>
             <div id="live-pelaajat" style="font-size:64px;font-weight:900;line-height:1;margin-top:8px;">${uniikitEl.textContent}</div>
           </div>
         `;
@@ -40,7 +40,7 @@ async function loadAll(){
 
         // Muuta oikea kortti (oli uniikit) -> HOLE IN ONE samassa paikassa
         uniikitCard.innerHTML = `
-          <div style="font-size:11px;font-weight:800;letter-spacing:0.5px;text-align:center;">HOLE IN ONE - <span style="color:#ffcc00;">MANUAALINEN</span></div>
+          <div style="font-size:11px;font-weight:800;letter-spacing:0.5px;text-align:center;">HOLE IN ONE - <span style="color:#ffcc00;"></span></div>
           <div id="hio-count" style="font-size:36px;font-weight:600;color:#ffcc00;line-height:1;margin:16px 0;text-align:center;">3</div>
           <div id="hio-list" style="font-size:15px;color:#aaa;line-height:1.8;text-align:center;">Ladataan HIO...</div>
           <div style="font-size:8px;color:#555;margin-top:8px;text-align:center;">Päivitä data/holeinone.json</div>
