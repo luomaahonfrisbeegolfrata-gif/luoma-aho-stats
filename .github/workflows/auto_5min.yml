@@ -23,6 +23,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/ vaylatilasto.png ratatilasto.png || true
+          git add data/tilasto.json data/top5.json data/ratatilasto.json vaylatilasto.png data/vaylatilasto.png ratatilasto.png data/ratatilasto.png || true
           git diff --staged --quiet || git commit -m "auto $(date +%H:%M)"
           git push
