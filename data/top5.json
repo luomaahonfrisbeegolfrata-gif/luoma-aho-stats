@@ -3,87 +3,156 @@
     "top5": [
       {
         "rank": 1,
-        "player": "Pelaaja A",
-        "score": "-8"
+        "player": "Toni Luoma-aho",
+        "total": 42,
+        "diff": 1,
+        "score": "+1",
+        "display": "42 (+1)",
+        "sort": 1
       },
       {
         "rank": 2,
-        "player": "Pelaaja B",
-        "score": "-6"
+        "player": "Eino Vistiaho",
+        "total": 43,
+        "diff": 2,
+        "score": "+2",
+        "display": "43 (+2)",
+        "sort": 2
       },
       {
         "rank": 3,
-        "player": "Pelaaja C",
-        "score": "-5"
+        "player": "Benjamin Turja",
+        "total": 44,
+        "diff": 3,
+        "score": "+3",
+        "display": "44 (+3)",
+        "sort": 3
       },
       {
         "rank": 4,
-        "player": "Pelaaja D",
-        "score": "-4"
+        "player": "Jari Vistiaho",
+        "total": 46,
+        "diff": 5,
+        "score": "+5",
+        "display": "46 (+5)",
+        "sort": 5
       },
       {
         "rank": 5,
-        "player": "Pelaaja E",
-        "score": "-3"
+        "player": "Julius Luoma-aho",
+        "total": 47,
+        "diff": 6,
+        "score": "+6",
+        "display": "47 (+6)",
+        "sort": 6
       }
-    ]
+    ],
+    "par": 41,
+    "updated": "2026-10-01T06:15:29.498905",
+    "source": "REAL Metrix 44010 13.10.2026 - PAR 41 yli=+, alle=-"
   },
   "metrix_44763": {
     "top5": [
       {
         "rank": 1,
-        "player": "Pelaaja X",
-        "score": "-5"
+        "player": "Timo Alalantela",
+        "total": 82,
+        "diff": 0,
+        "score": "E",
+        "display": "82 (E)",
+        "sort": 0
       },
       {
         "rank": 2,
-        "player": "Pelaaja Y",
-        "score": "-4"
+        "player": "Aapo Penttilä",
+        "total": 83,
+        "diff": 1,
+        "score": "+1",
+        "display": "83 (+1)",
+        "sort": 1
       },
       {
         "rank": 3,
-        "player": "Pelaaja Z",
-        "score": "-3"
+        "player": "Eevert Väkeväinen",
+        "total": 85,
+        "diff": 3,
+        "score": "+3",
+        "display": "85 (+3)",
+        "sort": 3
       },
       {
         "rank": 4,
-        "player": "Pelaaja W",
-        "score": "-2"
+        "player": "Daniel Turja",
+        "total": 87,
+        "diff": 5,
+        "score": "+5",
+        "display": "87 (+5)",
+        "sort": 5
       },
       {
         "rank": 5,
-        "player": "Pelaaja V",
-        "score": "-1"
+        "player": "Eero Tuohimaa",
+        "total": 88,
+        "diff": 6,
+        "score": "+6",
+        "display": "88 (+6)",
+        "sort": 6
       }
-    ]
+    ],
+    "par": 82,
+    "updated": "2026-10-01T06:15:29.498913",
+    "source": "REAL Metrix 44763 13.10.2026 - PAR 82"
   },
   "udisc": {
     "top5": [
       {
         "rank": 1,
-        "player": "UDisc Pro",
-        "score": "48"
+        "player": "@kantanen8",
+        "total": 35,
+        "diff": -6,
+        "score": "-6",
+        "display": "35 (-6)",
+        "sort": -6
       },
       {
         "rank": 2,
-        "player": "Local",
-        "score": "50"
+        "player": "@valkoparta",
+        "total": 36,
+        "diff": -5,
+        "score": "-5",
+        "display": "36 (-5)",
+        "sort": -5
       },
       {
         "rank": 3,
-        "player": "Test",
-        "score": "52"
+        "player": "@mattiasss",
+        "total": 36,
+        "diff": -5,
+        "score": "-5",
+        "display": "36 (-5)",
+        "sort": -5
       },
       {
         "rank": 4,
-        "player": "Player",
-        "score": "53"
+        "player": "@dashyy",
+        "total": 38,
+        "diff": -3,
+        "score": "-3",
+        "display": "38 (-3)",
+        "sort": -3
       },
       {
         "rank": 5,
-        "player": "Rookie",
-        "score": "54"
+        "player": "UDisc #5",
+        "total": 39,
+        "diff": -2,
+        "score": "-2",
+        "display": "39 (-2)",
+        "sort": -2
       }
-    ]
+    ],
+    "par": 41,
+    "updated": "2026-10-01T06:15:29.498919",
+    "source": "REAL UDisc https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/leaderboard?layoutId=143835 - PAR 41"
   }
 }
