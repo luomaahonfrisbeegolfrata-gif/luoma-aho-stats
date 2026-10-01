@@ -22,7 +22,7 @@
     },
     "pelaajat": {
       "arvo": 100,
-      "kaava": "UDisc 67 + Metrix ~60 - paallekkaisyydet"
+      "kaava": "UDisc 67 + Metrix ~60 - paallekkaisyydet ~27"
     },
     "aika_h": {
       "arvo": 1481,
@@ -37,5 +37,5 @@
       "kaava": "1130*2km"
     }
   },
-  "updated": "2026-10-01T00:00:00+03:00"
+  "updated": "2026-10-01T10:00:00+03:00"
 }
