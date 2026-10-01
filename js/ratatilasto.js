@@ -15,9 +15,28 @@ async function loadAll(){
     render('top5-44010',top.metrix_44010?.top5);
     render('top5-44763',top.metrix_44763?.top5);
     render('top5-udisc',top.udisc?.top5);
-    const s=top.saa?.current;
-    const sc=document.getElementById('saa-content');
-    if(sc&&s){sc.innerHTML='<div class="big">'+s.temp+'</div><div class="small">'+s.feels+' | '+s.humidity+' | '+s.wind+' | '+s.cloud+'<br>'+s.updated+'</div>';}
   }catch(e){}
+
+  // FORECA WIDGET - korvaa vanhan meteo SAA:n
+  const sc=document.getElementById('saa-content');
+  if(sc){
+    sc.innerHTML = `
+      <div style="margin:-10px -10px -10px -10px; border-radius:12px; overflow:hidden; background:#181818;">
+        <!-- Foreca Täsmäsää Alajärvi - virallinen widget -->
+        <iframe 
+          src="https://www.foreca.fi/Finland/Alajarvi?detail=20251001&quick=true" 
+          style="width:100%; height:420px; border:0; background:#181818; filter:invert(0.9) hue-rotate(180deg);" 
+          loading="lazy"
+          title="Foreca Alajarvi">
+        </iframe>
+        <div style="font-size:9px; color:#666; padding:4px 8px; background:#000; display:flex; justify-content:space-between;">
+          <span>Foreca Täsmäsää™ Luoma-aho, Alajärvi - tarkin Suomen malli</span>
+          <a href="https://www.foreca.fi/Finland/Alajarvi" target="_blank" style="color:#00ff00; text-decoration:none;">Avaa Foreca →</a>
+        </div>
+      </div>
+    `;
+  }
+
+  try{const img=document.getElementById('vayla-live-img');if(img) img.src='./vaylatilasto.png?t='+Date.now();}catch(e){}
 }
-loadAll();setInterval(loadAll,5000);
+loadAll();setInterval(loadAll,30000);
