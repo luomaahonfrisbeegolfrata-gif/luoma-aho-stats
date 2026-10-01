@@ -30,5 +30,4 @@ try:
     print(f"Foreca dynaaminen {result['current']['temp']}")
 except Exception as e:
     print(f"Foreca fail {e} - sailytetaan aiempi")
-    if old:
-        PATH.write_text(json.dumps(old, ensure_ascii=False, indent=2), encoding='utf-8')
+    if old: PATH.write_text(json.dumps(old, ensure_ascii=False, indent=2), encoding='utf-8')
