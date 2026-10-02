@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luoma-ahon Frisbeegolfrata - HIO kavennus</title>
+<title>Luoma-ahon Frisbeegolfrata - SÄÄ yläriviin</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif;padding:0 12px 30px}
@@ -15,12 +15,12 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
 .header-right{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
 .header-right img{height:30px;background:#fff;border-radius:7px;padding:2px 6px;object-fit:contain;min-width:48px}
 
-/* KORJATTU: kaikki 3 yläkorttia sama kapea leveys - 50% pienempi */
-.grid-3{display:grid;grid-template-columns:0.75fr 0.75fr 0.75fr;gap:12px;margin:14px 0;justify-content:start}
+/* YLÄRIVI NYT 4 KORTTIA YHTÄ LEVEITÄ */
+.grid-top{display:grid;grid-template-columns:0.75fr 0.75fr 0.75fr 0.75fr;gap:12px;margin:14px 0;justify-content:start}
 .grid-3b{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:12px 0}
-.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:12px 0}
-@media(max-width:1100px){.grid-3,.grid-3b,.grid-4{grid-template-columns:1fr 1fr}}
-@media(max-width:700px){.grid-3,.grid-3b,.grid-4{grid-template-columns:1fr}}
+.grid-3bottom{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:12px 0}
+@media(max-width:1100px){.grid-top,.grid-3b,.grid-3bottom{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.grid-top,.grid-3b,.grid-3bottom{grid-template-columns:1fr}}
 
 .card{background:#151516;border:1px solid #262626;border-radius:14px;padding:14px 16px;min-height:132px;display:flex;flex-direction:column}
 .card-title{font-size:10px;color:#8a8a8a;text-transform:uppercase;letter-spacing:0.8px;font-weight:800;margin-bottom:8px}
@@ -28,10 +28,10 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
 .big{font-size:36px;font-weight:900;letter-spacing:-1px;color:#fff;line-height:1}
 .small{font-size:11px;color:#6e6e6e;margin-top:6px;line-height:1.4}
 
-.card.ratainfo-card,.card.combined-card,.card.hio-card{
+.card.ratainfo-card,.card.combined-card,.card.hio-card,.card.saa-card{
   width:100%;
   max-width:100%;
-  min-height:auto;
+  min-height:132px;
 }
 .ratainfo{font-size:16px !important;line-height:1.7;color:#d0d0d0}
 .ratainfo p{margin-bottom:6px;font-size:16px !important}
@@ -65,7 +65,8 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
 
 <div id="status">Päivitetty: <span id="last-update">--</span> | Lähde: UDisc + Metrix AUTO</div>
 
-<div class="grid-3">
+<!-- YLÄRIVI: 4 KORTTIA YHTÄ LEVEITÄ - SÄÄ SIIRRETTY HIO:N OIKEALLE -->
+<div class="grid-top">
   <div class="card ratainfo-card">
     <div class="card-title">RATAINFO</div>
     <div class="ratainfo">
@@ -92,12 +93,19 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
     </div>
   </div>
 
-  <!-- HOLE IN ONE - NYT KAVENNETTU SAMAAN LEVEYTEEN -->
   <div class="card hio-card">
     <div class="card-title">HOLE IN ONE <span class="auto">- AUTO</span></div>
     <div class="big" id="hio-total">1</div>
     <div class="small">Yhteensä 1 holarit - 0.1% kierroksista</div>
     <div class="hio-list" id="hio-list"><div class="hio-item">Väylä 4 - 1 kpl</div></div>
+  </div>
+
+  <div class="card saa-card">
+    <div class="card-title">SÄÄ - LUOMA-AHO, ALAJÄRVI <span class="auto">- AUTO</span></div>
+    <div class="saa-big" id="saa-temp">12°C</div>
+    <div class="small" id="saa-location" style="color:#1aff1a;font-weight:700">Luoma-aho, Alajärvi</div>
+    <div class="small" id="saa-desc">Foreca • Jussilantie 290</div>
+    <div id="foreca-widget" style="margin-top:8px;font-size:11px;color:#888"></div>
   </div>
 </div>
 
@@ -107,11 +115,10 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
   <div class="card"><div class="card-title">KILOMETRIT <span class="auto">- AUTO</span></div><div class="big">2260 km</div><div class="small">1130×2km</div></div>
 </div>
 
-<div class="grid-4">
+<div class="grid-3bottom">
   <div class="card"><div class="card-title">METRIX 44010 <span class="auto">- AUTO 1S/5MIN</span></div><div class="tulos" id="m44010">Ladataan...</div></div>
   <div class="card"><div class="card-title">METRIX 44763 <span class="auto">- AUTO</span></div><div class="tulos" id="m44763">Ladataan...</div></div>
   <div class="card"><div class="card-title">UDISC <span class="auto">- AUTO</span></div><div class="tulos" id="udisc">Ladataan...</div></div>
-  <div class="card"><div class="card-title">SÄÄ - LUOMA-AHO, ALAJÄRVI <span class="auto">- AUTO</span></div><div class="saa-big" id="saa-temp">12°C</div><div class="small" id="saa-location" style="color:#1aff1a;font-weight:700">Luoma-aho, Alajärvi</div><div class="small" id="saa-desc">Foreca • Jussilantie 290</div></div>
 </div>
 
 <div style="margin-top:14px">
