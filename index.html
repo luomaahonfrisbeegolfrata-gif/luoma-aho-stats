@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luoma-ahon Frisbeegolfrata - FORECA REAL</title>
+<title>Luoma-ahon Frisbeegolfrata - logot yhtäsuuret</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif;padding:0 12px 30px}
@@ -13,27 +13,37 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
 .header-left h1{font-size:19px}
 .live{color:#1aff1a;font-size:13px;font-weight:800;margin-left:8px}
 .header-right{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.header-right img{
-  height:44px;
-  min-width:44px;
-  background:transparent !important; /* POISTA VALKOINEN TAUSTA */
+
+/* LOGOT YHTÄSUURIKSI - NELIÖT JA SUORAKULMIOT - KÄYTÄ OLEMASSA OLEVIA LOGOJA */
+.header-right img.logo-square{
+  width:48px;
+  height:48px;
+  min-width:48px;
+  background:#fff;
   border-radius:8px;
-  padding:0;
+  padding:4px;
   object-fit:contain;
-  width:44px;
   border:1px solid #222;
 }
-.header-right img.loytokiekot{
-  background:#fff !important; /* EI KOSKE LÖYTÖKIEKOT LOGOA */
-  padding:3px 8px;
-  min-width:60px;
-  width:auto;
+.header-right img.logo-rect{
+  width:88px;
+  height:48px;
+  min-width:88px;
+  background:#fff;
+  border-radius:8px;
+  padding:4px 8px;
+  object-fit:contain;
+  border:1px solid #222;
+}
+.header-right img.logo-main{
+  width:52px;
+  height:52px;
+  background:#111;
 }
 
-/* YLÄRIVI - RATAINFO SUURENNETTU ETTÄ TEKSTI RIVITTYY */
 .grid-top{
   display:grid;
-  grid-template-columns:380px 300px 300px 300px; /* RATAINFO 380px leveämpi */
+  grid-template-columns:380px 300px 300px 300px;
   gap:12px;
   margin:14px 0;
   justify-content:start;
@@ -50,22 +60,9 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
 .big{font-size:48px;font-weight:900;letter-spacing:-1px;color:#fff;line-height:1;text-align:center}
 .small{font-size:11px;color:#6e6e6e;margin-top:6px;line-height:1.4}
 
-/* RATAINFO - SUURENNETTU ETTÄ TEKSTI RIVITTYY KUNNOLLA */
-.card.ratainfo-card{
-  width:380px; /* leveämpi että teksti rivittyy eikä katkea */
-  min-height:300px;
-  padding:16px 18px;
-  display:flex;
-  flex-direction:column;
-}
+.card.ratainfo-card{width:380px;min-height:300px;padding:16px 18px;display:flex;flex-direction:column}
 .card.ratainfo-card .card-title{text-align:left;font-size:16px !important;margin-bottom:10px}
-.ratainfo{
-  font-size:15px !important;
-  line-height:1.5;
-  color:#d0d0d0;
-  word-wrap:break-word;
-  white-space:normal;
-}
+.ratainfo{font-size:15px !important;line-height:1.5;color:#d0d0d0;word-wrap:break-word;white-space:normal}
 .ratainfo p{margin-bottom:8px;font-size:15px !important;line-height:1.5}
 
 .card.combined-card{width:300px;min-height:300px;padding:0 !important;overflow:hidden}
@@ -81,21 +78,12 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
 .hio-item{font-size:13px !important;padding:2px 0;color:#ddd;text-align:center;border:none}
 .hio-item.vayla-header{font-weight:900;color:#1aff1a;font-size:13px !important;margin-top:8px;margin-bottom:2px}
 
-/* SÄÄ - FORECAN OIKEALLA DATALLA - ILMAN KIKKAILUJA, EI MAINOKSIA */
-.card.saa-card{
-  width:300px;
-  min-height:300px;
-  padding:0 !important;
-  overflow:hidden;
-  background:#0f0f10;
-  border:1px solid #262626;
-}
+.card.saa-card{width:300px;min-height:300px;padding:0 !important;overflow:hidden;background:#0f0f10;border:1px solid #262626}
 .saa-header{padding:14px 14px 8px 14px;background:#151516;border-bottom:1px solid #222}
 .saa-header .card-title{margin-bottom:0}
 .saa-current{padding:14px;text-align:center;background:#0f0f10}
 .saa-temp{font-size:42px;font-weight:900;color:#fff;line-height:1}
 .saa-desc{font-size:14px;color:#ccc;margin-top:6px;display:flex;align-items:center;justify-content:center;gap:8px}
-.saa-desc img{width:32px;height:32px;object-fit:contain}
 .saa-details{padding:10px 14px;background:#0a0a0a;border-top:1px solid #222;font-size:11px;line-height:1.6}
 .saa-details .row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #151515}
 .saa-details .row:last-child{border-bottom:none}
@@ -119,19 +107,21 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
 
 <div class="header">
   <div class="header-left">
-    <img src="logot/l-a-friba-logo.jpg" alt="logo" onerror="this.src='logot/logo-l-a-friba.jpg'">
+    <img src="logot/l-a-friba-logo.jpg" alt="logo" class="logo-main" onerror="this.src='logot/logo-l-a-friba.jpg'">
     <h1>Luoma-ahon Frisbeegolfrata <span class="live">● LIVE FORECA REAL</span></h1>
   </div>
   <div class="header-right">
-    <img src="logot/gmaps-logo.jpg" alt="GMaps" style="background:transparent">
-    <img src="logot/metrix-logo.png" alt="Metrix" style="background:transparent">
-    <img src="logot/parkdly-logo.png" alt="Parkdly" style="background:transparent">
-    <img src="logot/loytokiekot-logo.png" alt="Löytökiekot" class="loytokiekot">
-    <img src="logot/yt-logo.png" alt="YT" style="background:transparent">
-    <img src="logot/fgr-logo.png" alt="FGR" style="background:transparent">
-    <img src="logot/udisc-logo.png" alt="UDisc" style="background:transparent">
-    <img src="logot/ratamestari-logo.png" alt="Ratamestari" style="background:transparent">
-    <img src="logot/instagram-logo.png" alt="IG" onerror="this.src='logot/ig-logo.png'" style="background:transparent">
+    <!-- NELIÖT YHTÄSUURIA 48x48 -->
+    <img src="logot/gmaps-logo.jpg" alt="GMaps" class="logo-square">
+    <img src="logot/metrix-logo.png" alt="Metrix" class="logo-square">
+    <img src="logot/fgr-logo.png" alt="FGR" class="logo-square">
+    <img src="logot/udisc-logo.png" alt="UDisc" class="logo-square">
+    <img src="logot/ratamestari-logo.png" alt="Ratamestari" class="logo-square">
+    <img src="logot/instagram-logo.png" alt="IG" class="logo-square" onerror="this.src='logot/ig-logo.png'">
+    <!-- SUORAKULMIOT YHTÄSUURIA 88x48 -->
+    <img src="logot/parkdly-logo.png" alt="Parkdly" class="logo-rect">
+    <img src="logot/loytokiekot-logo.png" alt="Löytökiekot" class="logo-rect">
+    <img src="logot/yt-logo.png" alt="YT" class="logo-rect">
   </div>
 </div>
 
@@ -220,7 +210,6 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
 
 <script src="data:application/javascript;base64,Ly8ganMvbG9hZGVyLmpzIC0gS29yamF0dHUgdmVyc2lvICMzCi8vIExpc8OkdHR5OiBjYWNoZS1idXN0ZXIsIHZpcmhlZW5rw6RzaXR0ZWx5LCBsb2FkaW5nIHN0YXRlcywgYXV0by1yZWZyZXNoCgpjb25zdCBEQVRBX0JBU0UgPSAnZGF0YS8nOwpjb25zdCBDQUNIRV9CVVNURVIgPSAoKSA9PiBgP3Y9JHtEYXRlLm5vdygpfWA7IC8vIGVzdMOkw6Qgc2VsYWltZW4gdsOkbGltdWlzdGluCmNvbnN0IEZFVENIX09QVFMgPSB7IGNhY2hlOiAnbm8tc3RvcmUnIH07Cgpjb25zdCBGSUxFUyA9IHsKICBmb3JlY2E6ICdmb3JlY2EuanNvbicsCiAgc3RhdHM6ICdzdGF0cy5qc29uJywKICB0b3A1OiAndG9wNS5qc29uJywKICByYXRhdGlsYXN0bzogJ3JhdGF0aWxhc3RvLmpzb24nLAogIHZheWxhdGlsYXN0bzogJ3ZheWxhdGlsYXN0by5qc29uJywKICB0aWxhc3RvOiAndGlsYXN0by5qc29uJywKICBob2xlaW5vbmU6ICdob2xlaW5vbmUuanNvbicsCiAgaG9sZVNjb3JlczogJ2hvbGUtc2NvcmVzLmNzdicKfTsKCmFzeW5jIGZ1bmN0aW9uIGZldGNoSlNPTihuYW1lKSB7CiAgY29uc3QgZmlsZSA9IEZJTEVTW25hbWVdOwogIGlmICghZmlsZSkgdGhyb3cgbmV3IEVycm9yKGBVbmtub3duIGZpbGU6ICR7bmFtZX1gKTsKICB0cnkgewogICAgY29uc3QgcmVzID0gYXdhaXQgZmV0Y2goREFUQV9CQVNFICsgZmlsZSArIENBQ0hFX0JVU1RFUigpLCBGRVRDSF9PUFRTKTsKICAgIGlmICghcmVzLm9rKSB0aHJvdyBuZXcgRXJyb3IoYCR7ZmlsZX06ICR7cmVzLnN0YXR1c31gKTsKICAgIGlmIChmaWxlLmVuZHNXaXRoKCcuanNvbicpKSByZXR1cm4gYXdhaXQgcmVzLmpzb24oKTsKICAgIHJldHVybiBhd2FpdCByZXMudGV4dCgpOyAvLyBjc3YKICB9IGNhdGNoIChlKSB7CiAgICBjb25zb2xlLndhcm4oYFtsb2FkZXJdICR7bmFtZX0gZmFpbGVkOmAsIGUpOwogICAgcmV0dXJuIG51bGw7IC8vIGVpIGthYWRhIGtva28gc2l2dWEKICB9Cn0KCmFzeW5jIGZ1bmN0aW9uIGxvYWRBbGwoKSB7CiAgY29uc3Qgc3RhdHVzRWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbG9hZGluZy1zdGF0dXMnKTsKICBpZiAoc3RhdHVzRWwpIHN0YXR1c0VsLnRleHRDb250ZW50ID0gJ1DDpGl2aXRldMOkw6RuIHRpbGFzdG9qYS4uLic7CgogIC8vIExhdGFhIHJpbm5ha2thaW4sIGthYXR1bWluZW4gZWkga2FhZGEgbXVpdGEKICBjb25zdCByZXN1bHRzID0gYXdhaXQgUHJvbWlzZS5hbGxTZXR0bGVkKAogICAgT2JqZWN0LmtleXMoRklMRVMpLm1hcChrID0+IGZldGNoSlNPTihrKS50aGVuKGRhdGEgPT4gKHsga2V5OiBrLCBkYXRhIH0pKSkKICApOwoKICBjb25zdCBkYXRhID0ge307CiAgcmVzdWx0cy5mb3JFYWNoKHIgPT4gewogICAgaWYgKHIuc3RhdHVzID09PSAnZnVsZmlsbGVkJyAmJiByLnZhbHVlPy5kYXRhKSB7CiAgICAgIGRhdGFbci52YWx1ZS5rZXldID0gci52YWx1ZS5kYXRhOwogICAgfQogIH0pOwoKICBpZiAoc3RhdHVzRWwpIHsKICAgIGNvbnN0IG5vdyA9IG5ldyBEYXRlKCkudG9Mb2NhbGVTdHJpbmcoJ2ZpLUZJJywgeyB0aW1lWm9uZTogJ0V1cm9wZS9IZWxzaW5raScgfSk7CiAgICBzdGF0dXNFbC50ZXh0Q29udGVudCA9IGBQw6Rpdml0ZXR0eTogJHtub3d9IHwgTMOkaGRlOiBVRGlzYyArIE1ldHJpeCBBVVRPYDsKICAgIHN0YXR1c0VsLmRhdGFzZXQubGFzdFVwZGF0ZSA9IG5vdzsKICB9CgogIC8vIFJlbmRlcsO2aSAtIGt1dHN1dSBvbGVtYXNzYSBvbGV2aWEgcmVuZGVyLWZ1bmt0aW9pdGEgam9zIG5lIG9uIG3DpMOkcml0ZWx0eQogIHRyeSB7CiAgICBpZiAodHlwZW9mIHJlbmRlckZvcmVjYSA9PT0gJ2Z1bmN0aW9uJyAmJiBkYXRhLmZvcmVjYSkgcmVuZGVyRm9yZWNhKGRhdGEuZm9yZWNhKTsKICAgIGlmICh0eXBlb2YgcmVuZGVyU3RhdHMgPT09ICdmdW5jdGlvbicgJiYgZGF0YS5zdGF0cykgcmVuZGVyU3RhdHMoZGF0YS5zdGF0cyk7CiAgICBpZiAodHlwZW9mIHJlbmRlclRvcDUgPT09ICdmdW5jdGlvbicgJiYgZGF0YS50b3A1KSByZW5kZXJUb3A1KGRhdGEudG9wNSk7CiAgICBpZiAodHlwZW9mIHdpbmRvdy5yZW5kZXJSYXRhdGlsYXN0byA9PT0gJ2Z1bmN0aW9uJyAmJiBkYXRhLnJhdGF0aWxhc3RvKSB3aW5kb3cucmVuZGVyUmF0YXRpbGFzdG8oZGF0YS5yYXRhdGlsYXN0byk7CiAgICBpZiAodHlwZW9mIHdpbmRvdy5yZW5kZXJWYXlsYXRpbGFzdG8gPT09ICdmdW5jdGlvbicgJiYgZGF0YS52YXlsYXRpbGFzdG8pIHdpbmRvdy5yZW5kZXJWYXlsYXRpbGFzdG8oZGF0YS52YXlsYXRpbGFzdG8pOwogIH0gY2F0Y2ggKGUpIHsKICAgIGNvbnNvbGUuZXJyb3IoJ1JlbmRlciBlcnJvcicsIGUpOwogIH0KCiAgcmV0dXJuIGRhdGE7Cn0KCi8vIEF1dG8tcmVmcmVzaCA1bWluIHbDpGxlaW4gKHNhbWEga3VpbiBmb3JlY2Egd29ya2Zsb3cpCmxldCBhdXRvUmVmcmVzaFRpbWVyID0gbnVsbDsKZnVuY3Rpb24gc3RhcnRBdXRvUmVmcmVzaCgpIHsKICBpZiAoYXV0b1JlZnJlc2hUaW1lcikgY2xlYXJJbnRlcnZhbChhdXRvUmVmcmVzaFRpbWVyKTsKICBhdXRvUmVmcmVzaFRpbWVyID0gc2V0SW50ZXJ2YWwoKCkgPT4gewogICAgbG9hZEFsbCgpOwogIH0sIDUgKiA2MCAqIDEwMDApOwp9CgovLyBLw6R5bm5pc3TDpCBrdW4gRE9NIHZhbG1pcwpkb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKCdET01Db250ZW50TG9hZGVkJywgKCkgPT4gewogIGxvYWRBbGwoKS50aGVuKCgpID0+IHN0YXJ0QXV0b1JlZnJlc2goKSk7Cn0pOwoKLy8gRXhwb3J0IGpvcyB0YXJ2aXRhYW4gbXV1YWxsYQp3aW5kb3cubHVvbWFBaG9Mb2FkZXIgPSB7IGxvYWRBbGwsIGZldGNoSlNPTiB9Owo="></script>
 <script>
-// FORECA REAL DATA - https://www.foreca.fi/Finland/Alajarvi/Luoma-aho - ei kikkailuja
 fetch('data/foreca.json?v='+Date.now()).then(r=>r.json()).then(d=>{
   if(!d) return;
   const temp = d.temperature!=null ? (d.temperature>0?'+':'')+Math.round(d.temperature)+'°' : '+13°';
@@ -238,8 +227,6 @@ fetch('data/foreca.json?v='+Date.now()).then(r=>r.json()).then(d=>{
   document.getElementById('d-uv').textContent = (d.uv_index||1)+' '+(d.uv_text||'Heikko');
   document.getElementById('foreca-updated').textContent = d.foreca_updated || new Date().toLocaleString('fi-FI',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
   document.getElementById('last-update').textContent = new Date().toLocaleString('fi-FI');
-  
-  // Icon based on description
   const desc = (d.description||'').toLowerCase();
   let icon = '☁️';
   if(desc.includes('aurink')) icon='☀️';
@@ -248,10 +235,8 @@ fetch('data/foreca.json?v='+Date.now()).then(r=>r.json()).then(d=>{
   else if(desc.includes('selke')) icon='☀️';
   document.getElementById('saa-icon').textContent = icon;
 }).catch(e=>{
-  console.log('Foreca real load failed', e);
   document.getElementById('last-update').textContent = new Date().toLocaleString('fi-FI');
 });
-
 fetch('data/holeinone.json?v='+Date.now()).then(r=>r.json()).then(data=>{
   if(!data || !data.length) return;
   const listEl=document.getElementById('hio-list');
