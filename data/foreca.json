@@ -1,9 +1,9 @@
 {
   "current": {
     "temp": 11,
-    "feels": 9,
-    "wind": 2.4,
-    "gust": 4.8,
+    "feels": 10,
+    "wind": 2.6,
+    "gust": 5.4,
     "cloud": 100,
     "code": 3
   },
@@ -28,7 +28,7 @@
     },
     {
       "hour": "09:00",
-      "temp": 10,
+      "temp": 11,
       "icon": "☁️",
       "iso": "2026-10-02T09:00"
     },
@@ -63,6 +63,6 @@
     "lon": 23.869444,
     "source": "frisbeegolfradat.fi"
   },
-  "fetched_at": "2026-10-02T06:44:59.395193+00:00",
+  "fetched_at": "2026-10-02T06:46:23.968940+00:00",
   "provider": "open-meteo.com"
 }
