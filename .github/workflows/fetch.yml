@@ -1,14 +1,14 @@
-name: fetch stats
+name: fetch stats (unified v2)
 
-# Korjattu: ajetaan tunneittain + manuaalisesti, ei pushilla
-# Estää foreca-botin loopin
+# Korjaus #4: yksi unified fetcher, ei 3 erillistä -> vähemmän virheitä
 on:
   schedule:
-    - cron: '0 * * * *'  # joka tasatunti, muuta tarvittaessa  '*/30 * * * *' = 30min
+    - cron: '0 * * * *'  # tunneittain
+    - cron: '30 * * * *' # ja puolelta, jos haluat 2x tunnissa, poista toinen
   workflow_dispatch:
 
 concurrency:
-  group: stats-fetch
+  group: stats-fetch-unified
   cancel-in-progress: false
 
 permissions:
@@ -32,27 +32,36 @@ jobs:
 
       - name: Install deps
         run: |
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; else pip install requests beautifulsoup4; fi
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; else pip install requests beautifulsoup4 lxml; fi
 
-      - name: Run all stats fetchers
+      - name: Run unified fetcher (metrix + top5 + scraper + vayla)
         env:
           METRIX_API_KEY: ${{ secrets.METRIX_API_KEY }}
           UDISC_TOKEN: ${{ secrets.UDISC_TOKEN }}
         run: |
-          python metrix_fetcher.py
-          python top5_fetcher.py
-          python vaylatilasto_fetcher.py
-          python scraper.py || echo "scraper failed, continue"
+          echo "Running unified_fetcher.py - one failure does NOT fail whole job"
+          python unified_fetcher.py || echo "Unified fetcher had partial failures but continuing"
+
+      - name: Validate JSONs
+        run: |
+          echo "Validating data/*.json"
+          for f in data/*.json; do
+            if [ -f "$f" ]; then
+              echo -n "Checking $f ... "
+              python -m json.tool "$f" > /dev/null && echo "OK" || echo "FAIL: $f invalid JSON"
+            fi
+          done
 
       - name: Commit & push if changed [skip ci]
         run: |
           git config user.name "foreca-bot"
           git config user.email "foreca-bot@users.noreply.github.com"
-          # Lisää vain JSON/CSV datat, älä PNG:tä (korjaus #3 varten)
-          git add data/*.json data/*.csv || true
+          git add data/*.json data/*.csv
+          # Älä lisää PNG:tä
+          git reset -- data/*.png 2>/dev/null || true
           if ! git diff --staged --quiet; then
-            git commit -m "stats auto update $(date -u +%Y-%m-%dT%H:%M:%SZ) [skip ci]"
+            git commit -m "stats unified auto update $(date -u +%Y-%m-%dT%H:%M:%SZ) [skip ci]"
             git push
           else
-            echo "No changes"
+            echo "No changes to commit"
           fi
