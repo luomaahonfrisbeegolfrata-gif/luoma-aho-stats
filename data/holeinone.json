@@ -1,10 +1,73 @@
 {
-  "count": 5,
-  "players": [
-    { "player": "Benjamin Turja", "hole": 4 },
-    { "player": "Julius Luoma-aho", "hole": 4 },
-    { "player": "Pentti Pitkäranta", "hole": 8 },
-    { "player": "Juha Luoma-aho", "hole": 4 },
-    { "player": "Aleksi Lassila", "hole": 4 }
-  ]
+  "holes": [
+    {
+      "hole": 1,
+      "hio": 0,
+      "players": []
+    },
+    {
+      "hole": 2,
+      "hio": 0,
+      "players": []
+    },
+    {
+      "hole": 3,
+      "hio": 0,
+      "players": []
+    },
+    {
+      "hole": 4,
+      "hio": 4,
+      "players": [
+        "Benjamin Turja",
+        "Julius Luoma-aho",
+        "Juha Luoma-aho",
+        "Aleksi Lassila"
+      ]
+    },
+    {
+      "hole": 5,
+      "hio": 0,
+      "players": []
+    },
+    {
+      "hole": 6,
+      "hio": 0,
+      "players": []
+    },
+    {
+      "hole": 7,
+      "hio": 0,
+      "players": []
+    },
+    {
+      "hole": 8,
+      "hio": 1,
+      "players": [
+        "Pentti Pitkäranta"
+      ]
+    },
+    {
+      "hole": 9,
+      "hio": 0,
+      "players": []
+    },
+    {
+      "hole": 10,
+      "hio": 0,
+      "players": []
+    },
+    {
+      "hole": 11,
+      "hio": 0,
+      "players": []
+    },
+    {
+      "hole": 12,
+      "hio": 0,
+      "players": []
+    }
+  ],
+  "total_hio": 5,
+  "updated": "2026-10-02T08:49:52.087Z"
 }
