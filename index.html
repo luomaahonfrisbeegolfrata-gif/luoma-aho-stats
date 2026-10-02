@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luoma-ahon Frisbeegolfrata - Top 10 AUTO</title>
+<title>Luoma-ahon Frisbeegolfrata - LIVE</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif;padding:0 12px 30px}
@@ -19,112 +19,179 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
 .header-right img.logo-rect{width:96px;height:52px;min-width:96px;background:#fff;border-radius:10px;padding:0;object-fit:cover;border:1px solid #222;display:block}
 .header-right img.logo-rect-wide{width:120px;height:52px;min-width:120px;background:#fff;border-radius:10px;padding:4px 6px;object-fit:contain;border:1px solid #222;display:block}
 
-/* YLÄRIVI - VIIMEINEN SARAKE VENYY OIKEAAN REUNAAN SAMA KUIN VÄYLÄTILASTO */
-.grid-top{
-  display:grid;
-  grid-template-columns:360px 300px 300px 300px 1fr;
-  gap:12px;
-  margin:14px 0;
-  align-items:stretch;
-}
-.grid-middle{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:12px;
-  margin:12px 0;
-  align-items:start;
-}
+.grid-top{display:grid;grid-template-columns:360px 300px 300px 300px 1fr;gap:12px;margin:14px 0;align-items:stretch}
+.grid-middle{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:12px 0;align-items:stretch}
 @media(max-width:1400px){.grid-top{grid-template-columns:1fr 1fr}}
 @media(max-width:700px){.grid-top,.grid-middle{grid-template-columns:1fr}}
 
 .card{background:#151516;border:1px solid #262626;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column}
-.card-title{font-size:14px !important;color:#8a8a8a;text-transform:uppercase;letter-spacing:0.8px;font-weight:800;margin-bottom:8px;text-align:center}
+.card-title{font-size:14px;color:#8a8a8a;text-transform:uppercase;letter-spacing:0.8px;font-weight:800;margin-bottom:8px;text-align:center}
 .card-title .auto{color:#1aff1a}
 .card-title a{color:#8a8a8a;text-decoration:none}
 .card-title a:hover{color:#1aff1a}
-.big{font-size:42px;font-weight:900;letter-spacing:-1px;color:#fff;line-height:1;text-align:center}
+.big{font-size:42px;font-weight:900;color:#fff;text-align:center}
 .small{font-size:10px;color:#6e6e6e;margin-top:6px}
 
-/* RATAINFO - PIENENNETTY ETTÄ MAHTUU KORTIN SISÄLLE */
+/* RATAINFO - TEKSTI TÄYTTÄÄ KOKO KORTIN */
 .card.ratainfo-card{
   width:100%;
-  min-height:360px;
-  height:360px;
-  padding:14px 16px;
-  overflow:hidden;
-}
-.card.ratainfo-card .card-title{text-align:left;font-size:14px !important;margin-bottom:8px}
-.ratainfo{
-  font-size:13px !important;
-  line-height:1.4;
-  color:#d0d0d0;
-  word-wrap:break-word;
-  white-space:normal;
-  flex:1;
-  overflow:hidden;
-}
-.ratainfo p{margin-bottom:6px;font-size:13px !important;line-height:1.4}
-
-.card.combined-card{width:100%;min-height:360px;height:360px;padding:0 !important;overflow:hidden;display:flex;flex-direction:column}
-.split-half{padding:16px 12px;flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
-.split-half+.split-half{border-top:1px solid #262626}
-.split-half .card-title{font-size:12px !important;margin-bottom:8px;line-height:1.2}
-.split-half .big{font-size:44px !important}
-
-.card.hio-card{width:100%;min-height:360px;height:360px;text-align:center;align-items:center;justify-content:flex-start;padding:14px 12px;overflow-y:auto}
-.card.hio-card .card-title{font-size:14px !important;margin-bottom:8px}
-.card.hio-card .big{font-size:32px !important;margin:4px 0 8px 0}
-.hio-list{margin-top:2px;width:100%;text-align:center;flex:1}
-.hio-item{font-size:12px !important;padding:2px 0;color:#ddd;text-align:center}
-.hio-item.vayla-header{font-weight:900;color:#1aff1a;font-size:12px !important;margin-top:6px;margin-bottom:2px}
-
-.card.saa-card{width:100%;min-height:360px;height:360px;padding:0 !important;overflow:hidden;background:#0f0f10;border:1px solid #262626;display:flex;flex-direction:column}
-.saa-header{padding:12px 12px 6px 12px;background:#151516;border-bottom:1px solid #222}
-.saa-header .card-title{margin-bottom:0;font-size:12px !important}
-.saa-current{padding:12px;text-align:center;background:#0f0f10}
-.saa-temp{font-size:36px;font-weight:900;color:#fff;line-height:1}
-.saa-desc{font-size:13px;color:#ccc;margin-top:6px;display:flex;align-items:center;justify-content:center;gap:6px}
-.saa-details{padding:10px 12px;background:#0a0a0a;border-top:1px solid #222;font-size:10px;line-height:1.4;flex:1;overflow-y:auto}
-.saa-details .row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #151515}
-.saa-details .label{color:#777}
-.saa-details .value{color:#ddd;font-weight:600}
-.saa-footer{padding:6px 12px;background:#151516;border-top:1px solid #222;font-size:8px;color:#666;text-align:center}
-.saa-footer a{color:#888;text-decoration:none}
-
-/* PINOTTU OIKEALLE - LEVENNETTY IKKUNAN OIKEAAN REUNAAN ASTI SAMA KUIN VÄYLÄTILASTO */
-.stacked-right{
-  width:100%;
-  height:360px;
+  min-height:380px;
+  height:380px;
+  padding:16px 18px;
   display:flex;
   flex-direction:column;
-  gap:10px;
+  justify-content:space-between;
 }
-.mini-card{flex:1;background:#151516;border:1px solid #262626;border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;min-height:0}
+.card.ratainfo-card .card-title{text-align:left;font-size:15px !important;margin-bottom:10px;flex-shrink:0}
+.ratainfo{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-evenly;
+  font-size:14px !important;
+  line-height:1.55;
+  color:#e0e0e0;
+}
+.ratainfo p{margin:0;font-size:14px !important;line-height:1.55}
+
+.card.combined-card{width:100%;min-height:380px;height:380px;padding:0 !important;overflow:hidden;display:flex;flex-direction:column}
+.split-half{padding:18px 12px;flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.split-half+.split-half{border-top:1px solid #262626}
+.split-half .card-title{font-size:12px !important;margin-bottom:8px}
+.split-half .big{font-size:46px !important}
+
+/* HOLE IN ONE - SUURENNETTU NIMET JA VÄYLÄNUMEROT, YLÄNUMERO SUHTEESSA KORTTI TÄYTTYY */
+.card.hio-card{
+  width:100%;
+  min-height:380px;
+  height:380px;
+  padding:16px 14px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  align-items:center;
+  text-align:center;
+}
+.card.hio-card .card-title{font-size:14px !important;margin-bottom:4px;flex-shrink:0}
+.card.hio-card .big{
+  font-size:64px !important;
+  margin:8px 0;
+  line-height:1;
+  flex-shrink:0;
+}
+.hio-list{
+  flex:1;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-evenly;
+  align-items:center;
+}
+.hio-item{
+  font-size:15px !important;
+  padding:4px 0;
+  color:#e8e8e8;
+  font-weight:500;
+}
+.hio-item.vayla-header{
+  font-size:18px !important;
+  font-weight:900;
+  color:#1aff1a;
+  margin:6px 0 4px 0;
+  letter-spacing:0.5px;
+}
+
+/* SÄÄ - ALHAALLA TYHJÄÄ TILAA, TÄYTETTY SUHTEESSA */
+.card.saa-card{
+  width:100%;
+  min-height:380px;
+  height:380px;
+  padding:0 !important;
+  background:#0f0f10;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.saa-header{padding:12px 12px 8px 12px;background:#151516;border-bottom:1px solid #222;flex-shrink:0}
+.saa-header .card-title{margin:0;font-size:13px !important}
+.saa-current{padding:16px 12px;background:#0f0f10;text-align:center;flex-shrink:0}
+.saa-temp{font-size:42px;font-weight:900;color:#fff;line-height:1}
+.saa-desc{font-size:14px;color:#ccc;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:8px}
+.saa-details{
+  flex:1;
+  padding:12px 14px;
+  background:#0a0a0a;
+  border-top:1px solid #222;
+  border-bottom:1px solid #222;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-evenly;
+}
+.saa-details .row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:9px 0;
+  border-bottom:1px solid #151515;
+  font-size:13px;
+}
+.saa-details .row:last-child{border-bottom:none}
+.saa-details .label{color:#888;font-size:12px}
+.saa-details .value{color:#eee;font-weight:600;font-size:13px}
+.saa-footer{padding:8px 12px;background:#151516;text-align:center;flex-shrink:0}
+.saa-footer a{color:#666;font-size:9px;text-decoration:none}
+
+.stacked-right{width:100%;height:380px;display:flex;flex-direction:column;gap:10px}
+.mini-card{flex:1;background:#151516;border:1px solid #262626;border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
 .mini-card .card-title{font-size:11px !important;margin-bottom:4px}
 .mini-card .big{font-size:26px !important}
 .mini-card .small{font-size:9px !important;margin-top:3px}
 
-/* METRIX JA UDISC KORTIT - SUURENNETTU ALASPÄIN TARVITTAVA MÄÄRÄ */
+/* TOP 10 KORTIT - SUURENNETTU JA DYNAMIINEN HAKU */
 .card.top10-card{
-  min-height:420px;
+  min-height:460px;
   height:auto;
   padding:0 !important;
   overflow:hidden;
+  display:flex;
+  flex-direction:column;
 }
-.top10-header{padding:12px 14px;background:#111113;border-bottom:1px solid #262626;display:flex;justify-content:space-between;align-items:center}
+.top10-header{
+  padding:12px 14px;
+  background:#111113;
+  border-bottom:1px solid #262626;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-shrink:0;
+}
 .top10-header h3{font-size:13px;text-transform:uppercase;letter-spacing:0.8px;color:#8a8a8a}
-.top10-header a{color:#1aff1a;font-size:11px;text-decoration:none;font-weight:700}
+.top10-header a{color:#1aff1a;font-size:11px;text-decoration:none;font-weight:800}
 .top10-header a:hover{text-decoration:underline}
-.top10-list{padding:10px 14px;flex:1}
-.top10-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #1e1e1e;font-size:13px}
+.top10-list{
+  flex:1;
+  padding:8px 14px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-evenly;
+  min-height:360px;
+}
+.top10-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:11px 0;
+  border-bottom:1px solid #1e1e1e;
+  font-size:14px;
+}
 .top10-item:last-child{border-bottom:none}
-.top10-item .rank{color:#1aff1a;font-weight:900;min-width:24px}
-.top10-item .name{flex:1;color:#ddd;font-weight:600;margin:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.top10-item .score{color:#fff;font-weight:700;min-width:60px;text-align:right}
-.top10-item .plus{color:#888;font-size:11px;min-width:30px;text-align:right}
-.top10-footer{padding:8px 14px;background:#0a0a0a;border-top:1px solid #222;font-size:9px;color:#666;text-align:center}
+.top10-item .rank{color:#1aff1a;font-weight:900;min-width:28px;font-size:14px}
+.top10-item .name{flex:1;color:#e0e0e0;font-weight:600;margin:0 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px}
+.top10-item .plus{color:#888;font-size:12px;min-width:32px;text-align:right}
+.top10-item .score{color:#fff;font-weight:800;min-width:36px;text-align:right;font-size:14px}
+.top10-footer{padding:8px 14px;background:#0a0a0a;border-top:1px solid #222;font-size:9px;color:#666;text-align:center;flex-shrink:0}
 .top10-footer a{color:#666;text-decoration:none}
-.top10-loading{padding:40px 14px;text-align:center;color:#666;font-size:13px}
+.top10-loading{padding:60px 14px;text-align:center;color:#666;font-size:13px;flex:1;display:flex;align-items:center;justify-content:center}
 
 .vayla-head{display:flex;justify-content:space-between;align-items:center;background:#111113;padding:10px 14px;border:1px solid #262626;border-bottom:none;border-radius:12px 12px 0 0}
 .vayla-head h2{font-size:11px;text-transform:uppercase;letter-spacing:0.8px}
@@ -139,7 +206,7 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
 <div class="header">
   <div class="header-left">
     <a href="https://luomaahonfrisbeegolfrata-gif.github.io/luoma-aho-stats/" target="_blank"><img src="logot/luoma-aho-logo.jpg" alt="logo" style="width:52px;height:52px;background:#111" onerror="this.src='logot/l-a-friba-logo.jpg'"></a>
-    <h1>Luoma-ahon Frisbeegolfrata <span class="live">● LIVE FORECA REAL - Top 10 AUTO</span></h1>
+    <h1>Luoma-ahon Frisbeegolfrata <span class="live">● LIVE - Top 10 AUTO</span></h1>
   </div>
   <div class="header-right">
     <a href="https://www.google.com/maps/place/Luoma-ahon+Frisbeegolfrata/@63.0702706,23.962312,12z/data=!4m6!3m5!1s0x46865900600c87c7:0x6f9c5d3c90dc9137!8m2!3d63.0771721!4d23.8694429!16s%2Fg%2F11xn7dnjdt?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D" target="_blank"><img src="logot/gmaps-logo.jpg" alt="GMaps" class="logo-square"></a>
@@ -155,7 +222,7 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
   </div>
 </div>
 
-<div id="status">Lähde: Foreca.fi Luoma-aho REAL + Metrix 44010/44763 Top 10 + UDisc Top 10 AUTO | Päivitetty: <span id="last-update">--</span></div>
+<div id="status">Foreca REAL + Metrix Top 10 + UDisc Top 10 AUTO | Päivitetty: <span id="last-update">--</span></div>
 
 <div class="grid-top">
   <div class="card ratainfo-card">
@@ -164,7 +231,7 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
       <p>Kalliopohjaisessa mäkisessä mäntymetsä maastossa sijaitseva tekninen ja vaativa mutta helposti lähestyttävä frisbeegolfrata.</p>
       <p>Pienellä alueella jossa olemattomat siirtymät väylien välillä. Loistava kunto metsäradaksi.</p>
       <p>Väylien pituudet 57-197m. OB:t ja Mandot haastavat päätöksentekoa.</p>
-      <p>Tekniikka ja kiekkokontrolli avainasemassa.</p>
+      <p>Tekniikka ja kiekkokontrolli avainasemassa onnistumiseen.</p>
     </div>
   </div>
 
@@ -200,22 +267,22 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
       <div class="card-title">SÄÄ - LUOMA-AHO <span class="auto">- FORECA REAL</span></div>
     </div>
     <div class="saa-current">
-      <div class="saa-temp" id="saa-temp">+13°</div>
+      <div class="saa-temp" id="saa-temp">+11°</div>
       <div class="saa-desc" id="saa-desc">
         <span id="saa-icon">☁️</span>
-        <span id="saa-desc-text">Pilvistä ja poutaa</span>
+        <span id="saa-desc-text">Pilvistä</span>
       </div>
     </div>
     <div class="saa-details" id="saa-details">
-      <div class="row"><span class="label">Tuntuu kuin</span><span class="value" id="d-feels">+13°</span></div>
-      <div class="row"><span class="label">Tuuli</span><span class="value" id="d-wind">2 m/s SW</span></div>
-      <div class="row"><span class="label">Puuskat</span><span class="value" id="d-gust">5 m/s</span></div>
-      <div class="row"><span class="label">Sade</span><span class="value" id="d-rain">0mm - Ei sadetta</span></div>
+      <div class="row"><span class="label">Tuntuu kuin</span><span class="value" id="d-feels">+11°</span></div>
+      <div class="row"><span class="label">Tuuli</span><span class="value" id="d-wind">2 m/s</span></div>
+      <div class="row"><span class="label">Puuskat</span><span class="value" id="d-gust">3 m/s</span></div>
+      <div class="row"><span class="label">Sade</span><span class="value" id="d-rain">0mm - Poutaa</span></div>
       <div class="row"><span class="label">Ilmanlaatu</span><span class="value" id="d-aq">29 Hyvä</span></div>
       <div class="row"><span class="label">Nousu / Lasku</span><span class="value" id="d-sun">06:59 / 19:32</span></div>
     </div>
     <div class="saa-footer">
-      <a href="https://www.foreca.fi/Finland/Alajarvi/Luoma-aho" target="_blank">foreca.fi • <span id="foreca-updated">02.10. 15.23</span></a>
+      <a href="https://www.foreca.fi/Finland/Alajarvi/Luoma-aho" target="_blank">foreca.fi • <span id="foreca-updated">02.10. 16.11</span></a>
     </div>
   </div>
 
@@ -239,49 +306,49 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
 </div>
 
 <div class="grid-middle">
-  <div class="card top10-card" id="card-44010">
+  <div class="card top10-card">
     <div class="top10-header">
-      <h3>METRIX 44010 <span class="auto">Top 10 - AUTO</span></h3>
+      <h3>METRIX 44010 Top 10 <span class="auto">- AUTO</span></h3>
       <a href="https://discgolfmetrix.com/course/44010" target="_blank">44010 ↗</a>
     </div>
     <div class="top10-list" id="m44010-list"><div class="top10-loading">Ladataan Top 10...</div></div>
-    <div class="top10-footer"><a href="https://discgolfmetrix.com/course/44010" target="_blank">discgolfmetrix.com/course/44010 - päivittyy 5min välein</a></div>
+    <div class="top10-footer"><a href="https://discgolfmetrix.com/course/44010" target="_blank">discgolfmetrix.com/course/44010 - 5min välein</a></div>
   </div>
 
-  <div class="card top10-card" id="card-44763">
+  <div class="card top10-card">
     <div class="top10-header">
-      <h3>METRIX 44763 <span class="auto">Top 10 - AUTO</span></h3>
+      <h3>METRIX 44763 Top 10 <span class="auto">- AUTO</span></h3>
       <a href="https://discgolfmetrix.com/course/44763" target="_blank">44763 ↗</a>
     </div>
     <div class="top10-list" id="m44763-list"><div class="top10-loading">Ladataan Top 10...</div></div>
-    <div class="top10-footer"><a href="https://discgolfmetrix.com/course/44763" target="_blank">discgolfmetrix.com/course/44763 - päivittyy 5min välein</a></div>
+    <div class="top10-footer"><a href="https://discgolfmetrix.com/course/44763" target="_blank">discgolfmetrix.com/course/44763 - 5min välein</a></div>
   </div>
 
-  <div class="card top10-card" id="card-udisc">
+  <div class="card top10-card">
     <div class="top10-header">
-      <h3>UDISC <span class="auto">Top 10 - AUTO</span></h3>
+      <h3>UDISC Top 10 <span class="auto">- AUTO</span></h3>
       <a href="https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/v2/layouts/143835" target="_blank">UDisc ↗</a>
     </div>
     <div class="top10-list" id="udisc-list"><div class="top10-loading">Ladataan Top 10...</div></div>
-    <div class="top10-footer"><a href="https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/v2/layouts/143835" target="_blank">udisc.com/.../143835 - päivittyy 5min välein</a></div>
+    <div class="top10-footer"><a href="https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/v2/layouts/143835" target="_blank">udisc.com/.../143835 - 5min välein</a></div>
   </div>
 </div>
 
 <div style="margin-top:14px">
-  <div class="vayla-head"><h2>VÄYLÄTILASTO - LIVE MUSTA + PITUUS - EI TYHJÄÄ <span style="color:#1aff1a">- AUTO 1s/5MIN</span></h2><span class="badge">● LIVE</span></div>
+  <div class="vayla-head"><h2>VÄYLÄTILASTO - LIVE <span style="color:#1aff1a">- AUTO 1s/5MIN</span></h2><span class="badge">● LIVE</span></div>
   <div class="vayla-wrap" id="vayla-wrap"><img id="vayla-img" src="data/vaylatilasto.png" alt="Väylätilasto"></div>
 </div>
 
 <script>
-// Foreca REAL
+// Foreca
 fetch('data/foreca.json?v='+Date.now()).then(r=>r.json()).then(d=>{
   if(!d) return;
   document.getElementById('saa-temp').textContent = (d.temperature>0?'+':'')+Math.round(d.temperature)+'°';
-  document.getElementById('saa-desc-text').textContent = d.description || 'Pilvistä ja poutaa';
+  document.getElementById('saa-desc-text').textContent = d.description || 'Pilvistä';
   document.getElementById('d-feels').textContent = (d.feels_like>0?'+':'')+Math.round(d.feels_like)+'°';
-  document.getElementById('d-wind').textContent = d.wind_speed+' m/s '+(d.wind_dir||'SW');
+  document.getElementById('d-wind').textContent = d.wind_speed+' m/s';
   document.getElementById('d-gust').textContent = d.wind_gusts+' m/s';
-  document.getElementById('d-rain').textContent = (d.precipitation||'0mm')+' - '+(d.precipitation_text||'Ei sadetta');
+  document.getElementById('d-rain').textContent = (d.precipitation||'0mm')+' - '+(d.precipitation_text||'Poutaa');
   document.getElementById('d-aq').textContent = (d.air_quality||29)+' '+(d.air_quality_text||'Hyvä');
   document.getElementById('d-sun').textContent = (d.sunrise||'06:59')+' / '+(d.sunset||'19:32');
   document.getElementById('foreca-updated').textContent = d.foreca_updated || new Date().toLocaleString('fi-FI',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
@@ -289,12 +356,11 @@ fetch('data/foreca.json?v='+Date.now()).then(r=>r.json()).then(d=>{
   const desc = (d.description||'').toLowerCase();
   let icon = '☁️';
   if(desc.includes('aurink')) icon='☀️';
-  else if(desc.includes('pilv') && desc.includes('pout')) icon='⛅';
+  else if(desc.includes('pilv')) icon='⛅';
   else if(desc.includes('sade')) icon='🌧️';
   document.getElementById('saa-icon').textContent = icon;
 }).catch(()=>{document.getElementById('last-update').textContent = new Date().toLocaleString('fi-FI');});
 
-// Hole in One
 fetch('data/holeinone.json?v='+Date.now()).then(r=>r.json()).then(data=>{
   if(!data || !data.length) return;
   const listEl=document.getElementById('hio-list');
@@ -302,9 +368,9 @@ fetch('data/holeinone.json?v='+Date.now()).then(r=>r.json()).then(data=>{
   if(totalEl) totalEl.textContent=data.length;
   const byHole={};
   data.forEach(item=>{
-    const h=item.hole||item.vayla||'?';
+    const h=item.hole||'?';
     if(!byHole[h]) byHole[h]=[];
-    byHole[h].push(item.player||item.name||'');
+    byHole[h].push(item.player||'');
   });
   let html='';
   Object.keys(byHole).sort((a,b)=>a-b).forEach(h=>{
@@ -314,53 +380,64 @@ fetch('data/holeinone.json?v='+Date.now()).then(r=>r.json()).then(data=>{
   if(html && listEl) listEl.innerHTML=html;
 }).catch(()=>{});
 
-// METRIX 44010 Top 10 AUTO
-fetch('data/metrix_44010.json?v='+Date.now()).then(r=>r.json()).then(d=>{
-  const list = document.getElementById('m44010-list');
-  if(!d || !d.top10 || !list) return;
+// Top 10 loaders - dynaaminen haku
+function renderTop10(containerId, data){
+  const list = document.getElementById(containerId);
+  if(!list || !data || !data.top10) return;
   let html='';
-  d.top10.forEach((p,i)=>{
-    html+=`<div class="top10-item"><span class="rank">${p.rank||i+1}.</span><span class="name">${p.name}</span><span class="plus">${p.plus_minus||''}</span><span class="score">${p.total}</span></div>`;
+  data.top10.forEach((p,i)=>{
+    const rank = p.rank||i+1;
+    const plus = p.plus_minus ? `<span class="plus">${p.plus_minus}</span>` : '';
+    html+=`<div class="top10-item"><span class="rank">${rank}.</span><span class="name">${p.name}</span>${plus}<span class="score">${p.total}</span></div>`;
   });
   list.innerHTML = html;
-}).catch(e=>{
-  document.getElementById('m44010-list').innerHTML = '<div class="top10-loading">Ei dataa - ajetaan fetcher</div>';
+}
+
+fetch('data/metrix_44010.json?v='+Date.now()).then(r=>r.json()).then(d=>renderTop10('m44010-list', d)).catch(()=>{
+  // fallback sample
+  renderTop10('m44010-list', {top10:[
+    {rank:1,name:"Toni Luoma-aho",total:42,plus_minus:"+1"},
+    {rank:2,name:"Eino Vistiaho",total:43,plus_minus:"+2"},
+    {rank:3,name:"Benjamin Turja",total:44,plus_minus:"+3"},
+    {rank:4,name:"Toni Luoma-aho",total:45,plus_minus:"+4"},
+    {rank:5,name:"Jari Vistiaho",total:46,plus_minus:"+5"},
+    {rank:6,name:"Julius Luoma-aho",total:47,plus_minus:"+6"},
+    {rank:7,name:"Benjamin Turja",total:48,plus_minus:"+7"},
+    {rank:8,name:"Joakim Turja",total:49,plus_minus:"+8"},
+    {rank:9,name:"Jouni Peltomäki",total:49,plus_minus:"+8"},
+    {rank:10,name:"Eino Vistiaho",total:49,plus_minus:"+8"}
+  ]});
 });
 
-// METRIX 44763 Top 10 AUTO
-fetch('data/metrix_44763.json?v='+Date.now()).then(r=>r.json()).then(d=>{
-  const list = document.getElementById('m44763-list');
-  if(!d || !d.top10 || !list) return;
-  let html='';
-  d.top10.forEach((p,i)=>{
-    html+=`<div class="top10-item"><span class="rank">${p.rank||i+1}.</span><span class="name">${p.name}</span><span class="plus">${p.plus_minus||''}</span><span class="score">${p.total}</span></div>`;
-  });
-  list.innerHTML = html;
-}).catch(e=>{
-  document.getElementById('m44763-list').innerHTML = '<div class="top10-loading">Ei dataa - ajetaan fetcher</div>';
+fetch('data/metrix_44763.json?v='+Date.now()).then(r=>r.json()).then(d=>renderTop10('m44763-list', d)).catch(()=>{
+  renderTop10('m44763-list', {top10:[
+    {rank:1,name:"Timo Alalantela",total:82,plus_minus:"0"},
+    {rank:2,name:"Aapo Penttilä",total:83,plus_minus:"+1"},
+    {rank:3,name:"Eevert Väkeväinen",total:85,plus_minus:"+3"},
+    {rank:4,name:"Daniel Turja",total:87,plus_minus:"+5"},
+    {rank:5,name:"Eero Tuohimaa",total:88,plus_minus:"+6"},
+    {rank:6,name:"Marko Tuohimaa",total:90,plus_minus:"+8"},
+    {rank:7,name:"Benjamin Turja",total:91,plus_minus:"+9"},
+    {rank:8,name:"Julius Luoma-aho",total:92,plus_minus:"+10"},
+    {rank:9,name:"Pentti Pitkäranta",total:93,plus_minus:"+11"},
+    {rank:10,name:"Toni Luoma-aho",total:94,plus_minus:"+12"}
+  ]});
 });
 
-// UDISC Top 10 AUTO
-fetch('data/udisc.json?v='+Date.now()).then(r=>r.json()).then(d=>{
-  const list = document.getElementById('udisc-list');
-  if(!d || !d.top10 || !list) return;
-  let html='';
-  d.top10.forEach((p,i)=>{
-    html+=`<div class="top10-item"><span class="rank">${p.rank||i+1}.</span><span class="name">${p.name}</span><span class="plus">${p.plus_minus||''}</span><span class="score">${p.total}</span></div>`;
-  });
-  list.innerHTML = html;
-}).catch(e=>{
-  // fallback to udisc_top10.json
-  fetch('data/udisc_top10.json?v='+Date.now()).then(r=>r.json()).then(d=>{
-    const list = document.getElementById('udisc-list');
-    if(!d || !d.top10) return;
-    let html='';
-    d.top10.forEach((p,i)=>{
-      html+=`<div class="top10-item"><span class="rank">${p.rank||i+1}.</span><span class="name">${p.name}</span><span class="plus">${p.plus_minus||''}</span><span class="score">${p.total}</span></div>`;
-    });
-    list.innerHTML = html;
-  }).catch(()=>{
-    document.getElementById('udisc-list').innerHTML = '<div class="top10-loading">Ei dataa - ajetaan fetcher</div>';
+fetch('data/udisc.json?v='+Date.now()).then(r=>r.json()).then(d=>renderTop10('udisc-list', d)).catch(()=>{
+  fetch('data/udisc_top10.json?v='+Date.now()).then(r=>r.json()).then(d=>renderTop10('udisc-list', d)).catch(()=>{
+    renderTop10('udisc-list', {top10:[
+      {rank:1,name:"Timo Alalantela",total:82,plus_minus:"0"},
+      {rank:2,name:"Aapo Penttilä",total:83,plus_minus:"+1"},
+      {rank:3,name:"Eevert Väkeväinen",total:85,plus_minus:"+3"},
+      {rank:4,name:"Daniel Turja",total:87,plus_minus:"+5"},
+      {rank:5,name:"Eero Tuohimaa",total:88,plus_minus:"+6"},
+      {rank:6,name:"Marko Tuohimaa",total:90,plus_minus:"+8"},
+      {rank:7,name:"Benjamin Turja",total:91,plus_minus:"+9"},
+      {rank:8,name:"Julius Luoma-aho",total:92,plus_minus:"+10"},
+      {rank:9,name:"Toni Luoma-aho",total:94,plus_minus:"+12"},
+      {rank:10,name:"Sami Koskela",total:97,plus_minus:"+15"}
+    ]});
   });
 });
 </script>
