@@ -10,7 +10,7 @@
   "wind_speed": 9.7,
   "weather_code": 3,
   "description": "Sää Luoma-aho, Alajärvi",
-  "time": "2026-10-02T15:00",
+  "time": "2026-10-02T15:15",
   "source": "open-meteo fallback",
   "foreca_location": "Luoma-aho, Alajärvi",
   "auto": "1s/5min FULL"
