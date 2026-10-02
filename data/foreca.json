@@ -1,10 +1,17 @@
 {
   "location": "Luoma-aho, Alajärvi",
+  "city": "Alajärvi",
+  "village": "Luoma-aho",
+  "address": "Jussilantie 290, 62900 Alajärvi",
   "lat": 63.092777,
   "lon": 23.848859,
-  "temperature": 12,
-  "description": "Luoma-aho, Alajärvi - odottaa päivitystä",
-  "time": "2026-10-02T11:48:06.588362Z",
-  "source": "fallback",
+  "temperature": 14.0,
+  "humidity": 85,
+  "wind_speed": 9.7,
+  "weather_code": 3,
+  "description": "Sää Luoma-aho, Alajärvi",
+  "time": "2026-10-02T14:45",
+  "source": "open-meteo fallback",
+  "foreca_location": "Luoma-aho, Alajärvi",
   "auto": "1s/5min FULL"
 }
