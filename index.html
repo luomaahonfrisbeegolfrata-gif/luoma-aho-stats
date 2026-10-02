@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luoma-ahon Frisbeegolfrata - LIVE</title>
+<title>Luoma-ahon Frisbeegolfrata - RATAINFO fix</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif;padding:0 12px 30px}
@@ -13,20 +13,45 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
 .header-left h1{font-size:15px}
 .live{color:#1aff1a;font-size:11px;font-weight:800;margin-left:6px}
 .header-right{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
-.header-right a{display:flex}
 .header-right img{height:30px;background:#fff;border-radius:7px;padding:2px 6px;object-fit:contain;min-width:48px}
-.grid-3{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:12px;margin:14px 0}
+
+/* RIVI 1 - KORJATTU: RATAINFO 50% pienempi leveys */
+.grid-3{display:grid;grid-template-columns:0.75fr 1fr 1fr;gap:12px;margin:14px 0}
 .grid-3b{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:12px 0}
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:12px 0}
 @media(max-width:1100px){.grid-3,.grid-3b,.grid-4{grid-template-columns:1fr 1fr}}
 @media(max-width:700px){.grid-3,.grid-3b,.grid-4{grid-template-columns:1fr}}
+
 .card{background:#151516;border:1px solid #262626;border-radius:14px;padding:14px 16px;min-height:132px;display:flex;flex-direction:column}
 .card-title{font-size:10px;color:#8a8a8a;text-transform:uppercase;letter-spacing:0.8px;font-weight:800;margin-bottom:8px}
 .card-title .auto{color:#1aff1a}
 .big{font-size:36px;font-weight:900;letter-spacing:-1px;color:#fff;line-height:1}
 .small{font-size:11px;color:#6e6e6e;margin-top:6px;line-height:1.4}
-.ratainfo{font-size:12.5px;line-height:1.7;color:#bdbdbd}
-.ratainfo p{margin-bottom:3px}
+
+/* RATAINFO - KORJATTU: 16px min, mahtuu kokonaan, korkeus auto */
+.card.ratainfo-card{
+  max-width:100%;
+  width:100%;
+  min-height:auto;
+  height:auto;
+  padding:18px 20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+}
+.ratainfo{
+  font-size:16px !important; /* VÄHINTÄÄN 16px */
+  line-height:1.7;
+  color:#d0d0d0;
+  overflow:visible;
+  white-space:normal;
+  word-wrap:break-word;
+}
+.ratainfo p{
+  margin-bottom:6px;
+  font-size:16px !important;
+}
+
 .split{padding:0 !important;overflow:hidden}
 .split-half{padding:14px 16px;flex:1}
 .split-half+.split-half{border-top:1px solid #262626}
@@ -40,13 +65,6 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
 .badge{background:#1aff1a;color:#000;font-size:10px;padding:3px 9px;border-radius:20px;font-weight:900}
 .vayla-wrap{background:#0f0f10;border:1px solid #262626;border-radius:0 0 12px 12px;overflow:hidden}
 .vayla-wrap img{width:100%;display:block;background:#0a0a0a;min-height:200px}
-.vayla-wrap table{width:100%;border-collapse:collapse;font-size:12px;display:none}
-.vayla-wrap.show-table table{display:table}
-.vayla-wrap.show-table img{display:none}
-th{background:#1e1e1e;color:#fff;padding:8px 5px;border:1px solid #2a2a2a;font-size:11px;text-align:center}
-td{padding:6px 5px;border:1px solid #2a2a2a;text-align:center;background:#121212}
-.c{font-weight:900;color:#000}
-.g{background:#7ac47a !important}.y{background:#f9df74 !important}.o{background:#f5a623 !important}.r{background:#e85d5d !important}
 #status{font-size:10px;color:#444;text-align:center;padding:8px 0}
 </style>
 </head>
@@ -58,22 +76,15 @@ td{padding:6px 5px;border:1px solid #2a2a2a;text-align:center;background:#121212
     <h1>Luoma-ahon Frisbeegolfrata <span class="live">● LIVE 1s/5min FULL</span></h1>
   </div>
   <div class="header-right">
-    <a href="#"><img src="logot/gmaps-logo.jpg" alt="GMaps"></a>
-    <a href="#"><img src="logot/metrix-logo.png" alt="Metrix"></a>
-    <a href="#"><img src="logot/parkdly-logo.png" alt="Parkdly"></a>
-    <a href="#"><img src="logot/loytokiekot-logo.png" alt="Löytökiekot"></a>
-    <a href="#"><img src="logot/yt-logo.png" alt="YouTube"></a>
-    <a href="#"><img src="logot/fgr-logo.png" alt="FGR"></a>
-    <a href="#"><img src="logot/udisc-logo.png" alt="UDisc"></a>
-    <a href="#"><img src="logot/ratamestari-logo.png" alt="Ratamestari"></a>
-    <a href="#"><img src="logot/instagram-logo.png" alt="IG" onerror="this.src='logot/ig-logo.png'"></a>
+    <img src="logot/gmaps-logo.jpg" alt="GMaps"><img src="logot/metrix-logo.png" alt="Metrix"><img src="logot/parkdly-logo.png" alt="Parkdly"><img src="logot/loytokiekot-logo.png" alt="Löytökiekot"><img src="logot/yt-logo.png" alt="YT"><img src="logot/fgr-logo.png" alt="FGR"><img src="logot/udisc-logo.png" alt="UDisc"><img src="logot/ratamestari-logo.png" alt="Ratamestari"><img src="logot/instagram-logo.png" alt="IG" onerror="this.src='logot/ig-logo.png'">
   </div>
 </div>
 
 <div id="status">Päivitetty: <span id="last-update">--</span> | Lähde: UDisc + Metrix AUTO</div>
 
+<!-- RIVI 1 - VAIN RATAINFO KORJATTU -->
 <div class="grid-3">
-  <div class="card">
+  <div class="card ratainfo-card">
     <div class="card-title">RATAINFO</div>
     <div class="ratainfo">
       <p>Kalliopohjaisessa mäkisessä mäntymetsä maastossa</p>
@@ -117,15 +128,12 @@ td{padding:6px 5px;border:1px solid #2a2a2a;text-align:center;background:#121212
   <div class="card"><div class="card-title">METRIX 44010 <span class="auto">- AUTO 1S/5MIN</span></div><div class="tulos" id="m44010">Ladataan...</div></div>
   <div class="card"><div class="card-title">METRIX 44763 <span class="auto">- AUTO</span></div><div class="tulos" id="m44763">Ladataan...</div></div>
   <div class="card"><div class="card-title">UDISC <span class="auto">- AUTO</span></div><div class="tulos" id="udisc">Ladataan...</div></div>
-  <div class="card"><div class="card-title">SÄÄ - LUOMA-AHO, ALAJÄRVI <span class="auto">- AUTO</span></div><div class="saa-big" id="saa-temp">12°C</div><div class="small" id="saa-location" style="color:#1aff1a;font-weight:700">Luoma-aho, Alajärvi</div><div class="small" id="saa-desc">Foreca • Jussilantie 290</div><div id="foreca-widget" style="margin-top:8px;font-size:11px;color:#888"></div></div>
+  <div class="card"><div class="card-title">SÄÄ - LUOMA-AHO, ALAJÄRVI <span class="auto">- AUTO</span></div><div class="saa-big" id="saa-temp">12°C</div><div class="small" id="saa-location" style="color:#1aff1a;font-weight:700">Luoma-aho, Alajärvi</div><div class="small" id="saa-desc">Foreca • Jussilantie 290</div></div>
 </div>
 
 <div style="margin-top:14px">
   <div class="vayla-head"><h2>VÄYLÄTILASTO - LIVE MUSTA + PITUUS - EI TYHJÄÄ <span style="color:#1aff1a">- AUTO 1s/5MIN</span></h2><span class="badge">● LIVE</span></div>
-  <div class="vayla-wrap" id="vayla-wrap">
-    <img id="vayla-img" src="data/vaylatilasto.png" alt="Väylätilasto">
-    <table id="vayla-table"><thead><tr><th>Vayla</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>Tot</th><th>%</th></tr></thead><tbody id="vayla-body"></tbody></table>
-  </div>
+  <div class="vayla-wrap" id="vayla-wrap"><img id="vayla-img" src="data/vaylatilasto.png" alt="Väylätilasto"></div>
 </div>
 
 <script src="data:application/javascript;base64,Ly8ganMvbG9hZGVyLmpzIC0gS29yamF0dHUgdmVyc2lvICMzCi8vIExpc8OkdHR5OiBjYWNoZS1idXN0ZXIsIHZpcmhlZW5rw6RzaXR0ZWx5LCBsb2FkaW5nIHN0YXRlcywgYXV0by1yZWZyZXNoCgpjb25zdCBEQVRBX0JBU0UgPSAnZGF0YS8nOwpjb25zdCBDQUNIRV9CVVNURVIgPSAoKSA9PiBgP3Y9JHtEYXRlLm5vdygpfWA7IC8vIGVzdMOkw6Qgc2VsYWltZW4gdsOkbGltdWlzdGluCmNvbnN0IEZFVENIX09QVFMgPSB7IGNhY2hlOiAnbm8tc3RvcmUnIH07Cgpjb25zdCBGSUxFUyA9IHsKICBmb3JlY2E6ICdmb3JlY2EuanNvbicsCiAgc3RhdHM6ICdzdGF0cy5qc29uJywKICB0b3A1OiAndG9wNS5qc29uJywKICByYXRhdGlsYXN0bzogJ3JhdGF0aWxhc3RvLmpzb24nLAogIHZheWxhdGlsYXN0bzogJ3ZheWxhdGlsYXN0by5qc29uJywKICB0aWxhc3RvOiAndGlsYXN0by5qc29uJywKICBob2xlaW5vbmU6ICdob2xlaW5vbmUuanNvbicsCiAgaG9sZVNjb3JlczogJ2hvbGUtc2NvcmVzLmNzdicKfTsKCmFzeW5jIGZ1bmN0aW9uIGZldGNoSlNPTihuYW1lKSB7CiAgY29uc3QgZmlsZSA9IEZJTEVTW25hbWVdOwogIGlmICghZmlsZSkgdGhyb3cgbmV3IEVycm9yKGBVbmtub3duIGZpbGU6ICR7bmFtZX1gKTsKICB0cnkgewogICAgY29uc3QgcmVzID0gYXdhaXQgZmV0Y2goREFUQV9CQVNFICsgZmlsZSArIENBQ0hFX0JVU1RFUigpLCBGRVRDSF9PUFRTKTsKICAgIGlmICghcmVzLm9rKSB0aHJvdyBuZXcgRXJyb3IoYCR7ZmlsZX06ICR7cmVzLnN0YXR1c31gKTsKICAgIGlmIChmaWxlLmVuZHNXaXRoKCcuanNvbicpKSByZXR1cm4gYXdhaXQgcmVzLmpzb24oKTsKICAgIHJldHVybiBhd2FpdCByZXMudGV4dCgpOyAvLyBjc3YKICB9IGNhdGNoIChlKSB7CiAgICBjb25zb2xlLndhcm4oYFtsb2FkZXJdICR7bmFtZX0gZmFpbGVkOmAsIGUpOwogICAgcmV0dXJuIG51bGw7IC8vIGVpIGthYWRhIGtva28gc2l2dWEKICB9Cn0KCmFzeW5jIGZ1bmN0aW9uIGxvYWRBbGwoKSB7CiAgY29uc3Qgc3RhdHVzRWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbG9hZGluZy1zdGF0dXMnKTsKICBpZiAoc3RhdHVzRWwpIHN0YXR1c0VsLnRleHRDb250ZW50ID0gJ1DDpGl2aXRldMOkw6RuIHRpbGFzdG9qYS4uLic7CgogIC8vIExhdGFhIHJpbm5ha2thaW4sIGthYXR1bWluZW4gZWkga2FhZGEgbXVpdGEKICBjb25zdCByZXN1bHRzID0gYXdhaXQgUHJvbWlzZS5hbGxTZXR0bGVkKAogICAgT2JqZWN0LmtleXMoRklMRVMpLm1hcChrID0+IGZldGNoSlNPTihrKS50aGVuKGRhdGEgPT4gKHsga2V5OiBrLCBkYXRhIH0pKSkKICApOwoKICBjb25zdCBkYXRhID0ge307CiAgcmVzdWx0cy5mb3JFYWNoKHIgPT4gewogICAgaWYgKHIuc3RhdHVzID09PSAnZnVsZmlsbGVkJyAmJiByLnZhbHVlPy5kYXRhKSB7CiAgICAgIGRhdGFbci52YWx1ZS5rZXldID0gci52YWx1ZS5kYXRhOwogICAgfQogIH0pOwoKICBpZiAoc3RhdHVzRWwpIHsKICAgIGNvbnN0IG5vdyA9IG5ldyBEYXRlKCkudG9Mb2NhbGVTdHJpbmcoJ2ZpLUZJJywgeyB0aW1lWm9uZTogJ0V1cm9wZS9IZWxzaW5raScgfSk7CiAgICBzdGF0dXNFbC50ZXh0Q29udGVudCA9IGBQw6Rpdml0ZXR0eTogJHtub3d9IHwgTMOkaGRlOiBVRGlzYyArIE1ldHJpeCBBVVRPYDsKICAgIHN0YXR1c0VsLmRhdGFzZXQubGFzdFVwZGF0ZSA9IG5vdzsKICB9CgogIC8vIFJlbmRlcsO2aSAtIGt1dHN1dSBvbGVtYXNzYSBvbGV2aWEgcmVuZGVyLWZ1bmt0aW9pdGEgam9zIG5lIG9uIG3DpMOkcml0ZWx0eQogIHRyeSB7CiAgICBpZiAodHlwZW9mIHJlbmRlckZvcmVjYSA9PT0gJ2Z1bmN0aW9uJyAmJiBkYXRhLmZvcmVjYSkgcmVuZGVyRm9yZWNhKGRhdGEuZm9yZWNhKTsKICAgIGlmICh0eXBlb2YgcmVuZGVyU3RhdHMgPT09ICdmdW5jdGlvbicgJiYgZGF0YS5zdGF0cykgcmVuZGVyU3RhdHMoZGF0YS5zdGF0cyk7CiAgICBpZiAodHlwZW9mIHJlbmRlclRvcDUgPT09ICdmdW5jdGlvbicgJiYgZGF0YS50b3A1KSByZW5kZXJUb3A1KGRhdGEudG9wNSk7CiAgICBpZiAodHlwZW9mIHdpbmRvdy5yZW5kZXJSYXRhdGlsYXN0byA9PT0gJ2Z1bmN0aW9uJyAmJiBkYXRhLnJhdGF0aWxhc3RvKSB3aW5kb3cucmVuZGVyUmF0YXRpbGFzdG8oZGF0YS5yYXRhdGlsYXN0byk7CiAgICBpZiAodHlwZW9mIHdpbmRvdy5yZW5kZXJWYXlsYXRpbGFzdG8gPT09ICdmdW5jdGlvbicgJiYgZGF0YS52YXlsYXRpbGFzdG8pIHdpbmRvdy5yZW5kZXJWYXlsYXRpbGFzdG8oZGF0YS52YXlsYXRpbGFzdG8pOwogIH0gY2F0Y2ggKGUpIHsKICAgIGNvbnNvbGUuZXJyb3IoJ1JlbmRlciBlcnJvcicsIGUpOwogIH0KCiAgcmV0dXJuIGRhdGE7Cn0KCi8vIEF1dG8tcmVmcmVzaCA1bWluIHbDpGxlaW4gKHNhbWEga3VpbiBmb3JlY2Egd29ya2Zsb3cpCmxldCBhdXRvUmVmcmVzaFRpbWVyID0gbnVsbDsKZnVuY3Rpb24gc3RhcnRBdXRvUmVmcmVzaCgpIHsKICBpZiAoYXV0b1JlZnJlc2hUaW1lcikgY2xlYXJJbnRlcnZhbChhdXRvUmVmcmVzaFRpbWVyKTsKICBhdXRvUmVmcmVzaFRpbWVyID0gc2V0SW50ZXJ2YWwoKCkgPT4gewogICAgbG9hZEFsbCgpOwogIH0sIDUgKiA2MCAqIDEwMDApOwp9CgovLyBLw6R5bm5pc3TDpCBrdW4gRE9NIHZhbG1pcwpkb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKCdET01Db250ZW50TG9hZGVkJywgKCkgPT4gewogIGxvYWRBbGwoKS50aGVuKCgpID0+IHN0YXJ0QXV0b1JlZnJlc2goKSk7Cn0pOwoKLy8gRXhwb3J0IGpvcyB0YXJ2aXRhYW4gbXV1YWxsYQp3aW5kb3cubHVvbWFBaG9Mb2FkZXIgPSB7IGxvYWRBbGwsIGZldGNoSlNPTiB9Owo="></script>
