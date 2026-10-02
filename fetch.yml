@@ -1,0 +1,70 @@
+name: fetch stats (FULL DYNAMIC - korjattu)
+
+# TÄYSIN DYNAAMINEN kuten alkuperäisessä - hakee Metrix, UDisc, Top5, Vaylatilasto PNG + JSON
+on:
+  schedule:
+    - cron: '*/15 * * * *'  # 15min välein - alkuperäinen oli 1s/5min FULL
+  workflow_dispatch:
+
+concurrency:
+  group: stats-fetch-full
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-stats:
+    runs-on: ubuntu-latest
+    if: github.actor != 'foreca-bot'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install deps
+        run: |
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; else pip install requests beautifulsoup4 lxml matplotlib; fi
+
+      - name: Run all fetchers - TÄYSIN DYNAAMINEN
+        env:
+          METRIX_API_KEY: ${{ secrets.METRIX_API_KEY }}
+          UDISC_TOKEN: ${{ secrets.UDISC_TOKEN }}
+        run: |
+          echo "Running dynamic fetchers - GitHub AUTO"
+          python metrix_fetcher.py || echo "metrix failed continue"
+          python top5_fetcher.py || echo "top5 failed continue"
+          python vaylatilasto_fetcher.py || echo "vayla failed continue"
+          python scraper.py || echo "scraper failed continue"
+          python foreca_fetcher.py || echo "foreca failed continue"
+          # Jos unified_fetcher.py olemassa, aja myös se
+          if [ -f unified_fetcher.py ]; then python unified_fetcher.py || true; fi
+          ls -lh data/
+
+      - name: Validate JSON
+        run: |
+          for f in data/*.json; do
+            if [ -f "$f" ]; then
+              python -m json.tool "$f" > /dev/null && echo "OK $f" || echo "INVALID $f"
+            fi
+          done
+
+      - name: Commit & push - KAIKKI data mukaan lukien PNGt [skip ci]
+        run: |
+          git config user.name "foreca-bot"
+          git config user.email "foreca-bot@users.noreply.github.com"
+          git add data/
+          git add -A
+          if ! git diff --staged --quiet; then
+            git commit -m "stats FULL AUTO $(date -u +%Y-%m-%dT%H:%M:%SZ) [skip ci]"
+            git push
+          else
+            echo "No changes"
+          fi
