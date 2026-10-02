@@ -1,0 +1,49 @@
+{
+  "total_rounds": 1130,
+  "total_rounds_metrix": 58,
+  "total_rounds_udisc": 1072,
+  "unique_players": 100,
+  "unique_players_metrix": 25,
+  "unique_players_udisc_estimate": 75,
+  "metrix_details": [
+    {
+      "url": "https://discgolfmetrix.com/course/44010",
+      "results": 30,
+      "unique_count": 15
+    },
+    {
+      "url": "https://discgolfmetrix.com/course/44763",
+      "results": 28,
+      "unique_count": 12
+    },
+    {
+      "url": "https://discgolfmetrix.com/course/43119",
+      "results": 0,
+      "unique_count": 0
+    }
+  ],
+  "calculation": "58 Metrix (auto) + 1072 UDisc (arvio/fallback) = 1130 yhteensä",
+  "fetched_at": "2026-10-02T10:15:14.602879",
+  "source": "Metrix auto + UDisc fallback",
+  "automation": "Kaikki 3 päivittyy automaattisesti kun total_rounds kasvaa",
+  "peliaika": {
+    "total_hours": 1412,
+    "base_hours": 603,
+    "per_round": 1.25,
+    "detail": "UDisc 603h + 1072×1.25h",
+    "display": "1412h"
+  },
+  "askeleet": {
+    "total_steps": 4062890,
+    "base_steps": 1275690,
+    "per_round": 2600,
+    "detail": "UDisc 1 275 690 + 1072×2600",
+    "display": "4 062 890"
+  },
+  "kilometrit": {
+    "total_km": 2260,
+    "per_round": 2,
+    "detail": "1130×2km - radan kiertomatka",
+    "display": "2260 km"
+  }
+}
