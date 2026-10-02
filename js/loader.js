@@ -53,16 +53,56 @@ document.addEventListener('DOMContentLoaded', async () => {
         tc.style.display = 'flex';
         tc.style.flexDirection = 'column';
 
-        // HIO-kortti - VAIN HTML-runko, ei fetch-koodia sisällä!
-        uc.innerHTML = '<div style="font-size:11px;font-weight:800;text-align:center;padding:12px;">' +
-          'HOLE IN ONE - <span style="color:#ffcc00;">LIVE</span>' +
-          '<div id="hio-count" style="font-size:48px;font-weight:900;color:#ffcc00;line-height:1;margin:10px 0;">-</div>' +
-          '<div id="hio-list" style="font-size:12px;color:#ccc;line-height:1.6;text-align:left;margin-top:8px;">Ladataan HIO...</div>' +
-          '</div>';
-        uc.style.borderLeft = '3px solid #ffcc00';
-      }
+        // js/loader.js - FINAL HIO FIX keskitetty + taulukko fix
+async function loadHIO() {
+  const [vaylaRes, hioRes] = await Promise.all([
+    fetch('./data/vaylatilasto.json'),
+    fetch('./data/holeinone.json')
+  ]);
+  const vayla = await vaylaRes.json();
+  const hio = await hioRes.json();
+
+  // 1. Render HIO LIVE card - KESKITETTY
+  const container = document.getElementById('hio-live-card');
+  if (container) {
+    const holesHtml = hio.holes.map(h => `
+      <div style="margin-top:${h.hole === hio.holes[0].hole ? '12px' : '20px'};">
+        <div style="font-weight:700;font-size:14px;letter-spacing:0.3px;color:#fff;margin-bottom:6px;">Väylä ${h.hole}</div>
+        <div style="color:#bdbdbd;font-size:13px;line-height:1.65;font-weight:500;">
+          ${h.players.join('<br>')}
+        </div>
+      </div>
+    `).join('');
+
+    container.innerHTML = `
+      <div style="background:#111;border-left:4px solid #ffcc00;border-radius:12px;padding:20px 16px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,0.4);">
+        <div style="font-size:11px;font-weight:800;letter-spacing:1.5px;color:#fff;">HOLE IN ONE - <span style="color:#ffcc00;">LIVE</span></div>
+        <div style="font-size:68px;font-weight:900;color:#ffcc00;margin:6px 0 2px 0;line-height:1;letter-spacing:-2px;">${hio.total}</div>
+        <div style="width:32px;height:2px;background:#2a2a2a;margin:12px auto;"></div>
+        ${holesHtml}
+      </div>
+    `;
+  }
+
+  // 2. Fix väylätilasto table HIO row
+  const hioValues = vayla.holes_12.map((x:any) => x.hio); // [0,0,0,4,0,0,0,1,0,0,0,0]
+  const totalHio = vayla.totals.hio; // 5
+
+  document.querySelectorAll('tr').forEach(tr => {
+    const firstTd = tr.querySelector('td');
+    if (firstTd && firstTd.textContent?.toLowerCase().includes('hole in one')) {
+      const tds = tr.querySelectorAll('td');
+      // tds[0] = label, tds[1..12] = holes, tds[13] = Tot, tds[14] = %
+      hioValues.forEach((val:number, i:number) => {
+        if (tds[i+1]) tds[i+1].textContent = String(val);
+      });
+      if (tds[13]) tds[13].textContent = String(totalHio);
+      // % säilyy samana tai lasketaan: tds[14]
     }
-  } catch (e) { console.warn('tulos yhdistetty fail', e); }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', loadHIO);
 
   // 3. TILASTO dynaaminen
   try {
