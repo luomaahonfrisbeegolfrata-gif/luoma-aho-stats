@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luoma-ahon Frisbeegolfrata - SÄÄ yläriviin</title>
+<title>Luoma-ahon Frisbeegolfrata - HIO centered</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif;padding:0 12px 30px}
@@ -15,7 +15,6 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
 .header-right{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
 .header-right img{height:30px;background:#fff;border-radius:7px;padding:2px 6px;object-fit:contain;min-width:48px}
 
-/* YLÄRIVI NYT 4 KORTTIA YHTÄ LEVEITÄ */
 .grid-top{display:grid;grid-template-columns:0.75fr 0.75fr 0.75fr 0.75fr;gap:12px;margin:14px 0;justify-content:start}
 .grid-3b{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:12px 0}
 .grid-3bottom{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:12px 0}
@@ -28,18 +27,55 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
 .big{font-size:36px;font-weight:900;letter-spacing:-1px;color:#fff;line-height:1}
 .small{font-size:11px;color:#6e6e6e;margin-top:6px;line-height:1.4}
 
-.card.ratainfo-card,.card.combined-card,.card.hio-card,.card.saa-card{
-  width:100%;
-  max-width:100%;
-  min-height:132px;
-}
+/* RATAINFO */
+.card.ratainfo-card{width:100%;min-height:auto}
 .ratainfo{font-size:16px !important;line-height:1.7;color:#d0d0d0}
 .ratainfo p{margin-bottom:6px;font-size:16px !important}
 .split{padding:0 !important;overflow:hidden}
 .split-half{padding:14px 16px;flex:1}
 .split-half+.split-half{border-top:1px solid #262626}
-.hio-list{margin-top:8px;max-height:160px;overflow-y:auto}
-.hio-item{font-size:12px;padding:4px 0;border-bottom:1px solid #222;color:#bbb}
+
+/* HOLE IN ONE - KORJATTU: otsikko suuri ja keskitetty, numero keskellä, ei pientä infotekstiä */
+.card.hio-card{
+  text-align:center;
+  align-items:center;
+  justify-content:flex-start;
+  padding:18px 16px;
+}
+.card.hio-card .card-title{
+  font-size:16px !important; /* suurennettu */
+  text-align:center;
+  width:100%;
+  letter-spacing:1px;
+  margin-bottom:12px;
+}
+.card.hio-card .big{
+  text-align:center;
+  width:100%;
+  font-size:48px;
+  margin:8px 0 12px 0;
+}
+.hio-list{
+  margin-top:4px;
+  width:100%;
+  text-align:center;
+}
+.hio-item{
+  font-size:13px;
+  padding:3px 0;
+  color:#ccc;
+  text-align:center;
+  border:none;
+}
+.hio-item.vayla-header{
+  font-weight:900;
+  color:#1aff1a;
+  font-size:14px;
+  margin-top:12px;
+  margin-bottom:4px;
+}
+.hio-item.vayla-header:first-child{margin-top:0}
+
 .tulos{font-size:12px;max-height:260px;overflow-y:auto}
 .tulos .row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #1e1e1e}
 .saa-big{font-size:42px;font-weight:900}
@@ -65,7 +101,6 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
 
 <div id="status">Päivitetty: <span id="last-update">--</span> | Lähde: UDisc + Metrix AUTO</div>
 
-<!-- YLÄRIVI: 4 KORTTIA YHTÄ LEVEITÄ - SÄÄ SIIRRETTY HIO:N OIKEALLE -->
 <div class="grid-top">
   <div class="card ratainfo-card">
     <div class="card-title">RATAINFO</div>
@@ -95,9 +130,16 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
 
   <div class="card hio-card">
     <div class="card-title">HOLE IN ONE <span class="auto">- AUTO</span></div>
-    <div class="big" id="hio-total">1</div>
-    <div class="small">Yhteensä 1 holarit - 0.1% kierroksista</div>
-    <div class="hio-list" id="hio-list"><div class="hio-item">Väylä 4 - 1 kpl</div></div>
+    <div class="big" id="hio-total">5</div>
+    <div class="hio-list" id="hio-list">
+      <div class="hio-item vayla-header">Väylä 4</div>
+      <div class="hio-item">Benjamin Turja</div>
+      <div class="hio-item">Julius Luoma-aho</div>
+      <div class="hio-item">Juha Luoma-aho</div>
+      <div class="hio-item">Aleksi Lassila</div>
+      <div class="hio-item vayla-header">Väylä 8</div>
+      <div class="hio-item">Pentti Pitkäranta</div>
+    </div>
   </div>
 
   <div class="card saa-card">
@@ -127,5 +169,29 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
 </div>
 
 <script src="data:application/javascript;base64,Ly8ganMvbG9hZGVyLmpzIC0gS29yamF0dHUgdmVyc2lvICMzCi8vIExpc8OkdHR5OiBjYWNoZS1idXN0ZXIsIHZpcmhlZW5rw6RzaXR0ZWx5LCBsb2FkaW5nIHN0YXRlcywgYXV0by1yZWZyZXNoCgpjb25zdCBEQVRBX0JBU0UgPSAnZGF0YS8nOwpjb25zdCBDQUNIRV9CVVNURVIgPSAoKSA9PiBgP3Y9JHtEYXRlLm5vdygpfWA7IC8vIGVzdMOkw6Qgc2VsYWltZW4gdsOkbGltdWlzdGluCmNvbnN0IEZFVENIX09QVFMgPSB7IGNhY2hlOiAnbm8tc3RvcmUnIH07Cgpjb25zdCBGSUxFUyA9IHsKICBmb3JlY2E6ICdmb3JlY2EuanNvbicsCiAgc3RhdHM6ICdzdGF0cy5qc29uJywKICB0b3A1OiAndG9wNS5qc29uJywKICByYXRhdGlsYXN0bzogJ3JhdGF0aWxhc3RvLmpzb24nLAogIHZheWxhdGlsYXN0bzogJ3ZheWxhdGlsYXN0by5qc29uJywKICB0aWxhc3RvOiAndGlsYXN0by5qc29uJywKICBob2xlaW5vbmU6ICdob2xlaW5vbmUuanNvbicsCiAgaG9sZVNjb3JlczogJ2hvbGUtc2NvcmVzLmNzdicKfTsKCmFzeW5jIGZ1bmN0aW9uIGZldGNoSlNPTihuYW1lKSB7CiAgY29uc3QgZmlsZSA9IEZJTEVTW25hbWVdOwogIGlmICghZmlsZSkgdGhyb3cgbmV3IEVycm9yKGBVbmtub3duIGZpbGU6ICR7bmFtZX1gKTsKICB0cnkgewogICAgY29uc3QgcmVzID0gYXdhaXQgZmV0Y2goREFUQV9CQVNFICsgZmlsZSArIENBQ0hFX0JVU1RFUigpLCBGRVRDSF9PUFRTKTsKICAgIGlmICghcmVzLm9rKSB0aHJvdyBuZXcgRXJyb3IoYCR7ZmlsZX06ICR7cmVzLnN0YXR1c31gKTsKICAgIGlmIChmaWxlLmVuZHNXaXRoKCcuanNvbicpKSByZXR1cm4gYXdhaXQgcmVzLmpzb24oKTsKICAgIHJldHVybiBhd2FpdCByZXMudGV4dCgpOyAvLyBjc3YKICB9IGNhdGNoIChlKSB7CiAgICBjb25zb2xlLndhcm4oYFtsb2FkZXJdICR7bmFtZX0gZmFpbGVkOmAsIGUpOwogICAgcmV0dXJuIG51bGw7IC8vIGVpIGthYWRhIGtva28gc2l2dWEKICB9Cn0KCmFzeW5jIGZ1bmN0aW9uIGxvYWRBbGwoKSB7CiAgY29uc3Qgc3RhdHVzRWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbG9hZGluZy1zdGF0dXMnKTsKICBpZiAoc3RhdHVzRWwpIHN0YXR1c0VsLnRleHRDb250ZW50ID0gJ1DDpGl2aXRldMOkw6RuIHRpbGFzdG9qYS4uLic7CgogIC8vIExhdGFhIHJpbm5ha2thaW4sIGthYXR1bWluZW4gZWkga2FhZGEgbXVpdGEKICBjb25zdCByZXN1bHRzID0gYXdhaXQgUHJvbWlzZS5hbGxTZXR0bGVkKAogICAgT2JqZWN0LmtleXMoRklMRVMpLm1hcChrID0+IGZldGNoSlNPTihrKS50aGVuKGRhdGEgPT4gKHsga2V5OiBrLCBkYXRhIH0pKSkKICApOwoKICBjb25zdCBkYXRhID0ge307CiAgcmVzdWx0cy5mb3JFYWNoKHIgPT4gewogICAgaWYgKHIuc3RhdHVzID09PSAnZnVsZmlsbGVkJyAmJiByLnZhbHVlPy5kYXRhKSB7CiAgICAgIGRhdGFbci52YWx1ZS5rZXldID0gci52YWx1ZS5kYXRhOwogICAgfQogIH0pOwoKICBpZiAoc3RhdHVzRWwpIHsKICAgIGNvbnN0IG5vdyA9IG5ldyBEYXRlKCkudG9Mb2NhbGVTdHJpbmcoJ2ZpLUZJJywgeyB0aW1lWm9uZTogJ0V1cm9wZS9IZWxzaW5raScgfSk7CiAgICBzdGF0dXNFbC50ZXh0Q29udGVudCA9IGBQw6Rpdml0ZXR0eTogJHtub3d9IHwgTMOkaGRlOiBVRGlzYyArIE1ldHJpeCBBVVRPYDsKICAgIHN0YXR1c0VsLmRhdGFzZXQubGFzdFVwZGF0ZSA9IG5vdzsKICB9CgogIC8vIFJlbmRlcsO2aSAtIGt1dHN1dSBvbGVtYXNzYSBvbGV2aWEgcmVuZGVyLWZ1bmt0aW9pdGEgam9zIG5lIG9uIG3DpMOkcml0ZWx0eQogIHRyeSB7CiAgICBpZiAodHlwZW9mIHJlbmRlckZvcmVjYSA9PT0gJ2Z1bmN0aW9uJyAmJiBkYXRhLmZvcmVjYSkgcmVuZGVyRm9yZWNhKGRhdGEuZm9yZWNhKTsKICAgIGlmICh0eXBlb2YgcmVuZGVyU3RhdHMgPT09ICdmdW5jdGlvbicgJiYgZGF0YS5zdGF0cykgcmVuZGVyU3RhdHMoZGF0YS5zdGF0cyk7CiAgICBpZiAodHlwZW9mIHJlbmRlclRvcDUgPT09ICdmdW5jdGlvbicgJiYgZGF0YS50b3A1KSByZW5kZXJUb3A1KGRhdGEudG9wNSk7CiAgICBpZiAodHlwZW9mIHdpbmRvdy5yZW5kZXJSYXRhdGlsYXN0byA9PT0gJ2Z1bmN0aW9uJyAmJiBkYXRhLnJhdGF0aWxhc3RvKSB3aW5kb3cucmVuZGVyUmF0YXRpbGFzdG8oZGF0YS5yYXRhdGlsYXN0byk7CiAgICBpZiAodHlwZW9mIHdpbmRvdy5yZW5kZXJWYXlsYXRpbGFzdG8gPT09ICdmdW5jdGlvbicgJiYgZGF0YS52YXlsYXRpbGFzdG8pIHdpbmRvdy5yZW5kZXJWYXlsYXRpbGFzdG8oZGF0YS52YXlsYXRpbGFzdG8pOwogIH0gY2F0Y2ggKGUpIHsKICAgIGNvbnNvbGUuZXJyb3IoJ1JlbmRlciBlcnJvcicsIGUpOwogIH0KCiAgcmV0dXJuIGRhdGE7Cn0KCi8vIEF1dG8tcmVmcmVzaCA1bWluIHbDpGxlaW4gKHNhbWEga3VpbiBmb3JlY2Egd29ya2Zsb3cpCmxldCBhdXRvUmVmcmVzaFRpbWVyID0gbnVsbDsKZnVuY3Rpb24gc3RhcnRBdXRvUmVmcmVzaCgpIHsKICBpZiAoYXV0b1JlZnJlc2hUaW1lcikgY2xlYXJJbnRlcnZhbChhdXRvUmVmcmVzaFRpbWVyKTsKICBhdXRvUmVmcmVzaFRpbWVyID0gc2V0SW50ZXJ2YWwoKCkgPT4gewogICAgbG9hZEFsbCgpOwogIH0sIDUgKiA2MCAqIDEwMDApOwp9CgovLyBLw6R5bm5pc3TDpCBrdW4gRE9NIHZhbG1pcwpkb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKCdET01Db250ZW50TG9hZGVkJywgKCkgPT4gewogIGxvYWRBbGwoKS50aGVuKCgpID0+IHN0YXJ0QXV0b1JlZnJlc2goKSk7Cn0pOwoKLy8gRXhwb3J0IGpvcyB0YXJ2aXRhYW4gbXV1YWxsYQp3aW5kb3cubHVvbWFBaG9Mb2FkZXIgPSB7IGxvYWRBbGwsIGZldGNoSlNPTiB9Owo="></script>
+<script>
+// Päivitä HIO manuaalisesta tiedostosta dynaamisesti jos olemassa
+fetch('data/holeinone.json?v='+Date.now()).then(r=>r.json()).then(data=>{
+  if(!data || !data.length) return;
+  const listEl=document.getElementById('hio-list');
+  const totalEl=document.getElementById('hio-total');
+  if(totalEl) totalEl.textContent=data.length;
+  // Ryhmittele väylittäin
+  const byHole={};
+  data.forEach(item=>{
+    const h=item.hole||item.vayla||'?';
+    if(!byHole[h]) byHole[h]=[];
+    byHole[h].push(item.player||item.name||'');
+  });
+  let html='';
+  Object.keys(byHole).sort((a,b)=>a-b).forEach(h=>{
+    html+=`<div class="hio-item vayla-header">Väylä ${h}</div>`;
+    byHole[h].forEach(name=>{
+      html+=`<div class="hio-item">${name}</div>`;
+    });
+  });
+  if(html && listEl) listEl.innerHTML=html;
+}).catch(()=>{});
+</script>
 </body>
 </html>
