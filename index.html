@@ -1,39 +1,164 @@
-<!DOCTYPE html><html lang="fi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Luoma-aho FULL AUTO TOP5 SÄÄ</title>
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luoma-ahon Frisbeegolfrata - LIVE</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#0a0a0a;color:#e0e0e0}
-.header{display:flex;justify-content:space-between;align-items:center;background:#000;padding:12px 20px;border-bottom:1px solid #222;flex-wrap:wrap;gap:12px}
-.header-left{display:flex;align-items:center;gap:12px}.header-left img{height:50px;width:auto;display:block}
-.header-right{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.header-right img{height:42px !important;width:auto;background:#fff;border-radius:6px;padding:3px;transition:transform .15s}.header-right img:hover{transform:scale(1.08)}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:16px;max-width:1400px;margin:0 auto}
-.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 16px 16px;max-width:1400px;margin:0 auto}
-.card{background:#181818;border:1px solid #2a2a2a;border-radius:14px;padding:18px;min-height:160px}
-.card h3{margin:0 0 12px 0;font-size:11px;color:#888;text-transform:uppercase}.card h3 .auto{color:#00ff00}
-.big{font-size:32px;font-weight:900;color:#fff}.small{font-size:11px;color:#999;margin-top:10px}
-.ratainfo-text{color:#e6e6e6 !important;font-size:16px !important;line-height:1.7 !important;font-weight:500 !important}
-.list{list-style:none;padding:0;margin:0;font-size:12px}.list li{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #222}
-.vayla-section{max-width:1400px;margin:0 auto;padding:0}.vayla-card{background:#000;border:0;padding:0;margin:0;overflow:hidden}.vayla-card img{width:100%;display:block;margin:0;padding:0;border:0}
-@media(max-width:900px){.grid,.grid-4{grid-template-columns:1fr}.header-right img{height:36px !important}.header-left img{height:42px}}
-</style></head>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:#080808; color:#e5e5e5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding:0 12px 24px; }
+  .header { display:flex; justify-content:space-between; align-items:center; padding:12px 4px; background:#050505; border-bottom:1px solid #1a1a1a; margin:0 -12px 16px; position:sticky; top:0; z-index:10; }
+  .header-left { display:flex; align-items:center; gap:12px; }
+  .header-left img { height:38px; border-radius:6px; }
+  .header-left h1 { font-size:1.1em; letter-spacing:0.5px; }
+  .header-left .live { color:#22ff22; font-size:0.7em; margin-left:8px; }
+  .header-right { display:flex; gap:8px; flex-wrap:wrap; }
+  .header-right img { height:32px; background:white; border-radius:8px; padding:3px 6px; }
+  .grid-3 { display:grid; grid-template-columns: 1.4fr 1fr 1fr; gap:14px; margin-bottom:14px; }
+  .grid-3-second { display:grid; grid-template-columns: 1fr 1fr 1fr; gap:14px; margin-bottom:14px; }
+  .grid-4 { display:grid; grid-template-columns: repeat(4, 1fr); gap:14px; margin-bottom:14px; }
+  @media(max-width:900px){ .grid-3, .grid-3-second, .grid-4 { grid-template-columns:1fr; } }
+  .card { background:#1a1a1a; border:1px solid #2a2a2a; border-radius:14px; padding:16px 18px; min-height:140px; }
+  .card-title { font-size:0.7em; color:#888; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:10px; font-weight:700; }
+  .card-title .auto { color:#22ff22; }
+  .big-number { font-size:2.4em; font-weight:900; color:white; line-height:1.1; margin:6px 0; }
+  .small-desc { font-size:0.7em; color:#777; margin-top:6px; line-height:1.3; }
+  .ratainfo-text { font-size:0.85em; line-height:1.6; color:#ccc; }
+  .ratainfo-text p { margin-bottom:4px; }
+  /* Jaettu kortti puoliksi - UUSI */
+  .split-card { display:flex; flex-direction:column; padding:0 !important; overflow:hidden; }
+  .split-half { padding:16px 18px; flex:1; }
+  .split-half:first-child { border-bottom:1px solid #2a2a2a; }
+  .split-half .big-number { font-size:2.2em; }
+  /* Hole in one kortti */
+  .hio-card { display:flex; flex-direction:column; justify-content:center; }
+  .hio-list { max-height:200px; overflow-y:auto; font-size:0.85em; }
+  .hio-item { padding:4px 0; border-bottom:1px solid #222; }
+  /* 4 korttia alarivi */
+  .saa-temp { font-size:2.8em; font-weight:900; }
+  .tuloslista { max-height:300px; overflow-y:auto; font-size:0.85em; }
+  .tuloslista .row { display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid #222; }
+  /* Vaylatilasto */
+  .vayla-header { display:flex; justify-content:space-between; align-items:center; background:#0f0f0f; padding:10px 14px; border-radius:10px 10px 0 0; border:1px solid #2a2a2a; border-bottom:none; }
+  .vayla-header h2 { font-size:0.8em; text-transform:uppercase; }
+  .live-badge { background:#22ff22; color:black; font-size:0.7em; padding:3px 8px; border-radius:20px; font-weight:800; }
+  .table-wrap { overflow-x:auto; background:#111; border-radius:0 0 12px 12px; border:1px solid #2a2a2a; }
+  table { width:100%; border-collapse:collapse; font-size:0.85em; min-width:900px; }
+  th { background:#222; color:#fff; padding:9px 6px; font-weight:700; border:1px solid #333; text-align:center; font-size:0.8em; }
+  td { padding:7px 6px; border:1px solid #333; text-align:center; background:#0f0f0f; }
+  .avg-cell { font-weight:900; color:#000; }
+  .bg-green { background:#6fbf6f !important; } .bg-yellow { background:#f7d774 !important; }
+  .bg-orange { background:#f5a23a !important; } .bg-red { background:#e85d5d !important; }
+  #loading-status { text-align:center; color:#444; font-size:0.7em; padding:6px; }
+</style>
+</head>
 <body>
-<div class="header"><div class="header-left"><a href="/"><img src="./logot/l-a-friba-logo.jpg" alt="logo"></a><span style="font-size:125%;font-weight:800;color:#fff">Luoma-ahon Frisbeegolfrata</span><span style="color:#00ff00;font-size:12px">● LIVE 1s/5min FULL</span></div>
-<div class="header-right">
-<a href="https://www.google.com/maps/place/Luoma-ahon+Frisbeegolfrata/@63.0901676,23.8860139,12z"><img src="./logot/gmaps-logo.jpg"></a>
-<a href="https://discgolfmetrix.com/course/44010"><img src="./logot/metrix-logo.png"></a>
-<a href="https://photos.google.com/share/AF1QipPwBhzcZ3Nf0BEpLICSkhQSFIuTA1VO3i1W_u0l_4oY_ZfytXxa21wqxIx4RqRepA"><img src="./logot/parkdly-logo.png"></a>
-<a href="https://photos.google.com/share/AF1QipNfClPGrg-CMqrUn9w9qeso7oFvZzjTO-kmUuy3NWf9o06lgy1TohSBSykLkaW-vw"><img src="./logot/loytokiekot-logo.png"></a>
-<a href="https://youtu.be/ewQ-m-BU6SI"><img src="./logot/yt-logo.png"></a>
-<a href="https://www.instagram.com/62830_frisbeegolfrata"><img src="./logot/ig-logo.png"></a>
-<a href="https://frisbeegolfradat.fi/rata/luoma-ahon-frisbeegolfrata/"><img src="./logot/fgr-logo.png"></a>
-<a href="https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx"><img src="./logot/udisc-logo.png"></a>
-<a href="https://luomaahonfrisbeegolfrata-gif.github.io/ratamestari-palvelu/"><img src="./logot/ratamestari-logo.png"></a>
-</div></div>
-<div class="grid">
-<div class="card"><h3>RATAINFO</h3><div class="small ratainfo-text">Kalliopohjaisessa mäkisessä mäntymetsä maastossa<br>Tekninen / vaativa mutta helposti lähestyttävä<br>Pienellä alueella jossa olemattomat siirtymät<br>Loistava kunto metsäradaksi<br>Väylien pituudet 57-197m<br>OB:t ja Mandot haastavat päätöksentekoa<br>Tekniikka, kiekko kontrolli ja heittovalinnat avainasemassa onnistumiseen</div></div>
-<div class="card"><h3>UDISC & METRIX TULOSKIERROKSET <span class="auto">- AUTO 1s/5MIN</span></h3><div class="big" id="live-kierrokset">1130</div><div class="small">UDisc 428 + Metrix 43119 702 = 1130 OIKEIN</div></div>
-<div class="card"><h3>UNIIKIT PELAAJAT <span class="auto">- AUTO</span></h3><div class="big" id="live-pelaajat">100</div><div class="small">UDisc 67 + Metrix ~60 - päällekkäisyydet ~100</div></div>
+
+<div class="header">
+  <div class="header-left">
+    <img src="logot/logo-l-a-friba.jpg" alt="L-A" onerror="this.src='logot/l-a-friba-logo.jpg'">
+    <h1>Luoma-ahon Frisbeegolfrata <span class="live">● LIVE 1s/5min FULL</span></h1>
+  </div>
+  <div class="header-right">
+    <img src="logot/gmaps-logo.jpg" alt="Maps"><img src="logot/metrix-logo.png" alt="Metrix"><img src="logot/parkdly-logo.png" alt="Parkdly"><img src="logot/loytokiekot-logo.png" alt="Löytökiekot"><img src="logot/yt-logo.png" alt="YT"><img src="logot/fgr-logo.png" alt="FGR"><img src="logot/udisc-logo.png" alt="UDisc">
+  </div>
 </div>
-<div class="grid"><div class="card"><h3>PELIAIKA <span class="auto">- AUTO</span></h3><div class="big" id="live-aika">1481h</div><div class="small">UDisc 603h + 702×1.25h</div></div><div class="card"><h3>ASKELMÄÄRÄ <span class="auto">- AUTO</span></h3><div class="big" id="live-askeleet">3,100,890</div><div class="small">UDisc 1,275,690 + 702×2600</div></div><div class="card"><h3>KILOMETRIT <span class="auto">- AUTO</span></h3><div class="big" id="live-km">2260 km</div><div class="small">1130×2km</div></div></div>
-<div class="grid-4"><div class="card"><h3>METRIX 44010 <span class="auto">- AUTO 1s/5MIN</span></h3><ul class="list" id="top5-44010"><li>Ladataan...</li></ul></div><div class="card"><h3>METRIX 44763 <span class="auto">- AUTO</span></h3><ul class="list" id="top5-44763"><li>Ladataan...</li></ul></div><div class="card"><h3>UDISC <span class="auto">- AUTO</span></h3><ul class="list" id="top5-udisc"><li>Ladataan...</li></ul></div><div class="card"><h3>SÄÄ <span class="auto">- AUTO</span></h3><div id="saa-content"><div class="big">12°C</div><div class="small">Ladataan...</div></div></div></div>
-<div class="vayla-section"><div class="vayla-card"><div style="display:flex;justify-content:space-between;align-items:center;padding:6px 10px;background:#000"><h3 style="margin:0;color:#888;font-size:11px">VÄYLÄTILASTO - LIVE MUSTA + PITUUS - EI TYHJÄÄ <span class="auto" style="color:#00ff00">- AUTO 1s/5MIN</span></h3><span style="background:#00ff00;color:#000;padding:2px 8px;border-radius:12px;font-size:10px;font-weight:800">● LIVE</span></div><div id="vayla-live-meta" style="font-size:11px;color:#666;padding:4px 10px;background:#000"></div><img id="vayla-live-img" src="./vaylatilasto.png" alt="Vaylatilasto"></div></div>
-<script src="./js/loader.js"></script></body></html>
+
+<div id="loading-status">Päivitetty: <span id="last-update">--</span> | AUTO</div>
+
+<!-- RIVI 1: RATAINFO + YHDISTETTY 1130/100 + HOLE IN ONE (muutettu) -->
+<div class="grid-3">
+  <div class="card">
+    <div class="card-title">RATAINFO</div>
+    <div class="ratainfo-text">
+      <p>Kalliopohjaisessa mäkisessä mäntymetsä maastossa</p>
+      <p>Tekninen / vaativa mutta helposti lähestyttävä</p>
+      <p>Pienellä alueella jossa olemattomat siirtymät</p>
+      <p>Loistava kunto metsäradaksi</p>
+      <p>Väylien pituudet 57-197m</p>
+      <p>OB:t ja Mandot haastavat päätöksentekoa</p>
+      <p>Tekniikka, kiekko kontrolli ja heittovalinnat avainasemassa onnistumiseen</p>
+    </div>
+  </div>
+
+  <!-- YHDISTETTY KORTTI - puoliksi jaettu -->
+  <div class="card split-card">
+    <div class="split-half" id="combined-top">
+      <div class="card-title">UDISC & METRIX TULOSKIERROKSET <span class="auto">- AUTO 1s/5MIN</span></div>
+      <div class="big-number" id="total-rounds">1130</div>
+      <div class="small-desc" id="total-rounds-desc">UDisc 428 + Metrix 431+19 702 = 1130 OIKEIN</div>
+    </div>
+    <div class="split-half" id="combined-bottom">
+      <div class="card-title">UNIIKIT PELAAJAT <span class="auto">- AUTO</span></div>
+      <div class="big-number" id="unique-players">100</div>
+      <div class="small-desc" id="unique-players-desc">UDisc 67 + Metrix ~60 - päällekkäisyydet ~100</div>
+    </div>
+  </div>
+
+  <!-- ENTINEN UNIIKIT PELAAJAT -> NYT HOLE IN ONE -->
+  <div class="card hio-card">
+    <div class="card-title">HOLE IN ONE <span class="auto">- AUTO</span></div>
+    <div class="big-number" id="hio-total">1</div>
+    <div class="small-desc">Yhteensä 1 holarit</div>
+    <div class="hio-list" id="hole-in-one-data" style="margin-top:10px;">Ladataan...</div>
+  </div>
+</div>
+
+<!-- RIVI 2: PELIAIKA, ASKELMÄÄRÄ, KILOMETRIT -->
+<div class="grid-3-second">
+  <div class="card">
+    <div class="card-title">PELIAIKA <span class="auto">- AUTO</span></div>
+    <div class="big-number" id="peliaika">1481h</div>
+    <div class="small-desc" id="peliaika-desc">UDisc 603h + 702×1.25h</div>
+  </div>
+  <div class="card">
+    <div class="card-title">ASKELMÄÄRÄ <span class="auto">- AUTO</span></div>
+    <div class="big-number" id="askelmaara">3,100,890</div>
+    <div class="small-desc" id="askelmaara-desc">UDisc 1,275,690 + 702×2600</div>
+  </div>
+  <div class="card">
+    <div class="card-title">KILOMETRIT <span class="auto">- AUTO</span></div>
+    <div class="big-number" id="kilometrit">2260 km</div>
+    <div class="small-desc">1130×2km</div>
+  </div>
+</div>
+
+<!-- RIVI 3: 4 KORTTIA -->
+<div class="grid-4">
+  <div class="card">
+    <div class="card-title">METRIX 44010 <span class="auto">- AUTO 1S/5MIN</span></div>
+    <div class="tuloslista" id="metrix-44010-data">Ladataan...</div>
+  </div>
+  <div class="card">
+    <div class="card-title">METRIX 44763 <span class="auto">- AUTO</span></div>
+    <div class="tuloslista" id="metrix-44763-data">Ladataan...</div>
+  </div>
+  <div class="card">
+    <div class="card-title">UDISC <span class="auto">- AUTO</span></div>
+    <div class="tuloslista" id="udisc-data">Ladataan...</div>
+  </div>
+  <div class="card">
+    <div class="card-title">SÄÄ <span class="auto">- AUTO</span></div>
+    <div class="saa-temp" id="saa-temp">12°C</div>
+    <div class="small-desc" id="saa-data">Ladataan...</div>
+  </div>
+</div>
+
+<!-- VÄYLÄTILASTO -->
+<div style="margin-top:18px;">
+  <div class="vayla-header">
+    <h2>VÄYLÄTILASTO - LIVE MUSTA + PITUUS - EI TYHJÄÄ <span class="auto">- AUTO 1s/5MIN</span></h2>
+    <span class="live-badge">● LIVE</span>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Vayla</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>Tot</th><th>%</th></tr></thead>
+      <tbody id="vaylatilasto-body"><tr><td colspan="15">Ladataan väylätilastoa...</td></tr></tbody>
+    </table>
+  </div>
+</div>
+
+<script src="data:application/javascript;base64,Ly8ganMvbG9hZGVyLmpzIC0gS29yamF0dHUgdmVyc2lvICMzCi8vIExpc8OkdHR5OiBjYWNoZS1idXN0ZXIsIHZpcmhlZW5rw6RzaXR0ZWx5LCBsb2FkaW5nIHN0YXRlcywgYXV0by1yZWZyZXNoCgpjb25zdCBEQVRBX0JBU0UgPSAnZGF0YS8nOwpjb25zdCBDQUNIRV9CVVNURVIgPSAoKSA9PiBgP3Y9JHtEYXRlLm5vdygpfWA7IC8vIGVzdMOkw6Qgc2VsYWltZW4gdsOkbGltdWlzdGluCmNvbnN0IEZFVENIX09QVFMgPSB7IGNhY2hlOiAnbm8tc3RvcmUnIH07Cgpjb25zdCBGSUxFUyA9IHsKICBmb3JlY2E6ICdmb3JlY2EuanNvbicsCiAgc3RhdHM6ICdzdGF0cy5qc29uJywKICB0b3A1OiAndG9wNS5qc29uJywKICByYXRhdGlsYXN0bzogJ3JhdGF0aWxhc3RvLmpzb24nLAogIHZheWxhdGlsYXN0bzogJ3ZheWxhdGlsYXN0by5qc29uJywKICB0aWxhc3RvOiAndGlsYXN0by5qc29uJywKICBob2xlaW5vbmU6ICdob2xlaW5vbmUuanNvbicsCiAgaG9sZVNjb3JlczogJ2hvbGUtc2NvcmVzLmNzdicKfTsKCmFzeW5jIGZ1bmN0aW9uIGZldGNoSlNPTihuYW1lKSB7CiAgY29uc3QgZmlsZSA9IEZJTEVTW25hbWVdOwogIGlmICghZmlsZSkgdGhyb3cgbmV3IEVycm9yKGBVbmtub3duIGZpbGU6ICR7bmFtZX1gKTsKICB0cnkgewogICAgY29uc3QgcmVzID0gYXdhaXQgZmV0Y2goREFUQV9CQVNFICsgZmlsZSArIENBQ0hFX0JVU1RFUigpLCBGRVRDSF9PUFRTKTsKICAgIGlmICghcmVzLm9rKSB0aHJvdyBuZXcgRXJyb3IoYCR7ZmlsZX06ICR7cmVzLnN0YXR1c31gKTsKICAgIGlmIChmaWxlLmVuZHNXaXRoKCcuanNvbicpKSByZXR1cm4gYXdhaXQgcmVzLmpzb24oKTsKICAgIHJldHVybiBhd2FpdCByZXMudGV4dCgpOyAvLyBjc3YKICB9IGNhdGNoIChlKSB7CiAgICBjb25zb2xlLndhcm4oYFtsb2FkZXJdICR7bmFtZX0gZmFpbGVkOmAsIGUpOwogICAgcmV0dXJuIG51bGw7IC8vIGVpIGthYWRhIGtva28gc2l2dWEKICB9Cn0KCmFzeW5jIGZ1bmN0aW9uIGxvYWRBbGwoKSB7CiAgY29uc3Qgc3RhdHVzRWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbG9hZGluZy1zdGF0dXMnKTsKICBpZiAoc3RhdHVzRWwpIHN0YXR1c0VsLnRleHRDb250ZW50ID0gJ1DDpGl2aXRldMOkw6RuIHRpbGFzdG9qYS4uLic7CgogIC8vIExhdGFhIHJpbm5ha2thaW4sIGthYXR1bWluZW4gZWkga2FhZGEgbXVpdGEKICBjb25zdCByZXN1bHRzID0gYXdhaXQgUHJvbWlzZS5hbGxTZXR0bGVkKAogICAgT2JqZWN0LmtleXMoRklMRVMpLm1hcChrID0+IGZldGNoSlNPTihrKS50aGVuKGRhdGEgPT4gKHsga2V5OiBrLCBkYXRhIH0pKSkKICApOwoKICBjb25zdCBkYXRhID0ge307CiAgcmVzdWx0cy5mb3JFYWNoKHIgPT4gewogICAgaWYgKHIuc3RhdHVzID09PSAnZnVsZmlsbGVkJyAmJiByLnZhbHVlPy5kYXRhKSB7CiAgICAgIGRhdGFbci52YWx1ZS5rZXldID0gci52YWx1ZS5kYXRhOwogICAgfQogIH0pOwoKICBpZiAoc3RhdHVzRWwpIHsKICAgIGNvbnN0IG5vdyA9IG5ldyBEYXRlKCkudG9Mb2NhbGVTdHJpbmcoJ2ZpLUZJJywgeyB0aW1lWm9uZTogJ0V1cm9wZS9IZWxzaW5raScgfSk7CiAgICBzdGF0dXNFbC50ZXh0Q29udGVudCA9IGBQw6Rpdml0ZXR0eTogJHtub3d9IHwgTMOkaGRlOiBVRGlzYyArIE1ldHJpeCBBVVRPYDsKICAgIHN0YXR1c0VsLmRhdGFzZXQubGFzdFVwZGF0ZSA9IG5vdzsKICB9CgogIC8vIFJlbmRlcsO2aSAtIGt1dHN1dSBvbGVtYXNzYSBvbGV2aWEgcmVuZGVyLWZ1bmt0aW9pdGEgam9zIG5lIG9uIG3DpMOkcml0ZWx0eQogIHRyeSB7CiAgICBpZiAodHlwZW9mIHJlbmRlckZvcmVjYSA9PT0gJ2Z1bmN0aW9uJyAmJiBkYXRhLmZvcmVjYSkgcmVuZGVyRm9yZWNhKGRhdGEuZm9yZWNhKTsKICAgIGlmICh0eXBlb2YgcmVuZGVyU3RhdHMgPT09ICdmdW5jdGlvbicgJiYgZGF0YS5zdGF0cykgcmVuZGVyU3RhdHMoZGF0YS5zdGF0cyk7CiAgICBpZiAodHlwZW9mIHJlbmRlclRvcDUgPT09ICdmdW5jdGlvbicgJiYgZGF0YS50b3A1KSByZW5kZXJUb3A1KGRhdGEudG9wNSk7CiAgICBpZiAodHlwZW9mIHdpbmRvdy5yZW5kZXJSYXRhdGlsYXN0byA9PT0gJ2Z1bmN0aW9uJyAmJiBkYXRhLnJhdGF0aWxhc3RvKSB3aW5kb3cucmVuZGVyUmF0YXRpbGFzdG8oZGF0YS5yYXRhdGlsYXN0byk7CiAgICBpZiAodHlwZW9mIHdpbmRvdy5yZW5kZXJWYXlsYXRpbGFzdG8gPT09ICdmdW5jdGlvbicgJiYgZGF0YS52YXlsYXRpbGFzdG8pIHdpbmRvdy5yZW5kZXJWYXlsYXRpbGFzdG8oZGF0YS52YXlsYXRpbGFzdG8pOwogIH0gY2F0Y2ggKGUpIHsKICAgIGNvbnNvbGUuZXJyb3IoJ1JlbmRlciBlcnJvcicsIGUpOwogIH0KCiAgcmV0dXJuIGRhdGE7Cn0KCi8vIEF1dG8tcmVmcmVzaCA1bWluIHbDpGxlaW4gKHNhbWEga3VpbiBmb3JlY2Egd29ya2Zsb3cpCmxldCBhdXRvUmVmcmVzaFRpbWVyID0gbnVsbDsKZnVuY3Rpb24gc3RhcnRBdXRvUmVmcmVzaCgpIHsKICBpZiAoYXV0b1JlZnJlc2hUaW1lcikgY2xlYXJJbnRlcnZhbChhdXRvUmVmcmVzaFRpbWVyKTsKICBhdXRvUmVmcmVzaFRpbWVyID0gc2V0SW50ZXJ2YWwoKCkgPT4gewogICAgbG9hZEFsbCgpOwogIH0sIDUgKiA2MCAqIDEwMDApOwp9CgovLyBLw6R5bm5pc3TDpCBrdW4gRE9NIHZhbG1pcwpkb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKCdET01Db250ZW50TG9hZGVkJywgKCkgPT4gewogIGxvYWRBbGwoKS50aGVuKCgpID0+IHN0YXJ0QXV0b1JlZnJlc2goKSk7Cn0pOwoKLy8gRXhwb3J0IGpvcyB0YXJ2aXRhYW4gbXV1YWxsYQp3aW5kb3cubHVvbWFBaG9Mb2FkZXIgPSB7IGxvYWRBbGwsIGZldGNoSlNPTiB9Owo="></script>
+<script src="data:application/javascript;base64,Ly8ganMvcmF0YXRpbGFzdG8uanMgLSBLb3JqYXVzICM1OiBQTkcgLT4gQ2hhcnQuanMgY2xpZW50LXNpZGUKLy8gRWkgZW7DpMOkIGdlbmVyb2kgZGF0YS9yYXRhdGlsYXN0by5wbmcgZ2l0aWluLCByZW5kZXLDtmkgc2VsYWltZXNzYQoKLy8gTGF0YWEgQ2hhcnQuanMgZHluYWFtaXNlc3RpIGpvcyBlaSBvbGUgam8KZnVuY3Rpb24gZW5zdXJlQ2hhcnRKcygpIHsKICByZXR1cm4gbmV3IFByb21pc2UoKHJlc29sdmUpID0+IHsKICAgIGlmICh3aW5kb3cuQ2hhcnQpIHJldHVybiByZXNvbHZlKCk7CiAgICBjb25zdCBzID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnc2NyaXB0Jyk7CiAgICBzLnNyYyA9ICdodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvbnBtL2NoYXJ0LmpzQDQuNC4wL2Rpc3QvY2hhcnQudW1kLm1pbi5qcyc7CiAgICBzLm9ubG9hZCA9IHJlc29sdmU7CiAgICBkb2N1bWVudC5oZWFkLmFwcGVuZENoaWxkKHMpOwogIH0pOwp9Cgphc3luYyBmdW5jdGlvbiByZW5kZXJSYXRhdGlsYXN0byhkYXRhKSB7CiAgYXdhaXQgZW5zdXJlQ2hhcnRKcygpOwogIGNvbnN0IGNvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdyYXRhdGlsYXN0by1kYXRhJyk7CiAgY29uc3QgY2FudmFzID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3JhdGF0aWxhc3RvLWNoYXJ0Jyk7CiAgaWYgKCFjYW52YXMpIHJldHVybjsKCiAgLy8gZGF0YSB2b2kgb2xsYSB7IGF2ZXJhZ2U6IFsuLi5dLCBwYXI6IFsuLi5dLCBsYWJlbHM6IFsuLi5dIH0gdGFpIHZhc3RhYXZhCiAgLy8gVGVoZMOkw6RuIGZpa3N1IGZhbGxiYWNrIGpvcyByYWtlbm5lIGVyaWxhaW5lbgogIGxldCBsYWJlbHMgPSBkYXRhLmxhYmVscyB8fCBkYXRhLnZheWxhdCB8fCBBcnJheS5mcm9tKHtsZW5ndGg6IDIwfSwgKF8saSk9PmBWw6R5bMOkICR7aSsxfWApOwogIGxldCB2YWx1ZXMgPSBkYXRhLmF2ZXJhZ2UgfHwgZGF0YS5rZXNraWFydm90IHx8IGRhdGEuc2NvcmVzIHx8IFtdOwogIAogIC8vIEpvcyBkYXRhIG9uIG9iamVrdGkgam9zc2EgYXZhaW1ldCBvbiB2w6R5bMOkbnVtZXJvdAogIGlmICghdmFsdWVzLmxlbmd0aCAmJiB0eXBlb2YgZGF0YSA9PT0gJ29iamVjdCcgJiYgIUFycmF5LmlzQXJyYXkoZGF0YSkpIHsKICAgIC8vIHlyaXTDpCBrZXLDpHTDpCBudW1lcm90CiAgICBjb25zdCBlbnRyaWVzID0gT2JqZWN0LmVudHJpZXMoZGF0YSkuZmlsdGVyKChba10pPT4hay5zdGFydHNXaXRoKCdfJykpLnNvcnQoKGEsYik9PnBhcnNlSW50KGFbMF0pLXBhcnNlSW50KGJbMF0pKTsKICAgIGlmIChlbnRyaWVzLmxlbmd0aCkgewogICAgICBsYWJlbHMgPSBlbnRyaWVzLm1hcCgoW2tdKT0+YFbDpHlsw6QgJHtrfWApOwogICAgICB2YWx1ZXMgPSBlbnRyaWVzLm1hcCgoWyx2XSk9PiB0eXBlb2YgdiA9PT0gJ29iamVjdCcgPyAodi5hdmVyYWdlIHx8IHYuYXZnIHx8IDApIDogdik7CiAgICB9CiAgfQoKICBpZiAoIXZhbHVlcy5sZW5ndGgpIHsKICAgIGlmIChjb250YWluZXIpIGNvbnRhaW5lci5pbm5lckhUTUwgPSBgPHByZSBzdHlsZT0iZm9udC1zaXplOjAuOGVtOyB3aGl0ZS1zcGFjZTpwcmUtd3JhcDsiPiR7SlNPTi5zdHJpbmdpZnkoZGF0YSwgbnVsbCwgMikuc2xpY2UoMCwyMDAwKX08L3ByZT5gOwogICAgcmV0dXJuOwogIH0KCiAgY29uc3QgY3R4ID0gY2FudmFzLmdldENvbnRleHQoJzJkJyk7CiAgaWYgKHdpbmRvdy5fcmF0YUNoYXJ0KSB3aW5kb3cuX3JhdGFDaGFydC5kZXN0cm95KCk7CgogIHdpbmRvdy5fcmF0YUNoYXJ0ID0gbmV3IENoYXJ0KGN0eCwgewogICAgdHlwZTogJ2JhcicsCiAgICBkYXRhOiB7CiAgICAgIGxhYmVsczogbGFiZWxzLnNsaWNlKDAsIDI0KSwKICAgICAgZGF0YXNldHM6IFt7CiAgICAgICAgbGFiZWw6ICdLZXNraWFydm8nLAogICAgICAgIGRhdGE6IHZhbHVlcy5zbGljZSgwLCAyNCksCiAgICAgICAgYmFja2dyb3VuZENvbG9yOiAncmdiYSgzNCwgMTk3LCA5NCwgMC43KScsCiAgICAgICAgYm9yZGVyQ29sb3I6ICdyZ2JhKDM0LCAxOTcsIDk0LCAxKScsCiAgICAgICAgYm9yZGVyV2lkdGg6IDEsCiAgICAgICAgYm9yZGVyUmFkaXVzOiA2CiAgICAgIH1dCiAgICB9LAogICAgb3B0aW9uczogewogICAgICByZXNwb25zaXZlOiB0cnVlLAogICAgICBwbHVnaW5zOiB7CiAgICAgICAgbGVnZW5kOiB7IGRpc3BsYXk6IGZhbHNlIH0sCiAgICAgICAgdGl0bGU6IHsgZGlzcGxheTogdHJ1ZSwgdGV4dDogJ1JhdGF0aWxhc3RvIC0gVsOkeWxpZW4ga2Vza2lhcnZvdCcgfQogICAgICB9LAogICAgICBzY2FsZXM6IHsKICAgICAgICB5OiB7IGJlZ2luQXRaZXJvOiBmYWxzZSwgdGl0bGU6IHsgZGlzcGxheTogdHJ1ZSwgdGV4dDogJ0hlaXRvdCcgfSB9CiAgICAgIH0KICAgIH0KICB9KTsKfQoKYXN5bmMgZnVuY3Rpb24gcmVuZGVyVmF5bGF0aWxhc3RvKGRhdGEpIHsKICBhd2FpdCBlbnN1cmVDaGFydEpzKCk7CiAgY29uc3QgZWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgndmF5bGF0aWxhc3RvLWRhdGEnKTsKICBpZiAoIWVsKSByZXR1cm47CgogIC8vIEx1byBjYW52YXMgam9zIGVpIG9sZQogIGxldCBjYW52YXMgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgndmF5bGF0aWxhc3RvLWNoYXJ0Jyk7CiAgaWYgKCFjYW52YXMpIHsKICAgIGNhbnZhcyA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2NhbnZhcycpOwogICAgY2FudmFzLmlkID0gJ3ZheWxhdGlsYXN0by1jaGFydCc7CiAgICBlbC5pbm5lckhUTUwgPSAnJzsKICAgIGVsLmFwcGVuZENoaWxkKGNhbnZhcyk7CiAgfQoKICAvLyBZcml0w6QgcGlpcnTDpMOkIGVzaW0uIGJpcmRpZSUgLyBwYXIlCiAgY29uc3QgbGFiZWxzID0gZGF0YS5sYWJlbHMgfHwgT2JqZWN0LmtleXMoZGF0YSkuZmlsdGVyKGs9PiFrLnN0YXJ0c1dpdGgoJ18nKSk7CiAgY29uc3QgYmlyZGllRGF0YSA9IGRhdGEuYmlyZGllUGN0IHx8IGRhdGEuYmlyZGllcyB8fCBbXTsKICAKICBpZiAoIWxhYmVscy5sZW5ndGgpIHsKICAgIGVsLmlubmVySFRNTCA9IGA8cHJlIHN0eWxlPSJmb250LXNpemU6MC44ZW07Ij4ke0pTT04uc3RyaW5naWZ5KGRhdGEsIG51bGwsMikuc2xpY2UoMCwyMDAwKX08L3ByZT5gOwogICAgcmV0dXJuOwogIH0KCiAgY29uc3QgY3R4ID0gY2FudmFzLmdldENvbnRleHQoJzJkJyk7CiAgaWYgKHdpbmRvdy5fdmF5bGFDaGFydCkgd2luZG93Ll92YXlsYUNoYXJ0LmRlc3Ryb3koKTsKCiAgd2luZG93Ll92YXlsYUNoYXJ0ID0gbmV3IENoYXJ0KGN0eCwgewogICAgdHlwZTogJ2xpbmUnLAogICAgZGF0YTogewogICAgICBsYWJlbHM6IGxhYmVscy5zbGljZSgwLDI0KSwKICAgICAgZGF0YXNldHM6IFt7CiAgICAgICAgbGFiZWw6ICdWw6R5bMOkdGlsYXN0bycsCiAgICAgICAgZGF0YTogKEFycmF5LmlzQXJyYXkoZGF0YSkgPyBkYXRhIDogT2JqZWN0LnZhbHVlcyhkYXRhKS5zbGljZSgwLDI0KSkubWFwKHY9PiB0eXBlb2Ygdj09PSdvYmplY3QnID8gKHYuYXZlcmFnZXx8MCkgOiB2KSwKICAgICAgICBib3JkZXJDb2xvcjogJ3JnYig1OSwgMTMwLCAyNDYpJywKICAgICAgICBiYWNrZ3JvdW5kQ29sb3I6ICdyZ2JhKDU5LCAxMzAsIDI0NiwgMC4yKScsCiAgICAgICAgdGVuc2lvbjogMC4zLAogICAgICAgIGZpbGw6IHRydWUKICAgICAgfV0KICAgIH0sCiAgICBvcHRpb25zOiB7CiAgICAgIHJlc3BvbnNpdmU6IHRydWUsCiAgICAgIHBsdWdpbnM6IHsgdGl0bGU6IHsgZGlzcGxheTogdHJ1ZSwgdGV4dDogJ1bDpHlsw6R0aWxhc3RvJyB9IH0KICAgIH0KICB9KTsKfQoKLy8gRXhwb3J0IGdsb2JhbAp3aW5kb3cucmVuZGVyUmF0YXRpbGFzdG8gPSByZW5kZXJSYXRhdGlsYXN0bzsKd2luZG93LnJlbmRlclZheWxhdGlsYXN0byA9IHJlbmRlclZheWxhdGlsYXN0bzsK"></script>
+</body>
+</html>
