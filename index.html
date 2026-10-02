@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luoma-ahon Frisbeegolfrata - logot yhtäsuuret</title>
+<title>Luoma-aho - logot croppattu 100%</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif;padding:0 12px 30px}
@@ -14,31 +14,31 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
 .live{color:#1aff1a;font-size:13px;font-weight:800;margin-left:8px}
 .header-right{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 
-/* LOGOT YHTÄSUURIKSI - NELIÖT JA SUORAKULMIOT - KÄYTÄ OLEMASSA OLEVIA LOGOJA */
+/* LOGOT CROPPATTU TÄYTTÄMÄÄN KOKO ALUE 100% - EI 10% KESKELLÄ */
+/* Neliöt yhtäsuuria, suorakulmiot yhtäsuuria - käyttää olemassa olevia logoja */
 .header-right img.logo-square{
-  width:48px;
-  height:48px;
-  min-width:48px;
-  background:#fff;
-  border-radius:8px;
-  padding:4px;
-  object-fit:contain;
-  border:1px solid #222;
-}
-.header-right img.logo-rect{
-  width:88px;
-  height:48px;
-  min-width:88px;
-  background:#fff;
-  border-radius:8px;
-  padding:4px 8px;
-  object-fit:contain;
-  border:1px solid #222;
-}
-.header-right img.logo-main{
   width:52px;
   height:52px;
-  background:#111;
+  min-width:52px;
+  background:#fff; /* tai transparent jos haluat */
+  border-radius:10px;
+  padding:0; /* EI PADDINGIA - logo täyttää koko alueen */
+  object-fit:cover; /* COVER täyttää koko alueen, ei 10% keskellä */
+  object-position:center;
+  border:1px solid #222;
+  display:block;
+}
+.header-right img.logo-rect{
+  width:96px;
+  height:52px;
+  min-width:96px;
+  background:#fff;
+  border-radius:10px;
+  padding:0; /* EI PADDINGIA */
+  object-fit:cover; /* TÄYTTÄÄ KOKO ALUEEN */
+  object-position:center;
+  border:1px solid #222;
+  display:block;
 }
 
 .grid-top{
@@ -91,7 +91,6 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
 .saa-details .value{color:#ddd;font-weight:600}
 .saa-footer{padding:8px 14px;background:#151516;border-top:1px solid #222;font-size:9px;color:#666;text-align:center}
 .saa-footer a{color:#888;text-decoration:none}
-.saa-footer a:hover{color:#1aff1a}
 
 .tulos{font-size:12px;max-height:260px;overflow-y:auto}
 .tulos .row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #1e1e1e}
@@ -107,25 +106,25 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,-apple-system,sans-serif
 
 <div class="header">
   <div class="header-left">
-    <img src="logot/l-a-friba-logo.jpg" alt="logo" class="logo-main" onerror="this.src='logot/logo-l-a-friba.jpg'">
+    <img src="logot/l-a-friba-logo.jpg" alt="logo" style="width:52px;height:52px;background:#111" onerror="this.src='logot/logo-l-a-friba.jpg'">
     <h1>Luoma-ahon Frisbeegolfrata <span class="live">● LIVE FORECA REAL</span></h1>
   </div>
   <div class="header-right">
-    <!-- NELIÖT YHTÄSUURIA 48x48 -->
+    <!-- NELIÖT 52x52 - CROPPATTU TÄYTTÄÄ 100% - EI 10% -->
     <img src="logot/gmaps-logo.jpg" alt="GMaps" class="logo-square">
     <img src="logot/metrix-logo.png" alt="Metrix" class="logo-square">
     <img src="logot/fgr-logo.png" alt="FGR" class="logo-square">
     <img src="logot/udisc-logo.png" alt="UDisc" class="logo-square">
     <img src="logot/ratamestari-logo.png" alt="Ratamestari" class="logo-square">
     <img src="logot/instagram-logo.png" alt="IG" class="logo-square" onerror="this.src='logot/ig-logo.png'">
-    <!-- SUORAKULMIOT YHTÄSUURIA 88x48 -->
+    <!-- SUORAKULMIOT 96x52 - CROPPATTU TÄYTTÄÄ 100% -->
     <img src="logot/parkdly-logo.png" alt="Parkdly" class="logo-rect">
     <img src="logot/loytokiekot-logo.png" alt="Löytökiekot" class="logo-rect">
     <img src="logot/yt-logo.png" alt="YT" class="logo-rect">
   </div>
 </div>
 
-<div id="status">Lähde: Foreca.fi Luoma-aho REAL | 63.092777, 23.848859 | Päivitetty: <span id="last-update">--</span></div>
+<div id="status">Lähde: Foreca.fi Luoma-aho REAL | Logot croppattu 100% | Päivitetty: <span id="last-update">--</span></div>
 
 <div class="grid-top">
   <div class="card ratainfo-card">
