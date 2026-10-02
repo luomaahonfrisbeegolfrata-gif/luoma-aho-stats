@@ -1,89 +1,69 @@
-# Luoma-ahon Frisbeegolfrata - Stats - TÄYDELLINEN PAKETTI GITHUBIIN
+# Luoma-aho Frisbeegolfrata - LIVE Stats
 
-## Uusi data 29.9.2026 (korjattu, ei tuplalaskentaa)
+[GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-LIVE-green)
+[Auto Update](https://img.shields.io/badge/AUTO-5min-blue)
+[Commits](https://img.shields.io/badge/commits-561-blue)
 
-### Metrix 43119 sisältää KAIKKIEN layouttien kierrosmäärät
-- Metrix 43119: 702 kierrosta (588 harjoitus + 114 kilpailu) - KAIKKI layoutit
-- Metrix 44010: 595 kierrosta (544+51) - SISÄLTYY jo 43119, ei lisätä erikseen
-- Metrix 44763: 170 kierrosta (37+133) - SISÄLTYY jo 43119, ei lisätä erikseen
-- UDisc: 428 kierrosta, 67 uniikkia, 603h, 1,275,690 askelta (Elinikäiset 28.9.2026 klo 5.03)
+**Live-sivusto:** https://luomaahonfrisbeegolfrata-gif.github.io/luoma-aho-stats/
 
-### Yhdistetty OIKEIN (ei tuplata):
-- **Tuloskierrokset:** 428 + 702 = **1130** (aiempi 1895 oli väärä: 428+595+170+702 tuplasi)
-- **Uniikit:** ~100 (UDisc 67 + Metrix 43119 ~60 - päällekkäisyyksiä)
-- **Peliaika:** 603h + 702×1.25h = **1481h**
-- **Askelmäärä:** 1,275,690 + 702×2600 (2km×1300) = **3,100,890**
-- **Kilometrit:** 1130×2km=**2260km** (käyttäjä 2km) / 1130×2.5km=**2825km** (UDisc 1.6mi)
+Alajärven Luoma-ahon tekninen metsärata - täysin automatisoitu tilastosivu.
 
-### Top 5 OIKEAT:
-- **UDisc Leaderboard (kuva.png):** @kantanen8 35 (4.7.2026), @valkoparta 36 (6.7.2026), @mattiasss 36 (19.8.2026), @dashyy 38, @itkonenjere 38
-- **Metrix 44010 Par 41:** Toni Luoma-aho +1 (42), Eino Vistiaho +2 (43), Benjamin Turja +3 (44), Toni Luoma-aho +4 (45), Jari Vistiaho +5 (46)
-- **Metrix 44763 Par 82:** Timo Alalantela E (82), Aapo Penttilä +1 (83), Eevert Väkeväinen +3 (85), Daniel Turja +5 (87), Eero Tuohimaa +6 (88)
+## RATAINFO
 
-## Header Lukittu - Sääntö 1
-Järjestys oikealta vasemmalle: **ratamestari -> fgr -> ig -> udisc -> yt -> rata-kuvat -> loytokiekot -> parkdly (väyläopasteet) -> metrix -> gmaps**
-Vasen: **L-A FRIBA LUOMA-AHO** (oma logo, lihaksikas mies frisbeellä, musta badge)
+Kalliopohjaisessa mäkisessä mäntymetsä maastossa. Tekninen / vaativa mutta helposti lähestyttävä. Pienellä alueella jossa olemattomat siirtymät. Loistava kunto metsäradaksi. Väylien pituudet 57-197m. OB:t ja Mandot haastavat päätöksentekoa.
 
-### Uudet logot tässä zipissä:
-- Vasen: `logot/luoma-aho-logo.jpg` = L-A FRIBA LUOMA-AHO (sun oma luoma, ei henkilökuva - artifact filtteri blokkasi, mutta GitHubissa toimii)
-- Oikea reuna: `ratamestari-logo.png` = FRISBEEGOLF RATAMESTARI (vihreä kori + kuuset + kruunu)
-- `fgr-logo.png` = frisbeegolfradat.fi sininen puhekupla
-- `ig-logo.png` = Instagram gradient
-- `yt-logo.png` = YouTube
-- `rata-kuvat-icon.jpg` = metsä tee pad aurinko
-- `loytokiekot-logo.png` = LÖYTÖKIEKOT musta teksti
-- `metrix-logo.png` = DISC GOLF METRIX oranssi
-- `udisc-logo.png` = UDisc oranssi U
-- `parkdly-logo.png` = parkdly vihreä (väyläopasteet)
-- `gmaps-logo.jpg` = Google Maps uusi värikäs pin (punainen-violetti-sininen-vihreä-keltainen liukuväri) - UUSI 29.9.2026
+## Mitä sivulla on (AUTO)
 
-## GitHubiin siirto - OHJE
+- **SÄÄ** - Foreca LIVE 5min välein `data/foreca.json`
+- **UDisc + Metrix kierrokset** - 1130+ kierrosta, uniikit pelaajat ~100
+- **TOP5** - parhaat tulokset
+- **Ratatilasto & Väylätilasto** - Chart.js client-side, ei PNG:tä gitissä
+- **Hole-in-one** `data/holeinone.json`
 
-### 1. Lataa ja pura tämä zip
-Pura kaikki tiedostot koneellesi
+## Arkkitehtuuri (Korjattu #1-5)
 
-### 2. Clone repo
-```bash
-git clone https://github.com/luomaahonfrisbeegolfrata-gif/luoma-aho-stats.git
-cd luoma-aho-stats
+```
+GitHub Actions (auto_5min.yml 5min + fetch.yml 60min)
+   ↓
+unified_fetcher.py (metrix + top5 + vayla + scraper) - ei kaadu yhdestä lähteestä
+   ↓
+data/*.json (vain JSON/CSV, ei PNG) - validoitu ennen commitia [skip ci]
+   ↓
+GitHub Pages (index.html + js/loader.js + js/ratatilasto.js Chart.js)
+   ↓
+Selain - cache-buster ?v=Date.now(), auto-refresh 5min
 ```
 
-### 3. Kopioi tiedostot
-Kopioi tämän zipin kaikki tiedostot repoon (korvaa vanhat):
-- index.html (lukittu header + Ratainfo + 1130 + Väylätilasto)
-- data/ (stats.json 1130, vaylatilasto.json, hole-scores.csv)
-- logot/ (14 logoa, uudet mukana: L-A FRIBA, RATAMESTARI, Google Maps pin)
-- url/urls.json (lukittu järjestys)
-- js/update.js
-- HEADER_LOCKED.md
+## Kansiot
 
-### 4. Push GitHubiin
+- `.github/workflows/` - automaatio, loop-estot + concurrency
+- `data/` - totuus, vain JSON/CSV (PNGt ignorattu .gitignore)
+- `js/` - `loader.js` (cache-buster, error handling) + `ratatilasto.js` (Chart.js)
+- `logot/` - integraatio-logot (siivottu duplikaateista)
+
+## Kehitys
+
 ```bash
-git add .
-git commit -m "feat: täydellinen korjattu - 1130 kierrosta (43119 kaikki, ei tuplata 1895), Top5 @kantanen8 35, uudet logot L-A FRIBA vasen + RATAMESTARI oikea + Google Maps pin, header lukittu"
-git push
+pip install -r requirements.txt
+python unified_fetcher.py
+python -m http.server 8000
+# avaa http://localhost:8000
 ```
 
-### 5. Ota GitHub Pages päälle
-- GitHub repo → Settings → Pages
-- Source: Deploy from branch → main / root
-- Save
-- Sivu aukeaa: https://luomaahonfrisbeegolfrata-gif.github.io/luoma-aho-stats/
+## Korjaukset tehty (2026-10-02)
 
-### 6. Automaatio
-- .github/workflows/update.yml ajaa 5min välein
-- js/update.js hakee Metrix 43119 (KAIKKI, sisältää 44010 ja 44763) + UDisc + Foreca
-- data/stats.json päivittyy automaattisesti
-- Sivusto lataa 1s, päivittyy 5min välein
+1. **Workflow loop-riski** - poistettu push-trigger, lisätty `[skip ci]` + concurrency + `if: actor != foreca-bot`
+2. **Git turpoaminen** - `.gitignore` data/*.png, poistettu juuren duplikaatti PNGt, logot duplikaatit (ig-logo vs instagram-logo)
+3. **Frontend cache + SEO** - loader.js cache-buster, noscript fallback, JSON-LD, Open Graph
+4. **Fetcher yhdistetty** - unified_fetcher.py, safe_write_json, retry, User-Agent
+5. **PNG -> Chart.js** - ei enää kuvagenerointia gitiin, 99% säästö historiassa
 
-## Tiedostot tässä zipissä
-- index.html (lukittu header, Ratainfo 6 korttia, Top5 4 korttia, Väylätilasto alin)
-- data/stats.json (1130 OIKEIN, ei tuplata, Top5 @kantanen8 35)
-- data/vaylatilasto.json (12 väylää, värit vihreä helpoimmat 3, keltainen, oranssi, punainen vaikeimmat 3, pituus ylimpänä)
-- data/hole-scores.csv (UDisc)
-- logot/ (14 tiedostoa, uudet logot)
-- url/urls.json (lukittu järjestys ratamestari->fgr->ig->udisc->yt->rata-kuvat->loytokiekot->parkdly->metrix->gmaps)
-- js/update.js (automaatio 5min)
-- HEADER_LOCKED.md (header lukittu 28.9.2026)
+## TODO (vapaaehtoinen)
 
-Valmis GitHubiin!
+- [ ] Lisää Metrix oikea API-kutsu unified_fetcher.py sisään
+- [ ] Siirrä vanha git-historia kevyemmäksi: `git filter-repo` PNGt pois
+- [ ] Lisää status-badge README:n alkuun
+
+## Lisenssi
+
+MIT - Luoma-ahon frisbeegolfrata ry
