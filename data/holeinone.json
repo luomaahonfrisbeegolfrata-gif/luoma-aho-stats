@@ -1,7 +1,23 @@
 {
   "total": 5,
   "holes": [
-    {"hole":4,"count":4,"players":["Benjamin Turja","Julius Luoma-aho","Juha Luoma-aho","Aleksi Lassila"]},
-    {"hole":8,"count":1,"players":["Pentti Pitkäranta"]}
-  ]
+    {
+      "hole": 4,
+      "count": 4,
+      "players": [
+        "Benjamin Turja",
+        "Julius Luoma-aho",
+        "Juha Luoma-aho",
+        "Aleksi Lassila"
+      ]
+    },
+    {
+      "hole": 8,
+      "count": 1,
+      "players": [
+        "Pentti Pitkäranta"
+      ]
+    }
+  ],
+  "_last_fetched": "2026-10-02T11:15:02.449625Z"
 }
