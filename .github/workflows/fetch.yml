@@ -1,26 +1,58 @@
-name: Fetch weather every 5min
+name: fetch stats
 
+# Korjattu: ajetaan tunneittain + manuaalisesti, ei pushilla
+# Estää foreca-botin loopin
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: '0 * * * *'  # joka tasatunti, muuta tarvittaessa  '*/30 * * * *' = 30min
   workflow_dispatch:
 
+concurrency:
+  group: stats-fetch
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
 jobs:
-  fetch:
+  fetch-stats:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    if: github.actor != 'foreca-bot'
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          python-version: "3.11"
-      - run: pip install requests
-      - run: python foreca_fetcher.py
-      - name: Commit updated JSON
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install deps
         run: |
-          git config user.name "weather-bot"
-          git config user.email "bot@example.com"
-          git add data/foreca.json || true
-          git diff --staged --quiet || git commit -m "chore: update weather $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          git push
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; else pip install requests beautifulsoup4; fi
+
+      - name: Run all stats fetchers
+        env:
+          METRIX_API_KEY: ${{ secrets.METRIX_API_KEY }}
+          UDISC_TOKEN: ${{ secrets.UDISC_TOKEN }}
+        run: |
+          python metrix_fetcher.py
+          python top5_fetcher.py
+          python vaylatilasto_fetcher.py
+          python scraper.py || echo "scraper failed, continue"
+
+      - name: Commit & push if changed [skip ci]
+        run: |
+          git config user.name "foreca-bot"
+          git config user.email "foreca-bot@users.noreply.github.com"
+          # Lisää vain JSON/CSV datat, älä PNG:tä (korjaus #3 varten)
+          git add data/*.json data/*.csv || true
+          if ! git diff --staged --quiet; then
+            git commit -m "stats auto update $(date -u +%Y-%m-%dT%H:%M:%SZ) [skip ci]"
+            git push
+          else
+            echo "No changes"
+          fi
