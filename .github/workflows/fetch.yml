@@ -1,67 +1,58 @@
-name: fetch stats (unified v2)
+name: Fetch Top 10 AUTO
 
-# Korjaus #4: yksi unified fetcher, ei 3 erillistä -> vähemmän virheitä
 on:
   schedule:
-    - cron: '0 * * * *'  # tunneittain
-    - cron: '30 * * * *' # ja puolelta, jos haluat 2x tunnissa, poista toinen
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
-concurrency:
-  group: stats-fetch-unified
-  cancel-in-progress: false
-
-permissions:
-  contents: write
-
 jobs:
-  fetch-stats:
+  fetch:
     runs-on: ubuntu-latest
-    if: github.actor != 'foreca-bot'
+    permissions:
+      contents: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Setup Python
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          cache: 'pip'
-
-      - name: Install deps
+          
+      - name: Install dependencies
         run: |
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; else pip install requests beautifulsoup4 lxml; fi
-
-      - name: Run unified fetcher (metrix + top5 + scraper + vayla)
-        env:
-          METRIX_API_KEY: ${{ secrets.METRIX_API_KEY }}
-          UDISC_TOKEN: ${{ secrets.UDISC_TOKEN }}
+          pip install requests beautifulsoup4 lxml
+          
+      - name: Fetch Foreca REAL
         run: |
-          echo "Running unified_fetcher.py - one failure does NOT fail whole job"
-          python unified_fetcher.py || echo "Unified fetcher had partial failures but continuing"
-
-      - name: Validate JSONs
+          python foreca_fetcher_real.py
+        continue-on-error: true
+        
+      - name: Fetch Metrix 44010 Top 10
         run: |
-          echo "Validating data/*.json"
-          for f in data/*.json; do
-            if [ -f "$f" ]; then
-              echo -n "Checking $f ... "
-              python -m json.tool "$f" > /dev/null && echo "OK" || echo "FAIL: $f invalid JSON"
-            fi
-          done
-
-      - name: Commit & push if changed [skip ci]
+          python metrix_44010_fetcher.py
+        continue-on-error: true
+        
+      - name: Fetch Metrix 44763 Top 10
         run: |
-          git config user.name "foreca-bot"
-          git config user.email "foreca-bot@users.noreply.github.com"
-          git add data/*.json data/*.csv
-          # Älä lisää PNG:tä
-          git reset -- data/*.png 2>/dev/null || true
-          if ! git diff --staged --quiet; then
-            git commit -m "stats unified auto update $(date -u +%Y-%m-%dT%H:%M:%SZ) [skip ci]"
-            git push
-          else
-            echo "No changes to commit"
-          fi
+          python metrix_44763_fetcher.py
+        continue-on-error: true
+        
+      - name: Fetch UDisc Top 10
+        run: |
+          python udisc_fetcher.py
+        continue-on-error: true
+        
+      - name: Fetch other data
+        run: |
+          if [ -f metrix_fetcher.py ]; then python metrix_fetcher.py; fi
+          if [ -f udisc_fetcher.py ]; then python udisc_fetcher.py; fi
+          if [ -f foreca_fetcher.py ]; then python foreca_fetcher.py; fi
+        continue-on-error: true
+        
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/*.json || true
+          git diff --staged --quiet || git commit -m "AUTO Top 10 update - Metrix 44010/44763 + UDisc + Foreca REAL [skip ci]"
+          git push || true
