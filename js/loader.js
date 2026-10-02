@@ -1,4 +1,17 @@
-
+// KOKO KORTTI 10% PIENEMMÄKSI - 1:1 + MOBILE
+const _mobileFix=document.createElement('style');
+_mobileFix.textContent=`
+  .card{zoom:0.9}
+  @supports not (zoom:0.9){.card{transform:scale(0.9);transform-origin:top left;width:111.111%}}
+  @media(max-width:768px){
+    body{padding:8px!important}
+    .card{zoom:0.85!important;margin-bottom:8px!important}
+    #saa-content div[style*="font-size:36px"]{font-size:28px!important}
+    #saa-content div[style*="font-size:32px"]{font-size:24px!important}
+    #live-kierrokset,#live-pelaajat{font-size:48px!important}
+  }
+`;
+document.head.appendChild(_mobileFix);
 document.addEventListener('DOMContentLoaded', async () => {
   console.log('FIX FINAL - ei jaa enaa Ladataan');
   
