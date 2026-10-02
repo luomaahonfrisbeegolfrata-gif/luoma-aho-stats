@@ -15,8 +15,8 @@ document.head.appendChild(_mobileFix);
 document.addEventListener('DOMContentLoaded', async () => {
   console.log('FIX FINAL - ei jaa enaa Ladataan');
   
-  // RATAINFO staattinen 16px
-  try{ for(const d of document.querySelectorAll('.card div')){ if(d.textContent.includes('Kalliopohjaisessa')){ d.style.fontSize='16px'; d.style.lineHeight='1.7'; d.style.color='#ccc'; } } }catch(e){}
+  // RATAINFO staattinen 20px
+  try{ for(const d of document.querySelectorAll('.card div')){ if(d.textContent.includes('Kalliopohjaisessa')){ d.style.fontSize='18px'; d.style.lineHeight='1.7'; d.style.color='#ccc'; } } }catch(e){}
 
   // TULOS yhdistetty
   try{
@@ -28,7 +28,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       if(tc&&uc&&tc!==uc&&!tc.dataset.combined){
         tc.innerHTML=`<div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8px 0;"><div style="font-size:11px;font-weight:800;">UDISC & METRIX TULOSKIERROKSET - <span style="color:#00ff00;">AUTO 15/5MIN</span></div><div id="live-kierrokset" style="font-size:64px;font-weight:900;line-height:1;margin-top:8px;">${t.textContent}</div></div><div style="height:1px;background:#222;margin:8px 0;"></div><div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8px 0;"><div style="font-size:11px;font-weight:800;">UNIIKIT PELAAJAT - <span style="color:#00ff00;">AUTO</span></div><div id="live-pelaajat" style="font-size:64px;font-weight:900;line-height:1;margin-top:8px;">${u.textContent}</div></div>`;
         tc.dataset.combined='true'; tc.style.display='flex'; tc.style.flexDirection='column';
-        uc.innerHTML=`<div style="font-size:11px;font-weight:800;text-align:center;">HOLE IN ONE - <span style="color:#ffcc00;">MANUAALINEN</span></div><div id="hio-count" style="font-size:36px;font-weight:900;color:#ffcc00;margin:12px 0;text-align:center;">5</div><div id="hio-list" style="font-size:15px;font-weight:600;color:#ccc;line-height:1.8;text-align:center;">Benjamin Turja #4<br>Julius Luoma-aho #4<br>Pentti Pitkäranta #8<br>Juha Luoma-aho #4<br>Aleksi Lassila #4</div>`;
+        uc.innerHTML=`<div style="font-size:11px;font-weight:800;text-align:center;">HOLE IN ONE - <span style="color:#ffcc00;">const v = await fetch('./data/vaylatilasto.json?t='+Date.now()).then(r=>r.json());
+const hios = v.holes_12.filter(h=>h.hio>0);
+document.getElementById('hio-count').textContent = v.totals.hio;
+document.getElementById('hio-list').innerHTML = hios.map(h=>`Väylä #${h.hole}: ${h.hio}x`).join('<br>');">Benjamin Turja #4<br>Julius Luoma-aho #4<br>Pentti Pitkäranta #8<br>Juha Luoma-aho #4<br>Aleksi Lassila #4</div>`;
         uc.style.borderLeft='3px solid #ffcc00';
       }
     }
