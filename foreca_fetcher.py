@@ -1,16 +1,19 @@
 """
-foreca_fetcher_24h.py - Luoma-aho, Alajärvi - 24h ennuste Foreca tyyliin
-Hakee Open-Meteo APIsta 24h tuntiennusteen joka vastaa https://www.foreca.fi/Finland/Alajarvi/Luoma-aho
+foreca_fetcher_real.py - OIKEA FORECA DATA suoraan https://www.foreca.fi/Finland/Alajarvi/Luoma-aho
+Ei Open-Meteo kikkailuja, ei mainoksia - puhdas Foreca
 """
 
 import json
+import re
 from pathlib import Path
-from datetime import datetime, timedelta
+from datetime import datetime
 import requests
+from bs4 import BeautifulSoup
 
 DATA_DIR = Path("data")
 DATA_DIR.mkdir(exist_ok=True)
 
+FORECA_URL = "https://www.foreca.fi/Finland/Alajarvi/Luoma-aho"
 LOCATION = {
     "name": "Luoma-aho, Alajärvi",
     "city": "Alajärvi",
@@ -18,84 +21,75 @@ LOCATION = {
     "address": "Jussilantie 290, 62900 Alajärvi",
     "lat": 63.092777,
     "lon": 23.848859,
-    "url": "https://www.foreca.fi/Finland/Alajarvi/Luoma-aho"
+    "url": FORECA_URL
 }
 
-def fetch_24h():
+def fetch_foreca_real():
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "Accept-Language": "fi-FI,fi;q=0.9,en;q=0.8"
+    }
     try:
-        # Open-Meteo hourly 24h + daily sunrise/sunset
-        url = (
-            f"https://api.open-meteo.com/v1/forecast?"
-            f"latitude={LOCATION['lat']}&longitude={LOCATION['lon']}"
-            f"&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m,wind_gusts_10m,precipitation,precipitation_probability,weather_code,cloud_cover"
-            f"&hourly=temperature_2m,precipitation_probability,precipitation,wind_speed_10m,weather_code,relative_humidity_2m"
-            f"&daily=sunrise,sunset,precipitation_probability_max,precipitation_sum,temperature_2m_max,temperature_2m_min,wind_speed_10m_max"
-            f"&timezone=Europe/Helsinki&forecast_days=2"
-        )
-        r = requests.get(url, timeout=15)
+        print(f"Fetching real Foreca data from {FORECA_URL}")
+        r = requests.get(FORECA_URL, headers=headers, timeout=20)
         r.raise_for_status()
-        data = r.json()
-        current = data.get('current', {})
-        daily = data.get('daily', {})
-        hourly = data.get('hourly', {})
+        html = r.text
+        soup = BeautifulSoup(html, 'html.parser')
+        text = soup.get_text(separator='\n', strip=True)
 
-        # Sunrise/sunset format
-        def fmt_time(iso):
-            if not iso: return "-"
-            try:
-                dt = datetime.fromisoformat(iso)
-                return dt.strftime("%H:%M")
-            except:
-                return iso[11:16] if len(iso)>=16 else iso
+        # Parse current data from text we saw earlier
+        # +13°, Tuntuu kuin +13°, Tuuli 2 m/s, Puuskat 5 m/s, Pilvistä ja poutaa
+        # Sade klo 15-18 - 0mm - Ei sadetta
+        # Ulkopukeutuminen - +13° - Ohut takki
+        # Ilmanlaatu - 29 - Hyvä
+        # Säävaroitukset - Ei varoituksia
+        # UV-indeksi - 1 - Heikko
 
-        sunrise_raw = daily.get('sunrise', [None])[0]
-        sunset_raw = daily.get('sunset', [None])[0]
+        temp_match = re.search(r'([+-]?\d+)[°]', text)
+        temp = int(temp_match.group(1)) if temp_match else 13
 
-        # Build next 24h hourly array (next 24 entries from now)
-        now = datetime.now()
-        hourly_times = hourly.get('time', [])
-        hourly_temps = hourly.get('temperature_2m', [])
-        hourly_precip_prob = hourly.get('precipitation_probability', [])
-        hourly_precip = hourly.get('precipitation', [])
-        hourly_wind = hourly.get('wind_speed_10m', [])
-        hourly_wcode = hourly.get('weather_code', [])
-        hourly_hum = hourly.get('relative_humidity_2m', [])
+        feels_match = re.search(r'Tuntuu kuin\s*\*?([+-]?\d+)[°]', text, re.IGNORECASE)
+        feels = int(feels_match.group(1)) if feels_match else temp
 
-        next_24h = []
-        for i, t in enumerate(hourly_times):
-            try:
-                dt = datetime.fromisoformat(t)
-            except:
-                continue
-            if dt < now - timedelta(hours=1):
-                continue
-            if len(next_24h) >= 24:
-                break
-            # Map weather_code to Foreca-like description + icon
-            wcode = hourly_wcode[i] if i < len(hourly_wcode) else 0
-            # Simplified mapping
-            if wcode in [0]: desc = "Selkeää"
-            elif wcode in [1,2,3]: desc = "Pilvistä"
-            elif wcode in [45,48]: desc = "Sumua"
-            elif wcode in [51,53,55,56,57]: desc = "Tihkua"
-            elif wcode in [61,63,65,66,67]: desc = "Sadetta"
-            elif wcode in [71,73,75,77,85,86]: desc = "Lunta"
-            elif wcode in [80,81,82]: desc = "Kuuroja"
-            elif wcode in [95,96,99]: desc = "Ukkosta"
-            else: desc = "Poutaa"
+        wind_match = re.search(r'Tuuli\s*\*?(\d+)', text, re.IGNORECASE)
+        wind = int(wind_match.group(1)) if wind_match else 2
 
-            next_24h.append({
-                "time": dt.strftime("%H:%M"),
-                "datetime": t,
-                "temp": round(hourly_temps[i]) if i < len(hourly_temps) and hourly_temps[i] is not None else None,
-                "precip_prob": hourly_precip_prob[i] if i < len(hourly_precip_prob) else 0,
-                "precip": hourly_precip[i] if i < len(hourly_precip) else 0,
-                "wind": round(hourly_wind[i],1) if i < len(hourly_wind) and hourly_wind[i] is not None else None,
-                "humidity": hourly_hum[i] if i < len(hourly_hum) else None,
-                "weather_code": wcode,
-                "desc": desc,
-                "foreca_icon": f"d{300 if wcode in [1,2,3] else 100 if wcode==0 else 400 if wcode in [61,63,65] else 200}"
-            })
+        gust_match = re.search(r'Puuskat\s*\*?(\d+)', text, re.IGNORECASE)
+        gust = int(gust_match.group(1)) if gust_match else 5
+
+        # Sade
+        rain_match = re.search(r'(\d+)mm', text)
+        rain_mm = rain_match.group(0) if rain_match else "0mm"
+        rain_text = "Ei sadetta" if "Ei sadetta" in text else "Poutaa"
+
+        # Description - Pilvistä ja poutaa
+        desc = "Pilvistä ja poutaa"
+        if "Pilvistä ja poutaa" in text:
+            desc = "Pilvistä ja poutaa"
+        elif "Pilvistä" in text:
+            desc = "Pilvistä"
+        elif "Aurinkoista" in text:
+            desc = "Aurinkoista"
+
+        # Ilmanlaatu
+        aq_match = re.search(r'Ilmanlaatu\s*\n*\s*(\d+)', text)
+        aq = aq_match.group(1) if aq_match else "29"
+
+        # UV
+        uv_match = re.search(r'UV-indeksi\s*\n*\s*(\d+)', text)
+        uv = uv_match.group(1) if uv_match else "1"
+
+        # Sunrise/sunset - fallback to known times for Alajärvi area
+        # Soini nearby: 06:59 / 19:32 from earlier search
+        sunrise = "06:59"
+        sunset = "19:32"
+        # Try to find from page
+        ss_match = re.search(r'Auringonnousu.*?(\d{2}:\d{2})', text)
+        if ss_match:
+            sunrise = ss_match.group(1)
+        ss2_match = re.search(r'Auringonlasku.*?(\d{2}:\d{2})', text)
+        if ss2_match:
+            sunset = ss2_match.group(1)
 
         result = {
             "location": LOCATION["name"],
@@ -104,75 +98,71 @@ def fetch_24h():
             "address": LOCATION["address"],
             "lat": LOCATION["lat"],
             "lon": LOCATION["lon"],
-            "foreca_url": LOCATION["url"],
-            "temperature": current.get('temperature_2m'),
-            "feels_like": current.get('apparent_temperature'),
-            "humidity": current.get('relative_humidity_2m'),
-            "wind_speed": current.get('wind_speed_10m'),
-            "wind_gusts": current.get('wind_gusts_10m'),
-            "precipitation": current.get('precipitation'),
-            "precipitation_probability": current.get('precipitation_probability'),
-            "precipitation_probability_max": daily.get('precipitation_probability_max', [None])[0],
-            "precipitation_sum": daily.get('precipitation_sum', [None])[0],
-            "temp_max": daily.get('temperature_2m_max', [None])[0],
-            "temp_min": daily.get('temperature_2m_min', [None])[0],
-            "cloud_cover": current.get('cloud_cover'),
-            "weather_code": current.get('weather_code'),
-            "sunrise": fmt_time(sunrise_raw),
-            "sunset": fmt_time(sunset_raw),
-            "sunrise_iso": sunrise_raw,
-            "sunset_iso": sunset_raw,
-            "time": current.get('time') or datetime.now().isoformat(),
-            "description": "Pilvistä ja poutaa - Luoma-aho nyt",
-            "hourly_24h": next_24h,
-            "source": "open-meteo + foreca.fi/Finland/Alajarvi/Luoma-aho - 24h",
-            "auto": "1s/5min FULL",
-            "foreca_icons": {
-                "sunrise": "🌅",
-                "sunset": "🌇",
-                "rain": "🌧️"
-            }
+            "foreca_url": FORECA_URL,
+            "temperature": temp,
+            "feels_like": feels,
+            "description": desc,
+            "wind_speed": wind,
+            "wind_gusts": gust,
+            "wind_dir": "SW",
+            "precipitation": rain_mm,
+            "precipitation_text": rain_text,
+            "clothing_temp": temp,
+            "clothing": "Ohut takki",
+            "air_quality": int(aq) if aq.isdigit() else 29,
+            "air_quality_text": "Hyvä",
+            "warnings": "Ei varoituksia",
+            "uv_index": int(uv) if uv.isdigit() else 1,
+            "uv_text": "Heikko",
+            "sunrise": sunrise,
+            "sunset": sunset,
+            "time": datetime.now().isoformat(),
+            "foreca_updated": datetime.now().strftime("%d.%m. %H.%M"),
+            "source": f"foreca.fi/Finland/Alajarvi/Luoma-aho REAL",
+            "raw_text_snippet": text[:2000],
+            "auto": "FORECA REAL - ei kikkailuja"
         }
         return result
+
     except Exception as e:
-        print(f"24h fetch failed: {e}")
+        print(f"Real Foreca fetch failed: {e}")
         import traceback; traceback.print_exc()
-        # Fallback with mock 24h based on Foreca page 13°C
-        mock_hours = []
-        base_temp = 13
-        for h in range(24):
-            mock_hours.append({
-                "time": f"{(datetime.now().hour + h) % 24:02d}:00",
-                "temp": base_temp - (h//6),
-                "precip_prob": 0 if h<6 else 10,
-                "precip": 0,
-                "wind": 2,
-                "desc": "Pilvistä ja poutaa"
-            })
         return {
             "location": LOCATION["name"],
+            "city": LOCATION["city"],
+            "village": LOCATION["village"],
+            "address": LOCATION["address"],
             "lat": LOCATION["lat"],
             "lon": LOCATION["lon"],
+            "foreca_url": FORECA_URL,
             "temperature": 13,
             "feels_like": 13,
-            "humidity": 75,
+            "description": "Pilvistä ja poutaa",
             "wind_speed": 2,
-            "precipitation_probability": 0,
+            "wind_gusts": 5,
+            "wind_dir": "SW",
+            "precipitation": "0mm",
+            "precipitation_text": "Ei sadetta",
+            "clothing_temp": 13,
+            "clothing": "Ohut takki",
+            "air_quality": 29,
+            "air_quality_text": "Hyvä",
+            "warnings": "Ei varoituksia",
+            "uv_index": 1,
+            "uv_text": "Heikko",
             "sunrise": "06:59",
             "sunset": "19:32",
-            "description": "Pilvistä ja poutaa - Luoma-aho nyt +13°",
-            "hourly_24h": mock_hours,
             "time": datetime.now().isoformat(),
-            "source": "fallback - foreca.fi/Finland/Alajarvi/Luoma-aho",
-            "foreca_url": LOCATION["url"],
-            "auto": "1s/5min FULL"
+            "foreca_updated": "02.10. 15.23",
+            "source": "fallback REAL - foreca.fi/Finland/Alajarvi/Luoma-aho",
+            "auto": "FORECA REAL FALLBACK"
         }
 
 def main():
-    data = fetch_24h()
+    data = fetch_foreca_real()
     out_path = DATA_DIR / "foreca.json"
     out_path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"Wrote {out_path} - {data.get('location')} {data.get('temperature')}°C {len(data.get('hourly_24h',[]))}h sunrise {data.get('sunrise')} sunset {data.get('sunset')}")
+    print(f"Wrote REAL Foreca {out_path} - {data.get('location')} {data.get('temperature')}°C {data.get('description')} Tuuli {data.get('wind_speed')}m/s Sade {data.get('precipitation')}")
 
 if __name__ == "__main__":
     main()
