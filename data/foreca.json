@@ -1,68 +1,10 @@
 {
-  "current": {
-    "temp": 14,
-    "feels": 13,
-    "wind": 2.9,
-    "gust": 6.1,
-    "cloud": 100,
-    "code": 3
-  },
-  "hourly": [
-    {
-      "hour": "00:00",
-      "temp": 10,
-      "icon": "☁️",
-      "iso": "2026-10-02T00:00"
-    },
-    {
-      "hour": "03:00",
-      "temp": 10,
-      "icon": "☁️",
-      "iso": "2026-10-02T03:00"
-    },
-    {
-      "hour": "06:00",
-      "temp": 10,
-      "icon": "☁️",
-      "iso": "2026-10-02T06:00"
-    },
-    {
-      "hour": "09:00",
-      "temp": 11,
-      "icon": "☁️",
-      "iso": "2026-10-02T09:00"
-    },
-    {
-      "hour": "12:00",
-      "temp": 13,
-      "icon": "☁️",
-      "iso": "2026-10-02T12:00"
-    },
-    {
-      "hour": "15:00",
-      "temp": 14,
-      "icon": "☁️",
-      "iso": "2026-10-02T15:00"
-    },
-    {
-      "hour": "18:00",
-      "temp": 14,
-      "icon": "☁️",
-      "iso": "2026-10-02T18:00"
-    },
-    {
-      "hour": "21:00",
-      "temp": 12,
-      "icon": "⛅",
-      "iso": "2026-10-02T21:00"
-    }
-  ],
-  "location": {
-    "name": "Luoma-ahon Frisbeegolfrata, Jussilantie 290, Alajärvi",
-    "lat": 63.07717,
-    "lon": 23.869444,
-    "source": "frisbeegolfradat.fi"
-  },
-  "fetched_at": "2026-10-02T11:34:43.871217+00:00",
-  "provider": "open-meteo.com"
+  "location": "Luoma-aho, Alajärvi",
+  "lat": 63.092777,
+  "lon": 23.848859,
+  "temperature": 12,
+  "description": "Luoma-aho, Alajärvi - odottaa päivitystä",
+  "time": "2026-10-02T11:48:06.588362Z",
+  "source": "fallback",
+  "auto": "1s/5min FULL"
 }
