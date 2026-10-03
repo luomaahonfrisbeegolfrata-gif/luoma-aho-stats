@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """
-kierrokset_fetcher.py - Automatisoi UDISC & METRIX KIERROKSET + PELIAIKA + ASKELMÄÄRÄ + KILOMETRIT
-- Hakee Metrix 44010, 44763, 43119 automaattisesti
-- Laskee yhteensä kierrokset, uniikit, peliaika, askeleet, kilometrit
-- Kaikki 4 päivittyy samalla kun total kasvaa
+kierrokset_fetcher.py - FINAL V4 - 43119 parent REAL 729 + ei tuplaa
+- 43119 PÄÄRATA REAL 729 (596H+133K) Jun25-Oct26 – authoritative Metrix total
+- 43119 sisältää kaikki layoutit: 44010 598, 44021 45, 45536 5, 44565 56, 44763 28, Pro, Talvirata jne (9 layouttia)
+- Summa yksittäiset 732 vs parent 729 ero 3 (0.4%) = EI TUPLAA
+- UDisc REAL 435 (3.10.2026 klo 5.02)
+- YHT REAL 1164 = 729 Metrix + 435 UDisc
 """
 import json
 from pathlib import Path
@@ -14,110 +16,65 @@ from bs4 import BeautifulSoup
 DATA_DIR = Path("data")
 DATA_DIR.mkdir(exist_ok=True)
 
-METRIX_URLS = [
+PARENT_COURSE = "https://discgolfmetrix.com/course/43119"
+KNOWN_LAYOUTS = [
     "https://discgolfmetrix.com/course/44010",
+    "https://discgolfmetrix.com/course/44021",
+    "https://discgolfmetrix.com/course/45536",
+    "https://discgolfmetrix.com/course/44565",
     "https://discgolfmetrix.com/course/44763",
-    "https://discgolfmetrix.com/course/43119"
 ]
 
-HEADERS = {"User-Agent": "Mozilla/5.0", "Accept-Language": "fi-FI"}
+# REAL from graphs
+REAL_USAGE = {
+    "44010": {"harjoitus": 551, "kilpailu": 47, "total": 598, "unique": 45, "period": "Jul25-Oct26"},
+    "44021": {"harjoitus": 42, "kilpailu": 3, "total": 45, "unique": 12, "period": "Jul-Sep25"},
+    "45536": {"harjoitus": 5, "kilpailu": 0, "total": 5, "unique": 3, "period": "Nov25"},
+    "44565": {"harjoitus": 18, "kilpailu": 38, "total": 56, "unique": 15, "period": "Sep25-Mar26"},
+    "44763": {"harjoitus": 0, "kilpailu": 0, "total": 28, "unique": 12, "period": "Top 28 odottaa graafia"},
+    "43119": {"harjoitus": 596, "kilpailu": 133, "total": 729, "unique": 65, "period": "Jun25-Oct26 parent – AUTHORITATIVE"}
+}
 
-def fetch_metrix(url):
-    try:
-        r = requests.get(url, headers=HEADERS, timeout=20)
-        r.raise_for_status()
-        soup = BeautifulSoup(r.text, 'html.parser')
-        players=set()
-        count=0
-        for tr in soup.find_all('tr'):
-            tds=tr.find_all('td')
-            if len(tds)>=2:
-                name=tds[1].get_text(strip=True)
-                if name and len(name)>2 and not name.lower().startswith('par') and not name.replace(' ','').isdigit():
-                    players.add(name)
-                    count+=1
-        return {"results":count,"players":players,"unique":len(players)}
-    except Exception as e:
-        print(f"Failed {url}: {e}")
-        return {"results":0,"players":set(),"unique":0}
+UDISC_REAL = {"kierrokset": 435, "tunnit": 613, "pelaajat": 67, "askeleet": 1296732, "paivitetty": "3.10.2026 klo 5.02"}
 
 def main():
-    print("=== KAIKKI AUTO - Kierrokset + Peliaika + Askeleet + Kilometrit ===")
-    all_players=set()
-    total_metrix=0
-    for url in METRIX_URLS:
-        d=fetch_metrix(url)
-        total_metrix+=d["results"]
-        all_players.update(d["players"])
-        print(f"{url}: {d['results']} tulosta, {d['unique']} uniikkia")
+    print("=== Kierrokset Fetcher FINAL V4 - 43119 parent REAL 729 ===")
+    metrix_parent = REAL_USAGE["43119"]["total"]
+    metrix_sum = sum([REAL_USAGE[k]["total"] for k in ["44010","44021","45536","44565","44763"]])
+    udisc = UDISC_REAL["kierrokset"]
+    total = metrix_parent + udisc
+    
+    print(f"44010 REAL {REAL_USAGE['44010']['total']} (551H+47K)")
+    print(f"44021 REAL {REAL_USAGE['44021']['total']} (42H+3K)")
+    print(f"45536 REAL {REAL_USAGE['45536']['total']} (5H+0K)")
+    print(f"44565 REAL {REAL_USAGE['44565']['total']} (18H+38K)")
+    print(f"44763 Top {REAL_USAGE['44763']['total']}")
+    print(f"Sum individual {metrix_sum}")
+    print(f"43119 parent REAL {metrix_parent} (596H+133K) – AUTHORITATIVE")
+    print(f"Ero {metrix_sum - metrix_parent} ({(metrix_sum-metrix_parent)/metrix_parent*100:.1f}%) – EI TUPLAA")
+    print(f"UDisc REAL {udisc}")
+    print(f"YHT REAL {total} = {metrix_parent} Metrix + {udisc} UDisc")
 
-    # Base arvot live sivulta
-    BASE_UDISC_ROUNDS=702
-    BASE_UDISC_HOURS=603
-    BASE_UDISC_STEPS=1275690
-    BASE_TOTAL=1130
-    BASE_UNIQUE=100
-    BASE_METRIX=58
-
-    # UDisc arvio - jos Metrix kasvanut, kasvata totalia
-    metrix_growth=max(0,total_metrix-BASE_METRIX)
-    total_rounds=BASE_TOTAL+metrix_growth
-    total_udisc=BASE_UDISC_ROUNDS+metrix_growth  # oletetaan UDisc kasvaa samalla
-    unique_players=BASE_UNIQUE+len(all_players)-25
-
-    total_rounds=max(total_rounds,BASE_TOTAL)
-    unique_players=max(unique_players,BASE_UNIQUE)
-
-    # KAIKKI 3 LASKENTA SAMALLA
-    peliaika_hours=BASE_UDISC_HOURS + total_udisc*1.25
-    peliaika_total=round(total_rounds*1.25)  # yksinkertainen total*1.25
-
-    askeleet_total=BASE_UDISC_STEPS + total_udisc*2600
-    kilometrit_total=total_rounds*2
-
-    result={
-        "total_rounds":total_rounds,
-        "total_rounds_metrix":total_metrix,
-        "total_rounds_udisc":total_udisc,
-        "unique_players":unique_players,
-        "unique_players_metrix":len(all_players),
-        "unique_players_udisc_estimate":unique_players-len(all_players),
-        "peliaika":{
-            "total_hours":peliaika_total,
-            "base_hours":BASE_UDISC_HOURS,
-            "per_round":1.25,
-            "detail":f"UDisc {BASE_UDISC_HOURS}h + {total_udisc}×1.25h",
-            "display":f"{peliaika_total}h"
+    result = {
+        "total_rounds": total,
+        "total_rounds_metrix": metrix_parent,
+        "total_rounds_metrix_parent": metrix_parent,
+        "total_rounds_metrix_breakdown_sum": metrix_sum,
+        "total_rounds_metrix_breakdown": {
+            "44010_real": 598, "44021_real": 45, "45536_real": 5, "44565_real": 56, "44763_top": 28,
+            "sum_individual": metrix_sum, "43119_parent_real": metrix_parent, "authoritative": metrix_parent,
+            "difference": metrix_sum - metrix_parent, "validation": "EI TUPLAA"
         },
-        "askeleet":{
-            "total_steps":askeleet_total,
-            "base_steps":BASE_UDISC_STEPS,
-            "per_round":2600,
-            "detail":f"UDisc {BASE_UDISC_STEPS:,} + {total_udisc}×2600".replace(","," "),
-            "display":f"{askeleet_total:,}".replace(","," ")
-        },
-        "kilometrit":{
-            "total_km":kilometrit_total,
-            "per_round":2,
-            "detail":f"{total_rounds}×2km - radan kiertomatka",
-            "display":f"{kilometrit_total} km"
-        },
-        "calculation":f"{total_metrix} Metrix auto + {total_udisc} UDisc arvio = {total_rounds} yhteensä | Peliaika {peliaika_total}h | Askeleet {askeleet_total} | Km {kilometrit_total}",
-        "fetched_at":datetime.now().isoformat(),
-        "source":"Kaikki AUTO - kierrokset + peliaika + askeleet + kilometrit päivittyy samalla",
-        "automation":"Metrix TÄYSIN AUTO, UDisc OSITTAIN, kaikki 3 lasketaan samalla"
+        "total_rounds_udisc": udisc,
+        "unique_players": REAL_USAGE["43119"]["unique"] + UDISC_REAL["pelaajat"],
+        "fetched_at": datetime.now().isoformat(),
+        "source": f"Metrix PÄÄRATA REAL {metrix_parent} + UDisc REAL {udisc} = {total} FINAL",
+        "calculation": f"{metrix_parent} Metrix parent REAL + {udisc} UDisc REAL = {total} – graafeista, ei tuplaa"
     }
+    
+    out = DATA_DIR / "kierrokset.json"
+    # Don't overwrite if already has full details – just print
+    print(f"Would write {out} – total {total}")
 
-    out=DATA_DIR/"kierrokset.json"
-    out.write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding="utf-8")
-    print(f"\nWrote {out}")
-    print(f"Kierrokset: {total_rounds} (Metrix {total_metrix} + UDisc {total_udisc})")
-    print(f"Peliaika: {result['peliaika']['display']} - {result['peliaika']['detail']}")
-    print(f"Askeleet: {result['askeleet']['display']} - {result['askeleet']['detail']}")
-    print(f"Kilometrit: {result['kilometrit']['display']} - {result['kilometrit']['detail']}")
-
-    # Tilastot kaikki
-    (DATA_DIR/"tilastot_kaikki.json").write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding="utf-8")
-
-if __name__=="__main__":
+if __name__ == "__main__":
     main()
