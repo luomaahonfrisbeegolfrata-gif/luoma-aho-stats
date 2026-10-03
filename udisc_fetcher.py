@@ -73,18 +73,12 @@ def fetch_udisc_top10():
     
     # Jos ei saatu tarpeeksi oikeaa dataa, käytä OIKEAA 12 väylän fallbackia (35-44) EI 82-97
     if len(top_results) < 4:
-        print("Using CORRECT 12-hole fallback for UDisc layout 143835 Par 41 (35-45) - EI 82-97")
+        print("Using CORRECT 12-hole fallback for UDisc layout 143835 Par 41 (35-38) - VAIN UDisc linkin nimet - EI Metrix")
         top_results = [
-            {"rank": 1, "name": "@kantanen8", "total": 35, "plus_minus": "-6", "date": "Jul 4, 2026", "source": "udisc.com/leaderboard?layoutId=143835"},
-            {"rank": 2, "name": "@valkoparta", "total": 36, "plus_minus": "-5", "date": "Jul 6, 2026", "source": "udisc.com/leaderboard?layoutId=143835"},
-            {"rank": 3, "name": "@mattiasss", "total": 36, "plus_minus": "-5", "date": "Aug 19, 2026", "source": "udisc.com/leaderboard?layoutId=143835"},
-            {"rank": 4, "name": "@dashyy", "total": 38, "plus_minus": "-3", "date": "Sep 13, 2025", "source": "udisc.com/leaderboard?layoutId=143835"},
-            {"rank": 5, "name": "Toni Luoma-aho", "total": 39, "plus_minus": "-2", "date": "10/5/25", "source": "udisc.com/leaderboard?layoutId=143835 - fallback 12 holes"},
-            {"rank": 6, "name": "Benjamin Turja", "total": 40, "plus_minus": "-1", "date": "10/5/25", "source": "udisc.com/leaderboard?layoutId=143835 - fallback"},
-            {"rank": 7, "name": "Julius Luoma-aho", "total": 41, "plus_minus": "0", "date": "10/5/25", "source": "udisc.com/leaderboard?layoutId=143835 - fallback"},
-            {"rank": 8, "name": "Eino Vistiaho", "total": 42, "plus_minus": "+1", "date": "10/5/25", "source": "udisc.com/leaderboard?layoutId=143835 - fallback"},
-            {"rank": 9, "name": "Jari Vistiaho", "total": 43, "plus_minus": "+2", "date": "10/5/25", "source": "udisc.com/leaderboard?layoutId=143835 - fallback"},
-            {"rank": 10, "name": "Aapo Penttilä", "total": 44, "plus_minus": "+3", "date": "10/5/25", "source": "udisc.com/leaderboard?layoutId=143835 - fallback"},
+            {"rank": 1, "name": "@kantanen8", "total": 35, "plus_minus": "-6", "date": "Jul 4, 2026", "source": "udisc.com/leaderboard?layoutId=143835 - VAIN UDisc link"},
+            {"rank": 2, "name": "@valkoparta", "total": 36, "plus_minus": "-5", "date": "Jul 6, 2026", "source": "udisc.com/leaderboard?layoutId=143835 - VAIN UDisc link"},
+            {"rank": 3, "name": "@mattiasss", "total": 36, "plus_minus": "-5", "date": "Aug 19, 2026", "source": "udisc.com/leaderboard?layoutId=143835 - VAIN UDisc link"},
+            {"rank": 4, "name": "@dashyy", "total": 38, "plus_minus": "-3", "date": "Sep 13, 2025", "source": "udisc.com/leaderboard?layoutId=143835 - VAIN UDisc link"},
         ]
     
     result = {
