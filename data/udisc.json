@@ -1,5 +1,5 @@
 {
-  "version": "V6 - toimii index.kaytossa.html - 12 vaylaa Par 41 REAL 35-44",
+  "version": "V7 - KORJATTU - VAIN UDisc linkin nimet - EI Metrix nimiä - 35-38 OIKEA",
   "course": "UDISC - Luoma-aho",
   "url": "https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx",
   "course_url": "https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/leaderboard?layoutId=143835&dateRange=all&limit=100",
@@ -14,7 +14,7 @@
       "total": 35,
       "plus_minus": "-6",
       "date": "Jul 4, 2026",
-      "source": "udisc.com/leaderboard?layoutId=143835 - V6 12 holes Par 41"
+      "source": "udisc.com/leaderboard?layoutId=143835 - UDisc link"
     },
     {
       "rank": 2,
@@ -22,7 +22,7 @@
       "total": 36,
       "plus_minus": "-5",
       "date": "Jul 6, 2026",
-      "source": "udisc.com/leaderboard?layoutId=143835"
+      "source": "udisc.com/leaderboard?layoutId=143835 - UDisc link"
     },
     {
       "rank": 3,
@@ -30,7 +30,7 @@
       "total": 36,
       "plus_minus": "-5",
       "date": "Aug 19, 2026",
-      "source": "udisc.com/leaderboard?layoutId=143835"
+      "source": "udisc.com/leaderboard?layoutId=143835 - UDisc link"
     },
     {
       "rank": 4,
@@ -38,61 +38,13 @@
       "total": 38,
       "plus_minus": "-3",
       "date": "Sep 13, 2025",
-      "source": "udisc.com/leaderboard?layoutId=143835"
-    },
-    {
-      "rank": 5,
-      "name": "Toni Luoma-aho",
-      "total": 39,
-      "plus_minus": "-2",
-      "date": "10/5/25",
-      "source": "udisc.com/leaderboard?layoutId=143835 - V6"
-    },
-    {
-      "rank": 6,
-      "name": "Benjamin Turja",
-      "total": 40,
-      "plus_minus": "-1",
-      "date": "10/5/25",
-      "source": "udisc.com/leaderboard?layoutId=143835"
-    },
-    {
-      "rank": 7,
-      "name": "Julius Luoma-aho",
-      "total": 41,
-      "plus_minus": "0",
-      "date": "10/5/25",
-      "source": "udisc.com/leaderboard?layoutId=143835"
-    },
-    {
-      "rank": 8,
-      "name": "Eino Vistiaho",
-      "total": 42,
-      "plus_minus": "+1",
-      "date": "10/5/25",
-      "source": "udisc.com/leaderboard?layoutId=143835"
-    },
-    {
-      "rank": 9,
-      "name": "Jari Vistiaho",
-      "total": 43,
-      "plus_minus": "+2",
-      "date": "10/5/25",
-      "source": "udisc.com/leaderboard?layoutId=143835"
-    },
-    {
-      "rank": 10,
-      "name": "Aapo Penttila",
-      "total": 44,
-      "plus_minus": "+3",
-      "date": "10/5/25",
-      "source": "udisc.com/leaderboard?layoutId=143835"
+      "source": "udisc.com/leaderboard?layoutId=143835 - UDisc link"
     }
   ],
-  "fetched_at": "2026-10-03T10:59:11.034405",
-  "fetched_at_fi": "03.10.2026 10:59",
-  "source": "udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/leaderboard?layoutId=143835 - V6 - CORRECT 12 holes Par 41 - 35-44 OIKEA",
-  "note": "Oikea data layout 143835 - 12 vaylaa Par 41 - tulokset 35-44 - EI 82-97 - V6 - toimii index.kaytossa.html",
+  "fetched_at": "2026-10-03T13:01:24.711135",
+  "fetched_at_fi": "03.10.2026 13:01",
+  "source": "udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/leaderboard?layoutId=143835 - VAIN UDisc link - 12 väylää Par 41",
+  "note": "Vain UDisc linkin nimet - @kantanen8, @valkoparta, @mattiasss, @dashyy - EI Metrix nimiä kuten Toni Luoma-aho - V7 KORJATTU",
   "real_stats": {
     "pelattujen_kierrosten_maara": 435,
     "virkistystunnit": 613,
