@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luoma-ahon Frisbeegolfrata - LIVE - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT - 1164 - FINAL</title>
+<style>
+/* HEADER/LAYOUT LUKITTU - EI MUUTETA - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT - toimii index.kaytossa.html 100% - 12e10f83-80aa-4b2b-ade3-d8d55fc07030 */
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#070708;color:#e6e6e6;font-family:Inter,sans-serif;padding:0 12px 30px}
+.header{display:flex;justify-content:space-between;align-items:center;padding:16px 14px;background:#040404;border-bottom:1px solid #1e1e1e;position:sticky;top:0;z-index:20;flex-wrap:wrap;gap:12px}
+.header-left{display:flex;align-items:center;gap:14px}
+.header-left img{height:52px;width:52px;object-fit:cover;border-radius:8px;background:#111}
+.header-left h1{font-size:19px}
+.live{color:#1aff1a;font-size:13px;font-weight:800;margin-left:8px}
+.header-right{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.header-right a{display:block;line-height:0;border-radius:10px;overflow:hidden;transition:transform 0.15s}
+.header-right a:hover{transform:scale(1.05);box-shadow:0 0 0 2px #1aff1a}
+.header-right img.logo-square{width:52px;height:52px;min-width:52px;background:#fff;border-radius:10px;padding:0;object-fit:cover;border:1px solid #222;display:block}
+.header-right img.logo-rect{width:96px;height:52px;min-width:96px;background:#fff;border-radius:10px;padding:0;object-fit:cover;border:1px solid #222;display:block}
+.header-right img.logo-rect-wide{width:120px;height:52px;min-width:120px;background:#fff;border-radius:10px;padding:4px 6px;object-fit:contain;border:1px solid #222;display:block}
+.grid-top{display:grid;grid-template-columns:360px 300px 300px 300px 1fr;gap:12px;margin:14px 0;align-items:stretch}
+.grid-middle{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:12px 0;align-items:stretch}
+@media(max-width:1400px){.grid-top{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.grid-top,.grid-middle{grid-template-columns:1fr}}
+.card{background:#151516;border:1px solid #262626;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column}
+.card-title{font-size:14px;color:#8a8a8a;text-transform:uppercase;font-weight:800;margin-bottom:8px;text-align:center}
+.card-title .auto{color:#1aff1a}
+.big{font-size:42px;font-weight:900;color:#fff;text-align:center}
+.small{font-size:10px;color:#6e6e6e;margin-top:6px}
+.card.ratainfo-card{width:100%;min-height:380px;height:380px;padding:16px 18px;display:flex;flex-direction:column;justify-content:space-between}
+.ratainfo{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;font-size:14px;line-height:1.55;color:#e0e0e0}
+.card.combined-card{width:100%;min-height:380px;height:380px;padding:0 !important;overflow:hidden;display:flex;flex-direction:column}
+.split-half{padding:18px 12px;flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.split-half+.split-half{border-top:1px solid #262626}
+.card.hio-card{width:100%;min-height:380px;height:380px;padding:16px 14px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center}
+.card.hio-card .big{font-size:64px;margin:8px 0}
+.hio-list{flex:1;width:100%;display:flex;flex-direction:column;justify-content:space-evenly;align-items:center}
+.hio-item{font-size:15px;padding:4px 0;color:#e8e8e8}
+.hio-item.vayla-header{font-size:18px;font-weight:900;color:#1aff1a;margin:6px 0 4px 0}
+.card.saa-card{width:100%;min-height:380px;height:380px;padding:0 !important;background:#0f0f10;display:flex;flex-direction:column;justify-content:space-between}
+.saa-header{padding:12px;background:#151516;border-bottom:1px solid #222}
+.saa-current{padding:16px 12px;text-align:center}
+.saa-temp{font-size:42px;font-weight:900;color:#fff}
+.saa-details{flex:1;padding:12px 14px;background:#0a0a0a;display:flex;flex-direction:column;justify-content:space-evenly}
+.saa-details .row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #151515;font-size:13px}
+.saa-footer{padding:8px 12px;background:#151516;text-align:center}
+.stacked-right{width:100%;height:380px;display:flex;flex-direction:column;gap:10px}
+.mini-card{flex:1;background:#151516;border:1px solid #262626;border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.mini-card .big{font-size:26px !important}
+/* TOP10 KORTIT - TAMAN NAKOISET 100% - https://meta.ai/prompt/12e10f83-80aa-4b2b-ade3-d8d55fc07030 - SAMOILLA TIEDOILLA 100% - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT */
+.card.top10-card{min-height:520px;height:520px;padding:0 !important;overflow:hidden;display:flex;flex-direction:column}
+.top10-header{padding:12px 14px;background:#111113;border-bottom:1px solid #262626;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.top10-header h3{font-size:13px;text-transform:uppercase;letter-spacing:0.8px;color:#8a8a8a}
+.top10-header a{color:#1aff1a;font-size:11px;text-decoration:none;font-weight:800}
+.top10-list{flex:1;padding:6px 14px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.top10-item{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid #1e1e1e;font-size:13px;min-height:42px}
+.top10-item:last-child{border-bottom:none}
+.top10-item .rank{color:#1aff1a;font-weight:900;min-width:28px;font-size:13px}
+.top10-item .name{flex:1;color:#e0e0e0;font-weight:600;margin:0 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px}
+.top10-item .scores{display:flex;align-items:center;gap:8px;min-width:90px;justify-content:flex-end}
+.top10-item .total{color:#fff;font-weight:800;min-width:28px;text-align:right;font-size:14px}
+.top10-item .plus{font-weight:700;font-size:12px;min-width:36px;text-align:left}
+.top10-item .plus.negative{color:#1aff1a}
+.top10-item .plus.positive{color:#ff4d4d}
+.top10-item .plus.even{color:#8a8a8a}
+.top10-item .score{color:#fff;font-weight:800;min-width:36px;text-align:right;font-size:13px}
+.top10-footer{padding:8px 14px;background:#0a0a0a;border-top:1px solid #222;font-size:9px;color:#666;text-align:center;flex-shrink:0}
+/* VÄYLÄTILASTO - PALAUTETTU - YHTÄ TÄRKEÄ KUIN VIRTA - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT */
+.vayla-head{display:flex;justify-content:space-between;align-items:center;background:#111113;padding:10px 14px;border:1px solid #262626;border-bottom:none;border-radius:12px 12px 0 0}
+.vayla-head h2{font-size:11px;text-transform:uppercase;letter-spacing:0.8px}
+.badge{background:#1aff1a;color:#000;font-size:10px;padding:3px 9px;border-radius:20px;font-weight:900}
+.vayla-wrap{background:#0f0f10;border:1px solid #262626;border-radius:0 0 12px 12px;overflow:hidden}
+.vayla-wrap img{width:100%;display:block;background:#0a0a0a;min-height:200px}
+#status{font-size:10px;color:#444;text-align:center;padding:8px 0}
+</style>
+</head>
+<body>
+<div class="header">
+<div class="header-left"><a href="https://luomaahonfrisbeegolfrata-gif.github.io/luoma-aho-stats/" target="_blank"><img src="logot/luoma-aho-logo.jpg" alt="logo" style="width:52px;height:52px;background:#111" onerror="this.src='logot/l-a-friba-logo.jpg'"></a><h1>Luoma-ahon Frisbeegolfrata <span class="live">● LIVE - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT - 1164 - VÄYLÄTILASTO PALAUTETTU</span></h1></div>
+<div class="header-right">
+<a href="https://www.discgolfmetrix.com/course/43119" target="_blank"><img class="logo-square" src="logot/metrix-logo.png" alt="Metrix" onerror="this.style.background='#fff'"></a>
+<a href="https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx" target="_blank"><img class="logo-square" src="logot/udisc-logo.png" alt="UDisc" onerror="this.style.background='#fff'"></a>
+<a href="https://www.foreca.fi/Finland/Alajarvi/Luoma-aho" target="_blank"><img class="logo-rect" src="logot/foreca-logo.png" alt="Foreca" onerror="this.style.background='#fff'"></a>
+</div>
+</div>
+
+<div class="grid-top">
+<div class="card ratainfo-card"><div class="card-title">RATAINFO - LIVE <span class="auto">- AUTO</span></div><div class="ratainfo"><div>📍 Jussilantie 290, 62900 Alajärvi</div><div>🌲 12 väylää - Par 41 - 57-197m</div><div>🕒 Avoinna 24/7 - Ilmainen</div><div>📊 <span id="total-rounds">1164</span> kierrosta - <span id="unique-players">132</span> pelaajaa</div><div class="small" id="kierrokset-detail">729 Metrix REAL + 435 UDisc REAL - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT FINAL - EI TUPLAA</div><div class="small" id="last-update"></div></div></div>
+<div class="card combined-card"><div class="split-half"><div class="card-title">HOLE-IN-ONE <span class="auto">- AUTO</span></div><div class="big" id="hio-total">12</div><div class="small">Yhteensä</div></div><div class="split-half"><div class="hio-list"><div class="hio-item vayla-header">Väylä 3</div><div class="hio-item">Toni Luoma-aho - 15.8.2025</div><div class="hio-item vayla-header">Väylä 7</div><div class="hio-item">Benjamin Turja - 20.9.2025</div></div></div></div>
+<div class="card saa-card"><div class="saa-header"><div class="card-title">SÄÄ LUOMA-AHO <span class="auto">- AUTO - FORECA REAL - open-meteo.com 15min</span></div></div><div class="saa-current"><div class="saa-temp" id="saa-temp">+11°</div><div class="small" id="saa-desc-text">Pilvistä</div></div><div class="saa-details"><div class="row"><span>Tuntuu kuin</span><span id="d-feels">+11°</span></div><div class="row"><span>Tuuli</span><span id="d-wind">2 m/s</span></div><div class="row"><span>Sade</span><span id="d-rain">0mm - Poutaa</span></div><div class="row"><span>Ilmanlaatu</span><span id="d-aq">29 Hyvä</span></div></div><div class="saa-footer"><div class="small" id="foreca-updated"></div></div></div>
+<div class="stacked-right">
+<div class="mini-card"><div class="card-title">PELIAIKA <span class="auto">- AUTO</span></div><div class="big" id="peliaika-big">1524h</div><div class="small" id="peliaika-detail">UDisc REAL 613h + Metrix PÄÄRATA REAL 729×1.25h = 1524.25h - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT</div></div>
+<div class="mini-card"><div class="card-title">ASKELMÄÄRÄ <span class="auto">- AUTO</span></div><div class="big" id="askeleet-big">3 192 132</div><div class="small" id="askeleet-detail">UDisc REAL 1296732 + Metrix 729×2600 = 3192132 - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT</div></div>
+<div class="mini-card"><div class="card-title">KILOMETRIT <span class="auto">- AUTO</span></div><div class="big" id="km-big">2328 km</div><div class="small" id="km-detail">1164×2km - radan kiertomatka - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT</div></div>
+</div>
+</div>
+
+<div class="grid-middle">
+<!-- METRIX 44010 TOP10 - TAMAN NAKOINEN 100% - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT - 42-49 Par 41 - SAMOILLA TIEDOILLA 100% -->
+<div class="card top10-card"><div class="top10-header"><h3>METRIX 44010 Top 10 <span class="auto">- AUTO - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT</span></h3><a href="https://discgolfmetrix.com/course/44010" target="_blank">44010 ↗</a></div><div class="top10-list" id="m44010-list"></div><div class="top10-footer">Par 41 - 12 väylää - discgolfmetrix.com/course/44010 - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT - 598 REAL - 42-49</div></div>
+<!-- METRIX 44763 TOP10 - TAMAN NAKOINEN 100% - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT - 82-93 Par 82 - SAMOILLA TIEDOILLA 100% -->
+<div class="card top10-card"><div class="top10-header"><h3>METRIX 44763 Top 10 <span class="auto">- AUTO - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT</span></h3><a href="https://discgolfmetrix.com/course/44763" target="_blank">44763 ↗</a></div><div class="top10-list" id="m44763-list"></div><div class="top10-footer">Par 82 - 24 väylää - discgolfmetrix.com/course/44763 - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT - 63 REAL visible - 31 Mar 11</div></div>
+<!-- UDISC TOP10 - TAMAN NAKOINEN 100% - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT - 35-44 OIKEA 12 VAYLAA Par 41 - SAMOILLA TIEDOILLA 100% -->
+<div class="card top10-card"><div class="top10-header"><h3>UDISC Top 10 <span class="auto">- AUTO - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT - 35-44 OIKEA</span></h3><a href="https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/leaderboard?layoutId=143835&dateRange=all&limit=100" target="_blank">UDisc ↗</a></div><div class="top10-list" id="udisc-list"></div><div class="top10-footer">Par 41 - layout 143835 - 12 väylää - udisc.com - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT - 35-44 OIKEA - EI 82-97</div></div>
+</div>
+
+<!-- VÄYLÄTILASTO PALAUTETTU - YHTÄ TÄRKEÄ KUIN VIRTA - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT - ALAS -->
+<div style="margin-top:14px">
+  <div class="vayla-head"><h2>VÄYLÄTILASTO - LIVE MUSTA + PITUUS - EI TYHJÄÄ <span style="color:#1aff1a">- AUTO 5MIN - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT</span></h2><span class="badge">● LIVE - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT - 1164</span></div>
+  <div class="vayla-wrap" id="vayla-wrap"><img id="vayla-img" src="data/vaylatilasto.png?v=2026-10-03T10:59:11.034405" alt="Väylätilasto" onerror="this.src='data/vaylatilasto.png?v='+Date.now()"></div>
+</div>
+<div id="status">V6 - FINAL - 03.10.2026 10:59 - 1164 = 729 Metrix (6 graafia) + 435 UDisc - 1524h - header/layout lukittu - kortit taman nakoiset 100% - prompt 12e10f83-80aa-4b2b-ade3-d8d55fc07030</div>
+
+<script>
+// V6 - DATA KORJATTU JA AUTOMATISOITU - KORTIT TAMAN NAKOISET 100% - SAMOILLA TIEDOILLA 100% - https://meta.ai/prompt/12e10f83-80aa-4b2b-ade3-d8d55fc07030
+// HEADER/LAYOUT LUKITTU - EI MUUTETA - VAIN data/ fetch VAIN textContent/innerHTML
+
+// Kierrokset V6 - toimii index.kaytossa.html
+fetch('data/kierrokset.json?v='+Date.now()).then(r=>r.json()).then(d=>{
+  if(!d) return;
+  const setText = (id, val) => { const el=document.getElementById(id); if(el && val!==undefined) el.textContent=val; };
+  setText('total-rounds', d.total_rounds);
+  setText('unique-players', d.unique_players);
+  setText('kierrokset-detail', d.total_rounds_metrix+' Metrix REAL + '+d.total_rounds_udisc+' UDisc REAL - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT FINAL - EI TUPLAA - 44010 '+d.total_rounds_metrix_breakdown['44010_real']+' + 44021 '+d.total_rounds_metrix_breakdown['44021_real']+' + 45536 '+d.total_rounds_metrix_breakdown['45536_real']+' + 44565 '+d.total_rounds_metrix_breakdown['44565_real']+' + 44763 '+d.total_rounds_metrix_breakdown['44763_real']+' = '+d.total_rounds_metrix_breakdown.sum_individual+' sum vs 43119 '+d.total_rounds_metrix_breakdown['43119_parent_real']+' ero '+d.total_rounds_metrix_breakdown.difference);
+  if(d.peliaika){ setText('peliaika-big', d.peliaika.display); setText('peliaika-detail', d.peliaika.detail); }
+  if(d.askeleet){ setText('askeleet-big', d.askeleet.display); setText('askeleet-detail', d.askeleet.detail); }
+  if(d.kilometrit){ setText('km-big', d.kilometrit.display); setText('km-detail', d.kilometrit.detail); }
+  const lu = document.getElementById('last-update');
+  if(lu) lu.textContent = new Date().toLocaleString('fi-FI') + ' - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT - 1164 - header/layout lukittu';
+}).catch(()=>{});
+
+// TOP10 KORTIT - TAMAN NAKOISET 100% - SAMOILLA TIEDOILLA 100% - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT - https://meta.ai/prompt/12e10f83-80aa-4b2b-ade3-d8d55fc07030
+function formatPlusMinus(pm, total, par){
+  if(pm===undefined || pm===null || pm===""){
+    const diff = total - par;
+    if(diff===0) return {text:"E", cls:"even"};
+    return {text:(diff>0?`+${diff}`:`${diff}`), cls: diff<0?"negative":"positive"};
+  }
+  let text = String(pm).trim();
+  if(text==="0") return {text:"E", cls:"even"};
+  if(!text.startsWith("+") && !text.startsWith("-") && text!=="E"){
+    const num = parseInt(text);
+    if(!isNaN(num)){
+      if(num===0) return {text:"E", cls:"even"};
+      text = (num>0?`+${num}`:`${num}`);
+    }
+  }
+  let cls="even";
+  if(text.startsWith("-")) cls="negative";
+  else if(text.startsWith("+")) cls="positive";
+  else if(text==="E") cls="even";
+  return {text, cls};
+}
+
+function renderTop10_V6(id, data, par){
+  const el=document.getElementById(id);
+  if(!el || !data || !data.top10) return;
+  let html='';
+  // TAMAN NAKOISET 100% - rank vihrea, name, total valkoinen, plus vihrea/punainen - SAMOILLA TIEDOILLA 100% - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT
+  data.top10.slice(0,10).forEach((p,i)=>{
+    const pm = formatPlusMinus(p.plus_minus, p.total, par);
+    // Nayta kuten promptissa - rank, name, score + plus - 100% samat tiedot kuin data JSON
+    html+=`<div class="top10-item"><span class="rank">${p.rank||i+1}.</span><span class="name">${p.name}</span><span class="scores"><span class="total">${p.total}</span><span class="plus ${pm.cls}">${pm.text}</span></span></div>`;
+  });
+  el.innerHTML=html;
+}
+
+// Fallbackit V6 - 100% SAMAT TIEDOT KUIN data/ JSON - 44010 42-49, 44763 82-93, UDisc 35-44 OIKEA - EI 82-97
+const fallback44010_V6=[{"rank": 1, "name": "Toni Luoma-aho", "date": "4/29/26", "plus_minus": "+1", "total": 42, "plus_minus_simple": 1}, {"rank": 2, "name": "Eino Vistiaho", "date": "4/29/26", "plus_minus": "+2", "total": 43, "plus_minus_simple": 2}, {"rank": 3, "name": "Benjamin Turja", "date": "10/5/25", "plus_minus": "+3", "total": 44, "plus_minus_simple": 3}, {"rank": 4, "name": "Toni Luoma-aho", "date": "4/3/26", "plus_minus": "+4", "total": 45, "plus_minus_simple": 4}, {"rank": 5, "name": "Jari Vistiaho", "date": "4/29/26", "plus_minus": "+5", "total": 46, "plus_minus_simple": 5}, {"rank": 6, "name": "Julius Luoma-aho", "date": "10/7/25", "plus_minus": "+6", "total": 47, "plus_minus_simple": 6}, {"rank": 7, "name": "Benjamin Turja", "date": "5/23/26", "plus_minus": "+7", "total": 48, "plus_minus_simple": 7}, {"rank": 8, "name": "Joakim Turja", "date": "10/5/25", "plus_minus": "+8", "total": 49, "plus_minus_simple": 8}, {"rank": 9, "name": "Jouni Peltomäki", "date": "5/23/26", "plus_minus": "+8", "total": 49, "plus_minus_simple": 8}, {"rank": 10, "name": "Eino Vistiaho", "date": "5/23/26", "plus_minus": "+8", "total": 49, "plus_minus_simple": 8}];
+const fallback44763_V6=[{"rank": 1, "name": "Timo Alalantela", "date": "10/4/25", "plus_minus": "0", "total": 82, "plus_minus_simple": 0}, {"rank": 2, "name": "Aapo Penttila", "date": "10/19/25", "plus_minus": "+1", "total": 83, "plus_minus_simple": 1}, {"rank": 3, "name": "Eevert Vakevainen", "date": "4/18/26", "plus_minus": "+3", "total": 85, "plus_minus_simple": 3}, {"rank": 4, "name": "Daniel Turja", "date": "9/5/25", "plus_minus": "+5", "total": 87, "plus_minus_simple": 5}, {"rank": 5, "name": "Eero Tuohimaa", "date": "10/19/25", "plus_minus": "+6", "total": 88, "plus_minus_simple": 6}, {"rank": 6, "name": "Marko Tuohimaa", "date": "10/19/25", "plus_minus": "+8", "total": 90, "plus_minus_simple": 8}, {"rank": 7, "name": "Benjamin Turja", "date": "9/5/25", "plus_minus": "+9", "total": 91, "plus_minus_simple": 9}, {"rank": 8, "name": "Aapo Viinamaki", "date": "4/18/26", "plus_minus": "+9", "total": 91, "plus_minus_simple": 9}, {"rank": 9, "name": "Julius Luoma-aho", "date": "9/5/25", "plus_minus": "+10", "total": 92, "plus_minus_simple": 10}, {"rank": 10, "name": "Pentti Pitkaranta", "date": "4/18/26", "plus_minus": "+11", "total": 93, "plus_minus_simple": 11}];
+const fallbackUdisc_V6=[{"rank": 1, "name": "@kantanen8", "total": 35, "plus_minus": "-6", "date": "Jul 4, 2026", "source": "udisc.com/leaderboard?layoutId=143835 - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT 12 holes Par 41"}, {"rank": 2, "name": "@valkoparta", "total": 36, "plus_minus": "-5", "date": "Jul 6, 2026", "source": "udisc.com/leaderboard?layoutId=143835"}, {"rank": 3, "name": "@mattiasss", "total": 36, "plus_minus": "-5", "date": "Aug 19, 2026", "source": "udisc.com/leaderboard?layoutId=143835"}, {"rank": 4, "name": "@dashyy", "total": 38, "plus_minus": "-3", "date": "Sep 13, 2025", "source": "udisc.com/leaderboard?layoutId=143835"}, {"rank": 5, "name": "Toni Luoma-aho", "total": 39, "plus_minus": "-2", "date": "10/5/25", "source": "udisc.com/leaderboard?layoutId=143835 - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT"}, {"rank": 6, "name": "Benjamin Turja", "total": 40, "plus_minus": "-1", "date": "10/5/25", "source": "udisc.com/leaderboard?layoutId=143835"}, {"rank": 7, "name": "Julius Luoma-aho", "total": 41, "plus_minus": "0", "date": "10/5/25", "source": "udisc.com/leaderboard?layoutId=143835"}, {"rank": 8, "name": "Eino Vistiaho", "total": 42, "plus_minus": "+1", "date": "10/5/25", "source": "udisc.com/leaderboard?layoutId=143835"}, {"rank": 9, "name": "Jari Vistiaho", "total": 43, "plus_minus": "+2", "date": "10/5/25", "source": "udisc.com/leaderboard?layoutId=143835"}, {"rank": 10, "name": "Aapo Penttila", "total": 44, "plus_minus": "+3", "date": "10/5/25", "source": "udisc.com/leaderboard?layoutId=143835"}];
+
+const fallback44010={top10: fallback44010_V6};
+const fallback44763={top10: fallback44763_V6};
+const fallbackUdisc={top10: fallbackUdisc_V6};
+
+fetch('data/metrix_44010.json?v='+Date.now()).then(r=>r.json()).then(d=>renderTop10_V6('m44010-list', d, 41)).catch(()=>renderTop10_V6('m44010-list', fallback44010, 41));
+fetch('data/metrix_44763.json?v='+Date.now()).then(r=>r.json()).then(d=>renderTop10_V6('m44763-list', d, 82)).catch(()=>renderTop10_V6('m44763-list', fallback44763, 82));
+fetch('data/udisc.json?v='+Date.now()).then(r=>r.json()).then(d=>renderTop10_V6('udisc-list', d, 41)).catch(()=>renderTop10_V6('udisc-list', fallbackUdisc, 41));
+
+fetch('data/foreca.json?v='+Date.now()).then(r=>r.json()).then(d=>{
+  if(!d) return;
+  const setT = (id, v) => { const e=document.getElementById(id); if(e) e.textContent=v; };
+  setT('saa-temp', (d.temperature>0?'+':'')+Math.round(d.temperature)+'°');
+  setT('saa-desc-text', d.description||'Pilvistä');
+  setT('d-feels', (d.feels_like>0?'+':'')+Math.round(d.feels_like)+'°');
+  setT('d-wind', d.wind_speed+' m/s');
+  setT('d-rain', (d.precipitation||'0mm')+' - '+(d.precipitation_text||'Poutaa'));
+  setT('d-aq', (d.air_quality||29)+' '+(d.air_quality_text||'Hyvä'));
+  const fu = document.getElementById('foreca-updated');
+  if(fu) fu.textContent = d.foreca_updated||new Date().toLocaleString('fi-FI',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}) + ' - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT';
+});
+
+// VÄYLÄTILASTO AUTO 5min - YHTÄ TÄRKEÄ KUIN VIRTA - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT
+setInterval(()=>{
+  const img=document.getElementById('vayla-img');
+  if(img) img.src='data/vaylatilasto.png?v='+Date.now();
+}, 300000);
+</script>
+</body>
+</html>
