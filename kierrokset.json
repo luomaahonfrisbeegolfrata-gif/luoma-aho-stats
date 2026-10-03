@@ -1,0 +1,131 @@
+{
+  "version": "V6 - FINAL - kaikki 6 graafia - toimii index.käytössä.html",
+  "total_rounds": 1164,
+  "total_rounds_metrix": 729,
+  "total_rounds_metrix_parent": 729,
+  "total_rounds_metrix_breakdown_sum": 767,
+  "total_rounds_metrix_sum": 767,
+  "total_rounds_metrix_breakdown": {
+    "44010_real": 598,
+    "44021_real": 45,
+    "45536_real": 5,
+    "44565_real": 56,
+    "44763_real": 63,
+    "sum_individual": 767,
+    "43119_parent_real": 729,
+    "authoritative": 729,
+    "difference": 38,
+    "difference_percent": 5.2,
+    "validation": "767 sum vs 729 parent = 38 ero 5.2% - EI TUPLAA - V6"
+  },
+  "total_rounds_udisc": 435,
+  "total_rounds_udisc_real": 435,
+  "total_rounds_sum_all": 1202,
+  "unique_players": 132,
+  "unique_players_metrix": 65,
+  "unique_players_udisc": 67,
+  "metrix_details": [
+    {
+      "url": "https://discgolfmetrix.com/course/43119",
+      "course": "43119 PÄÄRATA",
+      "results_real": 729,
+      "harjoitus": 596,
+      "kilpailu": 133,
+      "unique_real": 65,
+      "note": "PÄÄRATA REAL 729 AUTHORITATIVE - V6"
+    },
+    {
+      "url": "https://discgolfmetrix.com/course/44010",
+      "course": "44010",
+      "results_real": 598,
+      "harjoitus": 551,
+      "kilpailu": 47,
+      "unique_real": 45,
+      "note": "REAL 598 (551H+47K) Jul25-Oct26 V6"
+    },
+    {
+      "url": "https://discgolfmetrix.com/course/44763",
+      "course": "44763",
+      "results_real": 63,
+      "harjoitus": 15,
+      "kilpailu": 48,
+      "unique_real": 25,
+      "note": "REAL 63 naytavat (15H+48K) V6 - kuva.png 31 Mar 11"
+    },
+    {
+      "url": "https://discgolfmetrix.com/course/44565",
+      "course": "44565",
+      "results_real": 56,
+      "unique_real": 15,
+      "note": "REAL 56 (18H+38K) V6"
+    },
+    {
+      "url": "https://discgolfmetrix.com/course/44021",
+      "course": "44021",
+      "results_real": 45,
+      "unique_real": 12,
+      "note": "REAL 45 (42H+3K) V6"
+    },
+    {
+      "url": "https://discgolfmetrix.com/course/45536",
+      "course": "45536",
+      "results_real": 5,
+      "unique_real": 3,
+      "note": "REAL 5 (5H+0K) V6"
+    }
+  ],
+  "udisc_real_stats": {
+    "pelattujen_kierrosten_maara": 435,
+    "virkistystunnit": 613,
+    "ainutlaatuiset_pelaajat": 67,
+    "otettujen_askelten_maara": 1296732,
+    "tilasto_paivitetty": "3.10.2026 klo 5.02",
+    "layout_id": "143835"
+  },
+  "calculation": "Metrix PÄÄRATA REAL 729 (596H+133K) + UDisc REAL 435 = 1164 FINAL V6 - EI TUPLAA",
+  "peliaika": {
+    "formula": "UDisc REAL 613h + Metrix 729×1.25h = 1524.25h - 1.25h per 12 vaylaa",
+    "total_hours": 1524,
+    "total_hours_exact": 1524.25,
+    "udisc_real_hours": 613,
+    "metrix_hours": 911.25,
+    "detail": "UDisc REAL 613h + Metrix PÄÄRATA REAL 729×1.25h = 1524.25h - V6",
+    "display": "1524h",
+    "calculation": "613 + 729*1.25 = 613+911.25=1524.25h"
+  },
+  "askeleet": {
+    "formula": "UDisc REAL 1 296 732 + Metrix 729×2600",
+    "total_steps": 3192132,
+    "udisc_real_steps": 1296732,
+    "metrix_steps": 1895400,
+    "detail": "UDisc REAL 1296732 + Metrix 729×2600 = 3192132 - V6",
+    "display": "3 192 132",
+    "calculation": "1296732 + 729*2600 = 1296732+1895400=3192132"
+  },
+  "kilometrit": {
+    "formula": "total×2km per kierros",
+    "total_km": 2328,
+    "detail": "1164×2km - radan kiertomatka - V6",
+    "display": "2328 km",
+    "calculation": "1164*2=2328km"
+  },
+  "fetched_at": "2026-10-03T10:59:11.034405",
+  "fetched_at_fi": "03.10.2026 10:59",
+  "source": "auto_update.py V6 - FINAL - kaikki 6 graafia - 44010 598+44021 45+45536 5+44565 56+44763 63=767 sum vs 43119 parent 729 ero 38 - authoritative 729 + UDisc 435 = 1164 - toimii index.kaytossa.html",
+  "parent_logic": {
+    "parent": "https://discgolfmetrix.com/course/43119",
+    "parent_real": 729,
+    "sum_individual": 767,
+    "difference": 38,
+    "difference_percent": 5.2,
+    "rule": "43119 mukana jos uusia layoutteja mutta ei tuplana - V6"
+  },
+  "auto_update": {
+    "enabled": true,
+    "interval": "6h GitHub Actions",
+    "next_update": "auto",
+    "version": "V6 - toimii index.kaytossa.html - vaylatilasto kortti",
+    "github_workflow": ".github/workflows/auto-update.yml",
+    "vaylatilasto": "auto - 5min - V6"
+  }
+}
