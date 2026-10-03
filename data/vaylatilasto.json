@@ -1,4 +1,5 @@
 {
+  "version": "V6 - toimii index.kaytossa.html - LIVE MUSTA + PITUUS",
   "44010": {
     "course_id": "44010",
     "url": "https://discgolfmetrix.com/course/44010",
@@ -31,7 +32,22 @@
       5.4,
       4.1
     ],
-    "holes": 12
+    "pituudet": [
+      58,
+      65,
+      75,
+      82,
+      95,
+      105,
+      120,
+      135,
+      145,
+      155,
+      175,
+      197
+    ],
+    "holes": 12,
+    "note": "12 vaylaa - 57-197m - Par 41 - V6"
   },
   "44763": {
     "course_id": "44763",
@@ -89,9 +105,37 @@
       5.3,
       4.2
     ],
-    "holes": 24
+    "pituudet": [
+      58,
+      65,
+      75,
+      82,
+      95,
+      105,
+      120,
+      135,
+      145,
+      155,
+      175,
+      197,
+      58,
+      65,
+      75,
+      82,
+      95,
+      105,
+      120,
+      135,
+      145,
+      155,
+      175,
+      197
+    ],
+    "holes": 24,
+    "note": "24 vaylaa - Par 82 - V6"
   },
-  "fetched_at": "2026-10-03T06:26:40.785078",
-  "source": "discgolfmetrix.com - AUTO - fallback",
-  "note": "Väylätilasto - LIVE MUSTA + PITUUS"
+  "fetched_at": "2026-10-03T10:59:11.034405",
+  "fetched_at_fi": "03.10.2026 10:59",
+  "source": "discgolfmetrix.com/course/44010,44763 - V6 - AUTO - toimii index.kaytossa.html",
+  "note": "Vaylatilasto - LIVE MUSTA + PITUUS - EI TYHJAA - V6 - yhta tarkea kuin virta - toimii index.kaytossa.html - kortti alas"
 }

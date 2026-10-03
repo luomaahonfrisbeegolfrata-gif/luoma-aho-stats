@@ -1,78 +1,144 @@
 {
-  "course": "METRIX 44763",
+  "version": "V6 - toimii index.kaytossa.html - kuva.png 31 Mar 11",
+  "course": "METRIX 44763 - 24 vaylaa Par 82",
   "url": "https://discgolfmetrix.com/course/44763",
+  "holes": 24,
+  "par": 82,
   "top10": [
     {
       "rank": 1,
       "name": "Timo Alalantela",
-      "date": "10/4/25 13:00",
+      "date": "10/4/25",
       "plus_minus": "0",
-      "total": 82
+      "total": 82,
+      "plus_minus_simple": 0
     },
     {
       "rank": 2,
-      "name": "Aapo Penttilä",
-      "date": "10/19/25 13:00",
+      "name": "Aapo Penttila",
+      "date": "10/19/25",
       "plus_minus": "+1",
-      "total": 83
+      "total": 83,
+      "plus_minus_simple": 1
     },
     {
       "rank": 3,
-      "name": "Eevert Väkeväinen",
-      "date": "4/18/26 13:00",
+      "name": "Eevert Vakevainen",
+      "date": "4/18/26",
       "plus_minus": "+3",
-      "total": 85
+      "total": 85,
+      "plus_minus_simple": 3
     },
     {
       "rank": 4,
       "name": "Daniel Turja",
-      "date": "9/5/25 18:00",
+      "date": "9/5/25",
       "plus_minus": "+5",
-      "total": 87
+      "total": 87,
+      "plus_minus_simple": 5
     },
     {
       "rank": 5,
       "name": "Eero Tuohimaa",
-      "date": "10/19/25 13:00",
+      "date": "10/19/25",
       "plus_minus": "+6",
-      "total": 88
+      "total": 88,
+      "plus_minus_simple": 6
+    },
+    {
+      "rank": 6,
+      "name": "Marko Tuohimaa",
+      "date": "10/19/25",
+      "plus_minus": "+8",
+      "total": 90,
+      "plus_minus_simple": 8
+    },
+    {
+      "rank": 7,
+      "name": "Benjamin Turja",
+      "date": "9/5/25",
+      "plus_minus": "+9",
+      "total": 91,
+      "plus_minus_simple": 9
     },
     {
       "rank": 8,
-      "name": "Marko Tuohimaa",
-      "date": "10/19/25 13:00",
-      "plus_minus": "+8",
-      "total": 90
+      "name": "Aapo Viinamaki",
+      "date": "4/18/26",
+      "plus_minus": "+9",
+      "total": 91,
+      "plus_minus_simple": 9
     },
     {
       "rank": 9,
-      "name": "Benjamin Turja",
-      "date": "9/5/25 18:00",
-      "plus_minus": "+9",
-      "total": 91
-    },
-    {
-      "rank": 9,
-      "name": "Aapo Viinamäki",
-      "date": "4/18/26 13:00",
-      "plus_minus": "+9",
-      "total": 91
-    },
-    {
-      "rank": 11,
       "name": "Julius Luoma-aho",
-      "date": "9/5/25 18:00",
+      "date": "9/5/25",
       "plus_minus": "+10",
-      "total": 92
+      "total": 92,
+      "plus_minus_simple": 10
     },
     {
-      "rank": 11,
-      "name": "Eino Vistiaho",
-      "date": "4/18/26 13:00",
-      "plus_minus": "+10",
-      "total": 92
+      "rank": 10,
+      "name": "Pentti Pitkaranta",
+      "date": "4/18/26",
+      "plus_minus": "+11",
+      "total": 93,
+      "plus_minus_simple": 11
     }
   ],
-  "fetched_at": "2026-10-03T18:27:43.979872",
-  "source": "discgolfmetrix.com/course/44763 Top results - AUTO"
+  "fetched_at": "2026-10-03T10:59:11.034405",
+  "fetched_at_fi": "03.10.2026 10:59",
+  "source": "discgolfmetrix.com/course/44763 - V6 - Top results AUTO - toimii index.kaytossa.html",
+  "real_usage": {
+    "period": "Sep '25 - Sep '26 (13 kk)",
+    "source": "Radan kaytto - kuukausittain graafi 44763 - tooltip 31 Mar 2026 Pelaajia 11 - V6",
+    "harjoituskierrokset": {
+      "Sep25": 1,
+      "Oct25": 8,
+      "Nov25": 7,
+      "Dec25": 6,
+      "Jan26": 5,
+      "Feb26": 4,
+      "Mar26": 3,
+      "Apr26": 2,
+      "May26": 2.3,
+      "Jun26": 2.7,
+      "Jul26": 3,
+      "Aug26": 2.5,
+      "Sep26": 2,
+      "total_visible": 15,
+      "total_interpolated": 48.5
+    },
+    "kilpailukierrokset": {
+      "Sep25": 7,
+      "Oct25": 22,
+      "Nov25": 20,
+      "Dec25": 18,
+      "Jan26": 16,
+      "Feb26": 14,
+      "Mar26": 12,
+      "Apr26": 10,
+      "May26": 9.3,
+      "Jun26": 8.7,
+      "Jul26": 8,
+      "Aug26": 4.5,
+      "Sep26": 1,
+      "total_visible": 48,
+      "total_interpolated": 150.5
+    },
+    "total_kierrokset_visible": 63,
+    "total_kierrokset_interpolated": 199,
+    "total_kierrokset_used": 63,
+    "unique_players_per_month": {
+      "Sep25": 7,
+      "Oct25": 17,
+      "Apr26": 11,
+      "Jul26": 10,
+      "Sep26": 2,
+      "max": 17,
+      "cumulative_estimate": 25,
+      "tooltip_31Mar2026": 11
+    },
+    "note": "Nakyvat pisteet 63 (15H+48K) tasmaa parent 729 ero 38 - kaytetaan 63 REAL - V6"
+  }
 }

@@ -1,0 +1,42 @@
+{
+  "version": "V6 - toimii index.kaytossa.html",
+  "last_update": "2026-10-03T10:59:11.034405",
+  "last_update_fi": "03.10.2026 10:59",
+  "next_update": "6h",
+  "total_rounds": 1164,
+  "metrix_real": 729,
+  "metrix_breakdown": {
+    "44010": 598,
+    "44021": 45,
+    "45536": 5,
+    "44565": 56,
+    "44763": 63,
+    "43119_parent": 729,
+    "sum": 767,
+    "difference": 38
+  },
+  "udisc_real": 435,
+  "udisc_real_stats": {
+    "tunnit": 613,
+    "pelaajat": 67,
+    "askeleet": 1296732
+  },
+  "peliaika_hours": 1524,
+  "peliaika_display": "1524h",
+  "peliaika_formula": "UDisc REAL 613h + Metrix 729×1.25h = 1524.25h",
+  "askeleet_display": "3 192 132",
+  "kilometrit_display": "2328 km",
+  "source": "auto_update.py V6 - toimii index.kaytossa.html - vaylatilasto kortti alas",
+  "graphs_included": 6,
+  "validation": "EI TUPLAA - 43119 parent 729 authoritative - V6",
+  "github_workflow": ".github/workflows/auto-update.yml",
+  "index_html": "index.kaytossa.html - LUKITTU - Vaylatilasto kortti alas AUTO 5min",
+  "vaylatilasto": {
+    "auto": true,
+    "interval": "5min",
+    "files": [
+      "data/vaylatilasto.json",
+      "data/vaylatilasto.png"
+    ]
+  }
+}
