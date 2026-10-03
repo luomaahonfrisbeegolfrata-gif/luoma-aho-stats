@@ -87,7 +87,7 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,sans-serif;padding:0 12p
 
 <div class="grid-top">
 <div class="card ratainfo-card"><div class="card-title">RATAINFO - LIVE <span class="auto">- AUTO</span></div><div class="ratainfo"><div>📍 Jussilantie 290, 62900 Alajärvi</div><div>🌲 12 väylää - Par 41 - 57-197m</div><div>🕒 Avoinna 24/7 - Ilmainen</div><div>📊 <span id="total-rounds">1164</span> kierrosta - <span id="unique-players">132</span> pelaajaa</div><div class="small" id="kierrokset-detail">729 Metrix REAL + 435 UDisc REAL - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT FINAL - EI TUPLAA</div><div class="small" id="last-update"></div></div></div>
-<div class="card combined-card"><div class="split-half"><div class="card-title">HOLE-IN-ONE <span class="auto">- AUTO</span></div><div class="big" id="hio-total">12</div><div class="small">Yhteensä</div></div><div class="split-half"><div class="hio-list"><div class="hio-item vayla-header">Väylä 3</div><div class="hio-item">Toni Luoma-aho - 15.8.2025</div><div class="hio-item vayla-header">Väylä 7</div><div class="hio-item">Benjamin Turja - 20.9.2025</div></div></div></div>
+<div class="card combined-card"><div class="split-half"><div class="card-title">HOLE-IN-ONE <span class="auto">- AUTO - data/holeinone.json</span></div><div class="big" id="hio-total">5</div><div class="small">Yhteensä - V7 OIKEA - Väylä 4×4 + 8×1</div></div><div class="split-half"><div class="hio-list" id="hio-list"><div class="hio-item vayla-header">Väylä 4</div><div class="hio-item">Benjamin Turja</div><div class="hio-item">Julius Luoma-aho</div><div class="hio-item">Juha Luoma-aho</div><div class="hio-item">Aleksi Lassila</div><div class="hio-item vayla-header">Väylä 8</div><div class="hio-item">Pentti Pitkäranta</div></div></div></div>
 <div class="card saa-card"><div class="saa-header"><div class="card-title">SÄÄ LUOMA-AHO <span class="auto">- AUTO - FORECA REAL - open-meteo.com 15min</span></div></div><div class="saa-current"><div class="saa-temp" id="saa-temp">+11°</div><div class="small" id="saa-desc-text">Pilvistä</div></div><div class="saa-details"><div class="row"><span>Tuntuu kuin</span><span id="d-feels">+11°</span></div><div class="row"><span>Tuuli</span><span id="d-wind">2 m/s</span></div><div class="row"><span>Sade</span><span id="d-rain">0mm - Poutaa</span></div><div class="row"><span>Ilmanlaatu</span><span id="d-aq">29 Hyvä</span></div></div><div class="saa-footer"><div class="small" id="foreca-updated"></div></div></div>
 <div class="stacked-right">
 <div class="mini-card"><div class="card-title">PELIAIKA <span class="auto">- AUTO</span></div><div class="big" id="peliaika-big">1524h</div><div class="small" id="peliaika-detail">UDisc REAL 613h + Metrix PÄÄRATA REAL 729×1.25h = 1524.25h - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT</div></div>
@@ -191,6 +191,33 @@ fetch('data/foreca.json?v='+Date.now()).then(r=>r.json()).then(d=>{
   const fu = document.getElementById('foreca-updated');
   if(fu) fu.textContent = d.foreca_updated||new Date().toLocaleString('fi-FI',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}) + ' - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT';
 });
+
+
+// HIO KORTTI - OIKEAT TIEDOT data/holeinone.json - V7 KORJATTU - 5 kpl Väylä 4x4 + 8x1
+const fallbackHIO = [{"hole":4,"player":"Benjamin Turja"},{"hole":4,"player":"Julius Luoma-aho"},{"hole":4,"player":"Juha Luoma-aho"},{"hole":4,"player":"Aleksi Lassila"},{"hole":8,"player":"Pentti Pitkäranta"}];
+function renderHIO(data){
+  const totalEl = document.getElementById('hio-total');
+  const listEl = document.getElementById('hio-list');
+  if(!listEl) return;
+  const arr = Array.isArray(data) ? data : (data.holeinone || data.hio || fallbackHIO);
+  if(totalEl) totalEl.textContent = arr.length;
+  // Group by hole
+  const grouped = {};
+  arr.forEach(item => {
+    const h = item.hole || item.vayla || 0;
+    if(!grouped[h]) grouped[h] = [];
+    grouped[h].push(item.player || item.name || '');
+  });
+  let html = '';
+  Object.keys(grouped).sort((a,b)=>a-b).forEach(hole => {
+    html += `<div class="hio-item vayla-header">Väylä ${hole}</div>`;
+    grouped[hole].forEach(name => {
+      html += `<div class="hio-item">${name}</div>`;
+    });
+  });
+  listEl.innerHTML = html;
+}
+fetch('data/holeinone.json?v='+Date.now()).then(r=>r.json()).then(d=>renderHIO(d)).catch(()=>renderHIO(fallbackHIO));
 
 // VÄYLÄTILASTO AUTO 5min - YHTÄ TÄRKEÄ KUIN VIRTA - V7 - FORECA AUTOMATISOITU REAL - KORJAA VAARAT KAAVAT
 setInterval(()=>{
