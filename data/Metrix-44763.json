@@ -1,7 +1,6 @@
 {
-  "course": "UDISC",
-  "url": "https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/v2/layouts/143835",
-  "course_url": "https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx",
+  "course": "METRIX 44763",
+  "url": "https://discgolfmetrix.com/course/44763",
   "top10": [
     {
       "rank": 1,
@@ -54,26 +53,26 @@
     },
     {
       "rank": 8,
+      "name": "Aapo Viinamäki",
+      "date": "4/18/26",
+      "plus_minus": "+9",
+      "total": 91
+    },
+    {
+      "rank": 9,
       "name": "Julius Luoma-aho",
       "date": "9/5/25",
       "plus_minus": "+10",
       "total": 92
     },
     {
-      "rank": 9,
-      "name": "Toni Luoma-aho",
-      "date": "9/5/25",
-      "plus_minus": "+12",
-      "total": 94
-    },
-    {
       "rank": 10,
-      "name": "Sami Koskela",
+      "name": "Pentti Pitkäranta",
       "date": "4/18/26",
-      "plus_minus": "+15",
-      "total": 97
+      "plus_minus": "+11",
+      "total": 93
     }
   ],
   "fetched_at": "2026-10-03T06:46:47.396854",
-  "source": "udisc.com Top 10 AUTO"
+  "source": "discgolfmetrix.com/course/44763 Top results - AUTO"
 }
