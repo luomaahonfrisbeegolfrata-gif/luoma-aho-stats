@@ -1,203 +1,39 @@
-<!DOCTYPE html>
-<html lang="fi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luoma-aho - Kaikki AUTO</title>
+<!DOCTYPE html><html lang="fi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Luoma-aho FULL AUTO TOP5 SÄÄ</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#070708;color:#e6e6e6;font-family:Inter,sans-serif;padding:0 12px 30px}
-.header{display:flex;justify-content:space-between;align-items:center;padding:16px 14px;background:#040404;border-bottom:1px solid #1e1e1e;position:sticky;top:0;z-index:20;flex-wrap:wrap;gap:12px}
-.header-left{display:flex;align-items:center;gap:14px}
-.header-left img{height:52px;width:52px;object-fit:cover;border-radius:8px;background:#111}
-.header-left h1{font-size:19px}
-.live{color:#1aff1a;font-size:13px;font-weight:800;margin-left:8px}
-.header-right{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.header-right a{display:block;line-height:0;border-radius:10px;overflow:hidden}
-.header-right img.logo-square{width:52px;height:52px;min-width:52px;background:#fff;border-radius:10px;padding:0;object-fit:cover;border:1px solid #222;display:block}
-.header-right img.logo-rect{width:96px;height:52px;min-width:96px;background:#fff;border-radius:10px;padding:0;object-fit:cover;border:1px solid #222;display:block}
-.header-right img.logo-rect-wide{width:120px;height:52px;min-width:120px;background:#fff;border-radius:10px;padding:4px 6px;object-fit:contain;border:1px solid #222;display:block}
-.grid-top{display:grid;grid-template-columns:360px 300px 300px 300px 1fr;gap:12px;margin:14px 0;align-items:stretch}
-.grid-middle{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:12px 0;align-items:stretch}
-.card{background:#151516;border:1px solid #262626;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column}
-.card-title{font-size:14px;color:#8a8a8a;text-transform:uppercase;font-weight:800;margin-bottom:8px;text-align:center}
-.card-title .auto{color:#1aff1a}
-.big{font-size:42px;font-weight:900;color:#fff;text-align:center}
-.small{font-size:10px;color:#6e6e6e;margin-top:6px}
-.card.ratainfo-card{width:100%;min-height:380px;height:380px;padding:16px 18px;display:flex;flex-direction:column;justify-content:space-between}
-.ratainfo{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;font-size:14px;line-height:1.55;color:#e0e0e0}
-.card.combined-card{width:100%;min-height:380px;height:380px;padding:0 !important;overflow:hidden;display:flex;flex-direction:column}
-.split-half{padding:18px 12px;flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
-.split-half+.split-half{border-top:1px solid #262626}
-.card.hio-card{width:100%;min-height:380px;height:380px;padding:16px 14px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center}
-.card.hio-card .big{font-size:64px;margin:8px 0}
-.hio-list{flex:1;width:100%;display:flex;flex-direction:column;justify-content:space-evenly;align-items:center}
-.hio-item{font-size:15px;padding:4px 0;color:#e8e8e8}
-.hio-item.vayla-header{font-size:18px;font-weight:900;color:#1aff1a;margin:6px 0 4px 0}
-.card.saa-card{width:100%;min-height:380px;height:380px;padding:0 !important;background:#0f0f10;display:flex;flex-direction:column;justify-content:space-between}
-.saa-header{padding:12px;background:#151516;border-bottom:1px solid #222}
-.saa-current{padding:16px 12px;text-align:center}
-.saa-temp{font-size:42px;font-weight:900;color:#fff}
-.saa-details{flex:1;padding:12px 14px;background:#0a0a0a;display:flex;flex-direction:column;justify-content:space-evenly}
-.saa-details .row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #151515;font-size:13px}
-.saa-footer{padding:8px 12px;background:#151516;text-align:center}
-.stacked-right{width:100%;height:380px;display:flex;flex-direction:column;gap:10px}
-.mini-card{flex:1;background:#151516;border:1px solid #262626;border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;transition:all 0.3s}
-.mini-card .card-title{font-size:11px !important;margin-bottom:4px}
-.mini-card .big{font-size:26px !important}
-.mini-card .small{font-size:9px !important;margin-top:3px}
-.mini-card.updated{border-color:#1aff1a;box-shadow:0 0 8px rgba(26,255,26,0.3)}
-.card.top10-card{min-height:460px;height:auto;padding:0 !important;display:flex;flex-direction:column}
-.top10-header{padding:12px 14px;background:#111113;border-bottom:1px solid #262626;display:flex;justify-content:space-between;align-items:center}
-.top10-list{flex:1;padding:8px 14px;display:flex;flex-direction:column;justify-content:space-evenly;min-height:360px}
-.top10-item{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid #1e1e1e;font-size:14px}
-.top10-item .rank{color:#1aff1a;font-weight:900;min-width:28px}
-.top10-item .name{flex:1;color:#e0e0e0;font-weight:600;margin:0 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.top10-item .score{color:#fff;font-weight:800;min-width:36px;text-align:right}
-.top10-footer{padding:8px 14px;background:#0a0a0a;border-top:1px solid #222;font-size:9px;color:#666;text-align:center}
-#status{font-size:10px;color:#444;text-align:center;padding:8px 0}
-</style>
-</head>
+*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#0a0a0a;color:#e0e0e0}
+.header{display:flex;justify-content:space-between;align-items:center;background:#000;padding:12px 20px;border-bottom:1px solid #222;flex-wrap:wrap;gap:12px}
+.header-left{display:flex;align-items:center;gap:12px}.header-left img{height:50px;width:auto;display:block}
+.header-right{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.header-right img{height:42px !important;width:auto;background:#fff;border-radius:6px;padding:3px;transition:transform .15s}.header-right img:hover{transform:scale(1.08)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:16px;max-width:1400px;margin:0 auto}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 16px 16px;max-width:1400px;margin:0 auto}
+.card{background:#181818;border:1px solid #2a2a2a;border-radius:14px;padding:18px;min-height:160px}
+.card h3{margin:0 0 12px 0;font-size:11px;color:#888;text-transform:uppercase}.card h3 .auto{color:#00ff00}
+.big{font-size:32px;font-weight:900;color:#fff}.small{font-size:11px;color:#999;margin-top:10px}
+.ratainfo-text{color:#e6e6e6 !important;font-size:13px !important;line-height:1.7 !important;font-weight:500 !important}
+.list{list-style:none;padding:0;margin:0;font-size:12px}.list li{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #222}
+.vayla-section{max-width:1400px;margin:0 auto;padding:0}.vayla-card{background:#000;border:0;padding:0;margin:0;overflow:hidden}.vayla-card img{width:100%;display:block;margin:0;padding:0;border:0}
+@media(max-width:900px){.grid,.grid-4{grid-template-columns:1fr}.header-right img{height:36px !important}.header-left img{height:42px}}
+</style></head>
 <body>
-<div class="header">
-<div class="header-left"><a href="https://luomaahonfrisbeegolfrata-gif.github.io/luoma-aho-stats/" target="_blank"><img src="logot/luoma-aho-logo.jpg" alt="logo" style="width:52px;height:52px"></a><h1>Luoma-ahon Frisbeegolfrata <span class="live">● KAIKKI AUTO</span></h1></div>
+<div class="header"><div class="header-left"><a href="/"><img src="./logot/l-a-friba-logo.jpg" alt="logo"></a><span style="font-size:125%;font-weight:800;color:#fff">Luoma-ahon Frisbeegolfrata</span><span style="color:#00ff00;font-size:12px">● LIVE 1s/5min FULL</span></div>
 <div class="header-right">
-<a href="https://www.google.com/maps/place/Luoma-ahon+Frisbeegolfrata/@63.0702706,23.962312,12z/data=!4m6!3m5!1s0x46865900600c87c7:0x6f9c5d3c90dc9137!8m2!3d63.0771721!4d23.8694429!16s%2Fg%2F11xn7dnjdt?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D" target="_blank"><img src="logot/gmaps-logo.jpg" alt="GMaps" class="logo-square"></a>
-<a href="https://discgolfmetrix.com/course/44010" target="_blank"><img src="logot/metrix-logo.png" alt="Metrix" class="logo-rect"></a>
-<a href="https://photos.app.goo.gl/Gx2C37vA7qXPPK828" target="_blank"><img src="logot/parkdly-logo.png" alt="Väylä" class="logo-rect"></a>
-<a href="https://photos.app.goo.gl/48KFNnS4dTv8vazD7" target="_blank"><img src="logot/loytokiekot-logo.png" alt="Löytö" class="logo-rect-wide"></a>
-<a href="https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx" target="_blank"><img src="logot/udisc-logo.png" alt="UDisc" class="logo-square"></a>
-<a href="https://frisbeegolfradat.fi/rata/luoma-ahon-frisbeegolfrata/" target="_blank"><img src="logot/fgr-logo.png" alt="FGR" class="logo-square"></a>
-<a href="https://luomaahonfrisbeegolfrata-gif.github.io/ratamestari-palvelu/" target="_blank"><img src="logot/ratamestari-logo.png" alt="Ratamestari" class="logo-square"></a>
+<a href="https://www.google.com/maps/place/Luoma-ahon+Frisbeegolfrata/@63.0901676,23.8860139,12z"><img src="./logot/gmaps-logo.jpg"></a>
+<a href="https://discgolfmetrix.com/course/44010"><img src="./logot/metrix-logo.png"></a>
+<a href="https://photos.google.com/share/AF1QipPwBhzcZ3Nf0BEpLICSkhQSFIuTA1VO3i1W_u0l_4oY_ZfytXxa21wqxIx4RqRepA"><img src="./logot/parkdly-logo.png"></a>
+<a href="https://photos.google.com/share/AF1QipNfClPGrg-CMqrUn9w9qeso7oFvZzjTO-kmUuy3NWf9o06lgy1TohSBSykLkaW-vw"><img src="./logot/loytokiekot-logo.png"></a>
+<a href="https://youtu.be/ewQ-m-BU6SI"><img src="./logot/yt-logo.png"></a>
+<a href="https://www.instagram.com/62830_frisbeegolfrata"><img src="./logot/ig-logo.png"></a>
+<a href="https://frisbeegolfradat.fi/rata/luoma-ahon-frisbeegolfrata/"><img src="./logot/fgr-logo.png"></a>
+<a href="https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx"><img src="./logot/udisc-logo.png"></a>
+<a href="https://luomaahonfrisbeegolfrata-gif.github.io/ratamestari-palvelu/"><img src="./logot/ratamestari-logo.png"></a>
+</div></div>
+<div class="grid">
+<div class="card"><h3>RATAINFO</h3><div class="small ratainfo-text">Kalliopohjaisessa mäkisessä mäntymetsä maastossa<br>Tekninen / vaativa mutta helposti lähestyttävä<br>Pienellä alueella jossa olemattomat siirtymät<br>Loistava kunto metsäradaksi<br>Väylien pituudet 57-197m<br>OB:t ja Mandot haastavat päätöksentekoa<br>Tekniikka, kiekko kontrolli ja heittovalinnat avainasemassa onnistumiseen</div></div>
+<div class="card"><h3>UDISC & METRIX TULOSKIERROKSET <span class="auto">- AUTO 1s/5MIN</span></h3><div class="big" id="live-kierrokset">1130</div><div class="small">UDisc 428 + Metrix 43119 702 = 1130 OIKEIN</div></div>
+<div class="card"><h3>UNIIKIT PELAAJAT <span class="auto">- AUTO</span></h3><div class="big" id="live-pelaajat">100</div><div class="small">UDisc 67 + Metrix ~60 - päällekkäisyydet ~100</div></div>
 </div>
-</div>
-
-<div id="status">KIERROKSET + PELIAIKA + ASKELEET + KILOMETRIT AUTO - 15min välein | Päivitetty: <span id="last-update">--</span></div>
-
-<div class="grid-top">
-<div class="card ratainfo-card"><div class="card-title">RATAINFO</div><div class="ratainfo"><p>Kalliopohjaisessa mäkisessä mäntymetsä maastossa sijaitseva tekninen ja vaativa mutta helposti lähestyttävä frisbeegolfrata.</p><p>Pienellä alueella jossa olemattomat siirtymät väylien välillä. Loistava kunto metsäradaksi.</p><p>Väylien pituudet 57-197m. OB:t ja Mandot haastavat päätöksentekoa.</p><p>Tekniikka ja kiekkokontrolli avainasemassa.</p></div></div>
-
-<div class="card combined-card">
-<div class="split-half">
-<div class="card-title">UDISC & METRIX KIERROKSET <span class="auto">- AUTO</span></div>
-<div class="big" id="total-rounds">1130</div>
-<div class="small" id="kierrokset-detail">58 Metrix auto + 1072 UDisc arvio</div>
-</div>
-<div class="split-half">
-<div class="card-title">UNIIKIT PELAAJAT <span class="auto">- AUTO</span></div>
-<div class="big" id="unique-players">100</div>
-<div class="small" id="unique-detail">Metrix 25 auto + UDisc 75 arvio</div>
-</div>
-</div>
-
-<div class="card hio-card"><div class="card-title">HOLE IN ONE <span class="auto">- AUTO</span></div><div class="big" id="hio-total">5</div><div class="hio-list" id="hio-list"><div class="hio-item vayla-header">Väylä 4</div><div class="hio-item">Benjamin Turja</div><div class="hio-item">Julius Luoma-aho</div><div class="hio-item">Juha Luoma-aho</div><div class="hio-item">Aleksi Lassila</div><div class="hio-item vayla-header">Väylä 8</div><div class="hio-item">Pentti Pitkäranta</div></div></div>
-
-<div class="card saa-card"><div class="saa-header"><div class="card-title">SÄÄ - LUOMA-AHO - FORECA REAL</div></div><div class="saa-current"><div class="saa-temp" id="saa-temp">+11°</div><div class="saa-desc"><span id="saa-icon">☁️</span><span id="saa-desc-text">Pilvistä</span></div></div><div class="saa-details" id="saa-details"><div class="row"><span>Tuntuu kuin</span><span id="d-feels">+11°</span></div><div class="row"><span>Tuuli</span><span id="d-wind">2 m/s</span></div><div class="row"><span>Sade</span><span id="d-rain">0mm - Poutaa</span></div><div class="row"><span>Ilmanlaatu</span><span id="d-aq">29 Hyvä</span></div></div><div class="saa-footer"><a href="https://www.foreca.fi/Finland/Alajarvi/Luoma-aho" target="_blank">foreca.fi</a></div></div>
-
-<div class="stacked-right">
-<div class="mini-card" id="card-peliaika">
-<div class="card-title">PELIAIKA <span class="auto">- AUTO</span></div>
-<div class="big" id="peliaika-big">1481h</div>
-<div class="small" id="peliaika-detail">UDisc 603h + 702×1.25h</div>
-</div>
-<div class="mini-card" id="card-askeleet">
-<div class="card-title">ASKELMÄÄRÄ <span class="auto">- AUTO</span></div>
-<div class="big" id="askeleet-big">3,100,890</div>
-<div class="small" id="askeleet-detail">UDisc 1,275,690 + 702×2600</div>
-</div>
-<div class="mini-card" id="card-kilometrit">
-<div class="card-title">KILOMETRIT <span class="auto">- AUTO</span></div>
-<div class="big" id="km-big">2260 km</div>
-<div class="small" id="km-detail">1130×2km</div>
-</div>
-</div>
-</div>
-
-<div class="grid-middle">
-<div class="card top10-card"><div class="top10-header"><h3>METRIX 44010 Top 10 - AUTO</h3><a href="https://discgolfmetrix.com/course/44010" target="_blank">44010 ↗</a></div><div class="top10-list" id="m44010-list"></div><div class="top10-footer">discgolfmetrix.com/course/44010 - 15min</div></div>
-<div class="card top10-card"><div class="top10-header"><h3>METRIX 44763 Top 10 - AUTO</h3><a href="https://discgolfmetrix.com/course/44763" target="_blank">44763 ↗</a></div><div class="top10-list" id="m44763-list"></div><div class="top10-footer">discgolfmetrix.com/course/44763 - 15min</div></div>
-<div class="card top10-card"><div class="top10-header"><h3>UDISC Top 10 - AUTO</h3><a href="https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/v2/layouts/143835" target="_blank">UDisc ↗</a></div><div class="top10-list" id="udisc-list"></div><div class="top10-footer">udisc.com - 15min</div></div>
-</div>
-
-<script>
-// KAIKKI AUTO - kierrokset + peliaika + askeleet + kilometrit päivittyy samalla
-function animateUpdate(elementId){
-  const el = document.getElementById(elementId);
-  if(el){
-    el.classList.add('updated');
-    setTimeout(()=>el.classList.remove('updated'), 1000);
-  }
-}
-
-fetch('data/kierrokset.json?v='+Date.now()).then(r=>r.json()).then(d=>{
-  if(!d) return;
-  // KIERROKSET
-  document.getElementById('total-rounds').textContent = d.total_rounds;
-  document.getElementById('unique-players').textContent = d.unique_players;
-  document.getElementById('kierrokset-detail').textContent = `${d.total_rounds_metrix} Metrix auto + ${d.total_rounds_udisc} UDisc arvio`;
-  document.getElementById('unique-detail').textContent = `Metrix ${d.unique_players_metrix} auto + UDisc ${d.unique_players_udisc_estimate} arvio`;
-  
-  // PELIAIKA AUTO - samalla päivittyy
-  if(d.peliaika){
-    document.getElementById('peliaika-big').textContent = d.peliaika.display;
-    document.getElementById('peliaika-detail').textContent = d.peliaika.detail;
-    animateUpdate('card-peliaika');
-  } else {
-    // fallback laskenta
-    const hours = Math.round(d.total_rounds * 1.25);
-    document.getElementById('peliaika-big').textContent = hours + 'h';
-    document.getElementById('peliaika-detail').textContent = `UDisc 603h + ${d.total_rounds_udisc}×1.25h`;
-    animateUpdate('card-peliaika');
-  }
-  
-  // ASKELMÄÄRÄ AUTO - samalla päivittyy
-  if(d.askeleet){
-    document.getElementById('askeleet-big').textContent = d.askeleet.display;
-    document.getElementById('askeleet-detail').textContent = d.askeleet.detail;
-    animateUpdate('card-askeleet');
-  } else {
-    const steps = 1275690 + d.total_rounds_udisc * 2600;
-    document.getElementById('askeleet-big').textContent = steps.toLocaleString('fi-FI');
-    document.getElementById('askeleet-detail').textContent = `UDisc 1,275,690 + ${d.total_rounds_udisc}×2600`;
-    animateUpdate('card-askeleet');
-  }
-  
-  // KILOMETRIT AUTO - samalla päivittyy
-  if(d.kilometrit){
-    document.getElementById('km-big').textContent = d.kilometrit.display;
-    document.getElementById('km-detail').textContent = d.kilometrit.detail;
-    animateUpdate('card-kilometrit');
-  } else {
-    document.getElementById('km-big').textContent = (d.total_rounds * 2) + ' km';
-    document.getElementById('km-detail').textContent = `${d.total_rounds}×2km`;
-    animateUpdate('card-kilometrit');
-  }
-  
-  document.getElementById('last-update').textContent = new Date().toLocaleString('fi-FI');
-}).catch(e=>{
-  console.log('kierrokset.json ei löydy, käytetään fallback');
-  document.getElementById('last-update').textContent = new Date().toLocaleString('fi-FI');
-});
-
-function renderTop10(id, data){
-  const el=document.getElementById(id);
-  if(!el || !data || !data.top10) return;
-  let html='';
-  data.top10.forEach((p,i)=>{html+=`<div class="top10-item"><span class="rank">${p.rank||i+1}.</span><span class="name">${p.name}</span><span class="score">${p.total}</span></div>`;});
-  el.innerHTML=html;
-}
-fetch('data/metrix_44010.json?v='+Date.now()).then(r=>r.json()).then(d=>renderTop10('m44010-list', d)).catch(()=>{renderTop10('m44010-list',{top10:[{rank:1,name:"Toni Luoma-aho",total:42},{rank:2,name:"Eino Vistiaho",total:43},{rank:3,name:"Benjamin Turja",total:44}]})});
-fetch('data/metrix_44763.json?v='+Date.now()).then(r=>r.json()).then(d=>renderTop10('m44763-list', d)).catch(()=>{renderTop10('m44763-list',{top10:[{rank:1,name:"Timo Alalantela",total:82},{rank:2,name:"Aapo Penttilä",total:83},{rank:3,name:"Eevert Väkeväinen",total:85}]})});
-fetch('data/udisc.json?v='+Date.now()).then(r=>r.json()).then(d=>renderTop10('udisc-list', d)).catch(()=>{renderTop10('udisc-list',{top10:[{rank:1,name:"Timo Alalantela",total:82},{rank:2,name:"Aapo Penttilä",total:83}]})});
-fetch('data/foreca.json?v='+Date.now()).then(r=>r.json()).then(d=>{
-  if(!d) return;
-  document.getElementById('saa-temp').textContent = (d.temperature>0?'+':'')+Math.round(d.temperature)+'°';
-  document.getElementById('saa-desc-text').textContent = d.description||'Pilvistä';
-  document.getElementById('d-feels').textContent = (d.feels_like>0?'+':'')+Math.round(d.feels_like)+'°';
-  document.getElementById('d-wind').textContent = d.wind_speed+' m/s';
-  document.getElementById('d-rain').textContent = (d.precipitation||'0mm')+' - '+(d.precipitation_text||'Poutaa');
-  document.getElementById('d-aq').textContent = (d.air_quality||29)+' '+(d.air_quality_text||'Hyvä');
-});
-</script>
-</body>
-</html>
+<div class="grid"><div class="card"><h3>PELIAIKA <span class="auto">- AUTO</span></h3><div class="big" id="live-aika">1481h</div><div class="small">UDisc 603h + 702×1.25h</div></div><div class="card"><h3>ASKELMÄÄRÄ <span class="auto">- AUTO</span></h3><div class="big" id="live-askeleet">3,100,890</div><div class="small">UDisc 1,275,690 + 702×2600</div></div><div class="card"><h3>KILOMETRIT <span class="auto">- AUTO</span></h3><div class="big" id="live-km">2260 km</div><div class="small">1130×2km</div></div></div>
+<div class="grid-4"><div class="card"><h3>METRIX 44010 <span class="auto">- AUTO 1s/5MIN</span></h3><ul class="list" id="top5-44010"><li>Ladataan...</li></ul></div><div class="card"><h3>METRIX 44763 <span class="auto">- AUTO</span></h3><ul class="list" id="top5-44763"><li>Ladataan...</li></ul></div><div class="card"><h3>UDISC <span class="auto">- AUTO</span></h3><ul class="list" id="top5-udisc"><li>Ladataan...</li></ul></div><div class="card"><h3>SÄÄ <span class="auto">- AUTO</span></h3><div id="saa-content"><div class="big">12°C</div><div class="small">Ladataan...</div></div></div></div>
+<div class="vayla-section"><div class="vayla-card"><div style="display:flex;justify-content:space-between;align-items:center;padding:6px 10px;background:#000"><h3 style="margin:0;color:#888;font-size:11px">VÄYLÄTILASTO - LIVE MUSTA + PITUUS - EI TYHJÄÄ <span class="auto" style="color:#00ff00">- AUTO 1s/5MIN</span></h3><span style="background:#00ff00;color:#000;padding:2px 8px;border-radius:12px;font-size:10px;font-weight:800">● LIVE</span></div><div id="vayla-live-meta" style="font-size:11px;color:#666;padding:4px 10px;background:#000"></div><img id="vayla-live-img" src="./vaylatilasto.png" alt="Vaylatilasto"></div></div>
+<script src="./js/ratatilasto.js"></script></body></html>
