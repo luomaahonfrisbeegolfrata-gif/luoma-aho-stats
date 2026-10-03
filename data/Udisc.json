@@ -1,77 +1,77 @@
 {
   "course": "UDISC",
-  "url": "https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx#leaderboard",
+  "url": "https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/leaderboard?layoutId=143835&dateRange=all&limit=100",
   "course_url": "https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx",
   "top10": [
     {
       "rank": 1,
-      "name": "Timo Alalantela",
-      "date": "10/4/25",
-      "plus_minus": "0",
-      "total": 82
+      "name": "@kantanen8",
+      "date": "7/4/25",
+      "plus_minus": "-6",
+      "total": 35
     },
     {
       "rank": 2,
-      "name": "Aapo Penttilä",
-      "date": "10/19/25",
-      "plus_minus": "+1",
-      "total": 83
+      "name": "@valkoparta",
+      "date": "7/6/25",
+      "plus_minus": "-5",
+      "total": 36
     },
     {
-      "rank": 3,
-      "name": "Eevert Väkeväinen",
-      "date": "4/18/26",
-      "plus_minus": "+3",
-      "total": 85
+      "rank": 2,
+      "name": "@mattiasss",
+      "date": "8/19/26",
+      "plus_minus": "-5",
+      "total": 36
     },
     {
       "rank": 4,
-      "name": "Daniel Turja",
-      "date": "9/5/25",
-      "plus_minus": "+5",
-      "total": 87
+      "name": "@dashyy",
+      "date": "9/13/25",
+      "plus_minus": "-3",
+      "total": 38
     },
     {
-      "rank": 5,
-      "name": "Eero Tuohimaa",
-      "date": "10/19/25",
-      "plus_minus": "+6",
-      "total": 88
+      "rank": 4,
+      "name": "@itkonenjere",
+      "date": "4/29/26",
+      "plus_minus": "-3",
+      "total": 38
     },
     {
       "rank": 6,
-      "name": "Marko Tuohimaa",
-      "date": "10/19/25",
-      "plus_minus": "+8",
-      "total": 90
+      "name": "@peetu7,
+      "date": "7/24/26",
+      "plus_minus": "-2",
+      "total": 39
     },
     {
       "rank": 7,
-      "name": "Benjamin Turja",
-      "date": "9/5/25",
-      "plus_minus": "+9",
-      "total": 91
+      "name": "@taspak",
+      "date": "7/16/26",
+      "plus_minus": "+1",
+      "total": 42
     },
     {
       "rank": 8,
-      "name": "Julius Luoma-aho",
-      "date": "9/5/25",
-      "plus_minus": "+10",
-      "total": 92
+      "name": "@adusti",
+      "date": "7/20/26",
+      "plus_minus": "+2",
+      "total": 43
     },
     {
       "rank": 9,
-      "name": "Toni Luoma-aho",
-      "date": "9/5/25",
-      "plus_minus": "+12",
-      "total": 94
+      "name": "@tommivluoma",
+      "date": "8/8/26",
+      "plus_minus": "+6",
+      "total": 47
     },
     {
       "rank": 10,
-      "name": "Sami Koskela",
-      "date": "4/18/26",
-      "plus_minus": "+15",
-      "total": 97
+      "name": "@attekolis",
+      "date": "9/5/26",
+      "plus_minus": "+7",
+      "total": 48
     }
   ],
   "fetched_at": "2026-10-03T06:46:47.396854",
