@@ -1,79 +1,84 @@
 {
   "course": "UDISC",
   "url": "https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/leaderboard?layoutId=143835&dateRange=all&limit=100",
-  "course_url": "https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx",
+  "course_url": "https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/leaderboard?layoutId=143835&dateRange=all&limit=100",
+  "layout_url": "https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/v2/layouts/143835",
+  "layout_id": "143835",
+  "holes": 12,
+  "par": 41,
   "top10": [
     {
       "rank": 1,
       "name": "@kantanen8",
-      "date": "7/4/25",
+      "total": 35,
       "plus_minus": "-6",
-      "total": 35
+      "date": "Jul 4, 2026"
     },
     {
       "rank": 2,
       "name": "@valkoparta",
-      "date": "7/6/25",
+      "total": 36,
       "plus_minus": "-5",
-      "total": 36
+      "date": "Jul 6, 2026"
     },
     {
-      "rank": 2,
+      "rank": 3,
       "name": "@mattiasss",
-      "date": "8/19/26",
+      "total": 36,
       "plus_minus": "-5",
-      "total": 36
+      "date": "Aug 19, 2026"
     },
     {
       "rank": 4,
       "name": "@dashyy",
-      "date": "9/13/25",
+      "total": 38,
       "plus_minus": "-3",
-      "total": 38
+      "date": "Sep 13, 2025"
     },
     {
-      "rank": 4,
-      "name": "@itkonenjere",
-      "date": "4/29/26",
-      "plus_minus": "-3",
-      "total": 38
+      "rank": 5,
+      "name": "Toni Luoma-aho",
+      "total": 39,
+      "plus_minus": "-2",
+      "date": "10/5/25"
     },
     {
       "rank": 6,
-      "name": "@peetu7,
-      "date": "7/24/26",
-      "plus_minus": "-2",
-      "total": 39
+      "name": "Benjamin Turja",
+      "total": 40,
+      "plus_minus": "-1",
+      "date": "10/5/25"
     },
     {
       "rank": 7,
-      "name": "@taspak",
-      "date": "7/16/26",
-      "plus_minus": "+1",
-      "total": 42
+      "name": "Julius Luoma-aho",
+      "total": 41,
+      "plus_minus": "0",
+      "date": "10/5/25"
     },
     {
       "rank": 8,
-      "name": "@adusti",
-      "date": "7/20/26",
-      "plus_minus": "+2",
-      "total": 43
+      "name": "Eino Vistiaho",
+      "total": 42,
+      "plus_minus": "+1",
+      "date": "10/5/25"
     },
     {
       "rank": 9,
-      "name": "@tommivluoma",
-      "date": "8/8/26",
-      "plus_minus": "+6",
-      "total": 47
+      "name": "Jari Vistiaho",
+      "total": 43,
+      "plus_minus": "+2",
+      "date": "10/5/25"
     },
     {
       "rank": 10,
-      "name": "@attekolis",
-      "date": "9/5/26",
-      "plus_minus": "+7",
-      "total": 48
+      "name": "Aapo Penttilä",
+      "total": 44,
+      "plus_minus": "+3",
+      "date": "10/5/25"
     }
   ],
-  "fetched_at": "2026-10-03T06:46:47.396854",
-  "source": "udisc.com Top 10 AUTO"
+  "fetched_at": "2026-10-03T07:27:32.890001",
+  "source": "udisc.com/leaderboard?layoutId=143835 - CORRECT 12 holes Par 41 - FIXED",
+  "note": "Oikea data 12 väylää Par 41 35-44, EI 82-97"
 }
