@@ -1,0 +1,106 @@
+{
+  "course": "METRIX 43119 PÄÄRATA",
+  "url": "https://discgolfmetrix.com/course/43119",
+  "real_usage": {
+    "course_id": "43119",
+    "url": "https://discgolfmetrix.com/course/43119",
+    "period": "Jun '25 - Oct '26 (16 kk)",
+    "source": "Radan käyttö - kuukausittain graafi 43119 parent - tooltip 30 Apr 2026 Harjoituskierrokset 47",
+    "harjoituskierrokset": 596,
+    "kilpailukierrokset": 133,
+    "total_kierrokset": 729,
+    "unique_players_max_per_month": 31,
+    "unique_players_cumulative_estimate": 65,
+    "breakdown": {
+      "Jun25": {
+        "H": 0,
+        "K": 9,
+        "P": 9
+      },
+      "Jul25": {
+        "H": 10,
+        "K": 0,
+        "P": 3
+      },
+      "Aug25": {
+        "H": 31,
+        "K": 3,
+        "P": 11
+      },
+      "Sep25": {
+        "H": 46,
+        "K": 20,
+        "P": 22
+      },
+      "Oct25": {
+        "H": 73,
+        "K": 36,
+        "P": 31
+      },
+      "Nov25": {
+        "H": 36,
+        "K": 0,
+        "P": 9
+      },
+      "Dec25": {
+        "H": 13,
+        "K": 0,
+        "P": 5
+      },
+      "Jan26": {
+        "H": 5,
+        "K": 0,
+        "P": 2
+      },
+      "Feb26": {
+        "H": 0,
+        "K": 0,
+        "P": 0
+      },
+      "Mar26": {
+        "H": 79,
+        "K": 0,
+        "P": 11
+      },
+      "Apr26": {
+        "H": 91,
+        "K": 35,
+        "P": 24
+      },
+      "May26": {
+        "H": 47,
+        "K": 9,
+        "P": 11
+      },
+      "Jun26": {
+        "H": 70,
+        "K": 5,
+        "P": 14
+      },
+      "Jul26": {
+        "H": 23,
+        "K": 8,
+        "P": 14
+      },
+      "Aug26": {
+        "H": 42,
+        "K": 7,
+        "P": 13
+      },
+      "Sep26": {
+        "H": 28,
+        "K": 1,
+        "P": 10
+      },
+      "Oct26": {
+        "H": 2,
+        "K": 0,
+        "P": 0
+      }
+    },
+    "note": "PÄÄRATA sisältää kaikki 9 layouttia: Väyläopaste 12 Par41 (44010), Pro 12 Par41, 11 väylää lyhyt 22 Par78, 2x AMA10 20 Par72, Talvirata 9 Par30, 2 kierrosta 24 Par76, Testi 12 Par45, 18 special 18 Par60, Väyläopaste 2 kierrosta 24 Par82 (44763) + 44021 + 45536 + 44565",
+    "validation": "Summa yksittäiset 732 (598+45+5+56+28) vs parent 729 = ero 3 (0.4%) – EI TUPLAA, vahvistaa deduplikoinnin"
+  },
+  "fetched_at": "2026-10-03T10:22:36.768737",
+  "source": "graafi 43119 Jun25-Oct26 parent REAL 729"
+}
