@@ -1,10 +1,9 @@
 {
-  "version": "V6 - FINAL - kaikki 6 graafia - toimii index.käytössä.html",
+  "version": "V7 - KORJAA VAARAT KAAVAT - 1164 OIKEA - EI 1130 VAARA - FORECA AUTOMATISOITU",
   "total_rounds": 1164,
   "total_rounds_metrix": 729,
   "total_rounds_metrix_parent": 729,
   "total_rounds_metrix_breakdown_sum": 767,
-  "total_rounds_metrix_sum": 767,
   "total_rounds_metrix_breakdown": {
     "44010_real": 598,
     "44021_real": 45,
@@ -16,7 +15,8 @@
     "authoritative": 729,
     "difference": 38,
     "difference_percent": 5.2,
-    "validation": "767 sum vs 729 parent = 38 ero 5.2% - EI TUPLAA - V6"
+    "validation": "V7 767 sum vs 729 parent = 38 ero 5.2% - EI TUPLAA - OIKEA 729 EI 58 VAARA",
+    "live_site_was_wrong": "Live 58 Metrix + 1072 UDisc = 1130 VAARA - V7 729 + 435 = 1164 OIKEA"
   },
   "total_rounds_udisc": 435,
   "total_rounds_udisc_real": 435,
@@ -24,108 +24,67 @@
   "unique_players": 132,
   "unique_players_metrix": 65,
   "unique_players_udisc": 67,
-  "metrix_details": [
-    {
-      "url": "https://discgolfmetrix.com/course/43119",
-      "course": "43119 PÄÄRATA",
-      "results_real": 729,
-      "harjoitus": 596,
-      "kilpailu": 133,
-      "unique_real": 65,
-      "note": "PÄÄRATA REAL 729 AUTHORITATIVE - V6"
-    },
-    {
-      "url": "https://discgolfmetrix.com/course/44010",
-      "course": "44010",
-      "results_real": 598,
-      "harjoitus": 551,
-      "kilpailu": 47,
-      "unique_real": 45,
-      "note": "REAL 598 (551H+47K) Jul25-Oct26 V6"
-    },
-    {
-      "url": "https://discgolfmetrix.com/course/44763",
-      "course": "44763",
-      "results_real": 63,
-      "harjoitus": 15,
-      "kilpailu": 48,
-      "unique_real": 25,
-      "note": "REAL 63 naytavat (15H+48K) V6 - kuva.png 31 Mar 11"
-    },
-    {
-      "url": "https://discgolfmetrix.com/course/44565",
-      "course": "44565",
-      "results_real": 56,
-      "unique_real": 15,
-      "note": "REAL 56 (18H+38K) V6"
-    },
-    {
-      "url": "https://discgolfmetrix.com/course/44021",
-      "course": "44021",
-      "results_real": 45,
-      "unique_real": 12,
-      "note": "REAL 45 (42H+3K) V6"
-    },
-    {
-      "url": "https://discgolfmetrix.com/course/45536",
-      "course": "45536",
-      "results_real": 5,
-      "unique_real": 3,
-      "note": "REAL 5 (5H+0K) V6"
-    }
-  ],
   "udisc_real_stats": {
     "pelattujen_kierrosten_maara": 435,
     "virkistystunnit": 613,
     "ainutlaatuiset_pelaajat": 67,
     "otettujen_askelten_maara": 1296732,
-    "tilasto_paivitetty": "3.10.2026 klo 5.02",
+    "tilasto_paivitetty": "3.10.2026 V7 KORJATTU - EI 1072 VAARA",
     "layout_id": "143835"
   },
-  "calculation": "Metrix PÄÄRATA REAL 729 (596H+133K) + UDisc REAL 435 = 1164 FINAL V6 - EI TUPLAA",
+  "calculation": "V7 KORJATTU 729 + 435 = 1164 OIKEA - EI 58+1072=1130 VAARA",
   "peliaika": {
-    "formula": "UDisc REAL 613h + Metrix 729×1.25h = 1524.25h - 1.25h per 12 vaylaa",
+    "formula": "V7 KORJATTU 613h + 729*1.25 = 1524.25h OIKEA - EI 603+1072*1.25=1412h VAARA",
+    "formula_was_wrong": "Live 1412h = 603 + 1072*1.25 VAARA",
+    "formula_correct": "V7 1524h = 613 + 729*1.25 OIKEA",
     "total_hours": 1524,
     "total_hours_exact": 1524.25,
     "udisc_real_hours": 613,
     "metrix_hours": 911.25,
-    "detail": "UDisc REAL 613h + Metrix PÄÄRATA REAL 729×1.25h = 1524.25h - V6",
+    "detail": "V7 KORJATTU 613h + 729*1.25 = 1524.25h OIKEA - EI 603+1072*1.25 VAARA",
     "display": "1524h",
-    "calculation": "613 + 729*1.25 = 613+911.25=1524.25h"
+    "calculation": "613 + 729*1.25 = 1524.25h OIKEA"
   },
   "askeleet": {
-    "formula": "UDisc REAL 1 296 732 + Metrix 729×2600",
+    "formula": "V7 KORJATTU 1296732 + 729*2600 = 3192132 OIKEA - EI 1275690+1072*2600=4062890 VAARA",
+    "formula_was_wrong": "Live 4 062 890 = 1 275 690 + 1072*2600 VAARA",
+    "formula_correct": "V7 3 192 132 = 1 296 732 + 729*2600 OIKEA",
     "total_steps": 3192132,
-    "udisc_real_steps": 1296732,
-    "metrix_steps": 1895400,
-    "detail": "UDisc REAL 1296732 + Metrix 729×2600 = 3192132 - V6",
+    "detail": "V7 1296732 + 729*2600 = 3192132 OIKEA",
     "display": "3 192 132",
-    "calculation": "1296732 + 729*2600 = 1296732+1895400=3192132"
+    "calculation": "1296732 + 1895400 = 3192132 OIKEA"
   },
   "kilometrit": {
-    "formula": "total×2km per kierros",
+    "formula": "V7 KORJATTU 1164*2=2328 OIKEA - EI 1130*2=2260 VAARA",
+    "formula_was_wrong": "Live 2260 = 1130*2 VAARA",
+    "formula_correct": "V7 2328 = 1164*2 OIKEA",
     "total_km": 2328,
-    "detail": "1164×2km - radan kiertomatka - V6",
+    "detail": "V7 1164*2 = 2328km OIKEA",
     "display": "2328 km",
-    "calculation": "1164*2=2328km"
+    "calculation": "1164*2=2328 OIKEA"
   },
-  "fetched_at": "2026-10-03T10:59:11.034405",
-  "fetched_at_fi": "03.10.2026 10:59",
-  "source": "auto_update.py V6 - FINAL - kaikki 6 graafia - 44010 598+44021 45+45536 5+44565 56+44763 63=767 sum vs 43119 parent 729 ero 38 - authoritative 729 + UDisc 435 = 1164 - toimii index.kaytossa.html",
-  "parent_logic": {
-    "parent": "https://discgolfmetrix.com/course/43119",
-    "parent_real": 729,
-    "sum_individual": 767,
-    "difference": 38,
-    "difference_percent": 5.2,
-    "rule": "43119 mukana jos uusia layoutteja mutta ei tuplana - V6"
+  "fetched_at": "2026-10-03T11:41:56.654103",
+  "fetched_at_fi": "03.10.2026 11:41",
+  "source": "V7 KORJAA VAARAT KAAVAT - 729+435=1164 OIKEA EI 58+1072=1130 VAARA",
+  "live_site_analysis": {
+    "url": "https://luomaahonfrisbeegolfrata-gif.github.io/luoma-aho-stats/",
+    "live_was": "1130 = 58 Metrix auto + 1072 UDisc arvio VAARA",
+    "correct_is": "1164 = 729 Metrix REAL (6 graafia) + 435 UDisc REAL OIKEA V7",
+    "peliaika_live_was": "1412h = 603h + 1072*1.25h VAARA",
+    "peliaika_correct": "1524h = 613h + 729*1.25h OIKEA V7",
+    "askeleet_live_was": "4 062 890 = 1 275 690 + 1072*2600 VAARA",
+    "askeleet_correct": "3 192 132 = 1 296 732 + 729*2600 OIKEA V7",
+    "km_live_was": "2260 km = 1130*2km VAARA",
+    "km_correct": "2328 km = 1164*2km OIKEA V7",
+    "unique_live_was": "100 = 25 + 75 VAARA",
+    "unique_correct": "132 = 65 + 67 OIKEA V7",
+    "foreca_live_was": "11° Pilvista staattinen VAARA - EI AUTOMATISOITU",
+    "foreca_correct": "REAL open-meteo.com 15min automatisoitu - 6.2° Puolipilvista OIKEA V7"
   },
   "auto_update": {
     "enabled": true,
-    "interval": "6h GitHub Actions",
-    "next_update": "auto",
-    "version": "V6 - toimii index.kaytossa.html - vaylatilasto kortti",
-    "github_workflow": ".github/workflows/auto-update.yml",
-    "vaylatilasto": "auto - 5min - V6"
+    "interval": "6h Metrix/UDisc + 15min Foreca GitHub Actions",
+    "version": "V7 - KORJAA VAARAT KAAVAT + FORECA AUTOMATISOITU REAL",
+    "foreca_automation": "open-meteo.com REAL 15min - korvaa 11° staattinen"
   }
 }
