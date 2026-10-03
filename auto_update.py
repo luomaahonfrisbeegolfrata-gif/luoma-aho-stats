@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-auto_update_v7.py - KORJAA VAARAT LASKUKAAVAT JA AUTOMATIOT - V7
+auto_update.py - KORJAA VAARAT LASKUKAAVAT JA AUTOMATIOT - V7
 Live site nayttaa vaarin:
 - 1130 = 58 Metrix + 1072 UDisc arvio -> OIKEA 1164 = 729 + 435 REAL
 - Peliaika 1412h = 603h + 1072*1.25 -> OIKEA 1524h = 613h + 729*1.25
