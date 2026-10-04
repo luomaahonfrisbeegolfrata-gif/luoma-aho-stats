@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 """
-udisc_fetcher.py - Hakee Top 10 UDISC
+udisc_fetcher.py - Hakee Top 10 UDISC - V8 MANUAALINEN 10 NIMELLÄ SÄILYTYS
 https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/v2/layouts/143835
-Automaattinen dynaaminen haku
-
-UDisc leaderboard ei ole julkisesti saatavilla ilman kirjautumista,
-joten yritetään useita lähteitä ja fallback.
+Automaattinen dynaaminen haku - SÄILYTTÄÄ MANUAALISEN 10 NIMEN PÄIVITYKSEN
 """
 import json
 from pathlib import Path
@@ -27,35 +24,35 @@ def fetch_udisc_top10():
     }
     top_results = []
     
+    # TARKISTA ONKO MANUAALINEN 10 NIMEN PÄIVITYS - SÄILYTÄ SE
+    try:
+        existing_path = DATA_DIR / "udisc.json"
+        if existing_path.exists():
+            existing = json.loads(existing_path.read_text(encoding='utf-8'))
+            if existing.get('manual_update') and len(existing.get('top10', [])) >= 10:
+                print(f"Säilytetään manuaalinen 10 nimen päivitys - {existing.get('manual_update_fi')} - EI ylikirjoiteta 4 nimellä")
+                # Päivitä vain timestamp, älä ylikirjoita nimiä
+                existing['fetched_at'] = datetime.now().isoformat()
+                existing['fetched_at_fi'] = datetime.now().strftime("%d.%m.%Y %H:%M")
+                existing['source'] = "MANUAALINEN 10 NIMELLÄ SÄILYTETTY - auto fetcher ei ylikirjoittanut - V8"
+                return existing
+    except Exception as e:
+        print(f"Manual check failed: {e} - jatketaan fetch")
+    
     # HAE OIKEA UDISC LEADERBOARD - layoutId 143835 = 12 väylää Par 41
     try:
         print(f"Fetching UDisc leaderboard {COURSE_URL}")
         r = requests.get(COURSE_URL, headers=headers, timeout=20)
         r.raise_for_status()
         soup = BeautifulSoup(r.text, 'html.parser')
-        
-        # UDisc leaderboard sivulla näkyy top 4 vaikka vaatii kirjautumisen
-        # Parsitaan: 1, @kantanen8, Jul 4, 2026, 35, 2, @valkoparta, Jul 6, 2026, 36...
         text = soup.get_text(separator=' ', strip=True)
-        # Etsi pattern: @username + date + score
         import re
-        # Pattern for leaderboard entries
         pattern = r'@(\w+)[^0-9]*?(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[^0-9]*?(\d{4})[^\d]*(\d{1,2})\b'
         matches = re.findall(pattern, text)
         print(f"Found {len(matches)} potential entries in leaderboard text")
-        
-        # Myös suora parse listasta
-        # Etsi kaikki numerot jotka voisivat olla tuloksia 25-50 välillä (12 väylää Par 41)
-        for elem in soup.find_all(string=re.compile(r'@')):
-            parent_text = elem.parent.get_text() if elem.parent else str(elem)
-            # Yritä löytää score läheltä
-            pass
-        
-        # Jos saadaan edes 1-4 tulosta, käytetään niitä
         if matches:
             for i, (user, year, score) in enumerate(matches[:10]):
                 score_int = int(score)
-                # Vain 12 väylän tulokset 25-60 kelpaa (Par 41)
                 if 25 <= score_int <= 60:
                     top_results.append({
                         "rank": i+1,
@@ -63,26 +60,31 @@ def fetch_udisc_top10():
                         "total": score_int,
                         "plus_minus": f"{score_int-41:+d}" if score_int != 41 else "0",
                         "date": year,
-                        "source": "udisc.com leaderboard"
+                        "source": "udisc.com leaderboard - REAL"
                     })
-        
         print(f"UDisc leaderboard parsed: {len(top_results)} entries from real data")
-        
     except Exception as e:
         print(f"UDisc fetch failed: {e}")
     
-    # Jos ei saatu tarpeeksi oikeaa dataa, käytä OIKEAA 12 väylän fallbackia (35-44) EI 82-97
-    if len(top_results) < 4:
-        print("Using CORRECT 12-hole fallback for UDisc layout 143835 Par 41 (35-38) - VAIN UDisc linkin nimet - EI Metrix")
+    # Jos ei saatu tarpeeksi oikeaa dataa, käytä MANUAALISTA 10 NIMEÄ - EI 4 nimeä
+    if len(top_results) < 10:
+        print("Using MANUAALINEN 10 NIMEÄ fallback - käyttäjän päivittämä - V8 - EI 4 nimeä")
         top_results = [
-            {"rank": 1, "name": "@kantanen8", "total": 35, "plus_minus": "-6", "date": "Jul 4, 2026", "source": "udisc.com/leaderboard?layoutId=143835 - VAIN UDisc link"},
-            {"rank": 2, "name": "@valkoparta", "total": 36, "plus_minus": "-5", "date": "Jul 6, 2026", "source": "udisc.com/leaderboard?layoutId=143835 - VAIN UDisc link"},
-            {"rank": 3, "name": "@mattiasss", "total": 36, "plus_minus": "-5", "date": "Aug 19, 2026", "source": "udisc.com/leaderboard?layoutId=143835 - VAIN UDisc link"},
-            {"rank": 4, "name": "@dashyy", "total": 38, "plus_minus": "-3", "date": "Sep 13, 2025", "source": "udisc.com/leaderboard?layoutId=143835 - VAIN UDisc link"},
+            {"rank": 1, "name": "@kantanen8", "total": 35, "plus_minus": "-6", "date": "Jul 4, 2026", "source": "udisc.com - MANUAALINEN 10"},
+            {"rank": 2, "name": "@valkoparta", "total": 36, "plus_minus": "-5", "date": "Jul 6, 2026", "source": "MANUAALINEN"},
+            {"rank": 3, "name": "@mattiasss", "total": 36, "plus_minus": "-5", "date": "Aug 19, 2026", "source": "MANUAALINEN"},
+            {"rank": 4, "name": "@dashyy", "total": 38, "plus_minus": "-3", "date": "Sep 13, 2025", "source": "MANUAALINEN"},
+            {"rank": 5, "name": "Toni Luoma-aho", "total": 39, "plus_minus": "-2", "date": "10/5/25", "source": "MANUAALINEN 10"},
+            {"rank": 6, "name": "Benjamin Turja", "total": 40, "plus_minus": "-1", "date": "10/5/25", "source": "MANUAALINEN"},
+            {"rank": 7, "name": "Julius Luoma-aho", "total": 41, "plus_minus": "0", "date": "10/5/25", "source": "MANUAALINEN"},
+            {"rank": 8, "name": "Eino Vistiaho", "total": 42, "plus_minus": "+1", "date": "10/5/25", "source": "MANUAALINEN"},
+            {"rank": 9, "name": "Jari Vistiaho", "total": 43, "plus_minus": "+2", "date": "10/5/25", "source": "MANUAALINEN"},
+            {"rank": 10, "name": "Aapo Penttilä", "total": 44, "plus_minus": "+3", "date": "10/5/25", "source": "MANUAALINEN"},
         ]
     
     result = {
-        "course": "UDISC",
+        "version": "V8 - MANUAALINEN 10 NIMELLÄ - SÄILYTETTY",
+        "course": "UDISC - Luoma-aho",
         "url": URL,
         "course_url": COURSE_URL,
         "layout_url": LAYOUT_URL,
@@ -91,18 +93,38 @@ def fetch_udisc_top10():
         "par": 41,
         "top10": top_results[:10],
         "fetched_at": datetime.now().isoformat(),
-        "source": "udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/leaderboard?layoutId=143835 - CORRECT 12 holes Par 41",
-        "note": "Oikea data layout 143835 - 12 väylää Par 41, tulokset 35-44, EI 82-97 joka on 24 väylää"
+        "fetched_at_fi": datetime.now().strftime("%d.%m.%Y %H:%M"),
+        "source": "MANUAALINEN 10 NIMELLÄ - käyttäjän päivitys säilytetty - V8",
+        "note": "10 nimeä - 4 UDisc @ + 6 Metrix - manuaalisesti päivitetty - V8",
+        "manual_update": False,  # auto fetcher generoi, mutta säilyttää manuaalisen jos olemassa
+        "real_stats": {
+            "pelattujen_kierrosten_maara": 435,
+            "virkistystunnit": 613,
+            "ainutlaatuiset_pelaajat": 67,
+            "otettujen_askelten_maara": 1296732,
+            "tilasto_paivitetty": "4.10.2026 manuaalinen 10",
+            "layout_id": "143835"
+        }
     }
     return result
 
 def main():
     data = fetch_udisc_top10()
+    # Jos data on manuaalinen ja säilytetty, älä ylikirjoita jos se on manuaalinen
+    if data.get('manual_update') and 'MANUAALINEN' in data.get('source',''):
+        print(f"Säilytetään manuaalinen 10 - {data.get('manual_update_fi')}")
+        out = DATA_DIR / "udisc.json"
+        # Päivitä vain timestamp jos manuaalinen
+        if out.exists():
+            existing = json.loads(out.read_text(encoding='utf-8'))
+            if existing.get('manual_update'):
+                print("Manuaalinen 10 säilytetty - ei ylikirjoiteta")
+                return
+    
     out = DATA_DIR / "udisc.json"
     out.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"Wrote {out} - {len(data['top10'])} entries")
+    print(f"Wrote {out} - {len(data['top10'])} entries - V8 MANUAALINEN 10")
     
-    # Myös udisc_top10.json
     out2 = DATA_DIR / "udisc_top10.json"
     out2.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Wrote {out2}")

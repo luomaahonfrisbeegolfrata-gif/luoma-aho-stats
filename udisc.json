@@ -1,0 +1,107 @@
+{
+  "version": "V8 - MANUAALINEN 10 NIMELLÄ - KÄYTTÄJÄN PÄIVITYS - KORJATTU PILKUT",
+  "course": "UDISC - Luoma-aho",
+  "url": "https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx",
+  "course_url": "https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/leaderboard?layoutId=143835&dateRange=all&limit=100",
+  "layout_url": "https://udisc.com/courses/luoma-ahon-frisbeegolfrata-YNEx/v2/layouts/143835",
+  "layout_id": "143835",
+  "holes": 12,
+  "par": 41,
+  "top10": [
+    {
+      "rank": 1,
+      "name": "@kantanen8",
+      "total": 35,
+      "plus_minus": "-6",
+      "date": "Jul 4, 2026",
+      "source": "udisc.com/leaderboard?layoutId=143835 - UDisc link - MANUAALINEN 10"
+    },
+    {
+      "rank": 2,
+      "name": "@valkoparta",
+      "total": 36,
+      "plus_minus": "-5",
+      "date": "Jul 6, 2026",
+      "source": "udisc.com/leaderboard?layoutId=143835 - UDisc link"
+    },
+    {
+      "rank": 3,
+      "name": "@mattiasss",
+      "total": 36,
+      "plus_minus": "-5",
+      "date": "Aug 19, 2026",
+      "source": "udisc.com/leaderboard?layoutId=143835 - UDisc link"
+    },
+    {
+      "rank": 4,
+      "name": "@dashyy",
+      "total": 38,
+      "plus_minus": "-3",
+      "date": "Sep 13, 2025",
+      "source": "udisc.com/leaderboard?layoutId=143835 - UDisc link"
+    },
+    {
+      "rank": 5,
+      "name": "@itkonenjere",
+      "total": 38,
+      "plus_minus": "-3",
+      "date": "Aug 29, 2026",
+      "source": "udisc.com/leaderboard?layoutId=143835 - UDisc link - MANUAALINEN"
+    },
+    {
+      "rank": 6,
+      "name": "@peetu7",
+      "total": 39,
+      "plus_minus": "-2",
+      "date": "Jul 24, 2026",
+      "source": "udisc.com/leaderboard?layoutId=143835 - UDisc link"
+    },
+    {
+      "rank": 7,
+      "name": "@taspak",
+      "total": 42,
+      "plus_minus": "+1",
+      "date": "Jul 16, 2026",
+      "source": "udisc.com/leaderboard?layoutId=143835 - UDisc link"
+    },
+    {
+      "rank": 8,
+      "name": "@adusti",
+      "total": 43,
+      "plus_minus": "+2",
+      "date": "Jul 20, 2026",
+      "source": "udisc.com/leaderboard?layoutId=143835 - UDisc link"
+    },
+    {
+      "rank": 9,
+      "name": "@tommivluoma",
+      "total": 47,
+      "plus_minus": "+6",
+      "date": "Aug 8, 2026",
+      "source": "udisc.com/leaderboard?layoutId=143835 - UDisc link"
+    },
+    {
+      "rank": 10,
+      "name": "@attekolis",
+      "total": 48,
+      "plus_minus": "+7",
+      "date": "Sep 5, 2026",
+      "source": "udisc.com/leaderboard?layoutId=143835 - UDisc link"
+    }
+  ],
+  "fetched_at": "2026-10-04T02:29:38.531934",
+  "fetched_at_fi": "04.10.2026 02:29",
+  "source": "MANUAALISESTI PÄIVITETTY 10 NIMELLÄ - käyttäjä - V8 - VAIN UDisc linkin nimet",
+  "note": "Vain UDisc linkin nimet - 10 nimeä manuaalisesti - @kantanen8 @valkoparta @mattiasss @dashyy @itkonenjere @peetu7 @taspak @adusti @tommivluoma @attekolis - KORJATTU PILKUT",
+  "real_stats": {
+    "pelattujen_kierrosten_maara": 435,
+    "virkistystunnit": 613,
+    "ainutlaatuiset_pelaajat": 67,
+    "otettujen_askelten_maara": 1296732,
+    "tilasto_paivitetty": "4.10.2026 manuaalinen 10 nimeä - pilkut korjattu",
+    "layout_id": "143835"
+  },
+  "manual_update": true,
+  "manual_update_at": "2026-10-04T02:29:38.531934",
+  "manual_update_fi": "04.10.2026 02:29"
+}
