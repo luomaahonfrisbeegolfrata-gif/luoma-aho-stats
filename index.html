@@ -27,19 +27,20 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,sans-serif;padding:0 12p
 .live-dot{color:#1aff1a;font-size:9px;line-height:1}
 .big{font-size:36px;font-weight:900;color:#fff;text-align:center}
 
-.card.ratainfo-card{width:300px;min-width:300px;max-width:300px;min-height:350px;height:350px;padding:12px 12px;display:flex;flex-direction:column;justify-content:flex-start;overflow:hidden}
+.card.ratainfo-card{width:300px;min-width:300px;max-width:300px;min-height:350px;height:350px;max-height:350px;padding:10px 10px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
 .ratainfo{
   flex:1;
   display:flex;
   flex-direction:column;
-  justify-content:flex-start;
-  gap:10px;
-  font-size:13.5px;
-  line-height:1.35;
+  justify-content:space-between;
+  gap:2px;
+  font-size:11.5px;
+  line-height:1.25;
   color:#e0e0e0;
   letter-spacing:-0.1px;
   overflow:hidden;
 }
+.ratainfo div{white-space:normal;word-break:break-word;overflow:hidden;text-overflow:ellipsis;min-height:0}
 .ratainfo p{margin:0;}
 
 .card.combined-card{width:300px;min-width:300px;max-width:300px;min-height:350px;height:350px;padding:0 !important;overflow:hidden;display:flex;flex-direction:column}
@@ -65,12 +66,12 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,sans-serif;padding:0 12p
 .mini-card{flex:1;background:#151516;border:1px solid #262626;border-radius:12px;padding:8px 10px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:4px}
 .mini-card .big{font-size:22px !important}
 
-.card.top10-card{width:300px;min-width:300px;max-width:300px;min-height:350px;height:350px;padding:0 !important;overflow:hidden;display:flex;flex-direction:column}
+.card.top10-card{width:300px;min-width:300px;max-width:300px;min-height:350px;height:350px;max-height:350px; /* METRIX KORTTI KOKO LUKITTU - 300x350 - EI VENYTYSTÄ */padding:0 !important;overflow:hidden;display:flex;flex-direction:column}
 .top10-header{padding:10px 12px;background:#111113;border-bottom:1px solid #262626;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
 .top10-header h3{font-size:11px;text-transform:uppercase;letter-spacing:0.7px;color:#8a8a8a;display:flex;align-items:center;gap:5px}
 .top10-header a{color:#1aff1a;font-size:10px;text-decoration:none;font-weight:800}
-.top10-list{flex:1;padding:4px 12px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
-.top10-item{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #1e1e1e;font-size:11px;min-height:28px}
+.top10-list{flex:1;padding:4px 12px;display:flex;flex-direction:column;justify-content:flex-start;overflow:hidden;gap:0}
+.top10-item{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #1e1e1e;font-size:11px;min-height:28px;max-height:28px;height:28px;flex-shrink:0}
 .top10-item:last-child{border-bottom:none}
 .top10-item .rank{color:#1aff1a;font-weight:900;min-width:24px;font-size:11px}
 .top10-item .name{flex:1;color:#e0e0e0;font-weight:600;margin:0 8px;white-space:normal;overflow:hidden;text-overflow:ellipsis;word-break:break-word;line-height:1.2;font-size:11px}
@@ -109,13 +110,13 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,sans-serif;padding:0 12p
 
 <div class="grid-top">
 <div class="card ratainfo-card"><div class="card-title">RATAINFO</div><div class="ratainfo"><div>• Kallioisessa mäntymetsä maastossa</div><div>• Kompaktiin pakettiin suunniteltu ja toteutettu</div><div>• Huippu kuntoinen metsärata</div><div>• Väylät 57 - 197m teknisiä ja kiekko kontrollia vaativia.</div><div>• Tarkkuus, oikea kiekko ja heittovalinnat avainasemassa onnistumiseen</div><div>• Mukava rata kiertää joka soveltuu kaikille iästä ja taitotasosta riippumatta</div><div>• Korkeuserot, rehelliset selkeät linjat</div><div>• Kierros noin 1.5km peliaika noin tunti</div><div>• OB:t ja Mandot haastavat pelaajan päätöksentekoa</div></div></div>
-<div class="card combined-card"><div class="split-half"><div class="card-title">METRIX & UDISC TULOSKIRJATTUJEN KIERROSTEN MÄÄRÄ</div><div class="big" id="total-rounds">1164</div><div class="small">729 Metrix + 435 UDisc = 1164</div></div><div class="split-half"><div class="card-title">UNIIKIT PELAAJAT</div><div class="big" id="unique-players">132</div><div class="small">65 Metrix + 67 UDisc</div></div></div>
+<div class="card combined-card"><div class="split-half"><div class="card-title">METRIX & UDISC TULOSKIRJATTUJEN KIERROSTEN MÄÄRÄ</div><div class="big" id="total-rounds">1164</div></div><div class="split-half"><div class="card-title">UNIIKIT PELAAJAT</div><div class="big" id="unique-players">132</div></div></div>
 <div class="card hio-card"><div class="card-title">HOLE-IN-ONE</div><div class="big" id="hio-total">5</div><div class="hio-list" id="hio-list"><div class="hio-item vayla-header">Väylä 4</div><div class="hio-item">Benjamin Turja</div><div class="hio-item">Julius Luoma-aho</div><div class="hio-item">Juha Luoma-aho</div><div class="hio-item">Aleksi Lassila</div><div class="hio-item" style="height:8px"></div><div class="hio-item vayla-header">Väylä 8</div><div class="hio-item">Pentti Pitkäranta</div></div></div>
 <div class="card saa-card"><div class="saa-header"><div class="card-title">SÄÄ LUOMA-AHO</div></div><div class="saa-current"><div class="saa-temp" id="saa-temp">+11°</div><div class="small" id="saa-desc-text">Pilvistä</div></div><div class="saa-details"><div class="row"><span>Tuntuu kuin</span><span id="d-feels">+11°</span></div><div class="row"><span>Tuuli</span><span id="d-wind">2 m/s</span></div><div class="row"><span>Sade</span><span id="d-rain">0mm - Poutaa</span></div><div class="row"><span>Ilmanlaatu</span><span id="d-aq">29 Hyvä</span></div></div><div class="saa-footer"><div class="small" id="foreca-updated"></div></div></div>
 <div class="stacked-right">
-<div class="mini-card"><div class="card-title">PELIAIKA</div><div class="big" id="peliaika-big">1524h</div><div class="small">613h UDisc + 729×1.25h Metrix</div></div>
-<div class="mini-card"><div class="card-title">ASKELMÄÄRÄ</div><div class="big" id="askeleet-big">3 192 132</div><div class="small">1 296 732 + 729×2600</div></div>
-<div class="mini-card"><div class="card-title">KILOMETRIT</div><div class="big" id="km-big">2328 km</div><div class="small">1164×2km</div></div>
+<div class="mini-card"><div class="card-title">PELIAIKA</div><div class="big" id="peliaika-big">1524h</div></div>
+<div class="mini-card"><div class="card-title">ASKELMÄÄRÄ</div><div class="big" id="askeleet-big">3 192 132</div></div>
+<div class="mini-card"><div class="card-title">KILOMETRIT</div><div class="big" id="km-big">2328 km</div></div>
 </div>
 </div>
 
