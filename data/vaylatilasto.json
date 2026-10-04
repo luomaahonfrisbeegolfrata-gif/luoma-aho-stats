@@ -1,0 +1,112 @@
+{
+  "version": "V8 - 100% SAMA KUVA KUIN KUVA.PNG + AUTOMATISOITU DATA - LIVE MUSTA + VARI - KORJATTU",
+  "source_image": "kuva.png - 100% sama - Vayla 1-12 Tot % - Pituus Par Avg Difficulty HIO Birdie Par Bogey Dbl Tpl Other - MUSTA + KELTAINEN ORANSSI VIHREA PUNAINEN",
+  "44010": {
+    "course_id": "44010",
+    "url": "https://discgolfmetrix.com/course/44010",
+    "pituudet": [
+      125,
+      103,
+      72,
+      57,
+      94,
+      96,
+      103,
+      80,
+      116,
+      85,
+      197,
+      120
+    ],
+    "pituudet_total": 1248,
+    "par": [
+      4,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      4,
+      3,
+      5,
+      4
+    ],
+    "par_total": 41,
+    "average": [
+      4.45,
+      3.77,
+      3.45,
+      3.42,
+      3.55,
+      4.18,
+      3.79,
+      3.33,
+      4.53,
+      4.2,
+      6.15,
+      4.23
+    ],
+    "average_total": 49.05,
+    "difficulty": [
+      4,
+      8,
+      5,
+      3,
+      7,
+      11,
+      9,
+      2,
+      6,
+      12,
+      10,
+      1
+    ],
+    "difficulty_total": 8.05,
+    "hole_in_one": [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "hole_in_one_total": 1,
+    "birdie": [
+      14,
+      4,
+      14,
+      25,
+      3,
+      4,
+      10,
+      19,
+      8,
+      6,
+      11,
+      24
+    ],
+    "birdie_total": 142,
+    "note": "100% sama kuin kuva.png - REAL data - 125m 103m 72m 57m 94m 96m 103m 80m 116m 85m 197m 120m - Avg 4.45 3.77 3.45 3.42 3.55 4.18 3.79 3.33 4.53 4.20 6.15 4.23"
+  },
+  "fetched_at": "2026-10-04T01:54:06.707203",
+  "fetched_at_fi": "04.10.2026 01:54",
+  "automation": {
+    "enabled": true,
+    "interval": "6h GitHub Actions + 5min index.html cache bust",
+    "image_policy": "100% samanlaisen kuvan kuin kuva.png - sama tyyli, sama värit, sama layout - vain data päivittyy automaattisesti",
+    "files": [
+      "data/vaylatilasto.json",
+      "data/vaylatilasto.png"
+    ],
+    "version": "V8 - 100% SAMA KUVA + AUTOMATISOITU DATA - KORJATTU",
+    "original_image": "kuva.png 100% sama - MUSTA tausta, harmaa header, keltainen/oranssi/vihreä/punainen Avg/Difficulty"
+  }
+}
