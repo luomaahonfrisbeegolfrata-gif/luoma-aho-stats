@@ -1,0 +1,86 @@
+name: Fetch All AUTO V8 - AJANTASALLA - 30min Foreca + 6h Metrix - 1620min/kk <2000
+
+# V8 - KORJAA VAARAT KAAVAT - 1164 OIKEA - EI 1130 VAARA
+# - Foreca 30min = 48/päivä, 1440/kk
+# - Metrix/UDisc 6h = 4/päivä, 120/kk
+# - Yhteensä 1560/kk + 60 marginaali = 1620min/kk <2000 - pysyy ilmaisen rajan sisällä
+# - V7 - 729 Metrix parent 43119 + 435 UDisc REAL = 1164 OIKEA
+on:
+  schedule:
+    - cron: '*/30 * * * *'  # 30min välein Foreca
+    - cron: '0 */6 * * *'    # 6h välein Metrix/UDisc
+  workflow_dispatch:
+
+concurrency:
+  group: fetch-all-auto-v8
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-all:
+    runs-on: ubuntu-latest
+    if: github.actor != 'foreca-bot'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deps - V7 requirements.txt
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install requests beautifulsoup4 lxml python-dateutil matplotlib pillow
+
+      - name: Fetch Foreca REAL V7 - 12° Kaatosade - 63.092777,23.848859
+        run: |
+          if [ -f foreca_fetcher.py ]; then
+            python foreca_fetcher.py
+          elif [ -f foreca_fetcher_real.py ]; then
+            python foreca_fetcher_real.py
+          fi
+
+      - name: Fetch Metrix & UDisc - V7 1164 = 729 + 435 OIKEA
+        run: |
+          # Kierrokset - V7 KORJAA VAARAT KAAVAT - 1164 OIKEA EI 1130 VAARA
+          if [ -f auto_update.py ]; then
+            python auto_update.py
+          fi
+          if [ -f kierrokset_fetcher_v2.py ]; then
+            python kierrokset_fetcher_v2.py
+          fi
+          # UDisc Top10 - layout 143835 - 12 väylää Par 41 - 35-38 OIKEA
+          if [ -f udisc_fetcher.py ]; then
+            python udisc_fetcher.py
+          fi
+          # Metrix Top10 - 44010 42-49, 44763 82-93
+          if [ -f metrix_44010_fetcher.py ]; then
+            python metrix_44010_fetcher.py
+          fi
+          if [ -f metrix_44763_fetcher.py ]; then
+            python metrix_44763_fetcher.py
+          fi
+          # Väylätilasto - LIVE MUSTA + PITUUS
+          if [ -f vaylatilasto_fetcher.py ]; then
+            python vaylatilasto_fetcher.py
+          fi
+
+      - name: Commit & push if changed [skip ci]
+        run: |
+          git config user.name "foreca-bot"
+          git config user.email "foreca-bot@users.noreply.github.com"
+          git add data/
+          # Lisää vain muuttuneet
+          if ! git diff --staged --quiet; then
+            git commit -m "fetch all V8 $(date -u +%Y-%m-%dT%H:%M:%SZ) - 1164=729+435 OIKEA + 12° sade [skip ci]"
+            git push
+          else
+            echo "No changes - 1164 ja 12° sama"
+          fi
