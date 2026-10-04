@@ -1,0 +1,42 @@
+{
+  "version": "V9 - MANUAALINEN HIO",
+  "how_to": "Lisää HIO holeinone.json tiedostoon - ei riko automaatiota",
+  "manual_hio": [
+    {
+      "hole": 4,
+      "player": "Benjamin Turja"
+    },
+    {
+      "hole": 4,
+      "player": "Julius Luoma-aho"
+    },
+    {
+      "hole": 4,
+      "player": "Juha Luoma-aho"
+    },
+    {
+      "hole": 4,
+      "player": "Aleksi Lassila"
+    },
+    {
+      "hole": 8,
+      "player": "Pentti Pitkäranta"
+    }
+  ],
+  "counts": [
+    0,
+    0,
+    0,
+    4,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0
+  ],
+  "total": 5,
+  "note": "Tämä kerros säilyttää manuaaliset HIO:t - auto fetcher yhdistää automaattiseen dataan"
+}

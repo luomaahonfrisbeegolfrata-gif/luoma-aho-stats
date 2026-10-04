@@ -1,5 +1,5 @@
 {
-  "version": "V8 - 100% SAMA KUVA KUIN KUVA.PNG + AUTOMATISOITU DATA - LIVE MUSTA + VARI - KORJATTU",
+  "version": "V9 - MANUAALINEN HIO KERROS - 100% SAMA KUVA + AUTOMAATIO + MANUAALINEN HIO - EI RIKO AUTOMAATIOTA",
   "source_image": "kuva.png - 100% sama - Vayla 1-12 Tot % - Pituus Par Avg Difficulty HIO Birdie Par Bogey Dbl Tpl Other - MUSTA + KELTAINEN ORANSSI VIHREA PUNAINEN",
   "44010": {
     "course_id": "44010",
@@ -68,17 +68,40 @@
       0,
       0,
       0,
+      4,
+      0,
+      0,
+      0,
       1,
-      0,
-      0,
-      0,
-      0,
       0,
       0,
       0,
       0
     ],
-    "hole_in_one_total": 1,
+    "hole_in_one_total": 5,
+    "hole_in_one_manual": [
+      {
+        "hole": 4,
+        "player": "Benjamin Turja"
+      },
+      {
+        "hole": 4,
+        "player": "Julius Luoma-aho"
+      },
+      {
+        "hole": 4,
+        "player": "Juha Luoma-aho"
+      },
+      {
+        "hole": 4,
+        "player": "Aleksi Lassila"
+      },
+      {
+        "hole": 8,
+        "player": "Pentti Pitkäranta"
+      }
+    ],
+    "hole_in_one_source": "MANUAALINEN - holeinone.json - EI RIKO AUTOMAATIOTA - V9",
     "birdie": [
       14,
       4,
@@ -94,19 +117,65 @@
       24
     ],
     "birdie_total": 142,
-    "note": "100% sama kuin kuva.png - REAL data - 125m 103m 72m 57m 94m 96m 103m 80m 116m 85m 197m 120m - Avg 4.45 3.77 3.45 3.42 3.55 4.18 3.79 3.33 4.53 4.20 6.15 4.23"
+    "note": "100% sama kuin kuva.png - REAL data + MANUAALINEN HIO - Väylä 4: 4kpl, Väylä 8: 1kpl = 5 total - automaatio säilyy"
   },
-  "fetched_at": "2026-10-04T01:54:06.707203",
-  "fetched_at_fi": "04.10.2026 01:54",
+  "fetched_at": "2026-10-04T03:33:51.956557",
+  "fetched_at_fi": "04.10.2026 03:33",
   "automation": {
     "enabled": true,
     "interval": "6h GitHub Actions + 5min index.html cache bust",
-    "image_policy": "100% samanlaisen kuvan kuin kuva.png - sama tyyli, sama värit, sama layout - vain data päivittyy automaattisesti",
+    "image_policy": "100% samanlaisen kuvan kuin kuva.png - sama tyyli, sama värit, sama layout - vain data päivittyy automaattisesti + manuaalinen HIO",
     "files": [
       "data/vaylatilasto.json",
-      "data/vaylatilasto.png"
+      "data/vaylatilasto.png",
+      "data/holeinone.json",
+      "data/vaylatilasto_manual.json"
     ],
-    "version": "V8 - 100% SAMA KUVA + AUTOMATISOITU DATA - KORJATTU",
-    "original_image": "kuva.png 100% sama - MUSTA tausta, harmaa header, keltainen/oranssi/vihreä/punainen Avg/Difficulty"
+    "version": "V9 - MANUAALINEN HIO KERROS",
+    "manual_hio_support": true,
+    "how_to_add": "Lisää uusi HIO: muokkaa data/holeinone.json - lisää {\"hole\": X, \"player\": \"Name\"} - fetcher laskee automaattisesti väylätilastoon, kuva päivittyy, automaattinen haku säilyy - EI RIKO AUTOMAATIOTA"
+  },
+  "manual_hio": {
+    "enabled": true,
+    "counts": [
+      0,
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "total": 5,
+    "list": [
+      {
+        "hole": 4,
+        "player": "Benjamin Turja"
+      },
+      {
+        "hole": 4,
+        "player": "Julius Luoma-aho"
+      },
+      {
+        "hole": 4,
+        "player": "Juha Luoma-aho"
+      },
+      {
+        "hole": 4,
+        "player": "Aleksi Lassila"
+      },
+      {
+        "hole": 8,
+        "player": "Pentti Pitkäranta"
+      }
+    ],
+    "source": "holeinone.json - MANUAALINEN KERROS - V9",
+    "can_add_manually": true,
+    "does_not_break_auto": true
   }
 }
