@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-vaylatilasto_fetcher.py V13 - KORJATTU DIFFICULTY - VAIKEIN KORKEIN AVG PUNAINEN - VAIKEIN KORKEIN AVG PUNAINEN DIFF 1 PUNAINEN + MANUAALINEN HIO
+vaylatilasto_fetcher.py V14 - KORJATTU DIFFICULTY B - AVG-PAR OIKEA - VAIKEIN KORKEIN AVG PUNAINEN - VAIKEIN KORKEIN AVG PUNAINEN DIFF 1 PUNAINEN + MANUAALINEN HIO
 - 100% SAMA KUVA KUIN KUVA.PNG + AUTOMATISOITU DATA + DYNAMISET VÄRIT
 - UUSI: Laskee väylien vaikeuden automaattisesti GitHubissa ja päivittää kuvan numeroina + värikoodit jos luvut muuttuvat
 - Lukee data/holeinone.json ja laskee HIO counts automaattisesti väylätilastoon
@@ -25,7 +25,7 @@ REAL_DATA_KUVA = {
     "Pituus": ["Pituus", "125m", "103m", "72m", "57m", "94m", "96m", "103m", "80m", "116m", "85m", "197m", "120m", "1248m", "-"],
     "Par": ["Par", "4", "3", "3", "3", "3", "3", "3", "3", "4", "3", "5", "4", "41", "-"],
     "Avg": ["Avg", "4.45", "3.77", "3.45", "3.42", "3.55", "4.18", "3.79", "3.33", "4.53", "4.20", "6.15", "4.23", "49.05", "-"],
-    "Difficulty": ["Difficulty", "3", "8", "10", "11", "9", "6", "7", "12", "2", "5", "1", "4", "78", "-"],  # V13 KORJATTU - suurin avg=1 punainen
+    "Difficulty": ["Difficulty", "8", "5", "9", "10", "6", "2", "4", "11", "7", "1", "3", "12", "78", "-"],  # V14 KORJATTU B - avg-par vaikein punainen
     "Hole_in_one": ["Hole in one", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0.1%"],
     "Birdie": ["Birdie -1", "14", "4", "14", "25", "3", "4", "10", "19", "8", "6", "11", "24", "142", "8.7%"],
     "Par0": ["Par 0", "59", "52", "77", "32", "69", "38", "53", "73", "55", "34", "31", "67", "640", "39.2%"],
@@ -48,22 +48,30 @@ COLORS = {
 }
 
 
-def calculate_difficulty_from_avg(avg_values):
+def calculate_difficulty_from_avg(avg_values, par_values=None):
     """
-    V13 KORJATTU - OIKEA LOGIIKKA
-    Difficulty 1 = suurin avg = punainen
-    Difficulty 12 = pienin avg = vihreä
+    V14 KORJATTU - OIKEA FRISBEEGOLF-LOGIIKKA (B) - avg-par
+    Difficulty 1 = suurin (avg-par) = vaikein = punainen
+    Difficulty 12 = pienin (avg-par) = helpoin = vihreä
+    Mitä suurempi avg vrt par = vaikeampi
     """
     try:
-        indexed = [(i, float(avg_values[i])) for i in range(min(12, len(avg_values)))]
-        sorted_desc = sorted(indexed, key=lambda x: x[1], reverse=True)  # suurin ensin
+        if par_values and len(par_values)>=12:
+            # Oikea logiikka: avg - par
+            indexed = [(i, float(avg_values[i]) - float(par_values[i]), float(avg_values[i])) for i in range(min(12, len(avg_values)))]
+            sorted_desc = sorted(indexed, key=lambda x: (x[1], x[2]), reverse=True)  # suurin (avg-par) ensin, tasatilanteessa suurempi avg ensin
+        else:
+            indexed = [(i, float(avg_values[i])) for i in range(min(12, len(avg_values)))]
+            sorted_desc = sorted(indexed, key=lambda x: x[1], reverse=True)
         hole_to_diff = {}
-        for rank, (orig_idx, _) in enumerate(sorted_desc, start=1):
+        for rank, (orig_idx, *_) in enumerate(sorted_desc, start=1):
             hole_to_diff[orig_idx] = rank
         return [hole_to_diff[i] for i in range(12)]
     except Exception as e:
         print(f"Difficulty laskenta epäonnistui: {e}")
-        return [3,8,10,11,9,6,7,12,2,5,1,4]  # fallback oikea
+        return [8,5,9,10,6,2,4,11,7,1,3,12]  # fallback B oikea
+
+
 
 
 def calculate_dynamic_colors(avg_values, par_values, difficulty_values):
@@ -163,8 +171,8 @@ def fetch_real_data_v10():
     """
     avg_values = [4.45,3.77,3.45,3.42,3.55,4.18,3.79,3.33,4.53,4.20,6.15,4.23]
     par_values = [4,3,3,3,3,3,3,3,4,3,5,4]
-    # V13 KORJATTU - difficulty lasketaan automaattisesti avg:sta, ei kovakoodattu väärin
-    diff_values = calculate_difficulty_from_avg(avg_values)
+    # V14 KORJATTU B - difficulty lasketaan automaattisesti avg-par, ei pelkkä avg
+    diff_values = calculate_difficulty_from_avg(avg_values, par_values)
     pituus_values = [125,103,72,57,94,96,103,80,116,85,197,120]
     
     try:
@@ -292,12 +300,12 @@ def generate_kuva_png_v10(data_dict, out_path, manual_hio_counts=None, avg_color
     
     out_path.parent.mkdir(parents=True, exist_ok=True)
     img.save(out_path, "PNG")
-    print(f"V13: Wrote 100% sama kuin kuva.png + dynaamiset värit + manuaalinen HIO: {out_path} - {out_path.stat().st_size} bytes")
+    print(f"V14: Wrote 100% sama kuin kuva.png + dynaamiset värit + manuaalinen HIO: {out_path} - {out_path.stat().st_size} bytes")
     return True
 
 def main():
     now = datetime.now()
-    print("=== V13 - KORJATTU DIFFICULTY - VAIKEIN KORKEIN AVG PUNAINEN - VAIKEIN KORKEIN AVG PUNAINEN DIFF 1 PUNAINEN + MANUAALINEN HIO + DYNAMISET VÄRIT ===")
+    print("=== V14 - KORJATTU DIFFICULTY B - AVG-PAR OIKEA - VAIKEIN KORKEIN AVG PUNAINEN - VAIKEIN KORKEIN AVG PUNAINEN DIFF 1 PUNAINEN + MANUAALINEN HIO + DYNAMISET VÄRIT ===")
     
     manual_counts, manual_list = load_manual_hio()
     print(f"Manuaalinen HIO counts: {manual_counts} = {sum(manual_counts)} total")
@@ -306,11 +314,11 @@ def main():
     
     # Laske dynaamiset värit
     avg_colors, diff_colors = calculate_dynamic_colors(avg_vals, par_vals, diff_vals)
-    print(f"V13 Dynaamiset värit laskettu: Avg {avg_colors}, Diff {diff_colors}")
+    print(f"V14 Dynaamiset värit laskettu: Avg {avg_colors}, Diff {diff_colors}")
     print(f"Avg values: {avg_vals}, Par {par_vals}, Diff {diff_vals}")
     
     result = {
-        "version": "V13 - KORJATTU DIFFICULTY - VAIKEIN KORKEIN AVG PUNAINEN - VAIKEIN KORKEIN AVG PUNAINEN DIFF 1 PUNAINEN - DYNAMISET VÄRIT + MANUAALINEN HIO - EI RIKO AUTOMAATIOTA",
+        "version": "V14 - KORJATTU DIFFICULTY B - AVG-PAR OIKEA - VAIKEIN KORKEIN AVG PUNAINEN - VAIKEIN KORKEIN AVG PUNAINEN DIFF 1 PUNAINEN - DYNAMISET VÄRIT + MANUAALINEN HIO - EI RIKO AUTOMAATIOTA",
         "source_image": "kuva.png - 100% sama - MUSTA + KELTAINEN ORANSSI VIHREA PUNAINEN - DYNAMISET VÄRIT",
         "44010": {
             "course_id": "44010",
@@ -323,7 +331,7 @@ def main():
             "average_total": 49.05,
             "average_colors_dynamic": avg_colors,
             "difficulty": diff_vals,
-            "difficulty_total": 78,  # V13 KORJATTU - summa 1-12 = 78
+            "difficulty_total": 78,  # V14 KORJATTU B - summa 1-12 = 78
             "difficulty_colors_dynamic": diff_colors,
             "hole_in_one": manual_counts,
             "hole_in_one_total": sum(manual_counts),
@@ -340,7 +348,7 @@ def main():
             "interval": "6h GitHub Actions + 5min index.html cache bust",
             "image_policy": "100% samanlaisen kuvan kuin kuva.png - sama tyyli, sama värit, sama layout - vain data päivittyy automaattisesti + manuaalinen HIO + dynaamiset värit",
             "files": ["data/vaylatilasto.json", "data/vaylatilasto.png", "data/holeinone.json", "data/vaylatilasto_manual.json"],
-            "version": "V13 - KORJATTU DIFFICULTY - VAIKEIN KORKEIN AVG PUNAINEN - VAIKEIN KORKEIN AVG PUNAINEN DIFF 1 PUNAINEN + DYNAMISET VÄRIT",
+            "version": "V14 - KORJATTU DIFFICULTY B - AVG-PAR OIKEA - VAIKEIN KORKEIN AVG PUNAINEN - VAIKEIN KORKEIN AVG PUNAINEN DIFF 1 PUNAINEN + DYNAMISET VÄRIT",
             "manual_hio_support": True,
             "dynamic_colors": True,
             "auto_calculation": {
@@ -364,7 +372,7 @@ def main():
             "difficulty_values": diff_vals,
             "avg_colors": avg_colors,
             "difficulty_colors": diff_colors,
-            "logic": "V13 KORJATTU - Difficulty 1=suurin avg punainen, 12=pienin vihreä - Avg väri 3 pienintä vihreä...3 suurinta punainen, Difficulty 1-3 punainen, 4-6 oranssi, 7-9 keltainen, 10-12 vihreä"
+            "logic": "V14 KORJATTU B - Difficulty 1=suurin avg punainen, 12=pienin vihreä - Avg väri 3 pienintä vihreä...3 suurinta punainen, Difficulty 1-3 punainen, 4-6 oranssi, 7-9 keltainen, 10-12 vihreä"
         }
     }
     
