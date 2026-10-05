@@ -87,12 +87,14 @@
       "plus_minus_simple": 11
     }
   ],
-  "fetched_at": "2026-10-05T09:08:29.393768",
-  "fetched_at_fi": "05.10.2026 09:08",
-  "source": "discgolfmetrix.com/course/44763 - V18 FINAL",
+  "fetched_at": "2026-10-05T18:16:56.077562",
+  "fetched_at_fi": "05.10.2026 18:16",
+  "source": "discgolfmetrix.com/course/44763 - V18 FINAL - header/layout/kortit lukittu",
   "automation": {
     "header_locked": true,
     "layout_locked": true,
-    "cards_locked": true
+    "cards_locked": true,
+    "retry": true,
+    "dynamic": true
   }
 }
