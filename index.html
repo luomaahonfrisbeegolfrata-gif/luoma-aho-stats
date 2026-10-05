@@ -199,5 +199,125 @@ fetch('data/vaylatilasto.json?v='+Date.now()).then(r=>r.json()).then(d=>{
 }).catch(()=>{});
 
 </script>
+  // V19 SÄÄ 100% CLIENT - Luoma-aho Alajärvi - toimii aina ilman GitHub Actionsia
+// Koordinaatit: Luoma-aho Frisbeegolfrata, Alajärvi 63.0000, 23.8220
+const LUOMA_AHO_LAT = 63.00;
+const LUOMA_AHO_LON = 23.822;
+
+async function updateSaaLuomaAho() {
+  const card = document.querySelector('[data-card="saa"]') || document.querySelector('#saa-kortti') || document.querySelector('.saa-card');
+  // Try multiple selectors for temp
+  const tempEl = document.querySelector('.saa-temp, #saa-temp, [data-temp], .temp-saa, #saa-kortti .temp') || 
+                 document.querySelectorAll('.card')[0]; // fallback
+
+  try {
+    // 1. Yritä data/saa.json ensin (jos tuore)
+    let temp = null;
+    let source = "data/saa.json";
+    let fetchedTime = "";
+    
+    try {
+      const res = await fetch('data/saa.json?v=' + Date.now(), {cache: 'no-store'});
+      if (res.ok) {
+        const data = await res.json();
+        const fetched = new Date(data.fetched_at || data.fetched_at_fi || 0);
+        const ageHours = (Date.now() - fetched) / 1000 / 3600;
+        if (ageHours < 3 && data.temp) {
+          temp = data.temp;
+          fetchedTime = data.fetched_at_fi || fetched.toLocaleString('fi-FI');
+          console.log(`Sää data/saa.json tuore ${ageHours.toFixed(1)}h: ${temp}°C`);
+        } else {
+          console.log(`Sää data/saa.json vanha ${ageHours.toFixed(1)}h, haetaan live`);
+          throw new Error("vanha");
+        }
+      }
+    } catch (e) {
+      // 2. Fallback suoraan Open-Meteo - toimii AINA selaimessa, ei tarvitse GitHub Actionsia
+      console.log("Haetaan sää suoraan Open-Meteo Luoma-aho Alajärvi");
+      const omUrl = `https://api.open-meteo.com/v1/forecast?latitude=${LUOMA_AHO_LAT}&longitude=${LUOMA_AHO_LON}&current=temperature_2m,wind_speed_10m,precipitation,relative_humidity_2m,apparent_temperature&timezone=Europe/Helsinki&forecast_days=1`;
+      const omRes = await fetch(omUrl);
+      if (!omRes.ok) throw new Error("Open-Meteo failed");
+      const omData = await omRes.json();
+      temp = omData.current.temperature_2m;
+      const wind = omData.current.wind_speed_10m;
+      const precip = omData.current.precipitation;
+      source = "open-meteo.com LIVE";
+      fetchedTime = new Date().toLocaleString('fi-FI', {timeZone: 'Europe/Helsinki'}) + " (live)";
+      
+      // Päivitä myös tuuli ja sade jos elementit löytyy
+      const windEl = document.querySelector('.saa-wind, #saa-wind');
+      if (windEl) windEl.textContent = wind + " m/s";
+      const precipEl = document.querySelector('.saa-precip');
+      if (precipEl) precipEl.textContent = precip + " mm";
+      
+      console.log(`Sää LIVE Luoma-aho: ${temp}°C, tuuli ${wind} m/s, sade ${precip} mm`);
+    }
+
+    // Päivitä DOM - etsi kaikki mahdolliset sää elementit
+    if (temp !== null) {
+      // Yritä päivittää kaikki kortit
+      document.querySelectorAll('*').forEach(el => {
+        const txt = el.textContent || "";
+        if (txt.includes('Sää') || el.id?.toLowerCase().includes('saa') || el.className?.toString().toLowerCase().includes('saa')) {
+          // Löytyi sää kortti, etsi temp sisällä
+          const tEl = el.querySelector('.temp, [data-temp], .temperature, .value') || el;
+          if (tEl && !tEl.querySelector('*')) {
+            // Vain jos ei jo päivitetty
+          }
+        }
+      });
+      
+      // Suora päivitys yleisimmät selektorit
+      const selectors = [
+        '#saa-kortti .temp', '#saa .temp', '.saa-card .temp', 
+        '[data-card="saa"] .temp', '.weather-temp', '#weather-temp',
+        '.saa-temp', '#saa-temp', '.card-saa .temp'
+      ];
+      let updated = false;
+      for (const sel of selectors) {
+        const el = document.querySelector(sel);
+        if (el) {
+          el.textContent = Math.round(temp * 10) / 10 + '°C';
+          updated = true;
+        }
+      }
+      // Jos ei löytynyt selektoria, etsi tekstistä "11°C" tai "Sää" ja korvaa
+      if (!updated) {
+        document.body.innerHTML = document.body.innerHTML.replace(/(Sää.*?)(\d+°C)/g, (m, p1, p2) => {
+          return p1 + (Math.round(temp * 10) / 10 + '°C');
+        });
+      }
+      
+      // Päivitä myös index.html jos käyttää innerHTML
+      const updatedEl = document.querySelector('#saa-kortti .updated, .saa-updated, #saa-updated');
+      if (updatedEl) updatedEl.textContent = 'Päivitetty ' + fetchedTime + ' - ' + source;
+      
+      // Tallenna localStorage varalle
+      localStorage.setItem('luoma-aho-saa-temp', temp);
+      localStorage.setItem('luoma-aho-saa-time', fetchedTime);
+      
+      return temp;
+    }
+  } catch (err) {
+    console.error('Sää Luoma-aho epäonnistui:', err);
+    // Viimeinen fallback localStorage
+    const cached = localStorage.getItem('luoma-aho-saa-temp');
+    if (cached) {
+      console.log('Käytetään cached sää', cached);
+      return parseFloat(cached);
+    }
+  }
+}
+
+// Aja heti ja 5min välein - toimii AINA
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', updateSaaLuomaAho);
+} else {
+  updateSaaLuomaAho();
+}
+setInterval(updateSaaLuomaAho, 5 * 60 * 1000);
+
+// Debug: näytä konsolissa
+console.log('V19 Sää Luoma-aho Alajärvi 63.00,23.822 - 100% client, toimii ilman GitHub Actionsia');
 </body>
 </html>
