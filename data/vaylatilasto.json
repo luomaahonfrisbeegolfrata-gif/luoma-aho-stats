@@ -1,9 +1,11 @@
 {
-  "version": "V14 - KORJATTU DIFFICULTY B - AVG-PAR OIKEA - VAIKEIN KORKEIN AVG PUNAINEN - VAIKEIN KORKEIN AVG PUNAINEN DIFF 1 PUNAINEN - DYNAMISET VÄRIT + MANUAALINEN HIO - EI RIKO AUTOMAATIOTA",
-  "source_image": "kuva.png - 100% sama - MUSTA + KELTAINEN ORANSSI VIHREA PUNAINEN - DYNAMISET VÄRIT",
+  "version": "V16 FINAL PUHAS - B avg-par OIKEA - header/layout/kortit lukittu",
+  "rata": "Luoma-ahon Frisbeegolfrata",
+  "logic": {
+    "difficulty": "1=suurin avg-par punainen",
+    "colors": "1-3 red,4-6 orange,7-9 yellow,10-12 green"
+  },
   "44010": {
-    "course_id": "44010",
-    "url": "https://discgolfmetrix.com/course/44010",
     "pituudet": [
       125,
       103,
@@ -18,7 +20,6 @@
       197,
       120
     ],
-    "pituudet_total": 1248,
     "par": [
       4,
       3,
@@ -33,7 +34,6 @@
       5,
       4
     ],
-    "par_total": 41,
     "average": [
       4.45,
       3.77,
@@ -48,21 +48,20 @@
       6.15,
       4.23
     ],
-    "average_total": 49.05,
-    "average_colors_dynamic": {
-      "8": "green",
-      "4": "green",
-      "3": "green",
-      "5": "yellow",
-      "2": "yellow",
-      "7": "yellow",
-      "6": "orange",
-      "10": "orange",
-      "12": "orange",
-      "1": "red",
-      "9": "red",
-      "11": "red"
-    },
+    "average_minus_par": [
+      0.45,
+      0.77,
+      0.45,
+      0.42,
+      0.55,
+      1.18,
+      0.79,
+      0.33,
+      0.53,
+      1.2,
+      1.15,
+      0.23
+    ],
     "difficulty": [
       8,
       5,
@@ -78,6 +77,20 @@
       12
     ],
     "difficulty_total": 78,
+    "average_colors_dynamic": {
+      "8": "green",
+      "4": "green",
+      "3": "green",
+      "5": "yellow",
+      "2": "yellow",
+      "7": "yellow",
+      "6": "orange",
+      "10": "orange",
+      "12": "orange",
+      "1": "red",
+      "9": "red",
+      "11": "red"
+    },
     "difficulty_colors_dynamic": {
       "1": "yellow",
       "2": "orange",
@@ -96,7 +109,7 @@
       0,
       0,
       0,
-      4,
+      1,
       0,
       0,
       0,
@@ -105,183 +118,7 @@
       0,
       0,
       0
-    ],
-    "hole_in_one_total": 5,
-    "hole_in_one_manual": [
-      {
-        "hole": 4,
-        "player": "Benjamin Turja"
-      },
-      {
-        "hole": 4,
-        "player": "Julius Luoma-aho"
-      },
-      {
-        "hole": 4,
-        "player": "Juha Luoma-aho"
-      },
-      {
-        "hole": 4,
-        "player": "Aleksi Lassila"
-      },
-      {
-        "hole": 8,
-        "player": "Pentti Pitkäranta"
-      }
-    ],
-    "hole_in_one_source": "MANUAALINEN - holeinone.json - V10",
-    "birdie": [
-      14,
-      4,
-      14,
-      25,
-      3,
-      4,
-      10,
-      19,
-      8,
-      6,
-      11,
-      24
-    ],
-    "birdie_total": 142,
-    "note": "V10 TÄYSI AUTOMAATTINEN - Avg ja Difficulty lasketaan automaattisesti, värit päivittyvät dynaamisesti jos luvut muuttuvat, 100% sama kuva tyyli"
+    ]
   },
-  "fetched_at": "2026-10-05T12:14:18.669788",
-  "fetched_at_fi": "05.10.2026 12:14",
-  "automation": {
-    "enabled": true,
-    "interval": "6h GitHub Actions + 5min index.html cache bust",
-    "image_policy": "100% samanlaisen kuvan kuin kuva.png - sama tyyli, sama värit, sama layout - vain data päivittyy automaattisesti + manuaalinen HIO + dynaamiset värit",
-    "files": [
-      "data/vaylatilasto.json",
-      "data/vaylatilasto.png",
-      "data/holeinone.json",
-      "data/vaylatilasto_manual.json"
-    ],
-    "version": "V14 - KORJATTU DIFFICULTY B - AVG-PAR OIKEA - VAIKEIN KORKEIN AVG PUNAINEN - VAIKEIN KORKEIN AVG PUNAINEN DIFF 1 PUNAINEN + DYNAMISET VÄRIT",
-    "manual_hio_support": true,
-    "dynamic_colors": true,
-    "auto_calculation": {
-      "avg": "Lasketaan automaattisesti Metrixistä - jos muuttuu, kuva päivittyy numeroina",
-      "difficulty": "Lasketaan automaattisesti ranking Avg-Par erotuksesta tai Metrix Difficulty - jos muuttuu, värikoodit päivittyvät",
-      "colors": "Avg: 3 pienintä green, 3 keltainen, 3 oranssi, 3 punainen | Difficulty: 1-3 green, 4-6 yellow, 7-9 orange, 10-12 red, <0.6 yellow, <1.0 orange, >=1.0 red | Difficulty: 1-3 red, 4-6 orange, 7-9 yellow, 10-12 green - päivittyy automaattisesti"
-    },
-    "how_to_add": "Lisää uusi HIO: muokkaa data/holeinone.json - fetcher laskee automaattisesti, kuva päivittyy, automaatio säilyy"
-  },
-  "manual_hio": {
-    "enabled": true,
-    "counts": [
-      0,
-      0,
-      0,
-      4,
-      0,
-      0,
-      0,
-      1,
-      0,
-      0,
-      0,
-      0
-    ],
-    "total": 5,
-    "list": [
-      {
-        "hole": 4,
-        "player": "Benjamin Turja"
-      },
-      {
-        "hole": 4,
-        "player": "Julius Luoma-aho"
-      },
-      {
-        "hole": 4,
-        "player": "Juha Luoma-aho"
-      },
-      {
-        "hole": 4,
-        "player": "Aleksi Lassila"
-      },
-      {
-        "hole": 8,
-        "player": "Pentti Pitkäranta"
-      }
-    ],
-    "source": "holeinone.json - MANUAALINEN KERROS - V10"
-  },
-  "dynamic_calculation": {
-    "enabled": true,
-    "avg_values": [
-      4.45,
-      3.77,
-      3.45,
-      3.42,
-      3.55,
-      4.18,
-      3.79,
-      3.33,
-      4.53,
-      4.2,
-      6.15,
-      4.23
-    ],
-    "par_values": [
-      4,
-      3,
-      3,
-      3,
-      3,
-      3,
-      3,
-      3,
-      4,
-      3,
-      5,
-      4
-    ],
-    "difficulty_values": [
-      8,
-      5,
-      9,
-      10,
-      6,
-      2,
-      4,
-      11,
-      7,
-      1,
-      3,
-      12
-    ],
-    "avg_colors": {
-      "8": "green",
-      "4": "green",
-      "3": "green",
-      "5": "yellow",
-      "2": "yellow",
-      "7": "yellow",
-      "6": "orange",
-      "10": "orange",
-      "12": "orange",
-      "1": "red",
-      "9": "red",
-      "11": "red"
-    },
-    "difficulty_colors": {
-      "1": "yellow",
-      "2": "orange",
-      "3": "yellow",
-      "4": "green",
-      "5": "orange",
-      "6": "red",
-      "7": "orange",
-      "8": "green",
-      "9": "yellow",
-      "10": "red",
-      "11": "red",
-      "12": "green"
-    },
-    "logic": "V14 KORJATTU B - Difficulty 1=suurin avg punainen, 12=pienin vihreä - Avg väri 3 pienintä vihreä...3 suurinta punainen, Difficulty 1-3 punainen, 4-6 oranssi, 7-9 keltainen, 10-12 vihreä"
-  }
+  "fetched_at": "2026-10-04T05:36:21.220766"
 }
