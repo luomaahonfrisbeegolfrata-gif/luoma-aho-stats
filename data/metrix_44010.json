@@ -1,0 +1,99 @@
+{
+  "version": "V16 FIX - 42-49 OIKEA - toimii",
+  "course": "METRIX 44010 - 12 vaylaa Par 41",
+  "url": "https://discgolfmetrix.com/course/44010",
+  "holes": 12,
+  "par": 41,
+  "top10": [
+    {
+      "rank": 1,
+      "name": "Timo Alalantela",
+      "date": "10/4/25",
+      "plus_minus": "+1",
+      "total": 42,
+      "plus_minus_simple": 1
+    },
+    {
+      "rank": 2,
+      "name": "Aapo Penttila",
+      "date": "10/5/25",
+      "plus_minus": "+2",
+      "total": 43,
+      "plus_minus_simple": 2
+    },
+    {
+      "rank": 3,
+      "name": "Daniel Turja",
+      "date": "9/5/25",
+      "plus_minus": "+2",
+      "total": 43,
+      "plus_minus_simple": 2
+    },
+    {
+      "rank": 4,
+      "name": "Eero Tuohimaa",
+      "date": "10/19/25",
+      "plus_minus": "+3",
+      "total": 44,
+      "plus_minus_simple": 3
+    },
+    {
+      "rank": 5,
+      "name": "Eevert Vakevainen",
+      "date": "4/18/26",
+      "plus_minus": "+3",
+      "total": 44,
+      "plus_minus_simple": 3
+    },
+    {
+      "rank": 6,
+      "name": "Benjamin Turja",
+      "date": "9/5/25",
+      "plus_minus": "+4",
+      "total": 45,
+      "plus_minus_simple": 4
+    },
+    {
+      "rank": 7,
+      "name": "Julius Luoma-aho",
+      "date": "9/5/25",
+      "plus_minus": "+4",
+      "total": 45,
+      "plus_minus_simple": 4
+    },
+    {
+      "rank": 8,
+      "name": "Marko Tuohimaa",
+      "date": "10/19/25",
+      "plus_minus": "+5",
+      "total": 46,
+      "plus_minus_simple": 5
+    },
+    {
+      "rank": 9,
+      "name": "Aapo Viinamaki",
+      "date": "4/18/26",
+      "plus_minus": "+6",
+      "total": 47,
+      "plus_minus_simple": 6
+    },
+    {
+      "rank": 10,
+      "name": "Pentti Pitkaranta",
+      "date": "4/18/26",
+      "plus_minus": "+8",
+      "total": 49,
+      "plus_minus_simple": 8
+    }
+  ],
+  "fetched_at": "2026-10-05T01:05:57.515338",
+  "fetched_at_fi": "05.10.2026 01:05",
+  "source": "discgolfmetrix.com/course/44010 - V16 FIX - Top results 42-49 OIKEA - header/layout/kortit lukittu",
+  "real_usage": {
+    "period": "Jul25-Oct26 16kk",
+    "harjoitus": 551,
+    "kilpailu": 47,
+    "total": 598,
+    "unique": 45
+  }
+}
