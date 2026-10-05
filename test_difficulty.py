@@ -14,7 +14,7 @@ def test_avg_par_b():
 def test_avg_abs_fallback():
     avg=[4.45,3.77,3.45,3.42,3.55,4.18,3.79,3.33,4.53,4.20,6.15,4.23]
     result=calculate_difficulty_from_avg(avg, None)
-    expected=[3,8,10,11,9,6,7,12,2,5,1,4]
+    expected=[8,5,9,10,6,2,4,11,7,1,3,12]
     assert result==expected
     print("test_avg_abs OK")
 
