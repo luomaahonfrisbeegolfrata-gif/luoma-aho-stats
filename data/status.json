@@ -7,14 +7,5 @@
     "header_locked": true,
     "layout_locked": true,
     "cards_locked": true
-  },
-  {
-    "fetcher": "kierrokset",
-    "version": "V15",
-    "success": true,
-    "last_run": "2026-10-05T12:18:01.434182",
-    "header_locked": true,
-    "layout_locked": true,
-    "cards_locked": true
   }
 ]
