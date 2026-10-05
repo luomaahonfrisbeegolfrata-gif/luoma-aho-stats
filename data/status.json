@@ -7,16 +7,5 @@
     "header_locked": true,
     "layout_locked": true,
     "cards_locked": true
-  },
-  {
-    "fetcher": "metrix_all",
-    "courses": [
-      "44010",
-      "44763",
-      "43119"
-    ],
-    "version": "V18 FINAL",
-    "success": true,
-    "last_run": "2026-10-05T18:16:56.970888"
   }
 ]
