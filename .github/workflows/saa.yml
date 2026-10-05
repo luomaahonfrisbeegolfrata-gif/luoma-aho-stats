@@ -1,10 +1,10 @@
-name: Sää V15 - open-meteo 15min - Header/Layout/Kortit lukittu
+name: Sää V16.2 FIX - ei enää sama kuin eilen - Lukittu
 on:
   schedule:
     - cron: '*/15 * * * *'
   workflow_dispatch:
 jobs:
-  update-saa:
+  update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -12,10 +12,13 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install -r requirements.txt
-      - run: python -c "import requests, json, pathlib; r=requests.get('https://api.open-meteo.com/v1/forecast?latitude=62.9&longitude=23.5&current=temperature_2m', timeout=10); j=r.json(); pathlib.Path('data/saa.json').write_text(json.dumps({'temp':j['current']['temperature_2m'],'source':'open-meteo.com V15','header_locked':True}, ensure_ascii=False, indent=2)); print('Sää OK')"
+      - run: python saa_fetcher.py
+      - run: |
+          cat data/saa.json
+          python -c "import json; d=json.load(open('data/saa.json')); assert 'temp' in d; print(f"Temp {d['temp']}°C OK")"
       - run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add data/saa.json || true
-          git diff --staged --quiet || git commit -m "V15 sää open-meteo - header/layout/cards lukittu" || true
+          git add data/saa.json data/status.json
+          git diff --staged --quiet || git commit -m "V16.2 sää $(cat data/saa.json | grep temp) - lukittu"
           git push || true
