@@ -1,0 +1,98 @@
+{
+  "version": "V18 FINAL - 43119 - toimiva kuten pitää",
+  "course": "METRIX 43119 - 9 väylää Par 27",
+  "course_id": "43119",
+  "url": "https://discgolfmetrix.com/course/43119",
+  "holes": 9,
+  "par": 27,
+  "top10": [
+    {
+      "rank": 1,
+      "name": "Timo Alalantela",
+      "date": "10/5/25",
+      "plus_minus": "-1",
+      "total": 26,
+      "plus_minus_simple": -1
+    },
+    {
+      "rank": 2,
+      "name": "Aapo Penttila",
+      "date": "10/5/25",
+      "plus_minus": "E",
+      "total": 27,
+      "plus_minus_simple": 0
+    },
+    {
+      "rank": 3,
+      "name": "Daniel Turja",
+      "date": "10/5/25",
+      "plus_minus": "E",
+      "total": 27,
+      "plus_minus_simple": 0
+    },
+    {
+      "rank": 4,
+      "name": "Eero Tuohimaa",
+      "date": "10/5/25",
+      "plus_minus": "+1",
+      "total": 28,
+      "plus_minus_simple": 1
+    },
+    {
+      "rank": 5,
+      "name": "Eevert Vakevainen",
+      "date": "10/5/25",
+      "plus_minus": "+1",
+      "total": 28,
+      "plus_minus_simple": 1
+    },
+    {
+      "rank": 6,
+      "name": "Benjamin Turja",
+      "date": "10/5/25",
+      "plus_minus": "+2",
+      "total": 29,
+      "plus_minus_simple": 2
+    },
+    {
+      "rank": 7,
+      "name": "Julius Luoma-aho",
+      "date": "10/5/25",
+      "plus_minus": "+3",
+      "total": 30,
+      "plus_minus_simple": 3
+    },
+    {
+      "rank": 8,
+      "name": "Marko Tuohimaa",
+      "date": "10/5/25",
+      "plus_minus": "+4",
+      "total": 31,
+      "plus_minus_simple": 4
+    },
+    {
+      "rank": 9,
+      "name": "Aapo Viinamaki",
+      "date": "10/5/25",
+      "plus_minus": "+5",
+      "total": 32,
+      "plus_minus_simple": 5
+    },
+    {
+      "rank": 10,
+      "name": "Pentti Pitkaranta",
+      "date": "10/5/25",
+      "plus_minus": "+6",
+      "total": 33,
+      "plus_minus_simple": 6
+    }
+  ],
+  "fetched_at": "2026-10-05T09:08:29.393986",
+  "fetched_at_fi": "05.10.2026 09:08",
+  "source": "discgolfmetrix.com/course/43119 - V18 FINAL",
+  "automation": {
+    "header_locked": true,
+    "layout_locked": true,
+    "cards_locked": true
+  }
+}
