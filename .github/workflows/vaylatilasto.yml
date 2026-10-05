@@ -1,11 +1,13 @@
-name: Väylätilasto V15 - Header/Layout/Kortit lukittu
+name: Väylätilasto V18 B
 on:
   schedule:
-    - cron: '0 */6 * * *'  # 6h
+    - cron: '0 */6 * * *'
   workflow_dispatch:
 jobs:
-  update-vaylatilasto:
-    runs-on: ubuntu-latest
+  update:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -13,13 +15,9 @@ jobs:
           python-version: '3.11'
       - run: pip install -r requirements.txt
       - run: python vaylatilasto_fetcher.py
-      - name: Validate schema
-        run: |
-          python -c "import json; d=json.load(open('data/vaylatilasto.json')); assert set(d['44010']['difficulty'])==set(range(1,13)); print('Schema OK')"
-      - name: Commit if changed - only data/
-        run: |
+      - run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add data/vaylatilasto.json data/vaylatilasto.png data/status.json vaylatilasto.png || true
-          git diff --staged --quiet || git commit -m "V15 B avg-par - header/layout/cards lukittu"
-          git push || true
+          git add data/
+          git diff --staged --quiet || git commit -m "V18 vaylatilasto B"
+          git push

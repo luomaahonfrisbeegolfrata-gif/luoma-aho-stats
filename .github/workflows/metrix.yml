@@ -1,7 +1,7 @@
-name: Sää V18 15min
+name: Metrix Kaikki V18 44010+44763+43119
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '0 */6 * * *'
   workflow_dispatch:
 jobs:
   update:
@@ -14,10 +14,10 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install -r requirements.txt
-      - run: python saa_fetcher.py
+      - run: python metrix_fetcher.py
       - run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add data/
-          git diff --staged --quiet || git commit -m "V18 sää live"
+          git diff --staged --quiet || git commit -m "V18 metrix kaikki 44010 44763 43119"
           git push

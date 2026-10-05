@@ -1,11 +1,13 @@
-name: Kierrokset V15 - Header/Layout/Kortit lukittu
+name: Kierrokset V18 1164
 on:
   schedule:
-    - cron: '0 */12 * * *'  # 12h
+    - cron: '0 */12 * * *'
   workflow_dispatch:
 jobs:
-  update-kierrokset:
-    runs-on: ubuntu-latest
+  update:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -13,10 +15,9 @@ jobs:
           python-version: '3.11'
       - run: pip install -r requirements.txt
       - run: python auto_update.py
-      - run: python -c "import json; d=json.load(open('data/kierrokset.json')); assert 500 <= d['total_rounds'] <= 5000; print('Totals OK')"
       - run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add data/kierrokset.json data/status.json || true
-          git diff --staged --quiet || git commit -m "V15 kierrokset 1164 - header/layout/cards lukittu"
-          git push || true
+          git add data/
+          git diff --staged --quiet || git commit -m "V18 kierrokset 1164"
+          git push

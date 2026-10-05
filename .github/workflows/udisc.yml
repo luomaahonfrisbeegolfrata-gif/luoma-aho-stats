@@ -1,11 +1,13 @@
-name: UDisc V15 - Header/Layout/Kortit lukittu
+name: UDisc V18
 on:
   schedule:
     - cron: '0 */8 * * *'
   workflow_dispatch:
 jobs:
-  update-udisc:
-    runs-on: ubuntu-latest
+  update:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -16,6 +18,6 @@ jobs:
       - run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add data/udisc.json data/udisc_top10.json data/status.json || true
-          git diff --staged --quiet || git commit -m "V15 UDisc - header/layout/cards lukittu"
-          git push || true
+          git add data/
+          git diff --staged --quiet || git commit -m "V18 udisc"
+          git push
