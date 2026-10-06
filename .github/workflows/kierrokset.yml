@@ -1,4 +1,4 @@
-name: Kierrokset V25
+name: Kierrokset V26 Uniikit
 on:
   schedule:
     - cron: '0 */12 * * *'
@@ -13,10 +13,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - run: pip install requests beautifulsoup4 lxml
       - run: python auto_update.py
       - run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add data/kierrokset.json
-          git diff --staged --quiet || git commit -m "V25 kierrokset"
+          git add data/
+          git diff --staged --quiet || git commit -m "V26 kierrokset ja uniikit pelaajat"
           git push
