@@ -2,8 +2,10 @@
   "total_rounds": 1164,
   "total": 1164,
   "count": 1164,
-  "unique_players": 156,
-  "uniikit_pelaajat": 156,
-  "fetched_at": "2026-10-06T01:14:52.717173",
-  "version": "V26 kierrokset ja uniikit korjattu"
+  "unique_players": 132,
+  "uniikit_pelaajat": 132,
+  "peliaika": {"display": "1524h"},
+  "askeleet": {"display": "3 192 132"},
+  "kilometrit": {"display": "2328 km"},
+  "version": "V28 kierrokset uniikit korjattu - index.html yhteensopiva"
 }
