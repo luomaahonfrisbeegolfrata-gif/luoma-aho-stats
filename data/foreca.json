@@ -3,11 +3,11 @@
   "temperature": 10.8,
   "condition": "Pilvistä",
   "condition_text": "Pilvistä",
-  "feels_like": 5.5,
-  "tuntuu_kuin": 5.5,
-  "wind_speed": 27.7,
-  "tuuli": "27.7 m/s",
-  "wind": "27.7 m/s",
+  "feels_like": 5.6,
+  "tuntuu_kuin": 5.6,
+  "wind_speed": 27.0,
+  "tuuli": "27.0 m/s",
+  "wind": "27.0 m/s",
   "precipitation": 0.0,
   "sade": "0.0 - Poutaa",
   "vesisade": 0.0,
@@ -27,7 +27,7 @@
     "lon": 23.822,
     "place": "Luoma-aho Alajärvi"
   },
-  "fetched_at": "2026-10-06T16:49:11.450617+00:00",
-  "fetched_at_fi": "06.10.2026 16:49",
+  "fetched_at": "2026-10-06T17:16:21.032232+00:00",
+  "fetched_at_fi": "06.10.2026 17:16",
   "version": "V26 sää NaN korjattu - kaikki kentät numeroina"
 }
