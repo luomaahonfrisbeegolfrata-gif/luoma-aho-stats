@@ -1,22 +1,5 @@
-[
-  {
-    "hole": 4,
-    "player": "Benjamin Turja"
-  },
-  {
-    "hole": 4,
-    "player": "Julius Luoma-aho"
-  },
-  {
-    "hole": 4,
-    "player": "Juha Luoma-aho"
-  },
-  {
-    "hole": 4,
-    "player": "Aleksi Lassila"
-  },
-  {
-    "hole": 8,
-    "player": "Pentti Pitkäranta"
-  }
-]
+{
+  "count": 5,
+  "total": 5,
+  "version": "V26"
+}
