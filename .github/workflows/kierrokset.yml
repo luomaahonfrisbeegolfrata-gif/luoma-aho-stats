@@ -1,4 +1,4 @@
-name: Kierrokset V18 1164
+name: Kierrokset V25
 on:
   schedule:
     - cron: '0 */12 * * *'
@@ -13,11 +13,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: pip install -r requirements.txt
       - run: python auto_update.py
       - run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add data/
-          git diff --staged --quiet || git commit -m "V18 kierrokset 1164"
+          git add data/kierrokset.json
+          git diff --staged --quiet || git commit -m "V25 kierrokset"
           git push
