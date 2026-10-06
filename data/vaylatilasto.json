@@ -147,8 +147,8 @@
     "birdie_total": 142,
     "note": "V10 TÄYSI AUTOMAATTINEN - Avg ja Difficulty lasketaan automaattisesti, värit päivittyvät dynaamisesti jos luvut muuttuvat, 100% sama kuva tyyli"
   },
-  "fetched_at": "2026-10-06T00:15:22.452476",
-  "fetched_at_fi": "06.10.2026 00:15",
+  "fetched_at": "2026-10-06T06:13:09.238543",
+  "fetched_at_fi": "06.10.2026 06:13",
   "automation": {
     "enabled": true,
     "interval": "6h GitHub Actions + 5min index.html cache bust",
