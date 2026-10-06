@@ -1,13 +1,13 @@
 {
-  "temp": 10.6,
-  "temperature": 10.6,
+  "temp": 10.5,
+  "temperature": 10.5,
   "condition": "Pilvistä",
   "condition_text": "Pilvistä",
-  "feels_like": 5.1,
-  "tuntuu_kuin": 5.1,
-  "wind_speed": 28.8,
-  "tuuli": "28.8 m/s",
-  "wind": "28.8 m/s",
+  "feels_like": 5.2,
+  "tuntuu_kuin": 5.2,
+  "wind_speed": 28.1,
+  "tuuli": "28.1 m/s",
+  "wind": "28.1 m/s",
   "precipitation": 0.0,
   "sade": "0.0 - Poutaa",
   "vesisade": 0.0,
@@ -19,7 +19,7 @@
   "humidity": 70,
   "forecast": "Pilvistä. Ylin 13.1°C, alin 8.9°C. Sadetta 4.7 mm.",
   "ennuste": "Pilvistä. Ylin 13.1°C.",
-  "lampotila": 10.6,
+  "lampotila": 10.5,
   "foreca_url": "https://www.foreca.fi/Finland/Alajarvi/Luoma-aho",
   "source": "https://www.foreca.fi/Finland/Alajarvi/Luoma-aho + open-meteo V26 NaN korjattu - omaan korttiin",
   "coords": {
@@ -27,7 +27,7 @@
     "lon": 23.822,
     "place": "Luoma-aho Alajärvi"
   },
-  "fetched_at": "2026-10-06T15:18:51.378574+00:00",
-  "fetched_at_fi": "06.10.2026 15:18",
+  "fetched_at": "2026-10-06T15:47:39.003329+00:00",
+  "fetched_at_fi": "06.10.2026 15:47",
   "version": "V26 sää NaN korjattu - kaikki kentät numeroina"
 }
