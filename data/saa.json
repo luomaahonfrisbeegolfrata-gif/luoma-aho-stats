@@ -18,7 +18,7 @@
   "ennuste": "Pilvistä",
   "lampotila": 12,
   "foreca_url": "https://www.foreca.fi/Finland/Alajarvi/Luoma-aho",
-  "fetched_at": "2026-10-07T09:49:28.208359",
-  "fetched_at_fi": "07.10.2026 09:49",
+  "fetched_at": "2026-10-07T10:19:01.120285",
+  "fetched_at_fi": "07.10.2026 10:19",
   "error": "400 Client Error: Bad Request for url: https://api.open-meteo.com/v1/forecast?latitude=63.0702706&longitude=23.962312,12&current=temperature_2m,wind_speed_10m,precipitation,cloud_cover,apparent_temperature,weather_code,wind_direction_10m&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe/Helsinki&forecast_days=1"
 }
