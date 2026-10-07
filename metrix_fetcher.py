@@ -8,7 +8,7 @@ COURSES={
  "44763": {"par":82, "totals":[82,85,86,87,88,89,90,91,92,93]},
  "43119": {"par":27, "totals":[26,27,27,28,28,29,30,31,32,33]}
 }
-NAMES=["Timo Alalantela","Aapo Penttila","Daniel Turja","Eero Tuohimaa","Eevert Vakevainen","Benjamin Turja","Julius Luoma-aho","Marko Tuohimaa","Aapo Viinamaki","Pentti Pitkaranta"]
+NAMES=[]
 for cid,info in COURSES.items():
     top=[]
     for i,tot in enumerate(info["totals"]):
