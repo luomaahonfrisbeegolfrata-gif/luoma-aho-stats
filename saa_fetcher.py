@@ -2,7 +2,7 @@
 import json, pathlib, requests
 from datetime import datetime, timezone
 DATA_DIR=pathlib.Path("data")
-API="https://api.open-meteo.com/v1/forecast?latitude=63.00&longitude=23.822&current=temperature_2m,wind_speed_10m,precipitation,cloud_cover,apparent_temperature,weather_code,wind_direction_10m&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe/Helsinki&forecast_days=1"
+API="https://api.open-meteo.com/v1/forecast?latitude=63.0702706&longitude=23.962312,12&current=temperature_2m,wind_speed_10m,precipitation,cloud_cover,apparent_temperature,weather_code,wind_direction_10m&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe/Helsinki&forecast_days=1"
 FORECA_URL="https://www.foreca.fi/Finland/Alajarvi/Luoma-aho"
 try:
     r=requests.get(API,timeout=12)
