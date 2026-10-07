@@ -4,8 +4,15 @@
   "count": 1170,
   "unique_players": 132,
   "uniikit_pelaajat": 132,
-  "peliaika": {"display": "1524h"},
-  "askeleet": {"display": "3 192 132"},
-  "kilometrit": {"display": "2328 km"},
-  "version": "V28 korjattu - 1170 ja uniikit 132"
+  "peliaika": {
+    "display": "1524h"
+  },
+  "askeleet": {
+    "display": "3 192 132"
+  },
+  "kilometrit": {
+    "display": "2328 km"
+  },
+  "fetched_at": "2026-10-07T00:20:34.889402",
+  "version": "V28 uniikit lukittu 132 - ei TOP10 laskenta"
 }
