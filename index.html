@@ -21,6 +21,20 @@ body{background:#070708;color:#e6e6e6;font-family:Inter,sans-serif;padding:0 12p
 
 .grid-top{display:grid;grid-template-columns:300px 300px 300px 300px 1fr;gap:12px;margin:12px 0;align-items:stretch}
 .grid-middle{display:grid;grid-template-columns:300px 300px 300px;gap:12px;margin:12px 0;align-items:stretch}
+<!-- TERVEISET KORTTI A -->
+<div class="card" id="terveiset-kortti" style="width:300px;min-width:300px;max-width:300px;height:350px;display:flex;flex-direction:column;padding:0;overflow:hidden;">
+  <div class="top10-header">
+    <h3>TERVEISET 💬</h3>
+    <span class="badge" style="background:#1aff1a;color:#000;">LIVE</span>
+  </div>
+  <div style="flex:1;padding:10px 12px;display:flex;flex-direction:column;gap:8px;">
+    <input id="terv-nimi" placeholder="Nimi (valinnainen)" style="background:#0a0a0a;border:1px solid #262626;border-radius:8px;padding:8px 10px;color:#e6e6e6;font-size:12px;">
+    <textarea id="terv-viesti" placeholder="Kirjoita terveinen, ehdotus tai palaute..." style="flex:1;background:#0a0a0a;border:1px solid #262626;border-radius:8px;padding:8px 10px;color:#e6e6e6;font-size:12px;resize:none;"></textarea>
+    <button id="terv-laheta" style="background:#1aff1a;color:#000;border:none;border-radius:8px;padding:10px;font-weight:900;font-size:12px;cursor:pointer;">LÄHETÄ →</button>
+    <div id="terv-status" style="font-size:10px;color:#888;text-align:center;min-height:14px;"></div>
+  </div>
+  <div class="top10-footer" id="terv-lista" style="max-height:100px;overflow-y:auto;text-align:left;padding:6px 12px;font-size:10px;color:#aaa;">Ladataan...</div>
+</div>
 
 .card{background:#151516;border:1px solid #262626;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column}
 .card-title{font-size:12px;color:#8a8a8a;text-transform:uppercase;font-weight:800;margin-bottom:6px;text-align:center;display:flex;align-items:center;justify-content:center;gap:5px}
