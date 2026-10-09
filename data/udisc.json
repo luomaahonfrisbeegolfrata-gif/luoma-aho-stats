@@ -1,5 +1,6 @@
 {
-  "course": "UDISC Luoma-aho 12 väylää Par 41",
+  "course": "UDISC Luoma-aho 12 väylää Par 41 (parent 43119)",
+  "parent_course": "43119",
   "par": 41,
   "top10": [
     {
@@ -63,6 +64,9 @@
       "plus_minus": "+7"
     }
   ],
-  "fetched_at": "2026-10-07T12:40:00Z",
-  "version": "V29 KORJATTU - rankit 1-10"
+  "total_rounds": 10,
+  "fetched_at": "2026-10-09T13:53:56.204465+00:00",
+  "fetched_at_fi": "09.10.2026 13:53",
+  "source_url": "fallback V29",
+  "version": "V30 LIVE - UDisc, parent 43119, fallback jos ei live"
 }
