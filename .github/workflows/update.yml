@@ -7,61 +7,55 @@ on:
 
 jobs:
   update-stats:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
 
       - name: Install deps
-        run: |
-          pip install requests beautifulsoup4 lxml
+        run: pip install requests beautifulsoup4 lxml
 
       - name: Show structure
         run: |
           ls -la
           ls -la data || echo "no data dir yet"
-          ls -la scripts || echo "no scripts dir"
+          ls -la scripts || echo "no scripts"
 
-      - name: Fetch Metrix parent 43119 + 44010, 44763
+      - name: Fetch Metrix parent 43119 + 44010,44763
         run: |
           if [ -f scripts/metrix_fetcher.py ]; then python scripts/metrix_fetcher.py
           elif [ -f metrix_fetcher.py ]; then python metrix_fetcher.py
-          else echo "metrix_fetcher.py not found" && exit 1
-          fi
+          else echo "metrix_fetcher.py not found" && exit 1; fi
 
       - name: Fetch UDisc
         run: |
           if [ -f scripts/udisc_fetcher.py ]; then python scripts/udisc_fetcher.py
           elif [ -f udisc_fetcher.py ]; then python udisc_fetcher.py
-          else echo "udisc_fetcher.py not found, skipping"
-          fi
+          else echo "skip udisc"; fi
 
-      - name: Fetch Väylätilasto
+      - name: Fetch Vaylatilasto
         run: |
           if [ -f scripts/vaylatilasto_fetcher.py ]; then python scripts/vaylatilasto_fetcher.py
           elif [ -f vaylatilasto_fetcher.py ]; then python vaylatilasto_fetcher.py
-          else echo "vaylatilasto_fetcher.py not found, skipping"
-          fi
+          else echo "skip vayla"; fi
 
-      - name: Calculate Kierrokset total + uniikit
+      - name: Calculate Kierrokset
         run: |
           if [ -f scripts/kierrokset.py ]; then python scripts/kierrokset.py
           elif [ -f kierrokset.py ]; then python kierrokset.py
-          else echo "kierrokset.py not found" && exit 1
-          fi
+          else echo "kierrokset.py not found" && exit 1; fi
 
       - name: Show results
         run: |
           cat data/kierrokset.json || cat kierrokset.json || echo "no kierrokset"
-          cat data/metrix_43119.json || echo "no parent 43119 yet"
-          ls -lh data/
+          ls -lh data/ || true
 
       - name: Commit & Push
         run: |
