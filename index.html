@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Luoma-ahon Frisbeegolfrata - Kirkkaus 11px</title>
+<html lang="fi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Luoma-ahon Frisbeegolfrata</title>
 <style>
 :root{--bg:#070708;--card:#151515;--border:#242424;--green:#1aff1a}
 *{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:#fff;font-family:Inter,system-ui,sans-serif;overflow-x:hidden;overflow-y:auto}
@@ -8,14 +8,13 @@ header{height:56px;min-height:56px;max-height:56px;background:#0f0f0f;border-bot
 .header-icons{display:flex;gap:6px;align-items:center;flex-wrap:nowrap;flex-shrink:0}
 .wrap{max-width:1920px;margin:0 auto;padding:10px}
 .grid-top{display:grid;grid-template-columns:260px 260px 200px 260px 260px;gap:10px}
-.grid-mid{display:grid;grid-template-columns:260px 260px 260px 260px;gap:10px;margin-top:10px}
+.grid-mid{display:grid;grid-template-columns:260px 260px 260px;gap:10px;margin-top:10px}
 .grid-bottom{display:grid;grid-template-columns:1fr;margin-top:10px;width:100%;min-width:100%}
 .card{background:#151515;border:1px solid #242424;border-radius:10px;padding:10px 12px;overflow:hidden;height:320px;min-height:320px;max-height:320px;display:flex;flex-direction:column;width:260px;min-width:260px;max-width:260px}
 .card-mid{height:380px;min-height:380px;max-height:380px;width:260px;min-width:260px;max-width:260px}
 .card-bottom{height:500px!important;min-height:500px!important;max-height:500px!important;padding:0!important;overflow:visible!important;width:100%!important;min-width:100%!important;max-width:100%!important;display:flex!important;flex-direction:column!important}
 #c-midstack{grid-column:4;display:flex;flex-direction:column;gap:10px;height:320px;width:260px;min-width:260px;max-width:260px}
 #c-midstack .mini{flex:1;background:#151515;border:1px solid #242424;border-radius:10px;padding:10px;display:flex;flex-direction:column;justify-content:center;align-items:center}
-/* KIRKKAUS LISÄTTY - KOKO 11px SÄILYTETTY */
 .bullet{font-size:11px;color:#e0e0e0;margin:4px 0;display:flex;gap:6px;line-height:1.4;font-weight:500;letter-spacing:0.1px}
 .bullet::before{content:"•";color:#1aff1a;font-weight:900}
 .big-num{font-size:44px;font-weight:900;text-align:center;margin:8px 0}.label{font-size:11px;color:#888;text-transform:uppercase;text-align:center;font-weight:700}.divider{height:1px;background:#242424;margin:10px 0}
@@ -25,7 +24,7 @@ header{height:56px;min-height:56px;max-height:56px;background:#0f0f0f;border-bot
 .toplist{flex:1;overflow:hidden;display:flex;flex-direction:column}.trow{display:flex;align-items:center;padding:5px 8px;font-size:12px;border-bottom:1px solid #1c1c1c;min-height:32px}
 .rank{width:22px;color:#1aff1a;font-weight:700}.name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.score{width:30px;text-align:right;font-weight:700}.plus{width:28px;text-align:right;font-weight:700;font-size:11px}.neg{color:#1aff1a}.pos{color:#ff4d4d}
 .vayla-header{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:#111;border-bottom:1px solid #242424;flex-shrink:0}
-.vayla-header h3{margin:0;font-size:11px;color:#fff}.live-badge{background:#1aff1a;color:#000;font-size:10px;font-weight:800;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.vayla-header h3{margin:0;font-size:11px;color:#fff;letter-spacing:0.5px}.live-badge{background:#1aff1a;color:#000;font-size:10px;font-weight:800;padding:3px 10px;border-radius:12px;flex-shrink:0}
 .vayla-table-wrap{flex:1;overflow:auto!important;background:#0a0a0a}
 table.vayla{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12px;min-width:960px}
 table.vayla th{background:#222;color:#fff;padding:8px 4px;text-align:center;border:1px solid #2a2a2a;min-width:60px;position:sticky;top:0;z-index:3}
@@ -49,26 +48,13 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
   #c-midstack{grid-column:auto!important;width:100%!important;min-width:100%!important;max-width:100%!important;height:auto!important;display:grid!important;grid-template-columns:1fr 1fr 1fr;gap:10px}
   #c-midstack .mini{height:100px}
 }
-#card-foreca{
-  width:260px!important;min-width:260px!important;max-width:260px!important;
-  height:320px!important;min-height:320px!important;max-height:320px!important;
-  padding:0!important;overflow:hidden!important;border-radius:10px!important;
-  background:#151515!important;border:1px solid #242424!important;
-  display:flex!important;flex-direction:column!important;position:relative!important;
-}
-#foreca-daily-weather-T3Rnu47Cqi{
-  width:260px!important;min-width:260px!important;max-width:260px!important;
-  height:320px!important;min-height:320px!important;max-height:320px!important;
-  overflow-y:auto!important;overflow-x:hidden!important;
-  border-radius:10px!important;display:block!important;flex:1!important;
-}
-#foreca-daily-weather-T3Rnu47Cqi::-webkit-scrollbar{width:4px}
-#foreca-daily-weather-T3Rnu47Cqi::-webkit-scrollbar-thumb{background:#333;border-radius:2px}
 .tiedote-item{padding:8px;border-bottom:1px solid #1e1e1e}
 .tiedote-date{font-size:9px;color:#666;font-weight:700}
 .tiedote-title{font-size:12px;font-weight:800;color:#fff;margin:3px 0}
 .tiedote-msg{font-size:11px;color:#bbb;line-height:1.3;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .tiedote-list{flex:1;overflow-y:auto;overflow-x:hidden}
+.tiedote-list::-webkit-scrollbar{width:4px}
+.tiedote-list::-webkit-scrollbar-thumb{background:#333;border-radius:2px}
 </style></head><body>
 <header><div class="brand"><div class="brand-logo"><img src="logot/l-a-friba-logo.jpg" alt="L-A FRIBA" style="width:35px;height:35px;object-fit:cover;display:block" /></div> Luoma-ahon Frisbeegolfrata</div><div class="header-icons">
 <a href="https://www.google.com/maps/place/Luoma-ahon+Frisbeegolfrata/@63.0901676,23.8860139,12z/" target="_blank" title="Google Maps" style="width:35px;height:35px;min-width:35px;background:#fff;border-radius:8px;display:grid;place-items:center;overflow:hidden;border:1px solid #333;flex-shrink:0"><img src="logot/gmaps-logo.jpg" alt="Maps" style="width:100%;height:100%;object-fit:cover;display:block" /></a>
@@ -88,19 +74,15 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 <div class="card"><div class="label">Metrix & UDisc tuloskirjattujen kierrosten määrä</div><div class="big-num" id="v-kierrokset">1170</div><div class="divider"></div><div class="label">Uniikit pelaajat</div><div class="big-num" style="font-size:36px" id="v-unique">132</div></div>
 <div class="card" style="width:200px;min-width:200px;max-width:200px"><div class="label">Hole in One</div><div class="vayla-big">5</div><div class="vayla-green">Väylä 4</div><div class="vayla-name">Benjamin Turja</div><div class="vayla-name">Julius Luoma-aho</div><div class="vayla-name">Juha Luoma-aho</div><div class="vayla-name">Aleksi Lassila</div><div class="vayla-green" style="margin-top:12px">Väylä 8</div><div class="vayla-name">Pentti Pitkäranta</div></div>
 <div id="c-midstack"><div class="mini"><div class="mini-label">Peliaika</div><div class="mini-val" id="v-peliaika">1524h</div></div><div class="mini"><div class="mini-label">Askelmäärä</div><div class="mini-val" id="v-askel">3 192 132</div></div><div class="mini"><div class="mini-label">Kilometrit</div><div class="mini-val" id="v-km">2328 km</div></div></div>
-<div class="card" id="card-foreca">
-  <div id="foreca-daily-weather-T3Rnu47Cqi" data-forecawidget="foreca-daily-weather" data-theme="dark" data-widgetid="T3Rnu47Cqi" data-locationid="100647416" data-windunit="ms" data-tempunit="C" data-rainunit="mm" data-language="fi"></div>
-</div>
+<div class="card"><div class="top10-title"><span>TIEDOTTEET</span><b id="tiedote-badge">LIVE</b></div><div class="tiedote-list" id="list-tiedotteet"></div></div>
 </div>
 <div class="grid-mid">
 <div class="card card-mid"><div class="top10-title"><span>METRIX 44010 TOP 10</span><b>44010 ↗</b></div><div class="toplist" id="list-44010"></div></div>
 <div class="card card-mid"><div class="top10-title"><span>METRIX 44763 TOP 10</span><b>44763 ↗</b></div><div class="toplist" id="list-44763"></div></div>
 <div class="card card-mid"><div class="top10-title"><span>UDISC TOP 10</span><b>UDisc ↗</b></div><div class="toplist" id="list-udisc"></div></div>
-<div class="card card-mid"><div class="top10-title"><span>TIEDOTTEET</span><b id="tiedote-badge">LIVE</b></div><div class="tiedote-list" id="list-tiedotteet"></div></div>
 </div>
-<div class="grid-bottom"><div class="card card-bottom" id="card-vayla"><div class="vayla-header"><h3>VÄYLÄOPASTE - par rating 990</h3><div class="live-badge" id="vayla-badge">● LIVE</div></div><div class="vayla-table-wrap" id="vayla-wrap"><table class="vayla"><thead><tr><th>Vayla</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>Tot</th><th>%</th></tr></thead><tbody id="vayla-body"></tbody></table></div></div></div>
+<div class="grid-bottom"><div class="card card-bottom" id="card-vayla"><div class="vayla-header"><h3>VÄYLÄTILASTO - LIVE</h3><div class="live-badge" id="vayla-badge">● LIVE</div></div><div class="vayla-table-wrap" id="vayla-wrap"><table class="vayla"><thead><tr><th>Vayla</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>Tot</th><th>%</th></tr></thead><tbody id="vayla-body"></tbody></table></div></div></div>
 </div>
-<script defer data-cfasync="false" type="text/javascript" src="https://www.forecabox.com/dist/daily.min.js" onload="if(typeof loadDaily==='function'){loadDaily('T3Rnu47Cqi');}"></script>
 <script>
 const LOCKED_PAR = ["4","3","3","3","3","3","3","3","4","3","5","4","41","-"];
 const LOCKED_PITUUS = ["125m","103m","72m","57m","94m","96m","103m","80m","116m","85m","197m","120m","1248m","-"];
@@ -108,7 +90,7 @@ const fallback={
 top44010:[{name:"Toni Luoma-aho",total:42,plus:"+1"},{name:"Eino Vistiaho",total:43,plus:"+2"},{name:"Benjamin Turja",total:44,plus:"+3"},{name:"Jari Vistiaho",total:46,plus:"+5"},{name:"Julius Luoma-aho",total:47,plus:"+6"},{name:"Joakim Turja",total:49,plus:"+8"},{name:"Jouni Peltomäki",total:49,plus:"+8"},{name:"Juha Luoma-aho",total:51,plus:"+10"},{name:"Juha Vainio",total:55,plus:"+14"},{name:"Mika Korkea-aho",total:57,plus:"+16"}],
 top44763:[{name:"Timo Alalantela",total:82,plus:"E"},{name:"Aapo Penttilä",total:83,plus:"+1"},{name:"Evert Väkeväinen",total:85,plus:"+3"},{name:"Daniel Turja",total:87,plus:"+5"},{name:"Eero Tuohimaa",total:88,plus:"+6"},{name:"Marko Tuohimaa",total:90,plus:"+8"},{name:"Benjamin Turja",total:91,plus:"+9"},{name:"Aapo Viinamäki",total:91,plus:"+9"},{name:"Julius Luoma-aho",total:92,plus:"+10"},{name:"Eino Vistiaho",total:92,plus:"+10"}],
 topUdisc:[{name:"@kantanen8",total:35,plus:"-6"},{name:"@valkoparta",total:36,plus:"-5"},{name:"@mattiass",total:36,plus:"-5"},{name:"@dashyy",total:38,plus:"-3"},{name:"@tikonenjere",total:38,plus:"-3"},{name:"@neetu7",total:39,plus:"-2"},{name:"@taspak",total:42,plus:"+1"},{name:"@adusti",total:43,plus:"+2"},{name:"@tommivuoma",total:47,plus:"+6"},{name:"@attekolis",total:48,plus:"+7"}],
-tiedotteet:[{date:"09.10.2026",title:"Rata auki - syyskausi",message:"Luoma-ahon rata on nyt täydessä syyskunnossa.",type:"info"}],
+tiedotteet:[{date:"09.10.2026",title:"Rata auki - syyskausi",message:"Luoma-ahon rata on nyt täydessä syyskunnossa. Väyläopasteet päivitetty.",type:"info"},{date:"05.10.2026",title:"Viikkokisat #3",message:"Aapo Penttilä voitti tuloksella 83 (+1). Seuraavat kisat 18.10.",type:"success"}],
 vayla:{pituus:LOCKED_PITUUS,par:LOCKED_PAR,avg:["4.45","3.77","3.45","3.42","3.55","4.18","3.79","3.33","4.53","4.20","6.15","4.23","49.05","-"],avgCls:["cell-red","cell-yellow","cell-green","cell-green","cell-yellow","cell-orange","cell-yellow","cell-green","cell-red","cell-orange","cell-red","cell-orange","cell-dark","cell-dark"],diff:["8","5","9","10","6","2","4","11","7","1","3","12","78","-"],diffCls:["cell-yellow","cell-orange","cell-yellow","cell-green","cell-orange","cell-red","cell-orange","cell-green","cell-yellow","cell-red","cell-red","cell-green","cell-dark","cell-dark"],hio:["0","0","0","4","0","0","0","1","0","0","0","0","5","0.3%"],birdie:["14","4","14","25","3","4","10","19","8","6","11","24","142","8.7%"],par0:["59","52","77","32","69","38","53","73","55","34","31","67","640","39.2%"],bogey:["31","65","34","64","46","49","51","38","38","48","48","35","547","33.5%"],dbl:["18","16","14","6","11","24","21","7","12","38","31","6","204","12.5%"],tpl:["3","3","2","4","5","15","6","1","4","9","11","1","64","3.9%"],other:["1","1","0","1","1","8","1","0","5","4","5","1","28","1.7%"]}
 };
 let lastTiedotteet=null;
