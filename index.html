@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Luoma-ahon Frisbeegolfrata</title>
+<html lang="fi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Luoma-ahon Frisbeegolfrata - Stack 200px</title>
 <style>
 :root{--bg:#070708;--card:#151515;--border:#242424;--green:#1aff1a}
 *{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:#fff;font-family:Inter,system-ui,sans-serif;overflow-x:hidden;overflow-y:auto}
@@ -7,14 +7,14 @@ header{height:56px;min-height:56px;max-height:56px;background:#0f0f0f;border-bot
 .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px}.brand-logo{width:35px;height:35px;background:#fff;border-radius:50%;overflow:hidden;display:grid;place-items:center;flex-shrink:0}
 .header-icons{display:flex;gap:6px;align-items:center;flex-wrap:nowrap;flex-shrink:0}
 .wrap{max-width:1920px;margin:0 auto;padding:10px}
-.grid-top{display:grid;grid-template-columns:260px 260px 200px 260px 260px;gap:10px}
+.grid-top{display:grid;grid-template-columns:260px 260px 200px 200px 260px;gap:10px}
 .grid-mid{display:grid;grid-template-columns:260px 260px 260px;gap:10px;margin-top:10px}
 .grid-bottom{display:grid;grid-template-columns:1fr;margin-top:10px;width:100%;min-width:100%}
 .card{background:#151515;border:1px solid #242424;border-radius:10px;padding:10px 12px;overflow:hidden;height:320px;min-height:320px;max-height:320px;display:flex;flex-direction:column;width:260px;min-width:260px;max-width:260px}
 .card-mid{height:380px;min-height:380px;max-height:380px;width:260px;min-width:260px;max-width:260px}
 .card-bottom{height:500px!important;min-height:500px!important;max-height:500px!important;padding:0!important;overflow:visible!important;width:100%!important;min-width:100%!important;max-width:100%!important;display:flex!important;flex-direction:column!important}
-#c-midstack{grid-column:4;display:flex;flex-direction:column;gap:10px;height:320px;width:260px;min-width:260px;max-width:260px}
-#c-midstack .mini{flex:1;background:#151515;border:1px solid #242424;border-radius:10px;padding:10px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+#c-midstack{grid-column:4;display:flex;flex-direction:column;gap:10px;height:320px;width:200px!important;min-width:200px!important;max-width:200px!important}
+#c-midstack .mini{flex:1;background:#151515;border:1px solid #242424;border-radius:10px;padding:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;width:200px!important;min-width:200px!important;max-width:200px!important}
 .bullet{font-size:11px;color:#e0e0e0;margin:4px 0;display:flex;gap:6px;line-height:1.4;font-weight:500;letter-spacing:0.1px}
 .bullet::before{content:"•";color:#1aff1a;font-weight:900}
 .big-num{font-size:44px;font-weight:900;text-align:center;margin:8px 0}.label{font-size:11px;color:#888;text-transform:uppercase;text-align:center;font-weight:700}.divider{height:1px;background:#242424;margin:10px 0}
@@ -46,7 +46,7 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
   .card-mid{width:100%!important;min-width:100%!important;max-width:100%!important;height:380px!important}
   .card-bottom{width:100%!important;min-width:100%!important;max-width:100%!important;height:500px!important;min-height:500px!important}
   #c-midstack{grid-column:auto!important;width:100%!important;min-width:100%!important;max-width:100%!important;height:auto!important;display:grid!important;grid-template-columns:1fr 1fr 1fr;gap:10px}
-  #c-midstack .mini{height:100px}
+  #c-midstack .mini{width:100%!important;min-width:100%!important;max-width:100%!important;height:100px}
 }
 .tiedote-item{padding:8px;border-bottom:1px solid #1e1e1e}
 .tiedote-date{font-size:9px;color:#666;font-weight:700}
