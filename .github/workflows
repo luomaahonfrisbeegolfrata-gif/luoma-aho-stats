@@ -1,0 +1,40 @@
+name: Update DiscGolf Stats (V30 LIVE parent 43119)
+
+on:
+  schedule:
+    - cron: '0 */3 * * *'  # 3h välein kuten README
+  workflow_dispatch:
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: pip install requests beautifulsoup4 lxml
+
+      - name: Fetch Metrix (parent 43119 + 44010, 44763)
+        run: python scripts/metrix_fetcher.py || python metrix_fetcher.py
+
+      - name: Fetch UDisc
+        run: python scripts/udisc_fetcher.py || python udisc_fetcher.py
+
+      - name: Fetch Väylätilasto
+        run: python scripts/vaylatilasto_fetcher.py || python vaylatilasto_fetcher.py
+
+      - name: Calculate Kierrokset (total + uniikit)
+        run: python scripts/kierrokset.py || python kierrokset.py
+
+      - name: Commit & Push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/*.json || true
+          git diff --cached --quiet || git commit -m "V30 LIVE update - parent 43119 - $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push || echo "No changes or push failed"
