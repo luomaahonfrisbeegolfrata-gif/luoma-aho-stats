@@ -53,18 +53,18 @@
     "-"
   ],
   "avgCls": [
-    "cell-red",
-    "cell-yellow",
-    "cell-green",
-    "cell-green",
-    "cell-yellow",
     "cell-orange",
-    "cell-yellow",
-    "cell-green",
-    "cell-red",
+    "cell-orange",
+    "cell-orange",
+    "cell-orange",
     "cell-orange",
     "cell-red",
     "cell-orange",
+    "cell-yellow",
+    "cell-orange",
+    "cell-red",
+    "cell-red",
+    "cell-yellow",
     "cell-dark",
     "cell-dark"
   ],
@@ -212,6 +212,7 @@
     "28",
     "1.7%"
   ],
-  "fetched_at": "2026-10-07T12:45:00Z",
-  "version": "V29 KORJATTU - täysi taulukko kuvasta"
+  "fetched_at": "2026-10-09T05:38:50.220021+00:00",
+  "fetched_at_fi": "08.10.2026 22:38",
+  "version": "V30 - Väylätilaston päivitys + mobiili fix"
 }
