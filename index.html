@@ -6,7 +6,7 @@
 header{height:56px;min-height:56px;max-height:56px;background:#0f0f0f;border-bottom:1px solid #242424;display:flex;align-items:center;justify-content:space-between;padding:0 12px;position:sticky;top:0;z-index:100}
 .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px}.brand-logo{width:36px;height:36px;background:#fff;border-radius:50%;display:grid;place-items:center;color:#000;font-size:10px;font-weight:900;line-height:1}
 .header-icons{display:flex;gap:6px;align-items:center}.h-icon{height:32px;min-width:48px;padding:0 8px;border-radius:6px;background:#222;border:1px solid #333;display:grid;place-items:center;font-size:10px;font-weight:700}
-.wrap{max-width:1920px;margin:0 auto;padding:10px}.grid-top{display:grid;grid-template-columns:260px 260px 200px 260px 200px;gap:10px}
+.wrap{max-width:1920px;margin:0 auto;padding:10px}.grid-top{display:grid;grid-template-columns:260px 260px 200px 260px 260px;gap:10px}
 .grid-mid{display:grid;grid-template-columns:260px 260px 260px;gap:10px;margin-top:10px}
 .grid-bottom{display:grid;grid-template-columns:1fr;margin-top:10px}
 .card{background:#151515;border:1px solid #242424;border-radius:10px;padding:10px 12px;overflow:hidden;height:320px;min-height:320px;max-height:320px;display:flex;flex-direction:column;width:260px;min-width:260px;max-width:260px}
@@ -50,11 +50,11 @@ table.vayla{min-width:960px;width:max-content}
 .grid-top .card:nth-child(3){width:200px;min-width:200px;max-width:200px}
 @media (max-width:1320px){
   .wrap{overflow-x:auto}
-  .grid-top{grid-template-columns:260px 260px 200px 260px 200px !important}
+  .grid-top{grid-template-columns:260px 260px 200px 260px 260px !important}
   .grid-mid{grid-template-columns:260px 260px 260px !important;width:calc(100vw - 20px);min-width:800px}
 }
 @media (max-width:768px){
-  .grid-top{grid-template-columns:260px 260px 200px 260px 200px !important;width:max-content}
+  .grid-top{grid-template-columns:260px 260px 200px 260px 260px !important;width:max-content}
   .grid-mid{grid-template-columns:260px 260px 260px !important;width:max-content}
   .grid-bottom{grid-template-columns:minmax(960px,1fr) !important;width:max-content;min-width:calc(100vw - 20px)}
   table.vayla{font-size:11px;min-width:960px}
@@ -69,6 +69,9 @@ table.vayla{min-width:960px;width:max-content}
 #card-saa{height:320px!important;min-height:320px!important;max-height:320px!important;width:260px!important;min-width:260px!important;max-width:260px!important;overflow:hidden!important;border-radius:10px!important}
 #card-saa{height:320px!important;width:260px!important;overflow:hidden!important;border-radius:10px!important}
 #foreca-daily-weather-0zRJbmP1t5{height:320px!important;width:260px!important;overflow:hidden!important;border-radius:10px!important}
+#c-midstack{grid-column:4;display:flex;flex-direction:column;gap:10px;height:320px;width:260px;min-width:260px;max-width:260px}
+#c-midstack .mini{flex:1;background:#151515;border:1px solid #242424;border-radius:10px;padding:10px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+#c-rightstack{grid-column:5;display:flex;flex-direction:column;height:320px;width:260px;min-width:260px;max-width:260px;border-radius:10px;overflow:hidden;background:#151515;border:1px solid #242424}
 </style></head><body>
 <header><div class="brand"><div class="brand-logo" style="width:36px;height:36px;background:#fff;border-radius:50%;overflow:hidden;display:grid;place-items:center;flex-shrink:0"><img src="logot/l-a-friba-logo.jpg" alt="L-A FRIBA" style="width:36px;height:36px;object-fit:cover;display:block" /></div> Luoma-ahon Frisbeegolfrata</div><div class="header-icons">
 <a href="https://www.google.com/maps/place/Luoma-ahon+Frisbeegolfrata/@63.0901676,23.8860139,12z/" target="_blank" title="Google Maps" style="width:35px;height:35px;min-width:35px;background:#fff;border-radius:8px;display:grid;place-items:center;overflow:hidden;border:1px solid #333;flex-shrink:0"><img src="logot/gmaps-logo.jpg" alt="Maps" style="width:100%;height:100%;object-fit:cover;display:block" /></a>
@@ -87,13 +90,13 @@ table.vayla{min-width:960px;width:max-content}
 <div class="card"><div class="bullet">Kallioisessa mäntymetsä maastossa</div><div class="bullet">Kompaktiin pakettiin suunniteltu ja toteutettu</div><div class="bullet">Huippu kuntoinen metsärata</div><div class="bullet">Vaylat 57 - 197m teknisiä ja kiekko kontrollia vaativia</div><div class="bullet">Tarkkuus, oikea kiekko ja heittovalinnat avainasemassa onnistumiseen</div><div class="bullet">Mukava rata kiertää joka soveltuu kaikille iästä ja taitotasosta riippumatta</div><div class="bullet">Korkeuserot, rehelliset selkeät linjat</div><div class="bullet">Kierros noin 1.5km peliaika noin tunti</div><div class="bullet">OB:t ja Mandot haastavat pelaajan päätöksentekoa</div></div>
 <div class="card"><div class="label">Metrix & UDisc tuloskirjattujen kierrosten määrä</div><div class="big-num" id="v-kierrokset">1170</div><div class="divider"></div><div class="label">Uniikit pelaajat</div><div class="big-num" style="font-size:36px" id="v-unique">132</div></div>
 <div class="card"><div class="label">Hole in One</div><div class="vayla-big">5</div><div class="vayla-green">Väylä 4</div><div class="vayla-name">Benjamin Turja</div><div class="vayla-name">Julius Luoma-aho</div><div class="vayla-name">Juha Luoma-aho</div><div class="vayla-name">Aleksi Lassila</div><div class="vayla-green" style="margin-top:12px">Väylä 8</div><div class="vayla-name">Pentti Pitkäranta</div></div>
-<div class="card" id="card-saa" style="padding:0;overflow:hidden;background:#151515;display:flex;flex-direction:column;height:320px;min-height:320px;max-height:320px;width:260px;min-width:260px;max-width:260px;border-radius:10px">
-<div id="foreca-daily-weather-0zRJbmP1t5" data-forecawidget="foreca-daily-weather" data-theme="dark" data-widgetid="0zRJbmP1t5" data-locationid="100647416" data-windunit="ms" data-tempunit="C" data-rainunit="mm" data-language="fi" style="width:260px;height:320px;min-height:320px;max-height:320px;overflow:hidden;border-radius:10px">
+<div id="c-midstack" style="grid-column:4;display:flex;flex-direction:column;gap:10px;height:320px;width:260px;min-width:260px;max-width:260px"><div class="mini"><div class="mini-label">Peliaika</div><div class="mini-val" id="v-peliaika">1524h</div></div><div class="mini"><div class="mini-label">Askelmäärä</div><div class="mini-val" id="v-askel">3 192 132</div></div><div class="mini"><div class="mini-label">Kilometrit</div><div class="mini-val" id="v-km">2328 km</div></div></div>
+<div id="c-rightstack" style="grid-column:5;display:flex;flex-direction:column;height:320px;width:260px;min-width:260px;max-width:260px;border-radius:10px;overflow:hidden;background:#151515;border:1px solid #242424">
+<div id="foreca-daily-weather-0zRJbmP1t5" data-forecawidget="foreca-daily-weather" data-theme="dark" data-widgetid="0zRJbmP1t5" data-locationid="100647416" data-windunit="ms" data-tempunit="C" data-rainunit="mm" data-language="fi">
 <script defer data-cfasync="false" type="text/javascript" src="https://www.forecabox.com/dist/daily.min.js" onload="loadDaily('0zRJbmP1t5')"></script>
 <a id="foreca-attribution-0zRJbmP1t5" href="https://www.foreca.com/" rel="noopener" target="_blank" style="position: relative; bottom: 0px; left: 5px;"><img alt="Weather by Foreca" src="https://www.foreca.com/public/images/logo/black.svg" width="70" height="15" style="margin-top: 8px; padding: 2px; border-radius: 2px; background-color: #ffffffaa;" /></a>
 </div>
 </div>
-<div id="c-rightstack"><div class="mini"><div class="mini-label">Peliaika</div><div class="mini-val" id="v-peliaika">1524h</div></div><div class="mini"><div class="mini-label">Askelmäärä</div><div class="mini-val" id="v-askel">3 192 132</div></div><div class="mini"><div class="mini-label">Kilometrit</div><div class="mini-val" id="v-km">2328 km</div></div></div>
 </div>
 <div class="grid-mid"><div class="card card-mid"><div class="top10-title"><span>METRIX 44010 TOP 10 •</span><b>44010 ↗</b></div><div class="toplist" id="list-44010"></div></div><div class="card card-mid"><div class="top10-title"><span>METRIX 44763 TOP 10 •</span><b>44763 ↗</b></div><div class="toplist" id="list-44763"></div></div><div class="card card-mid"><div class="top10-title"><span>UDISC TOP 10 •</span><b>UDisc ↗</b></div><div class="toplist" id="list-udisc"></div></div></div>
 <div class="grid-bottom"><div class="card card-bottom" id="card-vayla"><div class="vayla-header"><h3>VÄYLÄTILASTO - LIVE • HTML TAULUKKO LUKITTU</h3><div class="live-badge">● LIVE</div></div><div class="vayla-table-wrap"><table class="vayla"><thead><tr><th>Vayla</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>Tot</th><th>%</th></tr></thead><tbody id="vayla-body"></tbody></table></div></div></div>
