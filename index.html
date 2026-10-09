@@ -6,12 +6,12 @@
 header{height:56px;min-height:56px;max-height:56px;background:#0f0f0f;border-bottom:1px solid #242424;display:flex;align-items:center;justify-content:space-between;padding:0 12px;position:sticky;top:0;z-index:100}
 .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px}.brand-logo{width:36px;height:36px;background:#fff;border-radius:50%;display:grid;place-items:center;color:#000;font-size:10px;font-weight:900;line-height:1}
 .header-icons{display:flex;gap:6px;align-items:center}.h-icon{height:32px;min-width:48px;padding:0 8px;border-radius:6px;background:#222;border:1px solid #333;display:grid;place-items:center;font-size:10px;font-weight:700}
-.wrap{max-width:1920px;margin:0 auto;padding:10px}.grid-top{display:grid;grid-template-columns:260px 300px 200px 360px 200px;gap:10px}
-.grid-mid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px}
+.wrap{max-width:1920px;margin:0 auto;padding:10px}.grid-top{display:grid;grid-template-columns:260px 260px 200px 260px 200px;gap:10px}
+.grid-mid{display:grid;grid-template-columns:260px 260px 260px;gap:10px;margin-top:10px}
 .grid-bottom{display:grid;grid-template-columns:1fr;margin-top:10px}
-.card{background:#151515;border:1px solid #242424;border-radius:10px;padding:10px 12px;overflow:hidden;height:320px;min-height:320px;max-height:320px;display:flex;flex-direction:column}
-.card-mid{height:520px;min-height:520px;max-height:520px}
-.card-bottom{height:500px;min-height:500px;max-height:500px;padding:0;overflow:hidden}
+.card{background:#151515;border:1px solid #242424;border-radius:10px;padding:10px 12px;overflow:hidden;height:320px;min-height:320px;max-height:320px;display:flex;flex-direction:column;width:260px;min-width:260px;max-width:260px}
+.card-mid{height:380px;min-height:380px;max-height:380px;width:260px;min-width:260px;max-width:260px}
+.card-bottom{height:500px!important;min-height:500px!important;max-height:500px!important;padding:0;overflow:hidden;width:100%!important;min-width:100%!important;max-width:100%!important}
 #c-rightstack{grid-column:5;display:flex;flex-direction:column;gap:10px;height:320px}
 #c-rightstack .mini{flex:1;background:#151515;border:1px solid #242424;border-radius:10px;padding:10px;display:flex;flex-direction:column;justify-content:center;align-items:center}
 .bullet{font-size:11px;color:#bbb;margin:4px 0;display:flex;gap:6px}.bullet::before{content:"•";color:#666}
@@ -39,7 +39,7 @@ table.vayla td:first-child{text-align:left;padding-left:12px;background:#111}
 .cell-yellow{background:#ffeb3b!important;color:#000!important;font-weight:700}
 .cell-green{background:#66bb6a!important;color:#000!important;font-weight:700}
 .cell-orange{background:#ff9800!important;color:#000!important;font-weight:700}
-/* MOBIILI FIX - samankokoisina scrollattivina, ei rikota 6 sääntöä */
+/* MOBIILI FIX - samankokoisina scrollattivina - AVATTU LUKITUS 260x320 */
 .wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .grid-top,.grid-mid,.grid-bottom{width:max-content;min-width:100%}
 header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
@@ -47,14 +47,15 @@ header::-webkit-scrollbar{display:none}
 .header-icons{flex-wrap:nowrap;flex-shrink:0}
 .vayla-table-wrap{overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 table.vayla{min-width:960px;width:max-content}
+.grid-top .card:nth-child(3){width:200px;min-width:200px;max-width:200px}
 @media (max-width:1320px){
   .wrap{overflow-x:auto}
-  .grid-top{grid-template-columns:260px 300px 200px 360px 200px !important}
-  .grid-mid{grid-template-columns:1fr 1fr 1fr !important;width:calc(100vw - 20px);min-width:900px}
+  .grid-top{grid-template-columns:260px 260px 200px 260px 200px !important}
+  .grid-mid{grid-template-columns:260px 260px 260px !important;width:calc(100vw - 20px);min-width:800px}
 }
 @media (max-width:768px){
-  .grid-top{grid-template-columns:260px 300px 200px 360px 200px !important;width:max-content}
-  .grid-mid{grid-template-columns:360px 360px 360px !important;width:max-content}
+  .grid-top{grid-template-columns:260px 260px 200px 260px 200px !important;width:max-content}
+  .grid-mid{grid-template-columns:260px 260px 260px !important;width:max-content}
   .grid-bottom{grid-template-columns:minmax(960px,1fr) !important;width:max-content;min-width:calc(100vw - 20px)}
   table.vayla{font-size:11px;min-width:960px}
   table.vayla th,table.vayla td{white-space:nowrap;padding:6px 3px;min-width:56px}
