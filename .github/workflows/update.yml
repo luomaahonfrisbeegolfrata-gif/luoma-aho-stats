@@ -1,4 +1,4 @@
-name: Update DiscGolf Stats V30 LIVE parent 43119
+name: Update DiscGolf Stats V30 - Tiedotteet + Parent 43119
 
 on:
   schedule:
@@ -11,22 +11,12 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-
-      - name: Set up Python
-        uses: actions/setup-python@v6
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.11'
-
       - name: Install deps
         run: pip install requests beautifulsoup4 lxml
-
-      - name: Show structure
-        run: |
-          ls -la
-          ls -la data || echo "no data dir yet"
-          ls -la scripts || echo "no scripts"
 
       - name: Fetch Metrix parent 43119 + 44010,44763
         run: |
@@ -46,6 +36,12 @@ jobs:
           elif [ -f vaylatilasto_fetcher.py ]; then python vaylatilasto_fetcher.py
           else echo "skip vayla"; fi
 
+      - name: Fetch Tiedotteet (manual - keep existing)
+        run: |
+          if [ -f scripts/tiedotteet_fetcher.py ]; then python scripts/tiedotteet_fetcher.py
+          elif [ -f tiedotteet_fetcher.py ]; then python tiedotteet_fetcher.py
+          else echo "tiedotteet_fetcher.py not found - creating default"; mkdir -p data; echo '{"tiedotteet":[]}' > data/tiedotteet.json; fi
+
       - name: Calculate Kierrokset
         run: |
           if [ -f scripts/kierrokset.py ]; then python scripts/kierrokset.py
@@ -54,14 +50,15 @@ jobs:
 
       - name: Show results
         run: |
-          cat data/kierrokset.json || cat kierrokset.json || echo "no kierrokset"
-          ls -lh data/ || true
+          ls -lh data/
+          cat data/kierrokset.json || true
+          cat data/tiedotteet.json || true
 
       - name: Commit & Push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/ || git add .
+          git add data/
           git diff --cached --quiet && echo "No changes" && exit 0
-          git commit -m "V30 LIVE parent 43119 - $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git commit -m "V30 Tiedotteet + parent 43119 - $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git push
