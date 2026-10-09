@@ -2,21 +2,21 @@
   "tiedotteet": [
     {
       "date": "2026-10-09",
-      "title": "Rata auki - syyskausi",
-      "message": "Luoma-ahon rata on nyt täydessä syyskunnossa. Väyläopasteet päivitetty. Muista varoa liukkaita kallioita väylillä 1 ja 11.",
+      "title": "Syyskausi",
+      "message": "Maasto on todella märkää viikkojen rankkasateiden jälkeen, muuten huippukunnossa joten kummparit on hyvä ratkaisu.",
       "type": "info"
     },
     {
-      "date": "2026-10-05",
-      "title": "Viikkokisat #3 tulokset",
-      "message": "Aapo Penttilä vei voiton tuloksella 83 (+1). Koko TOP10 päivitetty Metrix 44763 korttiin. Seuraavat viikkokisat 18.10.",
-      "type": "success"
+      "date": "2026-10-08",
+      "title": "Väylä 6 muutos",
+      "message": "Oikean puoleinen OB poistettu. Väyläopaste on vielä vaihtamatta. Seurataan tulosten kehittymistä",
+      "type": "info"
     },
     {
-      "date": "2026-10-01",
-      "title": "Löytökiekot päivitetty",
-      "message": "Löytökiekkolaatikko tyhjennetty ja kuvattu. Katso löytökiekot-logo headerista.",
-      "type": "warning"
+      "date": "2026-10-08",
+      "title": "Väylä 10 muutos",
+      "message": "Mandoa siirretty 3m oikealle. Seurataan tulosten kehittymistä",
+      "type": "info"
     }
   ],
   "fetched_at": "2026-10-09T18:00:00Z",
