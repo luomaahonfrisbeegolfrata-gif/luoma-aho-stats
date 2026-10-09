@@ -1,0 +1,73 @@
+name: Update DiscGolf Stats V30 LIVE parent 43119
+
+on:
+  schedule:
+    - cron: '0 */3 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: |
+          pip install requests beautifulsoup4 lxml
+
+      - name: Show structure
+        run: |
+          ls -la
+          ls -la data || echo "no data dir yet"
+          ls -la scripts || echo "no scripts dir"
+
+      - name: Fetch Metrix parent 43119 + 44010, 44763
+        run: |
+          if [ -f scripts/metrix_fetcher.py ]; then python scripts/metrix_fetcher.py
+          elif [ -f metrix_fetcher.py ]; then python metrix_fetcher.py
+          else echo "metrix_fetcher.py not found" && exit 1
+          fi
+
+      - name: Fetch UDisc
+        run: |
+          if [ -f scripts/udisc_fetcher.py ]; then python scripts/udisc_fetcher.py
+          elif [ -f udisc_fetcher.py ]; then python udisc_fetcher.py
+          else echo "udisc_fetcher.py not found, skipping"
+          fi
+
+      - name: Fetch Väylätilasto
+        run: |
+          if [ -f scripts/vaylatilasto_fetcher.py ]; then python scripts/vaylatilasto_fetcher.py
+          elif [ -f vaylatilasto_fetcher.py ]; then python vaylatilasto_fetcher.py
+          else echo "vaylatilasto_fetcher.py not found, skipping"
+          fi
+
+      - name: Calculate Kierrokset total + uniikit
+        run: |
+          if [ -f scripts/kierrokset.py ]; then python scripts/kierrokset.py
+          elif [ -f kierrokset.py ]; then python kierrokset.py
+          else echo "kierrokset.py not found" && exit 1
+          fi
+
+      - name: Show results
+        run: |
+          cat data/kierrokset.json || cat kierrokset.json || echo "no kierrokset"
+          cat data/metrix_43119.json || echo "no parent 43119 yet"
+          ls -lh data/
+
+      - name: Commit & Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/ || git add .
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -m "V30 LIVE parent 43119 - $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push
