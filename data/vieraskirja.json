@@ -1,16 +1,16 @@
 {
   "entries": [
-    {
+ {
       "date": "01.10.2026",
       "name": "Vieras Alajärveltä",
-      "message": "Eka kierros täällä, tykkäsin tosi paljon. Selkeät opasteet ja ensiluokkaisen siisti metsä. Kesällä varmasti upea paikka",
+      "message": "Eka kierros täällä, tykkäsin tosi paljon. Selkeät opasteet ja siisti metsä.",
       "rating": 5
     }
   ],
   "stats": {
     "count": 1,
     "avg": 5,
-    "ratings": 5
+    "ratings": 1
   },
   "updated": "2026-10-12"
 }
