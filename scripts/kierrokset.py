@@ -31,11 +31,24 @@ if DATA_DIR is None:
     DATA_DIR = BASE.parent / "data"
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 
-# lukitut referenssit kuvasta skaalausta varten
-REF_TOTAL = 1170
-REF_PELIAIKA = 1524
-REF_ASKELEET = 3192132
-REF_KM = 2328
+# lukitut referenssit - PÄIVITETTY V31 12.10.2026
+# Vanha: REF_TOTAL 1170 = Metrix+UDisc yhdistetty arvio
+# Uusi: Metrix parent 43119 = 750 (kuukausigraafeista laskettu: 613 harjoitus + 137 kilpailu)
+#       UDisc = 444 (kuvasta Elinikäiset tilastot 12.10.2026 klo 5.50)
+#       Yhteensä 1194
+# Lapset: 44010:615, 44026:19, 45536:6, 45537:15, 44565:31, 44763:130 = 816 (lähellä parent 750)
+# Poistuneet: 45261 18 kierrosta, 48122 14 kierrosta
+REF_TOTAL_METRIX = 750
+REF_TOTAL_UDISC = 444
+REF_TOTAL = 1194  # 750 + 444
+REF_PELIAIKA = 1594  # 976 Metrix skaalattu + 618 UDisc actual
+REF_ASKELEET = 3364508  # 2046238 Metrix + 1318270 UDisc
+REF_KM = 2453  # 1492 + 961
+# Vanhat skaalausreferenssit säilytetty fallbackia varten:
+REF_TOTAL_OLD = 1170
+REF_PELIAIKA_OLD = 1524
+REF_ASKELEET_OLD = 3192132
+REF_KM_OLD = 2328
 
 def load_json(name):
     try:
