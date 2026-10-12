@@ -35,33 +35,33 @@
     },
     {
       "rank": 6,
-      "name": "@neetu7",
+      "name": "@kimmoke",
       "total": 39,
       "plus_minus": "-2"
     },
     {
       "rank": 7,
+      "name": "@neetu7",
+      "total": 39,
+      "plus_minus": "-2"
+    },
+    {
+      "rank": 8,
       "name": "@taspak",
       "total": 42,
       "plus_minus": "+1"
     },
     {
-      "rank": 8,
+      "rank": 9,
       "name": "@adusti",
       "total": 43,
       "plus_minus": "+2"
     },
     {
-      "rank": 9,
-      "name": "@tommivuoma",
+      "rank": 10,
+      "name": "@tommivuomas",
       "total": 47,
       "plus_minus": "+6"
-    },
-    {
-      "rank": 10,
-      "name": "@attekolis",
-      "total": 48,
-      "plus_minus": "+7"
     }
   ],
   "total_rounds": 10,
