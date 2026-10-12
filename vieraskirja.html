@@ -74,6 +74,23 @@ textarea{resize:none;flex:1;min-height:80px;line-height:1.4}
 </div>
 </header>
 
+<script>
+// ERILLINEN ETUSIVU-HANDLER - toimii vaikka JSON olisi rikki
+(function(){
+  function goHome(e){
+    if(e) e.preventDefault();
+    window.location.href='./index.html';
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    var btn=document.getElementById('btn-etusivu');
+    if(btn){
+      btn.addEventListener('click', goHome);
+    }
+  });
+})();
+</script>
+
+
 <div class="wrap">
 <div class="grid-vieraskirja">
 <div class="card card-form">
@@ -113,7 +130,7 @@ textarea{resize:none;flex:1;min-height:80px;line-height:1.4}
 <span class="avg-text" id="avg-text">4.8</span>
 <span class="avg-count" id="avg-count">(0 arvostelua)</span>
 </div>
-<div class="tiedote-list" id="v-list"></div>
+<div style="display:flex;justify-content:space-between;padding:4px 10px"><button onclick="clearLocalStorage()" style="background:#222;color:#666;border:1px solid #333;border-radius:6px;padding:3px 8px;font-size:9px;cursor:pointer">🗑️ Tyhjennä paikallinen</button><span style="font-size:8px;color:#444">Poisto-ohje: Klikkaa 🗑️ viestin vieressä → Kopioi JSON → GitHub</span></div><div class="tiedote-list" id="v-list"></div>
 </div>
 </div>
 </div>
@@ -128,7 +145,53 @@ function esc(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replac
 function formatDate(){const d=new Date();return `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${d.getFullYear()}`;}
 function loadLocal(){try{const s=localStorage.getItem(STORAGE_KEY);if(s)localEntries=JSON.parse(s);}catch(e){localEntries=[];}}
 function saveLocal(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(allEntries));}catch(e){}}
-function merge(){const m=new Map();jsonEntries.forEach(e=>{m.set(`${e.date}|${e.name}|${e.message}`,e);});localEntries.forEach(e=>{const k=`${e.date}|${e.name}|${e.message}`;if(!m.has(k))m.set(k,e);});allEntries=Array.from(m.values());allEntries.sort((a,b)=>{const[da,ma,ya]=a.date.split('.').map(Number);const[db,mb,yb]=b.date.split('.').map(Number);return new Date(ya,ma-1,da)-new Date(yb,mb-1,db);});}
+function merge(){
+  const m=new Map();
+  // 1. JSON on aina totuus
+  jsonEntries.forEach(e=>{m.set(`${e.date}|${e.name}|${e.message}`,e);});
+  
+  // 2. Siivoa localStorage: poista ne jotka on poistettu JSONista
+  // Jos localStorage entry ei ole JSONissa JA JSONissa on vähintään 1 entry, 
+  // se on poistettu tarkoituksella -> älä tuo takaisin
+  const jsonKeys=new Set(jsonEntries.map(e=>`${e.date}|${e.name}|${e.message}`));
+  const cleanedLocal = localEntries.filter(e=>{
+    const k=`${e.date}|${e.name}|${e.message}`;
+    // Jos JSON on olemassa ja entry puuttuu JSONista, se on poistettu
+    if(jsonEntries.length>0 && !jsonKeys.has(k)){
+      return false; // Älä tuo takaisin poistettua
+    }
+    return !m.has(k);
+  });
+  
+  // Päivitä localStorage siivotulla listalla
+  if(cleanedLocal.length !== localEntries.length){
+    localEntries = cleanedLocal;
+    saveLocal();
+  }
+  
+  cleanedLocal.forEach(e=>{const k=`${e.date}|${e.name}|${e.message}`;if(!m.has(k))m.set(k,e);});
+  allEntries=Array.from(m.values());
+  allEntries.sort((a,b)=>{const[da,ma,ya]=a.date.split('.').map(Number);const[db,mb,yb]=b.date.split('.').map(Number);return new Date(ya,ma-1,da)-new Date(yb,mb-1,db);});
+}
+function clearLocalStorage(){
+  if(confirm('Tyhjennetäänkö paikallinen muisti? Tämä poistaa vain selaimen muistissa olevat viestit, JSON säilyy.')){
+    localStorage.removeItem(STORAGE_KEY);
+    localEntries=[];
+    location.reload();
+  }
+}
+function deleteEntry(key){
+  if(!confirm('Poistetaanko tämä viesti? Muista päivittää myös data/vieraskirja.json GitHubissa!')) return;
+  // Poista allEntries:stä
+  allEntries = allEntries.filter(e=>`${e.date}|${e.name}|${e.message}` !== key);
+  // Poista localEntries:stä
+  localEntries = localEntries.filter(e=>`${e.date}|${e.name}|${e.message}` !== key);
+  jsonEntries = jsonEntries.filter(e=>`${e.date}|${e.name}|${e.message}` !== key);
+  saveLocal();
+  render();
+  updatePreview();
+}
+
 function renderStars(rating){
   let html='';
   for(let i=1;i<=5;i++){
@@ -162,7 +225,8 @@ function render(){
     const rating=e.rating||0;
     const div=document.createElement("div");
     div.className="tiedote-item"+(isNew?" new":"");
-    div.innerHTML=`<div class="tiedote-date"><span>${esc(e.date)}</span>${isNew?'<span class="badge-new">UUSI</span>':''}</div><div class="tiedote-title">${esc(e.name)} <span class="stars-display">${renderStars(rating)}</span></div><div class="tiedote-msg">${esc(e.message)}</div>`;
+    const delKey=`${e.date}|${e.name}|${e.message}`;
+    div.innerHTML=`<div class="tiedote-date"><span>${esc(e.date)}</span><div><span style="cursor:pointer;font-size:10px;margin-left:6px" onclick="deleteEntry(\'${delKey.replace(/'/g, "\\'")}\')">🗑️</span>${isNew?'<span class="badge-new">UUSI</span>':''}</div></div><div class="tiedote-title">${esc(e.name)} <span class="stars-display">${renderStars(rating)}</span></div><div class="tiedote-msg">${esc(e.message)}</div>`;
     $list.appendChild(div);
   });
 }
@@ -237,16 +301,6 @@ document.getElementById("btn-download").addEventListener("click",()=>{
 document.getElementById("btn-copy").addEventListener("click",async()=>{
   const txt=document.getElementById("json-preview").textContent;
   try{await navigator.clipboard.writeText(txt);document.getElementById("btn-copy").textContent="✓ KOPIOITU!";setTimeout(()=>{document.getElementById("btn-copy").textContent="📋 KOPIOI"},1500);}catch(e){alert("Kopioi manuaalisesti");}
-});
-
-document.addEventListener('DOMContentLoaded', function(){
-  var btn=document.getElementById('btn-etusivu');
-  if(btn){
-    btn.addEventListener('click', function(e){
-      e.preventDefault();
-      window.location.href='./index.html';
-    });
-  }
 });
 </script>
 </body></html>
