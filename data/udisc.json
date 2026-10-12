@@ -35,38 +35,38 @@
     },
     {
       "rank": 6,
-      "name": "@kimmoke",
-      "total": 39,
-      "plus_minus": "-2"
-    },
-    {
-      "rank": 7,
       "name": "@neetu7",
       "total": 39,
       "plus_minus": "-2"
     },
     {
-      "rank": 8,
+      "rank": 7,
       "name": "@taspak",
       "total": 42,
       "plus_minus": "+1"
     },
     {
-      "rank": 9,
+      "rank": 8,
       "name": "@adusti",
       "total": 43,
       "plus_minus": "+2"
     },
     {
-      "rank": 10,
-      "name": "@tommivuomas",
+      "rank": 9,
+      "name": "@tommivuoma",
       "total": 47,
       "plus_minus": "+6"
+    },
+    {
+      "rank": 10,
+      "name": "@attekolis",
+      "total": 48,
+      "plus_minus": "+7"
     }
   ],
   "total_rounds": 10,
-  "fetched_at": "2026-10-12T15:15:52.107977+00:00",
-  "fetched_at_fi": "12.10.2026 15:15",
+  "fetched_at": "2026-10-12T15:58:55.138461+00:00",
+  "fetched_at_fi": "12.10.2026 15:58",
   "source_url": "fallback V29",
   "version": "V30 LIVE - UDisc, parent 43119, fallback jos ei live"
 }
