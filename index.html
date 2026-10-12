@@ -182,6 +182,23 @@ function renderVayla(v){
 if(lastTiedotteet){renderTiedotteet(lastTiedotteet,"localStorage init");}
 else{renderTiedotteet(fallback.tiedotteet,"fallback init");}
 renderTop("list-44010",fallback.top44010);renderTop("list-44763",fallback.top44763);renderTop("list-udisc",fallback.topUdisc);renderVayla(fallback.vayla);
+async function loadVieraskirjaStats(){
+  try{
+    const r=await fetch(`data/vieraskirja.json?v=${Date.now()}`,{cache:"no-store"});
+    if(r.ok){
+      const j=await r.json();
+      if(j.stats && j.stats.avg){
+        const btn=document.querySelector('a[href="./vieraskirja.html"]');
+        if(btn){
+          const current=btn.innerHTML;
+          if(!current.includes('★')){
+            btn.innerHTML = current + ` <span style="background:#ffcc00;color:#000;font-size:9px;padding:1px 5px;border-radius:8px;margin-left:4px">${j.stats.avg}★</span>`;
+          }
+        }
+      }
+    }
+  }catch(e){}
+}
 async function refreshAll(){
   try{const r=await fetch(`data/metrix_44010.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.top10&&j.top10.length>0)renderTop("list-44010",j.top10.map(o=>({name:o.name,total:o.total,plus:o.plus_minus||o.plus||""})));}}catch(e){}
   try{const r=await fetch(`data/metrix_44763.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.top10&&j.top10.length>0)renderTop("list-44763",j.top10.map(o=>({name:o.name,total:o.total,plus:o.plus_minus||o.plus||""})));}}catch(e){}
@@ -190,6 +207,7 @@ async function refreshAll(){
   try{const r=await fetch(`data/udisc.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.top10&&j.top10.length>0)renderTop("list-udisc",j.top10.map(o=>({name:o.name,total:o.total,plus:o.plus_minus||o.plus||""})));}}catch(e){}
   try{const r=await fetch(`data/tiedotteet.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.tiedotteet&&Array.isArray(j.tiedotteet)&&j.tiedotteet.length>0){renderTiedotteet(j.tiedotteet,"live fetch");}}}catch(e){}
 }
+loadVieraskirjaStats();
 setInterval(refreshAll, 300000);
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")refreshAll();});
 </script>
