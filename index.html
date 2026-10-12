@@ -40,14 +40,24 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 @media (max-width:768px){
   body{overflow-y:auto!important}
   .wrap{overflow-x:hidden!important;overflow-y:visible!important;width:100%!important;padding:10px!important}
-  .grid-top{grid-template-columns:1fr!important;width:100%!important;min-width:100%!important;gap:10px!important}
+  .grid-top{grid-template-columns:1fr 1fr!important;width:100%!important;min-width:100%!important;gap:10px!important}
   .grid-mid{grid-template-columns:1fr!important;width:100%!important;min-width:100%!important;gap:10px!important}
   .grid-bottom{width:100%!important;min-width:100%!important}
+  /* Oletus: kaikki kortit 100% solustaan */
   .card{width:100%!important;min-width:100%!important;max-width:100%!important;height:320px!important}
   .card-mid{width:100%!important;min-width:100%!important;max-width:100%!important;height:380px!important}
   .card-bottom{width:100%!important;min-width:100%!important;max-width:100%!important;height:500px!important;min-height:500px!important}
-  #c-midstack{grid-column:auto!important;width:100%!important;min-width:100%!important;max-width:100%!important;height:auto!important;display:flex!important;flex-direction:column!important;gap:10px!important}
-  #c-midstack .mini{width:100%!important;min-width:100%!important;max-width:100%!important;height:100px!important;min-height:100px!important}
+  /* 1. bullet-lista koko rivin levyinen */
+  .grid-top .card:nth-child(1){grid-column:1 / -1}
+  /* 2. ja 3. KIERROKSET + HIO rinnakkain 50% + 50% = koko näytön leveys */
+  .grid-top .card:nth-child(2),
+  .grid-top .card:nth-child(3){width:100%!important;min-width:100%!important;max-width:100%!important}
+  /* 4. stack koko rivin levyinen, mini-kortit rinnakkain */
+  #c-midstack{grid-column:1 / -1!important;width:100%!important;min-width:100%!important;max-width:100%!important;height:auto!important;display:flex!important;flex-direction:row!important;gap:10px!important}
+  #c-midstack .mini{width:100%!important;min-width:0!important;max-width:100%!important;height:80px!important;min-height:80px!important;flex:1}
+  /* 5. ja 6. tiedotteet + sää koko rivin levyiset */
+  .grid-top .card:nth-child(5),
+  .grid-top .card:nth-child(6){grid-column:1 / -1;width:100%!important;min-width:100%!important;max-width:100%!important}
 }
 .tiedote-item{padding:8px;border-bottom:1px solid #1e1e1e}
 .tiedote-date{font-size:9px;color:#666;font-weight:700}
