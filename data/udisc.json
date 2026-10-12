@@ -1,101 +1,72 @@
 {
-  "course_id": "luoma-ahon-frisbeegolfrata-YNEx",
-  "total_rounds": 444,
-  "total": 444,
-  "unique_players": 69,
-  "virkistystunnit": 618,
-  "peliaika": {
-    "display": "618h",
-    "hours": 618
-  },
-  "askeleet": {
-    "display": "1 318 270",
-    "count": 1318270
-  },
-  "askelten_maara": 1318270,
-  "updated": "12.10.2026 - Top10 päivitetty kuvasta",
-  "source": "UDisc Elinikäiset tilastot - kuvasta",
-  "fetched_at": "2026-10-12T05:50:00",
+  "course": "UDISC Luoma-aho 12 väylää Par 41 (parent 43119)",
+  "parent_course": "43119",
+  "par": 41,
   "top10": [
     {
       "rank": 1,
       "name": "@kantanen8",
       "total": 35,
-      "plus_minus": "-6",
-      "plus": "-6",
-      "date": "4.7.2026"
+      "plus_minus": "-6"
     },
     {
       "rank": 2,
       "name": "@valkoparta",
       "total": 36,
-      "plus_minus": "-5",
-      "plus": "-5",
-      "date": "6.7.2026"
+      "plus_minus": "-5"
     },
     {
-      "rank": 2,
-      "name": "@mattiasss",
+      "rank": 3,
+      "name": "@mattiass",
       "total": 36,
-      "plus_minus": "-5",
-      "plus": "-5",
-      "date": "19.8.2026"
+      "plus_minus": "-5"
     },
     {
       "rank": 4,
       "name": "@dashyy",
       "total": 38,
-      "plus_minus": "-3",
-      "plus": "-3",
-      "date": "13.9.2025"
+      "plus_minus": "-3"
     },
     {
-      "rank": 4,
-      "name": "@itkonenjere",
+      "rank": 5,
+      "name": "@tikonenjere",
       "total": 38,
-      "plus_minus": "-3",
-      "plus": "-3",
-      "date": "29.4.2026"
+      "plus_minus": "-3"
     },
     {
       "rank": 6,
-      "name": "@peetu7",
+      "name": "@neetu7",
       "total": 39,
-      "plus_minus": "-2",
-      "plus": "-2",
-      "date": "24.7.2026"
+      "plus_minus": "-2"
     },
     {
-      "rank": 6,
-      "name": "@kimmoke",
-      "total": 39,
-      "plus_minus": "-2",
-      "plus": "-2",
-      "date": "11.10.2026"
+      "rank": 7,
+      "name": "@taspak",
+      "total": 42,
+      "plus_minus": "+1"
     },
     {
       "rank": 8,
-      "name": "@taspak",
-      "total": 42,
-      "plus_minus": "+1",
-      "plus": "+1",
-      "date": "16.7.2026"
+      "name": "@adusti",
+      "total": 43,
+      "plus_minus": "+2"
     },
     {
       "rank": 9,
-      "name": "@adusti",
-      "total": 43,
-      "plus_minus": "+2",
-      "plus": "+2",
-      "date": "20.7.2026"
+      "name": "@tommivuoma",
+      "total": 47,
+      "plus_minus": "+6"
     },
     {
       "rank": 10,
-      "name": "@tommivluoma",
-      "total": 47,
-      "plus_minus": "+6",
-      "plus": "+6",
-      "date": "8.8.2026"
+      "name": "@attekolis",
+      "total": 48,
+      "plus_minus": "+7"
     }
-  ]
+  ],
+  "total_rounds": 10,
+  "fetched_at": "2026-10-12T18:12:42.551163+00:00",
+  "fetched_at_fi": "12.10.2026 18:12",
+  "source_url": "fallback V29",
+  "version": "V30 LIVE - UDisc, parent 43119, fallback jos ei live"
 }

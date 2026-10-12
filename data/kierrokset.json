@@ -1,45 +1,28 @@
 {
   "total_rounds": 1194,
-  "total": 1194,
-  "count": 1194,
-  "metrix_total": 750,
-  "metrix_breakdown": {
-    "44010": 615,
-    "44026": 19,
-    "45536": 6,
-    "45537": 15,
-    "44565": 31,
-    "44763": 130,
-    "parent_43119": 750,
-    "deleted_45261": 18,
-    "deleted_48122": 14,
-    "historical_with_deleted": 848
-  },
-  "udisc_total": 444,
   "unique_players": 132,
-  "uniikit_pelaajat": 132,
-  "metrix_unique_est": 85,
-  "udisc_unique": 69,
+  "metrix_total": 60,
+  "udisc_total": 10,
+  "parent_course": "43119",
+  "child_courses": [
+    "44010",
+    "44763"
+  ],
   "peliaika": {
     "display": "1594h",
-    "hours": 1594,
-    "metrix": 976,
-    "udisc": 618
+    "hours": 1594
   },
   "askeleet": {
     "display": "3 364 508",
-    "count": 3364508,
-    "metrix": 2046238,
-    "udisc": 1318270
+    "count": 3364508
   },
   "kilometrit": {
     "display": "2453 km",
-    "km": 2453,
-    "metrix": 1492,
-    "udisc": 961
+    "km": 2453
   },
-  "updated": "12.10.2026 klo 5.50 - laskettu Metrix parent 43119 kuukausigraafeista + UDisc kuvasta",
-  "source": "Metrix parent 43119 750 (kuukausisumma) + UDisc 444 = 1194",
-  "version": "V31 - korjattu: parent 43119 750 + UDisc 444, lapset eritelty",
-  "notes": "Tarvitaan vielä Metrixin Elinikäiset tilastot laatikko (kuten UDisc kuvassa) tarkkoihin lukuihin - kuukausigraafit antaa arvion"
+  "fetched_at": "2026-10-12T18:12:43.872652+00:00",
+  "version": "V30 LIVE - parent 43119, oikea uniikki laskenta",
+  "total": 1194,
+  "count": 1194,
+  "uniikit_pelaajat": 132
 }
