@@ -238,5 +238,15 @@ document.getElementById("btn-copy").addEventListener("click",async()=>{
   const txt=document.getElementById("json-preview").textContent;
   try{await navigator.clipboard.writeText(txt);document.getElementById("btn-copy").textContent="✓ KOPIOITU!";setTimeout(()=>{document.getElementById("btn-copy").textContent="📋 KOPIOI"},1500);}catch(e){alert("Kopioi manuaalisesti");}
 });
+
+document.addEventListener('DOMContentLoaded', function(){
+  var btn=document.getElementById('btn-etusivu');
+  if(btn){
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      window.location.href='./index.html';
+    });
+  }
+});
 </script>
 </body></html>
