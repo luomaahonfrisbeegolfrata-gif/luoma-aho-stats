@@ -46,7 +46,8 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
   /* Oletus: kaikki kortit 100% solustaan */
   .card{width:100%!important;min-width:100%!important;max-width:100%!important;height:320px!important}
   #card-foreca{height:160px!important;min-height:160px!important;max-height:160px!important}
-  #card-foreca #foreca-daily-weather-myv4o8kfvQ{height:160px!important;min-height:160px!important;max-height:160px!important}
+  #card-foreca #foreca-stack{width:260px;min-width:260px;max-width:260px;height:320px;display:flex;flex-direction:column;gap:10px}
+#foreca-daily-weather-myv4o8kfvQ{height:160px!important;min-height:160px!important;max-height:160px!important}
   .card-mid{width:100%!important;min-width:100%!important;max-width:100%!important;height:380px!important}
   .card-bottom{width:100%!important;min-width:100%!important;max-width:100%!important;height:500px!important;min-height:500px!important}
   /* 1. bullet-lista koko rivin levyinen */
@@ -56,6 +57,9 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
   .grid-top .card:nth-child(3){width:100%!important;min-width:100%!important;max-width:100%!important}
   /* 4. stack koko rivin levyinen, mini-kortit rinnakkain */
   #c-midstack{grid-column:1 / -1!important;width:100%!important;min-width:100%!important;max-width:100%!important;height:auto!important;display:flex!important;flex-direction:row!important;gap:10px!important}
+  #foreca-stack{grid-column:1 / -1!important;width:100%!important;min-width:100%!important;max-width:100%!important;height:160px!important;display:flex!important;flex-direction:row!important;gap:10px!important}
+  #foreca-stack #card-foreca{flex:1;height:160px!important;min-height:160px!important;max-height:160px!important;width:100%!important;min-width:0!important;max-width:100%!important}
+  #foreca-stack #card-foreca-extra{flex:1;height:160px!important;min-height:160px!important;max-height:160px!important;width:100%!important;min-width:0!important;max-width:100%!important}
   #c-midstack .mini{width:100%!important;min-width:0!important;max-width:100%!important;height:80px!important;min-height:80px!important;flex:1}
   /* 5. ja 6. tiedotteet + sää koko rivin levyiset */
   .grid-top .card:nth-child(5),
@@ -75,6 +79,7 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
   background:#151515!important;border:1px solid #242424!important;
   display:flex!important;flex-direction:column!important;position:relative!important;
 }
+#foreca-stack{width:260px;min-width:260px;max-width:260px;height:320px;display:flex;flex-direction:column;gap:10px}
 #foreca-daily-weather-myv4o8kfvQ{
   width:260px!important;min-width:260px!important;max-width:260px!important;
   height:320px!important;min-height:320px!important;max-height:320px!important;
@@ -86,20 +91,14 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
   width:260px!important;min-width:260px!important;max-width:260px!important;
   overflow:hidden!important;
 }
-#card-foreca #foreca-daily-weather-myv4o8kfvQ{
+#card-foreca #foreca-stack{width:260px;min-width:260px;max-width:260px;height:320px;display:flex;flex-direction:column;gap:10px}
+#foreca-daily-weather-myv4o8kfvQ{
   height:160px!important;min-height:160px!important;max-height:160px!important;
 }
 #foreca-daily-weather-myv4o8kfvQ::-webkit-scrollbar{width:4px}
 #foreca-daily-weather-myv4o8kfvQ::-webkit-scrollbar-thumb{background:#333;border-radius:2px}
 </style></head><body>
 <header><div class="brand"><div class="brand-logo"><img src="logot/l-a-friba-logo.jpg" alt="L-A FRIBA" style="width:35px;height:35px;object-fit:cover;display:block" /></div> Luoma-ahon Frisbeegolfrata</div><div class="header-icons">
-<a href="./vieraskirja.html" title="Vieraskirja" style="width:71px;height:35px;min-width:71px;background:#1aff1a;color:#000;border-radius:8px;display:grid;place-items:center;font-size:10px;font-weight:800;text-decoration:none;flex-shrink:0;cursor:pointer;letter-spacing:0.1px">VIERASKIRJA</a>
-
-
-
-
-
-
 <a href="https://www.google.com/maps/place/Luoma-ahon+Frisbeegolfrata/@63.0901676,23.8860139,12z/" target="_blank" title="Google Maps" style="width:35px;height:35px;min-width:35px;background:#fff;border-radius:8px;display:grid;place-items:center;overflow:hidden;border:1px solid #333;flex-shrink:0"><img src="logot/gmaps-logo.jpg" alt="Maps" style="width:100%;height:100%;object-fit:cover;display:block" /></a>
 <a href="https://discgolfmetrix.com/course/44010" target="_blank" title="Metrix 70px" style="width:70px;height:35px;min-width:70px;background:#ff6a00;border-radius:8px;display:grid;place-items:center;overflow:hidden;border:1px solid #333;flex-shrink:0"><img src="logot/metrix-logo.png" alt="Metrix" style="width:100%;height:100%;object-fit:contain;display:block;background:#ff6a00" /></a>
 <a href="https://photos.google.com/share/AF1QipPwBhzcZ3Nf0BEpLICSkhQSFIuTA1VO3i1W_u0l_4oY_ZfytXxa21wqxIx4RqRepA" target="_blank" title="Väyläopasteet" style="width:70px;height:35px;min-width:70px;background:#0a2e1f;border-radius:8px;display:grid;place-items:center;overflow:hidden;border:1px solid #333;flex-shrink:0"><img src="logot/parkdly-logo.png" alt="parkdly" style="width:100%;height:100%;object-fit:cover;display:block" /></a>
@@ -118,13 +117,26 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 <div class="card" style="width:200px;min-width:200px;max-width:200px"><div class="label">Hole in One</div><div class="vayla-big">5</div><div class="vayla-green">Väylä 4</div><div class="vayla-name">Benjamin Turja</div><div class="vayla-name">Julius Luoma-aho</div><div class="vayla-name">Juha Luoma-aho</div><div class="vayla-name">Aleksi Lassila</div><div class="vayla-green" style="margin-top:12px">Väylä 8</div><div class="vayla-name">Pentti Pitkäranta</div></div>
 <div id="c-midstack"><div class="mini"><div class="mini-label">Peliaika</div><div class="mini-val" id="v-peliaika">1524h</div></div><div class="mini"><div class="mini-label">Askelmäärä</div><div class="mini-val" id="v-askel">3 192 132</div></div><div class="mini"><div class="mini-label">Kilometrit</div><div class="mini-val" id="v-km">2328 km</div></div></div>
 <div class="card"><div class="top10-title"><span>TIEDOTTEET</span><b id="tiedote-badge">LIVE</b></div><div class="tiedote-list" id="list-tiedotteet"></div></div>
-<div class="card" id="card-foreca">
+<div id="foreca-stack" style="width:260px;min-width:260px;max-width:260px;height:320px;display:flex;flex-direction:column;gap:10px">
+<div class="card" id="card-foreca" style="height:160px;min-height:160px;max-height:160px;width:260px;min-width:260px;max-width:260px">
   <div id="foreca-daily-weather-myv4o8kfvQ" data-forecawidget="foreca-daily-weather" data-theme="dark" data-widgetid="myv4o8kfvQ" data-locationid="100647416" data-windunit="ms" data-tempunit="C" data-rainunit="mm" data-language="fi">
     <script defer data-cfasync="false" type="text/javascript" src="https://www.forecabox.com/dist/daily.min.js" onload="loadDaily('myv4o8kfvQ')"></script>
     <a id="foreca-attribution-myv4o8kfvQ" href="https://www.foreca.com/" rel="noopener" target="_blank" style="position: relative; bottom: 0px; left: 5px;">
       <img alt="Weather by Foreca" src="https://www.foreca.com/public/images/logo/black.svg" width="80" height="12" style="margin-top: 8px; padding: 2px; border-radius: 2px; background-color: #ffffffaa;" />
     </a>
   </div>
+</div>
+<div class="card" id="card-foreca-extra" style="height:150px;min-height:150px;max-height:150px;width:260px;min-width:260px;max-width:260px;padding:12px;display:flex;flex-direction:column;justify-content:space-between;background:#151515;border:1px solid #242424;border-radius:10px">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <div style="font-size:10px;color:#888;font-weight:700;letter-spacing:0.5px">RATA STATUS</div>
+    <div style="display:flex;align-items:center;gap:4px"><div style="width:6px;height:6px;background:#1aff1a;border-radius:50%;box-shadow:0 0 6px #1aff1a"></div><span style="font-size:9px;color:#1aff1a;font-weight:800">AVOINNA</span></div>
+  </div>
+  <div style="text-align:center;margin:4px 0">
+    <div style="font-size:11px;color:#fff;font-weight:800" id="extra-vieraskirja">⭐ 4.8/5 (4 arviota)</div>
+    <div style="font-size:9px;color:#666;margin-top:2px">Viimeisin: Juha L. - "Rata huippukunnossa!"</div>
+  </div>
+  <a href="./vieraskirja.html" style="display:flex;align-items:center;justify-content:center;gap:6px;width:100%;height:35px;background:#1aff1a;color:#000;border-radius:8px;font-size:12px;font-weight:800;text-decoration:none;letter-spacing:0.2px">📖 VIERASKIRJA</a>
+</div>
 </div>
 </div>
 <div class="grid-mid">
