@@ -1,1 +1,40 @@
+name: Full Update V5 - Node24
 
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  full-update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    steps:
+      - name: Checkout V5
+        uses: actions/checkout@v5
+
+      - name: Setup Python V6
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: pip install requests beautifulsoup4 lxml
+
+      - name: Run all fetchers
+        run: |
+          echo "Running fetchers..."
+          for f in scripts/*fetcher.py *fetcher.py; do [ -f "$f" ] && echo "Running $f" && python "$f" || true; done
+          for f in scripts/kierrokset.py kierrokset.py; do [ -f "$f" ] && python "$f" && break; done
+          ls -lh data/ || true
+
+      - name: Commit & Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "Full update V5 - $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push || echo "push failed"
