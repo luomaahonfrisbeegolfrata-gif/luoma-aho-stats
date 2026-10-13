@@ -1,8 +1,8 @@
-name: Update DiscGolf Stats V5.3.1 LOCKED
+name: Update DiscGolf Stats V5.3.2 FINAL LOCKED
 
 on:
   schedule:
-    - cron: '0 */3 * * *'  # 3h välein
+    - cron: '0 */3 * * *'
   workflow_dispatch:
 
 concurrency:
@@ -14,86 +14,33 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
       - name: Install deps
+        run: pip install requests beautifulsoup4 lxml || true
+      - name: Show locked files
         run: |
-          pip install requests beautifulsoup4 lxml
-
-      - name: Show structure
-        run: |
-          ls -la
-          ls -la data || echo "no data dir"
-          ls -la scripts || echo "no scripts dir"
-
-      - name: Fetch Metrix parent 43119 + 44010, 44763 (LIVE)
-        run: |
-          echo "V5.3.1 - Fetch Metrix only"
-          if [ -f scripts/metrix_fetcher.py ]; then
-            python scripts/metrix_fetcher.py
-          elif [ -f metrix_fetcher.py ]; then
-            python metrix_fetcher.py
-          else
-            echo "metrix_fetcher.py not found" && exit 1
-          fi
-
-      - name: Fetch UDisc (LIVE but locked top10)
-        run: |
-          echo "V5.3.1 - Fetch UDisc (top10 lukittu, total lukittu 444)"
-          if [ -f scripts/udisc_fetcher.py ]; then
-            python scripts/udisc_fetcher.py || echo "udisc fetcher skip"
-          elif [ -f udisc_fetcher.py ]; then
-            python udisc_fetcher.py || echo "udisc fetcher skip"
-          else
-            echo "udisc_fetcher.py not found, skipping"
-          fi
-
-      - name: Väylätilasto LOCKED - EI ylikirjoiteta
-        run: |
-          echo "V5.3.1 LOCKED - vaylatilasto 49.55 / 78 / 1208 / 1325 birdie / 5 HIO"
-          echo "Ei ajeta vaylatilasto_fetcher.py - lukittu 1208 kierroksen dataan"
-          if [ -f data/vaylatilasto.json ]; then
-            cat data/vaylatilasto.json | grep -E "avg_total|total_rounds|version"
-          fi
-          echo "Skip vaylatilasto_fetcher.py"
-
-      - name: Calculate Kierrokset total + uniikit (1208)
-        run: |
-          echo "V5.3.1 - Kierrokset 1208 = 764 Metrix + 444 UDisc"
-          if [ -f scripts/kierrokset.py ]; then
-            python scripts/kierrokset.py
-          elif [ -f kierrokset.py ]; then
-            python kierrokset.py
-          else
-            echo "kierrokset.py not found" && exit 1
-          fi
-
-      - name: Show results V5.3.1
-        run: |
-          echo "=== V5.3.1 LOCKED ==="
-          cat data/kierrokset.json | grep -E "total_rounds|metrix|udisc|version"
+          echo "V5.3.2 FINAL LOCKED - kaikki lukittu, ei vaihtele"
+          cat data/kierrokset.json | grep -E "total_rounds|version|locked"
           cat data/vaylatilasto.json | grep -E "avg_total|total_rounds|version|locked"
-          cat data/udisc.json | grep -E "total_rounds|version"
-          ls -lh data/
-
-      - name: Commit & Push (EI vaylatilasto.json)
+          cat data/vieraskirja.json | grep -E "count|avg|version|locked"
+          cat data/udisc.json | grep -E "total_rounds|version|locked"
+      - name: Metrix LIVE only (top10 päivittyy, total lukittu)
+        run: |
+          echo "Metrix fetcher voi päivittää top10, mutta kierrokset lukittu 1208"
+          if [ -f scripts/metrix_fetcher.py ]; then python scripts/metrix_fetcher.py || true; fi
+      - name: Commit LIVE only (EI lukittuja)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # Lisää vain LIVE datat, EI vaylatilasto.json (lukittu)
-          git add data/metrix_*.json data/kierrokset.json data/udisc.json data/tiedotteet.json data/vieraskirja.json || true
-          git add data/ || true
-          # Varmista ettei vaylatilasto ylikirjoitu - palauta jos muuttunut
-          git checkout HEAD -- data/vaylatilasto.json || echo "vaylatilasto locked, keep"
+          # Älä lisää lukittuja tiedostoja
+          git add data/metrix_*.json data/tiedotteet.json || true
+          # Palauta lukitut jos muuttuneet
+          git checkout HEAD -- data/kierrokset.json data/vaylatilasto.json data/vieraskirja.json data/udisc.json || echo "locked files restored"
           git diff --cached --quiet && echo "No changes" && exit 0
-          git commit -m "V5.3.1 LOCKED - Metrix+UDisc live, vaylatilasto 49.55/1208 locked - $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git commit -m "V5.3.2 FINAL LOCKED - 1208/49.55/6 arv/444 - $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git pull --rebase origin main || true
           git push
