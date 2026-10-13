@@ -1,7 +1,7 @@
 {
-  "total_rounds": 504,
-  "unique_players": 132,
-  "metrix_total": 60,
+  "total_rounds": 1194,
+  "unique_players": 142,
+  "metrix_total": 750,
   "udisc_total": 444,
   "metrix_breakdown": {
     "44010": 615,
@@ -10,29 +10,29 @@
   },
   "parent_course": "43119",
   "peliaika": {
-    "display": "672h",
-    "hours": 672
+    "display": "1594h",
+    "hours": 1594
   },
   "askeleet": {
-    "display": "1 420 194",
-    "count": 1420194
+    "display": "3 364 508",
+    "count": 3364508
   },
   "kilometrit": {
-    "display": "1035 km",
-    "km": 1035
+    "display": "2453 km",
+    "km": 2453
   },
-  "fetched_at": "2026-10-13T07:52:21.387071+00:00",
+  "fetched_at": "2026-10-13T07:45:02.903290+00:00",
   "version": "V5.2 LOCKED - kuvasta laskettu keskiarvo",
-  "source": "Metrix 60 + UDisc kuvasta 444 = 504",
+  "source": "Metrix 750 + UDisc kuvasta 444 = 1194",
   "locked": true,
   "calculation": {
     "method": "Käyttäjän lataama UDisc kuva -> OCR/manual -> udisc.json -> kierrokset.py",
     "metrix_ref": "parent 43119 750 (kuukausisumma 613 harjoitus + 137 kilpailu)",
     "udisc_ref": "Elinikäiset tilastot kuvasta 444 (69 pelaajaa, 618h, 1 318 270 askelta)",
-    "total": "60 + 444 = 504",
-    "avg_per_round": "1.33h, 2818 askelta, 2.05 km per kierros"
+    "total": "750 + 444 = 1194",
+    "avg_per_round": "1.34h, 2818 askelta, 2.05 km per kierros"
   },
-  "total": 504,
-  "count": 504,
-  "uniikit_pelaajat": 132
+  "total": 1194,
+  "count": 1194,
+  "uniikit_pelaajat": 142
 }
