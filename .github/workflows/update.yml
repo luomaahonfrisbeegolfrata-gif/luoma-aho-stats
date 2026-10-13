@@ -1,8 +1,8 @@
-name: Update Stats V5.1
+name: Update DiscGolf Stats V5.3.1 LOCKED
 
 on:
   schedule:
-    - cron: '0 */3 * * *'
+    - cron: '0 */3 * * *'  # 3h välein
   workflow_dispatch:
 
 concurrency:
@@ -14,48 +14,86 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
     steps:
-      - uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-python@v6
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+
       - name: Install deps
-        run: pip install requests beautifulsoup4 lxml || true
-      - name: Fetch Metrix
-        continue-on-error: true
         run: |
-          if [ -f scripts/metrix_fetcher.py ]; then python scripts/metrix_fetcher.py || true
-          elif [ -f metrix_fetcher.py ]; then python metrix_fetcher.py || true; fi
-      - name: Fetch UDisc
-        continue-on-error: true
+          pip install requests beautifulsoup4 lxml
+
+      - name: Show structure
         run: |
-          if [ -f scripts/udisc_fetcher.py ]; then python scripts/udisc_fetcher.py || true
-          elif [ -f udisc_fetcher.py ]; then python udisc_fetcher.py || true; fi
-      - name: Fetch Väylätilasto
-        continue-on-error: true
+          ls -la
+          ls -la data || echo "no data dir"
+          ls -la scripts || echo "no scripts dir"
+
+      - name: Fetch Metrix parent 43119 + 44010, 44763 (LIVE)
         run: |
-          if [ -f scripts/vaylatilasto_fetcher.py ]; then python scripts/vaylatilasto_fetcher.py || true
-          elif [ -f vaylatilasto_fetcher.py ]; then python vaylatilasto_fetcher.py || true; fi
-      - name: Fetch Tiedotteet
-        continue-on-error: true
+          echo "V5.3.1 - Fetch Metrix only"
+          if [ -f scripts/metrix_fetcher.py ]; then
+            python scripts/metrix_fetcher.py
+          elif [ -f metrix_fetcher.py ]; then
+            python metrix_fetcher.py
+          else
+            echo "metrix_fetcher.py not found" && exit 1
+          fi
+
+      - name: Fetch UDisc (LIVE but locked top10)
         run: |
-          if [ -f scripts/tiedotteet_fetcher.py ]; then python scripts/tiedotteet_fetcher.py || true
-          elif [ -f tiedotteet_fetcher.py ]; then python tiedotteet_fetcher.py || true; fi
-      - name: Calculate Kierrokset
-        continue-on-error: true
+          echo "V5.3.1 - Fetch UDisc (top10 lukittu, total lukittu 444)"
+          if [ -f scripts/udisc_fetcher.py ]; then
+            python scripts/udisc_fetcher.py || echo "udisc fetcher skip"
+          elif [ -f udisc_fetcher.py ]; then
+            python udisc_fetcher.py || echo "udisc fetcher skip"
+          else
+            echo "udisc_fetcher.py not found, skipping"
+          fi
+
+      - name: Väylätilasto LOCKED - EI ylikirjoiteta
         run: |
-          if [ -f scripts/kierrokset.py ]; then python scripts/kierrokset.py || true
-          elif [ -f kierrokset.py ]; then python kierrokset.py || true; fi
-      - name: Commit & Push
+          echo "V5.3.1 LOCKED - vaylatilasto 49.55 / 78 / 1208 / 1325 birdie / 5 HIO"
+          echo "Ei ajeta vaylatilasto_fetcher.py - lukittu 1208 kierroksen dataan"
+          if [ -f data/vaylatilasto.json ]; then
+            cat data/vaylatilasto.json | grep -E "avg_total|total_rounds|version"
+          fi
+          echo "Skip vaylatilasto_fetcher.py"
+
+      - name: Calculate Kierrokset total + uniikit (1208)
+        run: |
+          echo "V5.3.1 - Kierrokset 1208 = 764 Metrix + 444 UDisc"
+          if [ -f scripts/kierrokset.py ]; then
+            python scripts/kierrokset.py
+          elif [ -f kierrokset.py ]; then
+            python kierrokset.py
+          else
+            echo "kierrokset.py not found" && exit 1
+          fi
+
+      - name: Show results V5.3.1
+        run: |
+          echo "=== V5.3.1 LOCKED ==="
+          cat data/kierrokset.json | grep -E "total_rounds|metrix|udisc|version"
+          cat data/vaylatilasto.json | grep -E "avg_total|total_rounds|version|locked"
+          cat data/udisc.json | grep -E "total_rounds|version"
+          ls -lh data/
+
+      - name: Commit & Push (EI vaylatilasto.json)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/*.json || true
+          # Lisää vain LIVE datat, EI vaylatilasto.json (lukittu)
+          git add data/metrix_*.json data/kierrokset.json data/udisc.json data/tiedotteet.json data/vieraskirja.json || true
+          git add data/ || true
+          # Varmista ettei vaylatilasto ylikirjoitu - palauta jos muuttunut
+          git checkout HEAD -- data/vaylatilasto.json || echo "vaylatilasto locked, keep"
           git diff --cached --quiet && echo "No changes" && exit 0
-          git commit -m "V5.1 update - $(date -u +%Y-%m-%dT%H:%M:%SZ)" || exit 0
+          git commit -m "V5.3.1 LOCKED - Metrix+UDisc live, vaylatilasto 49.55/1208 locked - $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git pull --rebase origin main || true
-          git push || echo "Push failed"
+          git push
