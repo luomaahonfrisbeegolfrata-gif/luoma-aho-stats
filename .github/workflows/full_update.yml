@@ -1,9 +1,17 @@
-name: Full Update V5 - Node24
+name: Full Update V5.1
 
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+      - 'data/vieraskirja.json'
+      - 'vieraskirja.json'
+      - '.github/workflows/vieraskirja.yml'
   workflow_dispatch:
+
+concurrency:
+  group: full-update
+  cancel-in-progress: false
 
 jobs:
   full-update:
@@ -13,28 +21,25 @@ jobs:
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
-      - name: Checkout V5
-        uses: actions/checkout@v5
-
-      - name: Setup Python V6
-        uses: actions/setup-python@v6
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.11'
-
       - name: Install deps
-        run: pip install requests beautifulsoup4 lxml
-
-      - name: Run all fetchers
+        run: pip install requests beautifulsoup4 lxml || true
+      - name: Run fetchers
+        continue-on-error: true
         run: |
-          echo "Running fetchers..."
-          for f in scripts/*fetcher.py *fetcher.py; do [ -f "$f" ] && echo "Running $f" && python "$f" || true; done
-          for f in scripts/kierrokset.py kierrokset.py; do [ -f "$f" ] && python "$f" && break; done
-          ls -lh data/ || true
-
+          for f in scripts/*fetcher.py *fetcher.py; do [ -f "$f" ] && python "$f" || true; done
+          for f in scripts/kierrokset.py kierrokset.py; do [ -f "$f" ] && python "$f" || true; done
       - name: Commit & Push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          git diff --cached --quiet || git commit -m "Full update V5 - $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          git push || echo "push failed"
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -m "V5.1 full update - $(date -u +%Y-%m-%dT%H:%M:%SZ)" || exit 0
+          git pull --rebase origin main || true
+          git push || echo "Push skipped"
