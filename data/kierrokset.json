@@ -1,38 +1,51 @@
 {
-  "total_rounds": 504,
-  "unique_players": 132,
-  "metrix_total": 60,
-  "udisc_total": 444,
+  "total_rounds": 1208,
+  "total": 1208,
+  "count": 1208,
+  "metrix_total": 764,
   "metrix_breakdown": {
     "44010": 615,
     "44763": 130,
+    "48112": 19,
     "parent_43119": 750
   },
-  "parent_course": "43119",
+  "udisc_total": 444,
+  "udisc_breakdown": {
+    "plays_per_hole": [
+      34,
+      34,
+      34,
+      34,
+      34,
+      34,
+      31,
+      31,
+      31,
+      31,
+      31,
+      31
+    ],
+    "avg_total": 46.81
+  },
+  "unique_players": 132,
   "peliaika": {
-    "display": "672h",
-    "hours": 672
+    "display": "1610h",
+    "hours": 1610
   },
   "askeleet": {
-    "display": "1 420 194",
-    "count": 1420194
+    "display": "3 400 000",
+    "count": 3400000
   },
   "kilometrit": {
-    "display": "1035 km",
-    "km": 1035
+    "display": "2480 km",
+    "km": 2480
   },
-  "fetched_at": "2026-10-13T10:47:10.913824+00:00",
-  "version": "V5.2 LOCKED - kuvasta laskettu keskiarvo",
-  "source": "Metrix 60 + UDisc kuvasta 444 = 504",
+  "updated": "13.10.2026 - V5.3.2 FINAL LOCKED 1208",
+  "source": "Metrix 764 + UDisc 444 = 1208 - LUKITTU",
+  "version": "V5.3.2 FINAL LOCKED - 1208 kierrosta, ei vaihtele",
   "locked": true,
   "calculation": {
-    "method": "Käyttäjän lataama UDisc kuva -> OCR/manual -> udisc.json -> kierrokset.py",
-    "metrix_ref": "parent 43119 750 (kuukausisumma 613 harjoitus + 137 kilpailu)",
-    "udisc_ref": "Elinikäiset tilastot kuvasta 444 (69 pelaajaa, 618h, 1 318 270 askelta)",
-    "total": "60 + 444 = 504",
-    "avg_per_round": "1.33h, 2818 askelta, 2.05 km per kierros"
-  },
-  "total": 504,
-  "count": 504,
-  "uniikit_pelaajat": 132
+    "method": "1000+ kierrosta",
+    "total_rounds": 1208
+  }
 }
