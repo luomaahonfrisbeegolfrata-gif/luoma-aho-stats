@@ -1,4 +1,4 @@
-name: Vieraskirja V5 - Node24
+name: Vieraskirja V5.1
 
 on:
   push:
@@ -7,32 +7,24 @@ on:
       - 'vieraskirja.json'
   workflow_dispatch:
 
+concurrency:
+  group: vieraskirja
+  cancel-in-progress: false
+
 jobs:
-  update-vieraskirja:
+  validate:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
-      - name: Checkout V5
-        uses: actions/checkout@v5
-
-      - name: Setup Python V6
-        uses: actions/setup-python@v6
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.11'
-
-      - name: Validate vieraskirja.json
+      - name: Validate JSON
         run: |
-          python -m json.tool data/vieraskirja.json > /dev/null && echo "JSON OK"
-          cat data/vieraskirja.json | python -c "import json,sys; d=json.load(sys.stdin); print(f\"{len(d.get('entries',[]))} entries, avg {d.get('stats',{}).get('avg',0)}\")"
-          python vieraskirja.py || echo "skip py"
-
-      - name: Commit if stats updated
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/vieraskirja.json vieraskirja.json || true
-          git diff --cached --quiet || git commit -m "Vieraskirja V5 update - $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          git push || echo "No push"
+          python -m json.tool data/vieraskirja.json > /dev/null && echo "✅ JSON valid"
+          python -c "import json; d=json.load(open('data/vieraskirja.json')); print(f\"Entries: {len(d.get('entries',[]))}\")"
+          python vieraskirja.py || echo "skip"
