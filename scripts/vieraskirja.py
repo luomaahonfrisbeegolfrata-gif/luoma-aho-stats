@@ -1,9 +1,10 @@
+#!/usr/bin/env python3
 """
-vieraskirja.py - Tyhjä mutta toimiva vieraskirja-käsittelijä
-- Lukee data/vieraskirja.json
-- Laskee stats (count, avg)
-- Toimii GitHub Actionsissa ja paikallisesti
-- Tyhjä aloitus, toimii kun entries on []
+vieraskirja.py - V5.1 LOCKED
+- Ei ylikirjoita, vain validoi
+- Vieraskirja on manuaalisesti lukittu 5 viestillä 13.10.2026
+- Workflowt: vieraskirja.yml validoi, ei pushaa uutta
+- Jos haluat lisätä, käytä vieraskirja_editor.py
 """
 
 import json
@@ -13,92 +14,55 @@ from datetime import datetime
 BASE = pathlib.Path(__file__).resolve().parent
 CANDIDATES = [
     BASE / "data" / "vieraskirja.json",
-    BASE / "data" / "vieraskirja.json",
-    BASE.parent / "data" / "vieraskirja.json",
     BASE / "vieraskirja.json",
-    pathlib.Path.cwd() / "data" / "vieraskirja.json",
+    BASE.parent / "data" / "vieraskirja.json",
 ]
 
-def find_json_path():
+def find_path():
     for p in CANDIDATES:
         if p.exists():
             return p
-    # fallback: luo data dir
-    fallback = BASE / "data" / "vieraskirja.json"
-    if not fallback.parent.exists():
-        fallback.parent.mkdir(parents=True, exist_ok=True)
-    return fallback
-
-def load_vieraskirja(path=None):
-    """Lataa vieraskirja, palauttaa dict"""
-    p = pathlib.Path(path) if path else find_json_path()
-    try:
-        if not p.exists():
-            return {"entries": [], "stats": {"count": 0, "avg": 0, "ratings": 0}, "updated": datetime.now().strftime("%Y-%m-%d")}
-        data = json.loads(p.read_text(encoding="utf-8"))
-        # Tuki myös array-muodolle
-        if isinstance(data, list):
-            return {"entries": data, "stats": {"count": len(data), "avg": 0, "ratings": 0}, "updated": datetime.now().strftime("%Y-%m-%d")}
-        # Varmista rakenne
-        if "entries" not in data:
-            data = {"entries": data.get("entries", []), "stats": data.get("stats", {"count": 0, "avg": 0, "ratings": 0}), "updated": data.get("updated", datetime.now().strftime("%Y-%m-%d"))}
-        return data
-    except Exception as e:
-        print(f"load fail {p}: {e}")
-        return {"entries": [], "stats": {"count": 0, "avg": 0, "ratings": 0}, "updated": datetime.now().strftime("%Y-%m-%d")}
-
-def calc_stats(entries):
-    """Laske stats tyhjästäkin"""
-    count = len(entries)
-    ratings = [e.get("rating", 0) for e in entries if e.get("rating", 0) > 0]
-    avg = round(sum(ratings) / len(ratings), 1) if ratings else 0
-    return {
-        "count": count,
-        "avg": avg,
-        "ratings": len(ratings)
-    }
-
-def save_vieraskirja(data, path=None):
-    """Tallenna vieraskirja"""
-    p = pathlib.Path(path) if path else find_json_path()
-    p.parent.mkdir(parents=True, exist_ok=True)
-    # Päivitä stats ja updated
-    data["stats"] = calc_stats(data.get("entries", []))
-    data["updated"] = datetime.now().strftime("%Y-%m-%d")
-    p.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"OK: Tallennettu {p} - {data['stats']['count']} viestiä, avg {data['stats']['avg']}")
-    return p
-
-def add_entry(name, message, rating=0, date=None, path=None):
-    """Lisää yksi entry (testikäyttöön)"""
-    data = load_vieraskirja(path)
-    if date is None:
-        date = datetime.now().strftime("%d.%m.%Y")
-    entry = {
-        "date": date,
-        "name": (name or "Anonyymi")[:30],
-        "message": (message or "")[:500],
-        "rating": int(rating) if rating else 0
-    }
-    data["entries"].append(entry)
-    save_vieraskirja(data, path)
-    return entry
+    return BASE / "data" / "vieraskirja.json"
 
 def main():
-    print("=== vieraskirja.py - Tyhjä mutta toimiva ===")
-    p = find_json_path()
-    print(f"JSON_PATH={p}")
-    data = load_vieraskirja(p)
-    print(f"Entries: {len(data.get('entries', []))} kpl")
-    print(f"Stats: {data.get('stats')}")
-    # Jos tyhjä, älä tee mitään, mutta varmista että tiedosto on olemassa ja validi
-    if len(data.get("entries", [])) == 0:
-        print("Tyhjä vieraskirja - luodaan tyhjä tiedosto")
-        save_vieraskirja(data, p)
-    else:
-        # Päivitä stats jos vanha
-        save_vieraskirja(data, p)
-    print("OK - vieraskirja toimii")
+    path = find_path()
+    print(f"=== vieraskirja.py V5.1 LOCKED ===")
+    print(f"Polku: {path}")
+    
+    if not path.exists():
+        print("❌ Ei löydy")
+        return
+    
+    try:
+        data = json.loads(path.read_text(encoding='utf-8'))
+        entries = data.get('entries', [])
+        stats = data.get('stats', {})
+        locked = data.get('locked', False)
+        
+        print(f"✅ JSON valid: {len(entries)} viestiä")
+        print(f"   Avg: {stats.get('avg')} ({stats.get('ratings')} ratings)")
+        print(f"   Locked: {locked}")
+        print(f"   Updated: {data.get('updated')}")
+        
+        for i, e in enumerate(entries):
+            print(f"  {i}: [{e.get('date')}] {e.get('name')} {e.get('rating')}★ - {e.get('message')[:50]}...")
+        
+        if locked:
+            print("\n🔒 Lukittu - ei ylikirjoiteta, säilytetään")
+        else:
+            print("\n⚠️ Ei lukittu - harkitse lukitusta")
+            
+        # Validate
+        for e in entries:
+            if len(e.get('message','')) > 500:
+                print(f"❌ Viesti liian pitkä: {e.get('name')}")
+            if len(e.get('name','')) > 30:
+                print(f"❌ Nimi liian pitkä: {e.get('name')}")
+        
+        print("\n✅ Validointi ok")
+        
+    except Exception as ex:
+        print(f"❌ Virhe: {ex}")
 
 if __name__ == "__main__":
     main()
