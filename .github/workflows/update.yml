@@ -1,14 +1,11 @@
 name: Update DiscGolf Stats V5.3.2 FINAL LOCKED
-
 on:
   schedule:
     - cron: '0 */3 * * *'
   workflow_dispatch:
-
 concurrency:
   group: update-stats
   cancel-in-progress: false
-
 jobs:
   update-stats:
     runs-on: ubuntu-latest
@@ -17,30 +14,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: Install deps
-        run: pip install requests beautifulsoup4 lxml || true
-      - name: Show locked files
+        with: {python-version: '3.11'}
+      - run: pip install requests beautifulsoup4 lxml || true
+      - name: Show locked V5.3.2
         run: |
-          echo "V5.3.2 FINAL LOCKED - kaikki lukittu, ei vaihtele"
-          cat data/kierrokset.json | grep -E "total_rounds|version|locked"
-          cat data/vaylatilasto.json | grep -E "avg_total|total_rounds|version|locked"
-          cat data/vieraskirja.json | grep -E "count|avg|version|locked"
-          cat data/udisc.json | grep -E "total_rounds|version|locked"
-      - name: Metrix LIVE only (top10 päivittyy, total lukittu)
+          echo "V5.3.2 FINAL LOCKED - 1208/49.55/6/444"
+          cat data/kierrokset.json | grep -E "total_rounds|version|locked" || true
+          cat data/vaylatilasto.json | grep -E "avg_total|total_rounds|version|locked" || true
+          cat data/vieraskirja.json | grep -E "count|avg|version|locked" || true
+          cat data/udisc.json | grep -E "total_rounds|version|locked" || true
+      - name: Metrix LIVE top10 only (kierrokset lukittu 1208)
         run: |
-          echo "Metrix fetcher voi päivittää top10, mutta kierrokset lukittu 1208"
           if [ -f scripts/metrix_fetcher.py ]; then python scripts/metrix_fetcher.py || true; fi
-      - name: Commit LIVE only (EI lukittuja)
+          if [ -f metrix_fetcher.py ]; then python metrix_fetcher.py || true; fi
+      - name: Commit LIVE only - EI lukittuja
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # Älä lisää lukittuja tiedostoja
           git add data/metrix_*.json data/tiedotteet.json || true
-          # Palauta lukitut jos muuttuneet
-          git checkout HEAD -- data/kierrokset.json data/vaylatilasto.json data/vieraskirja.json data/udisc.json || echo "locked files restored"
+          git checkout HEAD -- data/kierrokset.json data/vaylatilasto.json data/vieraskirja.json data/udisc.json || echo "locked restored"
           git diff --cached --quiet && echo "No changes" && exit 0
-          git commit -m "V5.3.2 FINAL LOCKED - 1208/49.55/6 arv/444 - $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git commit -m "V5.3.2 FINAL LOCKED - Metrix live top10, 1208/49.55/6/444 locked - $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git pull --rebase origin main || true
           git push
