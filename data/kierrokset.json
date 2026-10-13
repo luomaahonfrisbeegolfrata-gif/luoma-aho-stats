@@ -1,28 +1,28 @@
 {
-  "total_rounds": 1194,
+  "total_rounds": 504,
   "unique_players": 132,
   "metrix_total": 60,
-  "udisc_total": 10,
+  "udisc_total": 444,
   "parent_course": "43119",
   "child_courses": [
     "44010",
     "44763"
   ],
   "peliaika": {
-    "display": "1594h",
-    "hours": 1594
+    "display": "672h",
+    "hours": 672
   },
   "askeleet": {
-    "display": "3 364 508",
-    "count": 3364508
+    "display": "1 420 194",
+    "count": 1420194
   },
   "kilometrit": {
-    "display": "2453 km",
-    "km": 2453
+    "display": "1035 km",
+    "km": 1035
   },
-  "fetched_at": "2026-10-13T06:42:58.398946+00:00",
+  "fetched_at": "2026-10-13T06:43:57.282505+00:00",
   "version": "V30 LIVE - parent 43119, oikea uniikki laskenta",
-  "total": 1194,
-  "count": 1194,
+  "total": 504,
+  "count": 504,
   "uniikit_pelaajat": 132
 }
