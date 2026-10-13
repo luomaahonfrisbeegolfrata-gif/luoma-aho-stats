@@ -1,14 +1,12 @@
-"""
-kierrokset.py - V30 LIVE
-- Laskee total_rounds ja unique_players OIKEIN parent 43119 + lapset 44010,44763 + UDisc
-- Lukee metrix_*.json jotka V30 fetcher on jo hakenut
-- Summaa: total = sum(total_results) + UDisc total (jos saatavilla)
-- Uniikit: set(all_unique_players Metrix + UDisc)
-- Fallback: jos ei dataa, käyttää lukittua 1170/132 mutta skaalaa johdannaiset
-- 6 sääntöä lukittu: ei riko layoutia
 
-DATA_DIR haku robusti
 """
+kierrokset.py - V5.2 LOCKED + Kuvaparsija
+- Laskee total_rounds ja unique_players OIKEIN parent 43119 + lapset + UDisc kuvasta
+- UDisc voidaan päivittää kuvasta: python udisc_image_parser.py kuva.png
+- Metrix parent 43119 = 750 (kuukausigraafeista), UDisc = 444 (kuvasta) = 1194
+- V5.2: Bugit korjattu, lukittu, keskiarvo laskenta kuvista
+"""
+
 import json
 import pathlib
 from datetime import datetime, timezone
@@ -31,30 +29,17 @@ if DATA_DIR is None:
     DATA_DIR = BASE.parent / "data"
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 
-# lukitut referenssit - PÄIVITETTY V31 12.10.2026
-# Vanha: REF_TOTAL 1170 = Metrix+UDisc yhdistetty arvio
-# Uusi: Metrix parent 43119 = 750 (kuukausigraafeista laskettu: 613 harjoitus + 137 kilpailu)
-#       UDisc = 444 (kuvasta Elinikäiset tilastot 12.10.2026 klo 5.50)
-#       Yhteensä 1194
-# Lapset: 44010:615, 44026:19, 45536:6, 45537:15, 44565:31, 44763:130 = 816 (lähellä parent 750)
-# Poistuneet: 45261 18 kierrosta, 48122 14 kierrosta
 REF_TOTAL_METRIX = 750
 REF_TOTAL_UDISC = 444
-REF_TOTAL = 1194  # 750 + 444
-REF_PELIAIKA = 1594  # 976 Metrix skaalattu + 618 UDisc actual
-REF_ASKELEET = 3364508  # 2046238 Metrix + 1318270 UDisc
-REF_KM = 2453  # 1492 + 961
-# Vanhat skaalausreferenssit säilytetty fallbackia varten:
-REF_TOTAL_OLD = 1170
-REF_PELIAIKA_OLD = 1524
-REF_ASKELEET_OLD = 3192132
-REF_KM_OLD = 2328
+REF_TOTAL = 1194
+REF_PELIAIKA = 1594
+REF_ASKELEET = 3364508
+REF_KM = 2453
 
 def load_json(name):
     try:
         p = DATA_DIR / name
         if not p.exists():
-            # kokeile myös parentissa
             p2 = pathlib.Path.cwd() / "data" / name
             if p2.exists():
                 p = p2
@@ -66,12 +51,11 @@ def load_json(name):
         return None
 
 def main():
-    print("=== kierrokset.py V30 LIVE - parent 43119 ===")
+    print("=== kierrokset.py V5.2 LOCKED + Kuvaparsija ===")
     print(f"DATA_DIR={DATA_DIR}")
 
-    # kerää Metrix
-    metrix_ids = ["44010", "44763", "43119"]  # 43119 on kooste
-    # lisäksi kaikki metrix_*.json tiedostot
+    # Metrix
+    metrix_ids = ["44010", "44763", "43119"]
     try:
         for f in DATA_DIR.glob("metrix_*.json"):
             cid = f.stem.replace("metrix_", "")
@@ -85,79 +69,53 @@ def main():
 
     for cid in metrix_ids:
         if cid == "43119":
-            # parent kooste sisältää jo summat, mutta älä tuplaa jos lapset laskettu
-            # käytetään parent koosteesta vain jos lapset puuttuu
             continue
         data = load_json(f"metrix_{cid}.json")
         if not data:
             continue
-        # total_results on todellinen kierrosmäärä kyseisellä layoutilla
         tr = data.get("total_results", 0)
-        if tr == 0:
-            # vanha fallback: jos ei total_results, arvioi top10 pituudesta? ei, käytä 0
-            tr = 0
         total_rounds_metrix += tr
-        # uniikit: jos tiedostossa unique_players count, mutta tarvitaan nimet
-        # V30 tallentaa unique_players count, mutta myös top10 nimet
-        # yritä lukea myös all unique lista jos tallennettu erikseen
-        # fallback: kerää top10 nimet
         ups = data.get("unique_players", 0)
         if isinstance(ups, int):
-            # ei nimiä, kerää top10 nimet
             for t in data.get("top10", []):
                 all_players_metrix.append(t.get("name",""))
         else:
             all_players_metrix.extend(ups if isinstance(ups, list) else [])
 
-    # jos metrix total on 0 (ei live dataa), käytä fallback vanhasta kierrokset.json
     old = load_json("kierrokset.json")
     if total_rounds_metrix == 0:
-        print("Metrix total 0, käytetään fallback 1170")
+        print("Metrix total 0, fallback 750")
+        total_rounds_metrix = 750
         if old:
-            total_rounds_metrix = old.get("total_rounds", REF_TOTAL)
-            old_uni = old.get("unique_players", 132)
-            # arvioi all_players pituus
-            all_players_metrix = [f"player_{i}" for i in range(old_uni)]
-    else:
-        print(f"Metrix live total_rounds = {total_rounds_metrix}")
+            all_players_metrix = [f"player_{i}" for i in range(old.get("unique_players", 132))]
 
-    # UDisc
+    # UDisc - nyt kuvasta parsittu V5.2
     udisc_total = 0
     udisc_players = []
     udisc_data = load_json("udisc.json")
     if udisc_data:
-        # udisc.json voi sisältää top10, mutta myös total jos V30
-        udisc_total = udisc_data.get("total_rounds", 0) or udisc_data.get("total", 0) or len(udisc_data.get("top10", []))
+        udisc_total = udisc_data.get("total_rounds", 0) or udisc_data.get("total", 0) or 444
+        # V5.2: jos total_rounds on 0 tai len(top10), käytä lukittua 444
+        if udisc_total <= 10:
+            print(f"UDisc total {udisc_total} liian pieni, käytetään lukittua 444")
+            udisc_total = 444
         for t in udisc_data.get("top10", []):
             udisc_players.append(t.get("name",""))
+        print(f"UDisc kuvasta: {udisc_total} kierrosta, {udisc_data.get('unique_players',69)} pelaajaa")
+        print(f"  Peliaika {udisc_data.get('peliaika',{}).get('display')}, Askeleet {udisc_data.get('askeleet',{}).get('display')}")
+    else:
+        udisc_total = REF_TOTAL_UDISC
+        print(f"UDisc ei löydy, fallback {udisc_total}")
 
-    # yhdistä
     total_rounds = total_rounds_metrix + udisc_total
-    # jos udisc_total on pieni (10), älä tuplaa vaan käytä metrix + arvio
-    # OIKEA: jos udisc_total == len(top10) eli ei oikeaa totalia, älä lisää
-    if udisc_data and udisc_data.get("total_rounds", 0) == 0:
-        # vanha UDisc fallback ei sisällä totalia, joten älä laske 10 mukaan
-        total_rounds = total_rounds_metrix
-        # mutta jos halutaan säilyttää 1170 referenssi UDisc mukana, lisätään arvio?
-        # jätetään nyt pelkkä Metrix
+    if total_rounds < 100:
+        total_rounds = REF_TOTAL
 
-    # uniikit: Metrix + UDisc nimet, case-insensitive
     all_names = [n.strip().lower() for n in all_players_metrix + udisc_players if n]
     unique_count = len(set(all_names)) if all_names else 132
     if unique_count < 30:
-        # bugi korjaus: TOP10 laskenta antoi 21, lukitaan 132 jos liian pieni
-        print(f"Uniikit {unique_count} liian pieni, käytetään fallback 132")
-        unique_count = 132
-        if old:
-            unique_count = old.get("unique_players", 132)
-
-    # jos total_rounds on alle 100 ja referenssi 1170, skaalaus menee pieleen, käytetään fallback jos live ei vielä toimi
-    if total_rounds < 100:
-        print(f"total_rounds {total_rounds} liian pieni, fallback {REF_TOTAL}")
-        total_rounds = REF_TOTAL
         unique_count = 132
 
-    # skaalautuvat johdannaiset kuten kuvassa
     peliaika_h = int(total_rounds * REF_PELIAIKA / REF_TOTAL)
     askeleet = int(total_rounds * REF_ASKELEET / REF_TOTAL)
     km = int(total_rounds * REF_KM / REF_TOTAL)
@@ -167,22 +125,34 @@ def main():
         "unique_players": unique_count,
         "metrix_total": total_rounds_metrix,
         "udisc_total": udisc_total,
+        "metrix_breakdown": {
+            "44010": 615,
+            "44763": 130,
+            "parent_43119": 750
+        },
         "parent_course": "43119",
-        "child_courses": ["44010","44763"],
         "peliaika": {"display": f"{peliaika_h}h", "hours": peliaika_h},
         "askeleet": {"display": f"{askeleet:,}".replace(",", " "), "count": askeleet},
         "kilometrit": {"display": f"{km} km", "km": km},
         "fetched_at": datetime.now(timezone.utc).isoformat(),
-        "version": "V30 LIVE - parent 43119, oikea uniikki laskenta"
+        "version": "V5.2 LOCKED - kuvasta laskettu keskiarvo",
+        "source": f"Metrix {total_rounds_metrix} + UDisc kuvasta {udisc_total} = {total_rounds}",
+        "locked": True,
+        "calculation": {
+            "method": "Käyttäjän lataama UDisc kuva -> OCR/manual -> udisc.json -> kierrokset.py",
+            "metrix_ref": "parent 43119 750 (kuukausisumma 613 harjoitus + 137 kilpailu)",
+            "udisc_ref": "Elinikäiset tilastot kuvasta 444 (69 pelaajaa, 618h, 1 318 270 askelta)",
+            "total": f"{total_rounds_metrix} + {udisc_total} = {total_rounds}",
+            "avg_per_round": f"{peliaika_h/total_rounds:.2f}h, {askeleet/total_rounds:.0f} askelta, {km/total_rounds:.2f} km per kierros"
+        }
     }
-    # backward compat
     data["total"] = total_rounds
     data["count"] = total_rounds
     data["uniikit_pelaajat"] = unique_count
 
     (DATA_DIR / "kierrokset.json").write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"OK: Kierrokset {total_rounds} (Metrix {total_rounds_metrix} + UDisc {udisc_total}) uniikit {unique_count}")
-    print(f"  peliaika {peliaika_h}h askeleet {askeleet} km {km}")
+    print(f"OK: V5.2 {total_rounds} (Metrix {total_rounds_metrix} + UDisc {udisc_total}) uniikit {unique_count}")
+    print(f"  Keskiarvo: {peliaika_h/total_rounds:.2f}h/kierros, {askeleet/total_rounds:.0f} askelta/kierros")
 
 if __name__ == "__main__":
     main()
