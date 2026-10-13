@@ -3,11 +3,12 @@
   "unique_players": 132,
   "metrix_total": 60,
   "udisc_total": 444,
+  "metrix_breakdown": {
+    "44010": 615,
+    "44763": 130,
+    "parent_43119": 750
+  },
   "parent_course": "43119",
-  "child_courses": [
-    "44010",
-    "44763"
-  ],
   "peliaika": {
     "display": "672h",
     "hours": 672
@@ -20,8 +21,17 @@
     "display": "1035 km",
     "km": 1035
   },
-  "fetched_at": "2026-10-13T07:51:14.056430+00:00",
-  "version": "V30 LIVE - parent 43119, oikea uniikki laskenta",
+  "fetched_at": "2026-10-13T07:52:21.387071+00:00",
+  "version": "V5.2 LOCKED - kuvasta laskettu keskiarvo",
+  "source": "Metrix 60 + UDisc kuvasta 444 = 504",
+  "locked": true,
+  "calculation": {
+    "method": "Käyttäjän lataama UDisc kuva -> OCR/manual -> udisc.json -> kierrokset.py",
+    "metrix_ref": "parent 43119 750 (kuukausisumma 613 harjoitus + 137 kilpailu)",
+    "udisc_ref": "Elinikäiset tilastot kuvasta 444 (69 pelaajaa, 618h, 1 318 270 askelta)",
+    "total": "60 + 444 = 504",
+    "avg_per_round": "1.33h, 2818 askelta, 2.05 km per kierros"
+  },
   "total": 504,
   "count": 504,
   "uniikit_pelaajat": 132
