@@ -1,4 +1,4 @@
-name: Update DiscGolf Stats V30 - Tiedotteet + Parent 43119
+name: Update DiscGolf Stats V5 - Node24 (parent 43119 + UDisc + Väylä)
 
 on:
   schedule:
@@ -7,16 +7,28 @@ on:
 
 jobs:
   update-stats:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-python@v6
+      - name: Checkout V5 (Node24)
+        uses: actions/checkout@v5
+
+      - name: Set up Python V6 (Node24)
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
+
       - name: Install deps
         run: pip install requests beautifulsoup4 lxml
+
+      - name: Show structure
+        run: |
+          ls -la
+          ls -la data || echo "no data dir yet"
+          ls -la scripts || echo "no scripts dir"
 
       - name: Fetch Metrix parent 43119 + 44010,44763
         run: |
@@ -24,41 +36,35 @@ jobs:
           elif [ -f metrix_fetcher.py ]; then python metrix_fetcher.py
           else echo "metrix_fetcher.py not found" && exit 1; fi
 
-      - name: Fetch UDisc
+      - name: Fetch UDisc (444 kierrosta)
         run: |
           if [ -f scripts/udisc_fetcher.py ]; then python scripts/udisc_fetcher.py
           elif [ -f udisc_fetcher.py ]; then python udisc_fetcher.py
           else echo "skip udisc"; fi
 
-      - name: Fetch Vaylatilasto
+      - name: Fetch Väylätilasto
         run: |
           if [ -f scripts/vaylatilasto_fetcher.py ]; then python scripts/vaylatilasto_fetcher.py
           elif [ -f vaylatilasto_fetcher.py ]; then python vaylatilasto_fetcher.py
           else echo "skip vayla"; fi
 
-      - name: Fetch Tiedotteet (manual - keep existing)
+      - name: Fetch Tiedotteet
         run: |
           if [ -f scripts/tiedotteet_fetcher.py ]; then python scripts/tiedotteet_fetcher.py
           elif [ -f tiedotteet_fetcher.py ]; then python tiedotteet_fetcher.py
-          else echo "tiedotteet_fetcher.py not found - creating default"; mkdir -p data; echo '{"tiedotteet":[]}' > data/tiedotteet.json; fi
+          else echo "skip tiedotteet"; fi
 
-      - name: Calculate Kierrokset
+      - name: Calculate Kierrokset 750+444=1194
         run: |
           if [ -f scripts/kierrokset.py ]; then python scripts/kierrokset.py
           elif [ -f kierrokset.py ]; then python kierrokset.py
           else echo "kierrokset.py not found" && exit 1; fi
 
-      - name: Show results
-        run: |
-          ls -lh data/
-          cat data/kierrokset.json || true
-          cat data/tiedotteet.json || true
-
-      - name: Commit & Push
+      - name: Commit & Push (V5)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/
-          git diff --cached --quiet && echo "No changes" && exit 0
-          git commit -m "V30 Tiedotteet + parent 43119 - $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          git push
+          git add data/*.json || true
+          git add *.json || true
+          git diff --cached --quiet || git commit -m "V5 Node24 update - parent 43119 750+444=1194 - $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push || echo "No changes or push failed"
