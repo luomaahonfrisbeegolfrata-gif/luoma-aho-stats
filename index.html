@@ -192,13 +192,40 @@ function renderTiedotteet(data,source=""){
 function renderVayla(v){
   try{
     if(!v) return;
+    // V5.2 FIX: LOCKED_PAR ja PITUUS, mutta avg/diff laskenta korjattu
     v.par = LOCKED_PAR;
     v.pituus = LOCKED_PITUUS;
     if(!v.pituus || v.pituus.length<12)return;
-    const autoAvgCls=(avg,par)=>{if(!avg||!par||avg===" -"||par==="-")return"cell-dark";const a=parseFloat(avg);const p=parseInt(par);if(isNaN(a)||isNaN(p))return"cell-dark";const d=a-p;if(d>=0.8)return"cell-red";if(d>=0.4)return"cell-orange";if(d>=0.1)return"cell-yellow";return"cell-green";};
-    const autoDiffCls=(diff)=>{const n=parseInt(diff);if(isNaN(n))return"cell-dark";if(n<=3)return"cell-red";if(n<=6)return"cell-orange";if(n<=9)return"cell-yellow";return"cell-green";};
-    if(!v.avgCls||v.avgCls.length<12){v.avgCls=v.avg.map((a,i)=>autoAvgCls(a,LOCKED_PAR[i]));}
-    if(!v.diffCls||v.diffCls.length<12){v.diffCls=(v.difficulty||v.diff||[]).map(d=>autoDiffCls(d));}
+    // Bug4 FIX: Avg väri over par logiikalla (kuten V5.2)
+    const autoAvgCls=(avg,par)=>{
+      if(!avg||!par||avg===" -"||par==="-")return"cell-dark";
+      const a=parseFloat(avg); const p=parseInt(par);
+      if(isNaN(a)||isNaN(p))return"cell-dark";
+      const d=a-p;
+      if(d>=1.0)return"cell-red";      // yli 1 yli par = punainen (vaikea)
+      if(d>=0.5)return"cell-orange";   // 0.5-1.0 oranssi
+      if(d>=0.2)return"cell-yellow";   // 0.2-0.5 keltainen
+      return"cell-green";              // alle 0.2 vihreä (helppo)
+    };
+    // Bug1 FIX: Difficulty väri ranking logiikalla 1-3 vihreä, 4-6 keltainen, 7-9 oranssi, 10-12 punainen
+    const autoDiffCls=(diff)=>{
+      const n=parseInt(diff);
+      if(isNaN(n))return"cell-dark";
+      if(n<=3)return"cell-green";      // 1-3 helpoimmat = vihreä
+      if(n<=6)return"cell-yellow";     // 4-6 keskitaso keltainen
+      if(n<=9)return"cell-orange";     // 7-9 vaikeat oranssi
+      return"cell-red";                // 10-12 vaikeimmat punainen
+    };
+    // V5.2: Jos avgCls/diffCls puuttuu tai on vanha (10.7 bugi), laske uudelleen
+    if(!v.avgCls||v.avgCls.length<12 || v.version && v.version.includes("V5.1")){
+      v.avgCls=v.avg.slice(0,12).map((a,i)=>autoAvgCls(a,LOCKED_PAR[i]));
+    }
+    if(!v.diffCls||v.diffCls.length<12 || v.difficulty_total=="10.7" || v.difficulty_total=="10.8"){
+      v.diffCls=(v.difficulty||v.diff||[]).slice(0,12).map(d=>autoDiffCls(d));
+      // Bug1 FIX: Difficulty Tot = 78 (sum 1-12), ei 10.7
+      if(v.difficulty) v.difficulty[12]="78";
+      if(v.diff) v.diff[12]="78";
+    }
     const body=document.getElementById("vayla-body");if(!body)return;
     body.innerHTML="";
     const rows=[["Pituus",...v.pituus],["Par",...v.par],["Avg",...v.avg],["Difficulty",...v.difficulty||v.diff],["Hole in one",...v.hio],["Birdie -1",...v.birdie],["Par 0",...v.par0],["Bogey 1",...v.bogey],["Dbl Bogey 2",...v.dbl],["Tpl Bogey 3",...v.tpl],["Other >3",...v.other]];
@@ -213,7 +240,7 @@ function renderVayla(v){
       });
       body.appendChild(tr);
     });
-  }catch(e){}
+  }catch(e){console.error("renderVayla V5.2 fail", e);}
 }
 if(lastTiedotteet){renderTiedotteet(lastTiedotteet,"localStorage init");}
 else{renderTiedotteet(fallback.tiedotteet,"fallback init");}
