@@ -50,13 +50,23 @@ const JSON_PATH="data/vieraskirja.json";let entries=[];let selectedRating=0;
 function esc(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 function formatDate(){const d=new Date();return `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${d.getFullYear()}`;}
 function renderStars(n){let h="";for(let i=1;i<=5;i++)h+=`<span class="star-display ${i<=n?'filled':''}">★</span>`;return h;}
+function parseDate(d){
+  // DD.MM.YYYY -> timestamp
+  try{
+    const parts=d.split('.');
+    if(parts.length===3) return new Date(parseInt(parts[2]), parseInt(parts[1])-1, parseInt(parts[0])).getTime();
+  }catch(e){}
+  return 0;
+}
 function render(){
   const list=document.getElementById("v-list"),countEl=document.getElementById("v-count"),avgBox=document.getElementById("avg-box");
   countEl.textContent=`${entries.length} viestiä`;
   if(entries.length===0){list.innerHTML=`<div class="empty">Ei vielä viestejä - ole ensimmäinen! ✨<br><small style="color:#444">Kirjoita vasemmalle ja tallenna JSON GitHubiin</small></div>`;avgBox.style.display="none";return;}
   const ratings=entries.filter(e=>e.rating>0).map(e=>e.rating);const avg=ratings.length?(ratings.reduce((a,b)=>a+b,0)/ratings.length):0;
   if(ratings.length>0){avgBox.style.display="flex";document.getElementById("avg-text").textContent=avg.toFixed(1);document.getElementById("avg-count").textContent=`(${ratings.length} arvostelua)`;document.getElementById("avg-stars").innerHTML=renderStars(Math.round(avg));}else avgBox.style.display="none";
-  list.innerHTML="";[...entries].reverse().forEach(e=>{const div=document.createElement("div");div.className="tiedote-item";div.innerHTML=`<div class="tiedote-date">${esc(e.date)}</div><div class="tiedote-title">${esc(e.name)} <span class="stars-display">${renderStars(e.rating||0)}</span></div><div class="tiedote-msg">${esc(e.message)}</div>`;list.appendChild(div);});
+  // UUSIN YLIMPÄNÄ: sorttaa päivämäärän mukaan laskevasti (uusin ensin)
+  const sorted=[...entries].sort((a,b)=>parseDate(b.date)-parseDate(a.date));
+  list.innerHTML="";sorted.forEach(e=>{const div=document.createElement("div");div.className="tiedote-item";div.innerHTML=`<div class="tiedote-date">${esc(e.date)}</div><div class="tiedote-title">${esc(e.name)} <span class="stars-display">${renderStars(e.rating||0)}</span></div><div class="tiedote-msg">${esc(e.message)}</div>`;list.appendChild(div);});
 }
 function updatePreview(){
   const stats={count:entries.length,avg:entries.filter(e=>e.rating).length?Math.round((entries.filter(e=>e.rating).reduce((a,b)=>a+b.rating,0)/entries.filter(e=>e.rating).length)*10)/10:0,ratings:entries.filter(e=>e.rating).length};
