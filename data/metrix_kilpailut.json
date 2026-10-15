@@ -1,0 +1,33 @@
+{
+  "courses": [
+    {
+      "id": "44010",
+      "name": "Luoma-ahon Frisbeegolfrata",
+      "url": "https://discgolfmetrix.com/course/44010",
+      "layout": "Luoma-aho"
+    },
+    {
+      "id": "44763",
+      "name": "Alajärvi",
+      "url": "https://discgolfmetrix.com/course/44763",
+      "layout": "Alajärvi"
+    },
+    {
+      "id": "45536",
+      "name": "Kure",
+      "url": "https://discgolfmetrix.com/course/45536",
+      "layout": "Kure"
+    },
+    {
+      "id": "48112",
+      "name": "Lappajärvi",
+      "url": "https://discgolfmetrix.com/course/48112",
+      "layout": "Lappajärvi"
+    }
+  ],
+  "upcoming": [],
+  "kilpailut": [],
+  "updated": "15.10.2026 - tyhjä kortti, vain aktiivinen layout ylimmäksi",
+  "source": "Metrix 44010,44763,45536,48112 - alkaa tyhjänä",
+  "version": "V1.2 - tyhjä + aktiivinen ylimmäksi + uusin ylimmäksi"
+}
