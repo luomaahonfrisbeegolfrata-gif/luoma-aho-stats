@@ -265,11 +265,6 @@ function renderVayla(v){
     });
   }catch(e){console.error("renderVayla V5.2 fail", e);}
 }
-
-
-}
-
-
 function renderKilpailut(data){
   try{
     const el=document.getElementById("list-kilpailut"); if(!el) return;
@@ -307,7 +302,7 @@ function renderKilpailut(data){
       const courseId = k.course||"";
       const reg = k.reg||"";
       const players = k.players||0;
-      div.innerHTML=`<div class="kilpailu-date">${date} ${reg?`• ${reg}`:""} ${players?`• ${players} hlö`:""}</div><div class="kilpailu-name">${name}</div><div class="kilpailu-meta"><span class="kilpailu-course">${course} ${courseId}</span><span class="kilpailu-link">Näytä tilanne →</span></div>`;
+      div.innerHTML=`<div class="kilpailu-date">${date} ${reg? '• ' + reg:""} ${players? '• ' + players + ' hlö':""}</div><div class="kilpailu-name">${name}</div><div class="kilpailu-meta"><span class="kilpailu-course">${course} ${courseId}</span><span class="kilpailu-link">Näytä tilanne →</span></div>`;
       div.addEventListener("click", ()=>{
         document.querySelectorAll(".kilpailu-item").forEach(e=>e.style.outline="");
         div.style.outline="1px solid #1aff1a";
@@ -366,7 +361,7 @@ async function loadKilpailuTilanne(k){
               rank: i+1,
               name: p.Name,
               total: p.Sum,
-              plus: (p.Diff>0?`+${p.Diff}`: p.Diff===0 ? "E" : `${p.Diff}`),
+              plus: (p.Diff>0? "+" + p.Diff : p.Diff===0 ? "E" : "" + p.Diff),
               diff: p.Diff
             }))
           });
