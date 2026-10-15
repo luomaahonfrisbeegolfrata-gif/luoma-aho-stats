@@ -8,7 +8,7 @@ header{height:56px;min-height:56px;max-height:56px;background:#0f0f0f;border-bot
 .header-icons{display:flex;gap:6px;align-items:center;flex-wrap:nowrap;flex-shrink:0}
 .wrap{max-width:1920px;margin:0 auto;padding:10px}
 .grid-top{display:grid;grid-template-columns:260px 200px 200px 200px 260px 260px;gap:10px}
-.grid-mid{display:grid;grid-template-columns:260px 260px 260px 260px;gap:10px;margin-top:10px}
+.grid-mid{display:grid;grid-template-columns:260px 260px 260px 260px 260px;gap:10px;margin-top:10px}
 .grid-bottom{display:grid;grid-template-columns:1fr;margin-top:10px;width:100%;min-width:100%}
 .card{background:#151515;border:1px solid #242424;border-radius:10px;padding:10px 12px;overflow:hidden;height:320px;min-height:320px;max-height:320px;display:flex;flex-direction:column;width:260px;min-width:260px;max-width:260px}
 .card-mid{height:380px;min-height:380px;max-height:380px;width:260px;min-width:260px;max-width:260px}
@@ -107,6 +107,16 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 .kilpailu-link{font-size:9px;color:#1aff1a;text-decoration:none;font-weight:700}
 .kilpailu-empty{padding:20px 12px;text-align:center;color:#666;font-size:11px;line-height:1.4}
 
+
+/* Kilpailun tilanne kortti */
+.tilanne-item{padding:5px 8px;border-bottom:1px solid #1e1e1e;display:flex;align-items:center;gap:6px;font-size:11px}
+.tilanne-rank{width:22px;color:#1aff1a;font-weight:800;flex-shrink:0}
+.tilanne-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700;color:#fff}
+.tilanne-score{width:32px;text-align:right;font-weight:800;color:#fff}
+.tilanne-plus{width:32px;text-align:right;font-size:10px;font-weight:700}
+.tilanne-empty{padding:20px 12px;text-align:center;color:#666;font-size:11px;line-height:1.4}
+.tilanne-header{font-size:9px;color:#888;padding:4px 8px;background:#111;border-bottom:1px solid #222;display:flex;justify-content:space-between}
+
 </style></head><body>
 <header><div class="brand"><div class="brand-logo"><img src="logot/l-a-friba-logo.jpg" alt="L-A FRIBA" style="width:35px;height:35px;object-fit:cover;display:block" /></div> Luoma-ahon Frisbeegolfrata</div><div class="header-icons"><a href="./palkintolaskuri.html" style="width:71px;height:35px;min-width:71px;background:#111;border:1px solid #1aff1a88;border-radius:8px;overflow:hidden;display:grid;place-items:center;text-decoration:none;margin-right:6px" title="Palkintolaskuri"><img src="logot/1000mrkkaa-70x35.jpg" alt="1000" style="width:71px;height:35px;object-fit:cover;display:block"/></a>
 <a href="https://www.google.com/maps/place/Luoma-ahon+Frisbeegolfrata/@63.0901676,23.8860139,12z/" target="_blank" title="Google Maps" style="width:35px;height:35px;min-width:35px;background:#fff;border-radius:8px;display:grid;place-items:center;overflow:hidden;border:1px solid #333;flex-shrink:0"><img src="logot/gmaps-logo.jpg" alt="Maps" style="width:100%;height:100%;object-fit:cover;display:block" /></a>
@@ -153,7 +163,8 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 <div class="card card-mid"><div class="top10-title"><span>METRIX 44010 TOP 10</span><b>44010 ↗</b></div><div class="toplist" id="list-44010"></div></div>
 <div class="card card-mid"><div class="top10-title"><span>METRIX 44763 TOP 10</span><b>44763 ↗</b></div><div class="toplist" id="list-44763"></div></div>
 <div class="card card-mid"><div class="top10-title"><span>UDISC TOP 10</span><b>UDisc ↗</b></div><div class="toplist" id="list-udisc"></div></div>
-<div class="card card-mid" id="card-kilpailut"><div class="top10-title"><span>METRIX KILPAILUT</span><b id="kilpailut-badge">LIVE</b></div><div class="toplist" id="list-kilpailut" style="overflow-y:auto"><div class="kilpailu-empty">Ladataan kilpailuja...<br><span style="font-size:9px;color:#444">44010 • 44763 • 45536 • 48112</span></div></div></div>
+<div class="card card-mid" id="card-kilpailut"><div class="top10-title"><span>METRIX KILPAILUT</span><b id="kilpailut-badge">LIVE</b></div><div class="toplist" id="list-kilpailut" style="overflow-y:auto"><div class="kilpailu-empty">Ei tulevia kilpailuja<br><span style="font-size:9px;color:#444">44010 • 44763 • 45536 • 48112</span><br><br><a href="https://discgolfmetrix.com/course/44010" target="_blank" class="kilpailu-link">44010 ↗</a> <a href="https://discgolfmetrix.com/course/44763" target="_blank" class="kilpailu-link">44763 ↗</a> <a href="https://discgolfmetrix.com/course/45536" target="_blank" class="kilpailu-link">45536 ↗</a> <a href="https://discgolfmetrix.com/course/48112" target="_blank" class="kilpailu-link">48112 ↗</a></div></div></div>
+<div class="card card-mid" id="card-tilanne"><div class="top10-title"><span>KILPAILUN TILANNE</span><b id="tilanne-badge">-</b></div><div class="tilanne-header"><span id="tilanne-competition-name">Valitse kisa vasemmalta</span><span id="tilanne-competition-time"></span></div><div class="toplist" id="list-tilanne" style="overflow-y:auto"><div class="tilanne-empty">Klikkaa kilpailua vasemmalla<br>→ näet live-tilanteen tässä<br><br><span style="font-size:9px;color:#555">Hakee Metrix API:sta<br>api.php?content=result&id=...</span></div></div></div>
 </div>
 <div class="grid-bottom"><div class="card card-bottom" id="card-vayla"><div class="vayla-header"><h3>VÄYLÄTILASTO - LIVE</h3><div class="live-badge" id="vayla-badge">● LIVE</div></div><div class="vayla-table-wrap" id="vayla-wrap"><table class="vayla"><thead><tr><th>Vayla</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>Tot</th><th>%</th></tr></thead><tbody id="vayla-body"></tbody></table></div></div></div>
 </div>
@@ -255,6 +266,10 @@ function renderVayla(v){
   }catch(e){console.error("renderVayla V5.2 fail", e);}
 }
 
+
+}
+
+
 function renderKilpailut(data){
   try{
     const el=document.getElementById("list-kilpailut"); if(!el) return;
@@ -264,45 +279,144 @@ function renderKilpailut(data){
       if(badge) badge.textContent="0";
       return;
     }
-    // Logiikka: vain aktiivisen layoutin kilpailu ylimmäksi, jokainen uusi aina ylimmäksi
-    // 1. Sorttaa: uusin lisätty / päivämäärä ylimmäksi (desc)
-    // 2. Aktiivinen layout (reg = Avoinna / Käynnissä / LIVE) nostetaan ylimmäksi
     const parseDate = (d)=>{
       try{
-        const m = d.match(/(\d{1,2})\.(\d{1,2})\.(\d{4})\s*(\d{1,2}):(\d{2})/);
-        if(m) return new Date(parseInt(m[3]), parseInt(m[2])-1, parseInt(m[1]), parseInt(m[4]), parseInt(m[5])).getTime();
+        const mm = d.match(/(\d{1,2})\.(\d{1,2})\.(\d{4})\s*(\d{1,2}):(\d{2})/);
+        if(mm) return new Date(parseInt(mm[3]), parseInt(mm[2])-1, parseInt(mm[1]), parseInt(mm[4]), parseInt(mm[5])).getTime();
       }catch(e){}
       return 0;
     };
     const isActive = (k)=>{
       const reg = (k.reg||"").toLowerCase();
-      return reg.includes("avoin") || reg.includes("käynn") || reg.includes("live") || reg.includes("ilmoittautuminen");
+      return reg.includes("avoin") || reg.includes("käynn") || reg.includes("live");
     };
-    // Uusin ensin (desc) - jokainen uusi tulee ylimmäksi
     let sorted = [...data].sort((a,b)=>{
-      // Ensin aktiiviset
       const aActive = isActive(a) ? 1 : 0;
       const bActive = isActive(b) ? 1 : 0;
       if(aActive !== bActive) return bActive - aActive;
-      // Sitten uusin päivämäärä ylimmäksi
       return parseDate(b.date||"") - parseDate(a.date||"");
     });
     el.innerHTML="";
     sorted.forEach(k=>{
       const div=document.createElement("div"); div.className="kilpailu-item";
-      if(isActive(k)) div.style.borderLeft="3px solid #1aff1a"; div.style.background="#1a1a0a";
+      div.style.cursor="pointer";
+      if(isActive(k)){ div.style.borderLeft="3px solid #1aff1a"; div.style.background="#1a1a0a"; }
       const date = k.date||"";
       const name = k.name||"Nimetön kisa";
       const course = k.courseName||k.course||"";
       const courseId = k.course||"";
-      const url = k.url||`https://discgolfmetrix.com/course/${courseId}`;
-      const reg = k.reg||k.registration||"";
-      const players = k.players||k.registrants||0;
-      div.innerHTML=`<div class="kilpailu-date">${date} ${reg?`• ${reg}`:""} ${players?`• ${players} hlö`:""}</div><div class="kilpailu-name" title="${name}">${name}</div><div class="kilpailu-meta"><span class="kilpailu-course">${course} ${courseId}</span><a href="${url}" target="_blank" class="kilpailu-link">Metrix ↗</a></div>`;
+      const reg = k.reg||"";
+      const players = k.players||0;
+      div.innerHTML=`<div class="kilpailu-date">${date} ${reg?`• ${reg}`:""} ${players?`• ${players} hlö`:""}</div><div class="kilpailu-name">${name}</div><div class="kilpailu-meta"><span class="kilpailu-course">${course} ${courseId}</span><span class="kilpailu-link">Näytä tilanne →</span></div>`;
+      div.addEventListener("click", ()=>{
+        document.querySelectorAll(".kilpailu-item").forEach(e=>e.style.outline="");
+        div.style.outline="1px solid #1aff1a";
+        loadKilpailuTilanne(k);
+      });
       el.appendChild(div);
     });
     if(badge) badge.textContent=data.length;
-  }catch(e){console.error("renderKilpailut fail", e);}
+  }catch(e){console.error(e);}
+}
+let currentCompetition = null;
+function extractCompetitionId(k){
+  if(k.competitionId) return k.competitionId;
+  if(k.url){
+    const m1 = k.url.match(/competition\/(\d+)/);
+    if(m1) return m1[1];
+    const m2 = k.url.match(/\/(\d{5,})\/?(?:\?|$)/);
+    if(m2) return m2[1];
+  }
+  return k.course||"";
+}
+async function loadKilpailuTilanne(k){
+  try{
+    currentCompetition = k;
+    const compId = extractCompetitionId(k);
+    const nameEl = document.getElementById("tilanne-competition-name");
+    const timeEl = document.getElementById("tilanne-competition-time");
+    const listEl = document.getElementById("list-tilanne");
+    const badge = document.getElementById("tilanne-badge");
+    if(nameEl) nameEl.textContent = k.name||"Ladataan...";
+    if(timeEl) timeEl.textContent = k.date||"";
+    if(listEl) listEl.innerHTML = `<div class="tilanne-empty">Haetaan tilannetta...<br>ID: ${compId}<br><br>api.php?content=result&id=${compId}</div>`;
+    if(badge) badge.textContent = "⏳";
+    try{
+      const r = await fetch(`data/kilpailu_tilanne.json?v=${Date.now()}`,{cache:"no-store"});
+      if(r.ok){
+        const j = await r.json();
+        const comp = j.competitions ? (j.competitions.find(c=>String(c.id)===String(compId)) || j.competitions[0]) : null;
+        if(comp && comp.results && comp.results.length>0){ renderTilanne(comp); return; }
+        if(j.results && j.id && String(j.id)===String(compId)){ renderTilanne(j); return; }
+        if(j.results && j.results.length>0){ renderTilanne(j); return; }
+      }
+    }catch(e){}
+    try{
+      const apiUrl = `https://discgolfmetrix.com/api.php?content=result&id=${compId}`;
+      const r = await fetch(apiUrl);
+      if(r.ok){
+        const j = await r.json();
+        if(j && j.Competition && j.Competition.Results){
+          renderTilanne({
+            id: compId,
+            name: j.Competition.Name||k.name,
+            date: j.Competition.Date||k.date,
+            url: k.url,
+            results: j.Competition.Results.map((p,i)=>({
+              rank: i+1,
+              name: p.Name,
+              total: p.Sum,
+              plus: (p.Diff>0?`+${p.Diff}`: p.Diff===0 ? "E" : `${p.Diff}`),
+              diff: p.Diff
+            }))
+          });
+          return;
+        }
+      }
+    }catch(e){}
+    if(listEl){
+      listEl.innerHTML = `<div class="tilanne-empty">Live-tilanne ei vielä haettavissa<br><br><a href="${k.url||`https://discgolfmetrix.com/course/${k.course}`}" target="_blank" class="kilpailu-link">Avaa Metrixissä ↗</a><br><br>ID: ${compId}<br><button onclick="window.open('${k.url}', '_blank')" style="background:#1aff1a;color:#000;border:0;border-radius:6px;padding:6px 12px;font-weight:800;font-size:11px;cursor:pointer">AVAA METRIX</button></div>`;
+    }
+    if(badge) badge.textContent = "LINK";
+  }catch(e){}
+}
+function renderTilanne(comp){
+  try{
+    const el = document.getElementById("list-tilanne");
+    const nameEl = document.getElementById("tilanne-competition-name");
+    const timeEl = document.getElementById("tilanne-competition-time");
+    const badge = document.getElementById("tilanne-badge");
+    if(!el) return;
+    if(nameEl) nameEl.textContent = comp.name||"Kilpailu";
+    if(timeEl) timeEl.textContent = comp.date||"";
+    if(badge) badge.textContent = comp.results ? comp.results.length : "-";
+    const results = comp.results || [];
+    if(!results || results.length===0){
+      el.innerHTML = `<div class="tilanne-empty">Ei tuloksia vielä<br>${comp.name||""}</div>`;
+      return;
+    }
+    el.innerHTML = "";
+    const header = document.createElement("div");
+    header.className = "tilanne-header";
+    header.innerHTML = `<span># Nimi</span><span>Tulos</span>`;
+    el.appendChild(header);
+    results.slice(0,30).forEach((r,i)=>{
+      const div = document.createElement("div");
+      div.className = "tilanne-item";
+      const rank = r.rank || i+1;
+      const name = r.name || "Nimetön";
+      const total = r.total ?? "-";
+      const plus = r.plus || "";
+      const isNeg = plus.includes("-");
+      const pc = isNeg ? "neg" : (plus==="E" ? "" : "pos");
+      div.innerHTML = `<span class="tilanne-rank">${rank}.</span><span class="tilanne-name">${name}</span><span class="tilanne-score">${total}</span><span class="tilanne-plus ${pc}">${plus}</span>`;
+      el.appendChild(div);
+    });
+    const footer = document.createElement("div");
+    footer.style.padding="6px 8px"; footer.style.textAlign="center";
+    footer.innerHTML = `<a href="${comp.url||`https://discgolfmetrix.com/api.php?content=result&id=${comp.id}`}" target="_blank" class="kilpailu-link">Avaa koko tulos ↗</a>`;
+    el.appendChild(footer);
+  }catch(e){}
 }
 
 if(lastTiedotteet){renderTiedotteet(lastTiedotteet,"localStorage init");}
