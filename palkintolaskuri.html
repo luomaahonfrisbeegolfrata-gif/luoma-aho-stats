@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Palkintolaskuri - Luoma-ahon Frisbeegolfrata</title>
 <style>
-:root{--bg:#070708;--card:#151515;--border:#242424;--green:#1aff1a;--gold:#ffcc00}
+:root{--bg:#070708;--card:#151515;--border:#242424;--green:#1aff1a}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:#fff;font-family:Inter,system-ui,sans-serif;overflow-x:hidden}
 header{height:56px;min-height:56px;background:#0f0f0f;border-bottom:1px solid #242424;display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 10px;position:sticky;top:0;z-index:100;overflow:hidden}
@@ -58,33 +58,29 @@ input[type="number"]:focus,select:focus{border-color:#1aff1a}
   .podium-amount{font-size:13px}
   .result-val{font-size:12px}
 }
-@media (max-width:380px){
-  .brand-text{display:none}
-  .podium-amount{font-size:12px}
-}
 </style></head><body>
 <header>
-<div class="brand"><div class="brand-logo"><img src="logot/1000mrkkaa.jpg" alt="1000" style="width:70px;height:35px;object-fit:cover;display:block"/></div><span class="brand-text">Luoma-ahon Frisbeegolfrata</span></div>
+<div class="brand"><div class="brand-logo"><img src="logot/1000mrkkaa-70x35.jpg" alt="1000" style="width:70px;height:35px;object-fit:cover;display:block" onerror="this.style.display='none'"/></div><span class="brand-text">Luoma-ahon Frisbeegolfrata</span></div>
 <div class="header-icons">
-<a href="./palkintolaskuri.html" style="width:71px;height:35px;min-width:71px;background:#111;border:1px solid #1aff1a88;border-radius:8px;overflow:hidden;display:grid;place-items:center;text-decoration:none"><img src="logot/1000mrkkaa.jpg" alt="1000" style="width:71px;height:35px;object-fit:cover;display:block"/></a>
+<a href="./palkintolaskuri.html" style="width:71px;height:35px;min-width:71px;background:#111;border:1px solid #1aff1a88;border-radius:8px;overflow:hidden;display:grid;place-items:center;text-decoration:none"><img src="logot/1000mrkkaa-70x35.jpg" alt="1000" style="width:71px;height:35px;object-fit:cover;display:block" onerror="this.style.display='none'"/></a>
 <a href="./vieraskirja.html" style="width:71px;height:35px;min-width:71px;background:#222;color:#fff;border:1px solid #333;border-radius:8px;display:grid;place-items:center;font-size:10px;font-weight:800;text-decoration:none">VIERASKIRJA</a>
 <a href="./index.html" style="width:71px;height:35px;min-width:71px;background:#1aff1a;color:#000;border-radius:8px;display:grid;place-items:center;font-size:10px;font-weight:800;text-decoration:none">ETUSIVU</a>
 </div></header>
 <div class="wrap"><div class="grid-laskuri">
 <div class="card card-form"><div class="top10-title"><span>PALKINTOLASKURI</span><b>LIVE</b></div><div class="form-body">
-<label for="p-count">Osallistujia</label><input type="number" id="p-count" min="1" max="500" value="20"/>
-<label for="p-fee">Maksu</label><select id="p-fee"><option value="2">2 €</option><option value="4">4 €</option><option value="5" selected>5 €</option><option value="6">6 €</option><option value="8">8 €</option><option value="10">10 €</option></select>
+<label>Osallistujia</label><input type="number" id="p-count" min="1" max="500" value="20" oninput="calc()"/>
+<label>Maksu</label><select id="p-fee" onchange="calc()"><option value="2">2 €</option><option value="4">4 €</option><option value="5" selected>5 €</option><option value="6">6 €</option><option value="8">8 €</option><option value="10">10 €</option></select>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
-<div><label for="p-pot">Potti / Järj.</label><select id="p-pot"><option value="80" selected>80% / 20%</option><option value="100">100% / 0%</option><option value="70">70% / 30%</option><option value="50">50% / 50%</option></select></div>
-<div><label for="p-round">Pyöristys</label><select id="p-round"><option value="1" selected>0,50€</option><option value="0">Ei</option></select></div>
+<div><label>Potti / Järj.</label><select id="p-pot" onchange="calc()"><option value="80" selected>80% / 20%</option><option value="100">100% / 0%</option><option value="70">70% / 30%</option><option value="50">50% / 50%</option></select></div>
+<div><label>Pyöristys</label><select id="p-round" onchange="calc()"><option value="1" selected>0,50€</option><option value="0">Ei</option></select></div>
 </div>
 <label>Jako</label>
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px">
-<div><label style="margin-top:0">1.</label><select id="p-1"><option value="50" selected>50%</option><option value="60">60%</option><option value="40">40%</option></select></div>
-<div><label style="margin-top:0">2.</label><select id="p-2"><option value="30" selected>30%</option><option value="25">25%</option><option value="20">20%</option></select></div>
-<div><label style="margin-top:0">3.</label><select id="p-3"><option value="20" selected>20%</option><option value="15">15%</option><option value="30">30%</option></select></div>
+<div><label style="margin-top:0">1.</label><select id="p-1" onchange="calc()"><option value="50" selected>50%</option><option value="60">60%</option><option value="40">40%</option></select></div>
+<div><label style="margin-top:0">2.</label><select id="p-2" onchange="calc()"><option value="30" selected>30%</option><option value="25">25%</option><option value="20">20%</option></select></div>
+<div><label style="margin-top:0">3.</label><select id="p-3" onchange="calc()"><option value="20" selected>20%</option><option value="15">15%</option><option value="30">30%</option></select></div>
 </div>
-<button class="btn" id="p-calc">LASKE →</button>
+<button class="btn" onclick="calc()">LASKE →</button>
 </div></div>
 <div class="card card-list"><div class="top10-title"><span>TULOS</span><b id="p-summary">20 x 5€</b></div>
 <div style="padding:6px 10px;text-align:center"><div class="big-pot" id="p-total">100 €</div></div>
@@ -99,34 +95,66 @@ input[type="number"]:focus,select:focus{border-color:#1aff1a}
 </div></div>
 <script>
 function roundToHalf(v){return Math.round(v*2)/2;}
-function fmt(v){return (Math.round(v*100)/100).toString().replace('.',',').replace(',00','') + ' €';}
-function calc(){
-  const count=parseInt(document.getElementById('p-count').value)||0;
-  const fee=parseFloat(document.getElementById('p-fee').value)||0;
-  const potPct=parseFloat(document.getElementById('p-pot').value)||80;
-  const p1=parseFloat(document.getElementById('p-1').value)||50;
-  const p2=parseFloat(document.getElementById('p-2').value)||30;
-  const p3=parseFloat(document.getElementById('p-3').value)||20;
-  const doRound=document.getElementById('p-round').value==='1';
-  const total=count*fee;
-  const prize=total*potPct/100;
-  const org=total-prize;
-  let a1=prize*p1/100, a2=prize*p2/100, a3=prize*p3/100;
-  if(doRound){a1=roundToHalf(a1);a2=roundToHalf(a2);a3=roundToHalf(a3);}
-  document.getElementById('p-summary').textContent=count+' x '+fee+'€';
-  document.getElementById('p-total').textContent=total+' €';
-  document.getElementById('p-org').textContent=fmt(org);
-  document.getElementById('p-prize').textContent=fmt(prize);
-  document.getElementById('p-1-amount').textContent=fmt(a1);
-  document.getElementById('p-2-amount').textContent=fmt(a2);
-  document.getElementById('p-3-amount').textContent=fmt(a3);
+function fmt(v){
+  if(isNaN(v)) return '0 €';
+  const r = Math.round(v*100)/100;
+  let s = r.toString();
+  if(s.indexOf('.')>=0){ s = s.replace('.',','); } 
+  if(s.endsWith(',00')) s = s.slice(0,-3);
+  if(s.endsWith(',0')) s = s.slice(0,-2);
+  return s + ' €';
 }
-document.getElementById('p-calc').addEventListener('click',calc);
-['p-count','p-fee','p-pot','p-1','p-2','p-3','p-round'].forEach(function(id){
-  const el=document.getElementById(id);
-  el.addEventListener('change',calc);
-  el.addEventListener('input',calc);
+function calc(){
+  try{
+    const countEl = document.getElementById('p-count');
+    const feeEl = document.getElementById('p-fee');
+    const potEl = document.getElementById('p-pot');
+    const p1El = document.getElementById('p-1');
+    const p2El = document.getElementById('p-2');
+    const p3El = document.getElementById('p-3');
+    const roundEl = document.getElementById('p-round');
+    if(!countEl || !feeEl) return;
+    const count = parseInt(countEl.value)||0;
+    const fee = parseFloat(feeEl.value)||0;
+    const potPct = parseFloat(potEl.value)||80;
+    const p1 = parseFloat(p1El.value)||50;
+    const p2 = parseFloat(p2El.value)||30;
+    const p3 = parseFloat(p3El.value)||20;
+    const doRound = roundEl.value==='1';
+    const total = count*fee;
+    const prize = total*potPct/100;
+    const org = total-prize;
+    let a1 = prize*p1/100, a2 = prize*p2/100, a3 = prize*p3/100;
+    if(doRound){a1=roundToHalf(a1);a2=roundToHalf(a2);a3=roundToHalf(a3);}
+    const summary = document.getElementById('p-summary');
+    if(summary) summary.textContent = count+' x '+fee+'€';
+    const totalEl = document.getElementById('p-total');
+    if(totalEl) totalEl.textContent = total+' €';
+    const orgEl = document.getElementById('p-org');
+    if(orgEl) orgEl.textContent = fmt(org);
+    const prizeEl = document.getElementById('p-prize');
+    if(prizeEl) prizeEl.textContent = fmt(prize);
+    const a1El = document.getElementById('p-1-amount');
+    if(a1El) a1El.textContent = fmt(a1);
+    const a2El = document.getElementById('p-2-amount');
+    if(a2El) a2El.textContent = fmt(a2);
+    const a3El = document.getElementById('p-3-amount');
+    if(a3El) a3El.textContent = fmt(a3);
+  }catch(e){
+    console.error('calc error', e);
+  }
+}
+document.addEventListener('DOMContentLoaded', function(){
+  calc();
+  const ids = ['p-count','p-fee','p-pot','p-1','p-2','p-3','p-round'];
+  ids.forEach(function(id){
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.addEventListener('change', calc);
+    el.addEventListener('input', calc);
+  });
 });
+// initial calc for inline handlers
 calc();
 </script>
 </body></html>
