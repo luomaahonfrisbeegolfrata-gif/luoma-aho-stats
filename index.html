@@ -163,7 +163,7 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 <div class="card card-mid"><div class="top10-title"><span>METRIX 44010 TOP 10</span><b>44010 ↗</b></div><div class="toplist" id="list-44010"></div></div>
 <div class="card card-mid"><div class="top10-title"><span>METRIX 44763 TOP 10</span><b>44763 ↗</b></div><div class="toplist" id="list-44763"></div></div>
 <div class="card card-mid"><div class="top10-title"><span>UDISC TOP 10</span><b>UDisc ↗</b></div><div class="toplist" id="list-udisc"></div></div>
-<div class="card card-mid" id="card-kilpailut"><div class="top10-title"><span>METRIX KILPAILUT</span><b id="kilpailut-badge">LIVE</b></div><div class="toplist" id="list-kilpailut" style="overflow-y:auto"><div class="kilpailu-empty">Ei tulevia kilpailuja<br><span style="font-size:9px;color:#444">44010 • 44763 • 45536 • 48112</span><br><br><a href="https://discgolfmetrix.com/course/44010" target="_blank" class="kilpailu-link">44010 ↗</a> <a href="https://discgolfmetrix.com/course/44763" target="_blank" class="kilpailu-link">44763 ↗</a> <a href="https://discgolfmetrix.com/course/45536" target="_blank" class="kilpailu-link">45536 ↗</a> <a href="https://discgolfmetrix.com/course/48112" target="_blank" class="kilpailu-link">48112 ↗</a></div></div></div>
+<div class="card card-mid" id="card-kilpailut"><div class="top10-title"><span>METRIX KILPAILUT</span><b id="kilpailut-badge">LIVE</b></div><div class="toplist" id="list-kilpailut" style="overflow-y:auto"><div class="kilpailu-empty">Ei aktiivisia kilpailuja<br><span style="font-size:9px;color:#555">Uusin aina ylimpänä<br>Loppuneet poistuu automaattisesti</span></div></div></div>
 <div class="card card-mid" id="card-tilanne"><div class="top10-title"><span>KILPAILUN TILANNE</span><b id="tilanne-badge">-</b></div><div class="tilanne-header"><span id="tilanne-competition-name">Valitse kisa vasemmalta</span><span id="tilanne-competition-time"></span></div><div class="toplist" id="list-tilanne" style="overflow-y:auto"><div class="tilanne-empty">Klikkaa kilpailua vasemmalla<br>→ näet live-tilanteen tässä<br><br><span style="font-size:9px;color:#555">Hakee Metrix API:sta<br>api.php?content=result&id=...</span></div></div></div>
 </div>
 <div class="grid-bottom"><div class="card card-bottom" id="card-vayla"><div class="vayla-header"><h3>VÄYLÄTILASTO - LIVE</h3><div class="live-badge" id="vayla-badge">● LIVE</div></div><div class="vayla-table-wrap" id="vayla-wrap"><table class="vayla"><thead><tr><th>Vayla</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>Tot</th><th>%</th></tr></thead><tbody id="vayla-body"></tbody></table></div></div></div>
@@ -177,7 +177,16 @@ top44763:[{name:"Timo Alalantela",total:82,plus:"E"},{name:"Aapo Penttilä",tota
 topUdisc:[{name:"@kantanen8",total:35,plus:"-6",date:"4.7.2026"},{name:"@valkoparta",total:36,plus:"-5",date:"6.7.2026"},{name:"@mattiasss",total:36,plus:"-5",date:"19.8.2026"},{name:"@dashyy",total:38,plus:"-3",date:"13.9.2025"},{name:"@itkonenjere",total:38,plus:"-3",date:"29.4.2026"},{name:"@peetu7",total:39,plus:"-2",date:"24.7.2026"},{name:"@kimmoke",total:39,plus:"-2",date:"11.10.2026"},{name:"@taspak",total:42,plus:"+1",date:"16.7.2026"},{name:"@adusti",total:43,plus:"+2",date:"20.7.2026"},{name:"@tommivluoma",total:47,plus:"+6",date:"8.8.2026"}],
 tiedotteet:[{date:"09.10.2026",title:"Rata auki - syyskausi",message:"Luoma-ahon rata on nyt täydessä syyskunnossa. Väyläopasteet päivitetty.",type:"info"},{date:"05.10.2026",title:"Viikkokisat #3",message:"Aapo Penttilä voitti tuloksella 83 (+1). Seuraavat kisat 18.10.",type:"success"}],
 vayla:{pituus:LOCKED_PITUUS,par:LOCKED_PAR,avg:["4.49", "3.81", "3.52", "3.37", "3.56", "4.13", "4.05", "3.44", "4.65", "4.05", "6.04", "4.44", "49.55", "-"],avgCls:["cell-yellow", "cell-orange", "cell-orange", "cell-yellow", "cell-orange", "cell-red", "cell-red", "cell-yellow", "cell-orange", "cell-red", "cell-red", "cell-yellow", "cell-dark", "cell-dark"],diff:["4", "8", "5", "1", "6", "12", "10", "2", "7", "11", "9", "3", "78", "-"],diffCls:["cell-yellow", "cell-orange", "cell-yellow", "cell-green", "cell-yellow", "cell-red", "cell-red", "cell-green", "cell-orange", "cell-red", "cell-orange", "cell-green", "cell-dark", "cell-dark"],hio:[0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0, 0, 5, "0.0%"],birdie:[143, 45, 82, 295, 45, 45, 45, 136, 122, 45, 75, 247, 1325, "9.1%"],par0:[558, 436, 645, 384, 630, 353, 350, 564, 547, 367, 241, 531, 5606, "38.7%"],bogey:[328, 484, 312, 343, 358, 525, 527, 329, 349, 529, 506, 279, 4869, "33.6%"],dbl:[122, 180, 116, 128, 133, 196, 196, 122, 130, 197, 220, 104, 1844, "12.7%"],tpl:[38, 56, 36, 40, 41, 61, 61, 38, 40, 61, 69, 32, 573, "4.0%"],other:[19, 27, 17, 18, 21, 28, 29, 19, 20, 29, 32, 15, 274, "1.9%"]},
-kilpailut:[]
+kilpailut:[
+  {date:"07.11 - 19.12.2026",name:"PAKKASSARJA KOKO SARJA - 4 parasta 7:stä",course:"44010",courseName:"Luoma-aho",competitionId:"3819613",id:"3819613",type:"Sarja",url:"https://discgolfmetrix.com/3819613",reg:"Avoinna",players:1},
+  {date:"19.12.2026 12:00",name:"PAKKASSARJA #7 - 19.12 FINALE",course:"44010",courseName:"Luoma-aho",competitionId:"3820202",id:"3820202",type:"Finaali",url:"https://discgolfmetrix.com/3820202",reg:"Tulossa",players:0},
+  {date:"12.12.2026 12:00",name:"PAKKASSARJA #6 - 12.12",course:"44010",courseName:"Luoma-aho",competitionId:"3820200",id:"3820200",type:"Viikkokisa",url:"https://discgolfmetrix.com/3820200",reg:"Tulossa",players:0},
+  {date:"05.12.2026 12:00",name:"PAKKASSARJA #5 - 5.12",course:"44010",courseName:"Luoma-aho",competitionId:"3820199",id:"3820199",type:"Viikkokisa",url:"https://discgolfmetrix.com/3820199",reg:"Tulossa",players:0},
+  {date:"28.11.2026 12:00",name:"PAKKASSARJA #4 - 28.11",course:"44010",courseName:"Luoma-aho",competitionId:"3820198",id:"3820198",type:"Viikkokisa",url:"https://discgolfmetrix.com/3820198",reg:"Tulossa",players:0},
+  {date:"21.11.2026 12:00",name:"PAKKASSARJA #3 - 21.11",course:"44010",courseName:"Luoma-aho",competitionId:"3820197",id:"3820197",type:"Viikkokisa",url:"https://discgolfmetrix.com/3820197",reg:"Avoinna",players:0},
+  {date:"14.11.2026 12:00",name:"PAKKASSARJA #2 - 14.11",course:"44010",courseName:"Luoma-aho",competitionId:"3819646",id:"3819646",type:"Viikkokisa",url:"https://discgolfmetrix.com/3819646",reg:"Avoinna",players:0},
+  {date:"07.11.2026 12:00",name:"PAKKASSARJA #1 - 7.11",course:"44010",courseName:"Luoma-aho",competitionId:"3819645",id:"3819645",type:"Viikkokisa",url:"https://discgolfmetrix.com/3819645",reg:"Avoinna",players:1}
+]
 };
 let lastTiedotteet=null;
 try{const saved=localStorage.getItem("luoma_tiedotteet_v1");if(saved){const parsed=JSON.parse(saved);if(parsed&&parsed.length>0){lastTiedotteet=parsed;}}}catch(e){}
@@ -270,25 +279,44 @@ function renderKilpailut(data){
     const el=document.getElementById("list-kilpailut"); if(!el) return;
     const badge=document.getElementById("kilpailut-badge");
     if(!data || data.length===0){
-      el.innerHTML=`<div class="kilpailu-empty">Ei tulevia kilpailuja<br><span style="font-size:9px;color:#444">44010 • 44763 • 45536 • 48112</span><br><br><a href="https://discgolfmetrix.com/course/44010" target="_blank" class="kilpailu-link">44010 ↗</a> <a href="https://discgolfmetrix.com/course/44763" target="_blank" class="kilpailu-link">44763 ↗</a> <a href="https://discgolfmetrix.com/course/45536" target="_blank" class="kilpailu-link">45536 ↗</a> <a href="https://discgolfmetrix.com/course/48112" target="_blank" class="kilpailu-link">48112 ↗</a></div>`;
+      el.innerHTML=`<div class="kilpailu-empty">Ei aktiivisia kilpailuja<br><span style="font-size:9px;color:#555">Uusin aina ylimpänä<br>Loppuneet poistuu automaattisesti</span></div>`;
       if(badge) badge.textContent="0";
       return;
     }
     const parseDate = (d)=>{
       try{
-        const mm = d.match(/(\d{1,2})\.(\d{1,2})\.(\d{4})\s*(\d{1,2}):(\d{2})/);
-        if(mm) return new Date(parseInt(mm[3]), parseInt(mm[2])-1, parseInt(mm[1]), parseInt(mm[4]), parseInt(mm[5])).getTime();
+        // Tukee "07.11.2026 12:00" ja "07.11 - 19.12.2026" (ottaa jälkimmäisen päivän)
+        const full = d.match(/(\d{1,2})\.(\d{1,2})\.(\d{4})\s*(\d{1,2}):(\d{2})/);
+        if(full) return new Date(parseInt(full[3]), parseInt(full[2])-1, parseInt(full[1]), parseInt(full[4]), parseInt(full[5])).getTime();
+        const range = d.match(/(\d{1,2})\.(\d{1,2})\s*-\s*(\d{1,2})\.(\d{1,2})\.(\d{4})/);
+        if(range) return new Date(parseInt(range[5]), parseInt(range[4])-1, parseInt(range[3]), 23, 59).getTime();
       }catch(e){}
       return 0;
+    };
+    const isFinished = (k)=>{
+      const t = parseDate(k.date||"");
+      if(!t) return false;
+      const now = Date.now();
+      // Jos kisa loppunut yli 24h sitten, siirretään pois listalta automaattisesti
+      // Pakkassarja kisa kestää ~4h, joten +24h varmuudella ohi
+      if(t + 24*60*60*1000 < now){
+        // Jos on sarja (koko sarja), älä poista
+        if(k.isSeries) return false;
+        return true;
+      }
+      // Jos reg on "Päättynyt" tai "Suljettu"
+      const reg = (k.reg||"").toLowerCase();
+      if(reg.includes("päättynyt") || reg.includes("suljettu") || reg.includes("finished")) return true;
+      return false;
     };
     const isActive = (k)=>{
       const reg = (k.reg||"").toLowerCase();
       return reg.includes("avoin") || reg.includes("käynn") || reg.includes("live");
     };
-    let sorted = [...data].sort((a,b)=>{
-      const aActive = isActive(a) ? 1 : 0;
-      const bActive = isActive(b) ? 1 : 0;
-      if(aActive !== bActive) return bActive - aActive;
+    // SUODATA: poista loppuneet kilpailut automaattisesti listalta
+    let filtered = [...data].filter(k=>!isFinished(k));
+    // SORTTAA: uusin aina ylimpänä (desc päivämäärällä)
+    let sorted = filtered.sort((a,b)=>{
       return parseDate(b.date||"") - parseDate(a.date||"");
     });
     el.innerHTML="";
@@ -310,7 +338,11 @@ function renderKilpailut(data){
       });
       el.appendChild(div);
     });
-    if(badge) badge.textContent=data.length;
+    if(badge) badge.textContent=sorted.length; // näyttää vain aktiiviset, loppuneet poistettu
+    // AUTO-LOAD: näytä tilanne suoraan korttiin ilman klikkausta - ensimmäinen aktiivinen
+    if(sorted && sorted.length>0){
+      setTimeout(()=>{ loadKilpailuTilanne(sorted[0]); }, 100);
+    }
   }catch(e){console.error(e);}
 }
 let currentCompetition = null;
@@ -417,13 +449,18 @@ function renderTilanne(comp){
 if(lastTiedotteet){renderTiedotteet(lastTiedotteet,"localStorage init");}
 else{renderTiedotteet(fallback.tiedotteet,"fallback init");}
 renderTop("list-44010",fallback.top44010);renderTop("list-44763",fallback.top44763);renderTop("list-udisc",fallback.topUdisc);renderVayla(fallback.vayla);renderKilpailut(fallback.kilpailut);
+// Yritä ladata tilanne suoraan korttiin ilman Metrix-klikkausta
+(async()=>{ try{ const r=await fetch(`data/kilpailu_tilanne.json?v=${Date.now()}`,{cache:"no-store"}); if(r.ok){ const j=await r.json(); if(j.current){ renderTilanne(j.current); } else if(j.competitions && j.competitions[0]){ renderTilanne(j.competitions[0]); } } }catch(e){} })();
+
 async function refreshAll(){
   try{const r=await fetch(`data/metrix_44010.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.top10&&j.top10.length>0)renderTop("list-44010",j.top10.map(o=>({name:o.name,total:o.total,plus:o.plus_minus||o.plus||""})));}}catch(e){}
   try{const r=await fetch(`data/metrix_44763.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.top10&&j.top10.length>0)renderTop("list-44763",j.top10.map(o=>({name:o.name,total:o.total,plus:o.plus_minus||o.plus||""})));}}catch(e){}
   try{const r=await fetch(`data/kierrokset.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.total_rounds){document.getElementById("v-kierrokset").textContent=j.total_rounds;document.getElementById("v-unique").textContent=j.unique_players;document.getElementById("v-peliaika").textContent=j.peliaika.display;document.getElementById("v-askel").textContent=j.askeleet.display;document.getElementById("v-km").textContent=j.kilometrit.display;}}}catch(e){}
   try{const r=await fetch(`data/vaylatilasto.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.pituus&&j.pituus.length>=12){j.par=LOCKED_PAR;j.pituus=LOCKED_PITUUS;renderVayla(j);}}}catch(e){}
   try{const r=await fetch(`data/udisc.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.top10&&j.top10.length>0)renderTop("list-udisc",j.top10.map(o=>({name:o.name,total:o.total,plus:o.plus_minus||o.plus||""})));}}catch(e){}
-  try{const r=await fetch(`data/metrix_kilpailut.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();const list=j.upcoming||j.kilpailut||j.events||[];if(list.length>0)renderKilpailut(list); else if(j.courses) { /* jos ei kisoja, näytä kurssilinkit */ renderKilpailut(fallback.kilpailut); } }}catch(e){}
+  try{const r=await fetch(`data/metrix_kilpailut.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();const list=j.upcoming||j.kilpailut||j.events||[];if(list.length>0){ renderKilpailut(list); } else { renderKilpailut(fallback.kilpailut); } }}catch(e){ renderKilpailut(fallback.kilpailut); }
+  // AUTO-LOAD tilanne suoraan korttiin ilman klikkausta
+  try{const r=await fetch(`data/kilpailu_tilanne.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.current && j.current.results){ renderTilanne(j.current); } else if(j.competitions && j.competitions.length>0 && j.competitions[0].results){ renderTilanne(j.competitions[0]); } }}catch(e){}
   try{const r=await fetch(`data/tiedotteet.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.tiedotteet&&Array.isArray(j.tiedotteet)&&j.tiedotteet.length>0){renderTiedotteet(j.tiedotteet,"live fetch");}}}catch(e){}
   try{
     const r=await fetch(`data/vieraskirja.json?v=${Date.now()}`,{cache:"no-store"});
