@@ -7,8 +7,8 @@ header{height:56px;min-height:56px;max-height:56px;background:#0f0f0f;border-bot
 .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;letter-spacing:-0.1px;line-height:1}.brand-logo{width:35px;height:35px;background:#fff;border-radius:50%;overflow:hidden;display:grid;place-items:center;flex-shrink:0}
 .header-icons{display:flex;gap:6px;align-items:center;flex-wrap:nowrap;flex-shrink:0}
 .wrap{max-width:1920px;margin:0 auto;padding:10px}
-.grid-top{display:grid;grid-template-columns:260px 200px 200px 200px 260px 260px;gap:10px}
-.grid-mid{display:grid;grid-template-columns:260px 260px 260px 260px 260px;gap:10px;margin-top:10px}
+.grid-top{display:grid;grid-template-columns:260px 200px 200px 200px 260px 260px;gap:10px} /* LUKITTU - ÄLÄ SIIRRÄ */
+.grid-mid{display:grid;grid-template-columns:260px 260px 260px 260px 350px;gap:10px;margin-top:10px}
 .grid-bottom{display:grid;grid-template-columns:1fr;margin-top:10px;width:100%;min-width:100%}
 .card{background:#151515;border:1px solid #242424;border-radius:10px;padding:10px 12px;overflow:hidden;height:320px;min-height:320px;max-height:320px;display:flex;flex-direction:column;width:260px;min-width:260px;max-width:260px}
 .card-mid{height:380px;min-height:380px;max-height:380px;width:260px;min-width:260px;max-width:260px}
@@ -57,13 +57,17 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
   .grid-top .card:nth-child(3){width:100%!important;min-width:100%!important;max-width:100%!important}
   /* 4. stack koko rivin levyinen, mini-kortit rinnakkain */
   #c-midstack{grid-column:1 / -1!important;width:100%!important;min-width:100%!important;max-width:100%!important;height:auto!important;display:flex!important;flex-direction:row!important;gap:10px!important}
-  #foreca-stack{grid-column:1 / -1!important;width:100%!important;min-width:100%!important;max-width:100%!important;height:160px!important;display:flex!important;flex-direction:row!important;gap:10px!important}
-  #foreca-stack #card-foreca{flex:1;height:160px!important;min-height:160px!important;max-height:160px!important;width:100%!important;min-width:0!important;max-width:100%!important}
-  #foreca-stack #card-foreca-extra{flex:1;height:160px!important;min-height:160px!important;max-height:160px!important;width:100%!important;min-width:0!important;max-width:100%!important}
+  #foreca-stack{grid-column:1 / -1!important;width:100%!important;min-width:100%!important;max-width:100%!important;height:auto!important;display:flex!important;flex-direction:column!important;gap:10px!important}
+  #foreca-stack #card-foreca{width:100%!important;min-width:100%!important;max-width:100%!important;height:160px!important;min-height:160px!important;max-height:160px!important}
+  #foreca-stack #card-foreca-extra{width:100%!important;min-width:100%!important;max-width:100%!important;height:150px!important;min-height:150px!important;max-height:150px!important}
+  #foreca-stack #card-tilanne{display:none!important}
   #c-midstack .mini{width:100%!important;min-width:0!important;max-width:100%!important;height:80px!important;min-height:80px!important;flex:1}
   /* 5. ja 6. tiedotteet + sää koko rivin levyiset */
   .grid-top .card:nth-child(5),
   .grid-top .card:nth-child(6){grid-column:1 / -1;width:100%!important;min-width:100%!important;max-width:100%!important}
+
+  #card-tilanne{width:100%!important;min-width:100%!important;max-width:100%!important;height:380px!important}
+
 }
 .tiedote-item{padding:8px;border-bottom:1px solid #1e1e1e}
 .tiedote-date{font-size:9px;color:#666;font-weight:700}
@@ -159,13 +163,18 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 </div>
 </div>
 </div>
+
+</div>
+
+</div>
 <div class="grid-mid">
 <div class="card card-mid"><div class="top10-title"><span>METRIX 44010 TOP 10</span><b>44010 ↗</b></div><div class="toplist" id="list-44010"></div></div>
 <div class="card card-mid"><div class="top10-title"><span>METRIX 44763 TOP 10</span><b>44763 ↗</b></div><div class="toplist" id="list-44763"></div></div>
 <div class="card card-mid"><div class="top10-title"><span>UDISC TOP 10</span><b>UDisc ↗</b></div><div class="toplist" id="list-udisc"></div></div>
 <div class="card card-mid" id="card-kilpailut"><div class="top10-title"><span>METRIX KILPAILUT</span><b id="kilpailut-badge">LIVE</b></div><div class="toplist" id="list-kilpailut" style="overflow-y:auto"><div class="kilpailu-empty">Ei aktiivisia kilpailuja<br><span style="font-size:9px;color:#555">Uusin aina ylimpänä<br>Loppuneet poistuu automaattisesti</span></div></div></div>
-<div class="card card-mid" id="card-tilanne"><div class="top10-title"><span>KILPAILUN TILANNE</span><b id="tilanne-badge">-</b></div><div class="tilanne-header"><span id="tilanne-competition-name">Valitse kisa vasemmalta</span><span id="tilanne-competition-time"></span></div><div class="toplist" id="list-tilanne" style="overflow-y:auto"><div class="tilanne-empty">Klikkaa kilpailua vasemmalla<br>→ näet live-tilanteen tässä<br><br><span style="font-size:9px;color:#555">Hakee Metrix API:sta<br>api.php?content=result&id=...</span></div></div></div>
+<div class="card card-mid" id="card-tilanne" style="width:350px;min-width:350px;max-width:350px;height:380px;min-height:380px;max-height:380px"><div class="top10-title"><span>KILPAILUN TILANNE</span><b id="tilanne-badge">0</b></div><div class="tilanne-header"><span id="tilanne-competition-name">Pakkassarja</span><span id="tilanne-competition-time">2026-11-07</span></div><div class="toplist" id="list-tilanne" style="overflow-y:auto"><div class="tilanne-empty">Ei tuloksia vielä<br>Pakkassarja</div></div></div>
 </div>
+
 <div class="grid-bottom"><div class="card card-bottom" id="card-vayla"><div class="vayla-header"><h3>VÄYLÄTILASTO - LIVE</h3><div class="live-badge" id="vayla-badge">● LIVE</div></div><div class="vayla-table-wrap" id="vayla-wrap"><table class="vayla"><thead><tr><th>Vayla</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>Tot</th><th>%</th></tr></thead><tbody id="vayla-body"></tbody></table></div></div></div>
 </div>
 <script>
@@ -376,9 +385,13 @@ async function loadKilpailuTilanne(k){
       if(r.ok){
         const j = await r.json();
         const comp = j.competitions ? (j.competitions.find(c=>String(c.id)===String(compId)) || j.competitions[0]) : null;
-        if(comp && comp.results && comp.results.length>0){ renderTilanne(comp); return; }
-        if(j.results && j.id && String(j.id)===String(compId)){ renderTilanne(j); return; }
-        if(j.results && j.results.length>0){ renderTilanne(j); return; }
+        if(comp){ 
+          // Näytä suoraan kortissa vaikka ei tuloksia vielä - ei tarvitse klikata Metrix
+          renderTilanne(comp); 
+          return; 
+        }
+        if(j.results || j.id){ renderTilanne(j); return; }
+        if(j.current){ renderTilanne(j.current); return; }
       }
     }catch(e){}
     try{
@@ -405,9 +418,16 @@ async function loadKilpailuTilanne(k){
       }
     }catch(e){}
     if(listEl){
-      listEl.innerHTML = `<div class="tilanne-empty">Live-tilanne ei vielä haettavissa<br><br><a href="${k.url||`https://discgolfmetrix.com/course/${k.course}`}" target="_blank" class="kilpailu-link">Avaa Metrixissä ↗</a><br><br>ID: ${compId}<br><button onclick="window.open('${k.url}', '_blank')" style="background:#1aff1a;color:#000;border:0;border-radius:6px;padding:6px 12px;font-weight:800;font-size:11px;cursor:pointer">AVAA METRIX</button></div>`;
+      // Näytä suoraan kortissa, ei LINKkiä - kuten viimeksi
+      listEl.innerHTML = `<div class="tilanne-empty">
+        <span style="font-size:11px;color:#fff;font-weight:800">${k.name||"Kilpailu"}</span><br>
+        <span style="font-size:9px;color:#888">${k.date||""}</span><br><br>
+        <span style="font-size:10px;color:#aaa">Ei tuloksia vielä</span><br>
+        <span style="font-size:9px;color:#555">${k.courseName||""} ${compId}</span><br><br>
+        <span style="font-size:9px;color:#1aff1a">Päivittyy automaattisesti kun kisa alkaa</span>
+      </div>`;
     }
-    if(badge) badge.textContent = "LINK";
+    if(badge) badge.textContent = "0";
   }catch(e){}
 }
 function renderTilanne(comp){
@@ -419,10 +439,19 @@ function renderTilanne(comp){
     if(!el) return;
     if(nameEl) nameEl.textContent = comp.name||"Kilpailu";
     if(timeEl) timeEl.textContent = comp.date||"";
-    if(badge) badge.textContent = comp.results ? comp.results.length : "-";
+    if(badge) badge.textContent = comp.results ? comp.results.length : (comp.registered || "0");
     const results = comp.results || [];
     if(!results || results.length===0){
-      el.innerHTML = `<div class="tilanne-empty">Ei tuloksia vielä<br>${comp.name||""}</div>`;
+      // Näytä suoraan kortissa, ei LINKkiä
+      const status = comp.status || "Tulossa";
+      const reg = comp.registered || 0;
+      el.innerHTML = `<div class="tilanne-empty">
+        ${status}<br>
+        <span style="font-size:10px;color:#888">${reg} ilmoittautunut</span><br><br>
+        <span style="font-size:11px;color:#aaa">Ei tuloksia vielä</span><br>
+        <span style="font-size:9px;color:#555">${comp.name||""}</span><br><br>
+        <span style="font-size:9px;color:#1aff1a">${comp.date||""}</span>
+      </div>`;
       return;
     }
     el.innerHTML = "";

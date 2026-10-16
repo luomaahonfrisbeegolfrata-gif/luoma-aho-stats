@@ -70,15 +70,10 @@ input[type="number"]:focus,select:focus{border-color:#1aff1a}
 <div class="card card-form"><div class="top10-title"><span>PALKINTOLASKURI</span><b>LIVE</b></div><div class="form-body">
 <label>Osallistujia</label><input type="number" id="p-count" min="1" max="500" value="20" oninput="calc()"/>
 <label>Maksu</label><select id="p-fee" onchange="calc()"><option value="2">2 €</option><option value="4">4 €</option><option value="5" selected>5 €</option><option value="6">6 €</option><option value="8">8 €</option><option value="10">10 €</option></select>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
-<div><label>Potti / Järj.</label><select id="p-pot" onchange="calc()"><option value="80" selected>80% / 20%</option><option value="100">100% / 0%</option><option value="70">70% / 30%</option><option value="50">50% / 50%</option></select></div>
-<div><label>Pyöristys</label><select id="p-round" onchange="calc()"><option value="1" selected>0,50€</option><option value="0">Ei</option></select></div>
-</div>
-<label>Jako</label>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px">
-<div><label style="margin-top:0">1.</label><select id="p-1" onchange="calc()"><option value="50" selected>50%</option><option value="60">60%</option><option value="40">40%</option></select></div>
-<div><label style="margin-top:0">2.</label><select id="p-2" onchange="calc()"><option value="30" selected>30%</option><option value="25">25%</option><option value="20">20%</option></select></div>
-<div><label style="margin-top:0">3.</label><select id="p-3" onchange="calc()"><option value="20" selected>20%</option><option value="15">15%</option><option value="30">30%</option></select></div>
+<div style="background:#0a0a0a;border:1px solid #1e1e1e;border-radius:6px;padding:8px 10px;margin-top:8px">
+<div style="display:flex;justify-content:space-between;font-size:10px;color:#888;font-weight:700"><span>POTTI</span><span>JÄRJESTÄJÄLLE</span></div>
+<div style="display:flex;justify-content:space-between;font-size:13px;font-weight:800;color:#1aff1a;margin-top:2px"><span>80%</span><span>20%</span></div>
+<div style="font-size:9px;color:#555;margin-top:6px;text-align:center">Jako lukittu: 1. 50% / 2. 30% / 3. 20% • Pyöristys 0,50€</div>
 </div>
 <button class="btn" onclick="calc()">LASKE →</button>
 </div></div>
@@ -108,19 +103,15 @@ function calc(){
   try{
     const countEl = document.getElementById('p-count');
     const feeEl = document.getElementById('p-fee');
-    const potEl = document.getElementById('p-pot');
-    const p1El = document.getElementById('p-1');
-    const p2El = document.getElementById('p-2');
-    const p3El = document.getElementById('p-3');
-    const roundEl = document.getElementById('p-round');
     if(!countEl || !feeEl) return;
     const count = parseInt(countEl.value)||0;
     const fee = parseFloat(feeEl.value)||0;
-    const potPct = parseFloat(potEl.value)||80;
-    const p1 = parseFloat(p1El.value)||50;
-    const p2 = parseFloat(p2El.value)||30;
-    const p3 = parseFloat(p3El.value)||20;
-    const doRound = roundEl.value==='1';
+    // Lukittu: 80% pottiin, 20% järjestäjälle
+    const potPct = 80;
+    const p1 = 50;
+    const p2 = 30;
+    const p3 = 20;
+    const doRound = true; // 0,50€ pyöristys lukittu
     const total = count*fee;
     const prize = total*potPct/100;
     const org = total-prize;
@@ -146,7 +137,7 @@ function calc(){
 }
 document.addEventListener('DOMContentLoaded', function(){
   calc();
-  const ids = ['p-count','p-fee','p-pot','p-1','p-2','p-3','p-round'];
+  const ids = ['p-count','p-fee']; // loput lukittu 80/20, 50/30/20, 0,50€
   ids.forEach(function(id){
     const el = document.getElementById(id);
     if(!el) return;
