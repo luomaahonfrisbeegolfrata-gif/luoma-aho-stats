@@ -133,11 +133,10 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 <a href="https://www.instagram.com/62830_frisbeegolfrata" target="_blank" title="Instagram" style="width:35px;height:35px;min-width:35px;background:#fff;border-radius:8px;display:grid;place-items:center;overflow:hidden;border:1px solid #333;flex-shrink:0"><img src="logot/instagram-logo.png" alt="Instagram" style="width:100%;height:100%;object-fit:cover;display:block" /></a>
 <a href="https://frisbeegolfradat.fi/rata/luoma-ahon-frisbeegolfrata/" target="_blank" title="FGR" style="width:35px;height:35px;min-width:35px;background:#fff;border-radius:8px;display:grid;place-items:center;overflow:hidden;border:1px solid #333;flex-shrink:0"><img src="logot/fgr-logo.png" alt="FGR" style="width:100%;height:100%;object-fit:cover;display:block" /></a>
 <a href="https://photos.google.com/share/AF1QipMlPCtWvfCrBkzBR-Sr-W7AG-f8ZBVQ0omErEqR-ZXVPqF-2uRionKk12oTV4R_Lw?key=VzR6XzJiU2dFa0RldW5NcHgxUW5weTVEbk1pYUdB" target="_blank" title="Rata-kuvat" style="width:70px;height:35px;min-width:70px;background:#fff;border-radius:8px;display:grid;place-items:center;overflow:hidden;border:1px solid #333;flex-shrink:0"><img src="logot/rata-kuvat-icon.jpg" alt="Rata-kuvat" style="width:100%;height:100%;object-fit:cover;display:block" /></a>
-<a href="./whatsapp.html" title="WhatsApp ryhmä - Pakkassarja" style="width:35px;height:35px;min-width:35px;background:#25D366;border-radius:8px;display:grid;place-items:center;overflow:hidden;border:1px solid #333;flex-shrink:0"><img src="logot/whatsapp-logo.png" alt="WhatsApp" style="width:100%;height:100%;object-fit:cover;display:block" /></a>
 </div></header>
 <div class="wrap">
 <div class="grid-top">
-<div class="card"><div class="bullet">Kallioisessa mäntymetsä maastossa</div><div class="bullet">Kompaktiin pakettiin suunniteltu ja toteutettu</div><div class="bullet">Huippu kuntoinen metsärata</div><div class="bullet">BB1 papereissa, A1 pituudessa, AA1 teknisyyksessä</div><div class="bullet">Vaylat 57 - 197m teknisiä ja kiekko kontrollia vaativia</div><div class="bullet">Tarkkuus, oikea kiekko ja heittovalinnat avainasemassa onnistumiseen</div><div class="bullet">Mukava rata kiertää joka soveltuu kaikille iästä ja taitotasosta riippumatta</div><div class="bullet">Korkeuserot, rehelliset selkeät linjat</div><div class="bullet">Kierros noin 1.5km peliaika noin tunti</div><div class="bullet">OB:t ja Mandot haastavat pelaajan päätöksentekoa</div></div>
+<div class="card"><div class="bullet">Kallioisessa mäntymetsä maastossa</div><div class="bullet">Kompaktiin pakettiin suunniteltu ja toteutettu</div><div class="bullet">Huippu kuntoinen metsärata</div><div class="bullet">Vaylat 57 - 197m teknisiä ja kiekko kontrollia vaativia</div><div class="bullet">Tarkkuus, oikea kiekko ja heittovalinnat avainasemassa onnistumiseen</div><div class="bullet">Mukava rata kiertää joka soveltuu kaikille iästä ja taitotasosta riippumatta</div><div class="bullet">Korkeuserot, rehelliset selkeät linjat</div><div class="bullet">Kierros noin 1.5km peliaika noin tunti</div><div class="bullet">OB:t ja Mandot haastavat pelaajan päätöksentekoa</div></div>
 <div class="card"><div class="label">Metrix & UDisc tuloskirjattujen kierrosten määrä</div><div class="big-num" id="v-kierrokset">1208</div><div class="divider"></div><div class="label">Uniikit pelaajat</div><div class="big-num" style="font-size:36px" id="v-unique">132</div></div>
 <div class="card" style="width:200px;min-width:200px;max-width:200px"><div class="label">Hole in One</div><div class="vayla-big">5</div><div class="vayla-green">Väylä 4</div><div class="vayla-name">Benjamin Turja</div><div class="vayla-name">Julius Luoma-aho</div><div class="vayla-name">Juha Luoma-aho</div><div class="vayla-name">Aleksi Lassila</div><div class="vayla-green" style="margin-top:12px">Väylä 8</div><div class="vayla-name">Pentti Pitkäranta</div></div>
 <div id="c-midstack"><div class="mini"><div class="mini-label">Peliaika</div><div class="mini-val" id="v-peliaika">1610h</div></div><div class="mini"><div class="mini-label">Askelmäärä</div><div class="mini-val" id="v-askel">3 400 000</div></div><div class="mini"><div class="mini-label">Kilometrit</div><div class="mini-val" id="v-km">2480 km</div></div></div>
@@ -224,10 +223,7 @@ function renderTiedotteet(data,source=""){
     el.innerHTML="";
     valid.forEach(t=>{
       const div=document.createElement("div");div.className="tiedote-item";
-      const tSafeTitle = (t.title||"").replace(/'/g,"").substring(0,60);
-      const tSafeMsg = (t.message||"").replace(/'/g,"").substring(0,200);
-      const tSafeDate = (t.date||"").replace(/'/g,"");
-      div.innerHTML='<div class="tiedote-date">'+(t.date||"")+' <span onclick="shareWhatsAppTiedote({title:\''+tSafeTitle+'\',message:\''+tSafeMsg+'\',date:\''+tSafeDate+'\'})" style="float:right;background:#25D366;color:#fff;font-size:5px;padding:1px 2px;border-radius:5px;cursor:pointer;line-height:1;letter-spacing:0.2px">WhatsApp ↗</span></div><div class="tiedote-title">'+(t.title||"")+'</div><div class="tiedote-msg">'+(t.message||"")+'</div>';
+      div.innerHTML=`<div class="tiedote-date">${t.date||""}</div><div class="tiedote-title">${t.title||""}</div><div class="tiedote-msg">${t.message||""}</div>`;
       el.appendChild(div);
     });
     lastTiedotteet=valid;
@@ -346,11 +342,7 @@ function renderKilpailut(data){
       const courseId = k.course||"";
       const reg = k.reg||"";
       const players = k.players||0;
-      const safeName = name.replace(/'/g,"").replace(/"/g,"");
-      const safeDate = date.replace(/'/g,"");
-      const safeCourse = course.replace(/'/g,"");
-      const safeUrl = (k.url||"").replace(/'/g,"");
-      div.innerHTML='<div class="kilpailu-date">'+date+' '+(reg? '• ' + reg:"")+' '+(players? '• ' + players + ' hlö':"")+'</div><div class="kilpailu-name">'+name+'</div><div class="kilpailu-meta"><span class="kilpailu-course">'+course+' '+courseId+'</span><span class="kilpailu-link">Näytä tilanne →</span><span onclick="event.stopPropagation();shareWhatsAppKilpailu({name:\''+safeName+'\',date:\''+safeDate+'\',courseName:\''+safeCourse+'\',url:\''+safeUrl+'\'})" style="margin-left:auto;font-size:6px;background:#25D366;color:#fff;padding:1px 3px;border-radius:6px;cursor:pointer;line-height:1;letter-spacing:0.2px">WhatsApp ↗</span></div>';
+      div.innerHTML=`<div class="kilpailu-date">${date} ${reg? '• ' + reg:""} ${players? '• ' + players + ' hlö':""}</div><div class="kilpailu-name">${name}</div><div class="kilpailu-meta"><span class="kilpailu-course">${course} ${courseId}</span><span class="kilpailu-link">Näytä tilanne →</span></div>`;
       div.addEventListener("click", ()=>{
         document.querySelectorAll(".kilpailu-item").forEach(e=>e.style.outline="");
         div.style.outline="1px solid #1aff1a";
@@ -532,40 +524,5 @@ async function refreshAll(){
 }
 setInterval(refreshAll, 300000);
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")refreshAll();});
-
-// WhatsApp link piilotettu - rakennetaan sisään, ei näy HTML:ssä
-const _wB64 = 'aHR0cHM6Ly9jaGF0LndoYXRzYXBwLmNvbS9KN09acHVPRVpCWUJvUkhRbmlzQUlF';
-function getWhatsAppLink(){ try{ return atob(_wB64); }catch(e){ return 'https://chat.whatsapp.com/J7OZpuOEZBYBoRHQnisAIE'; } }
-function joinWhatsAppGroupDirect(){ window.open(getWhatsAppLink(), '_blank'); }
-
-// WhatsApp jako - tiedotteista ja kilpailuista
-function shareWhatsAppKilpailu(k){
-  const tmpl = `🥏 Uusi kilpailu Luoma-ahossa!
-
-${k.name||"Kilpailu"}
-📅 ${k.date||""}
-📍 ${k.courseName||k.course||"Luoma-aho"}
-🔗 ${k.url||""}
-
-Ilmoittaudu Metrixissä!`;
-  const url = `https://wa.me/?text=${encodeURIComponent(tmpl)}`;
-  window.open(url, '_blank');
-}
-function shareWhatsAppTiedote(t){
-  const tmpl = `📢 Tiedote Luoma-ahon radalta:
-
-${t.title||""}
-${t.message||""}
-
-${t.date||""}
-🔗 https://luomaahonfrisbeegolfrata-gif.github.io/luoma-aho-stats/`;
-  const url = `https://wa.me/?text=${encodeURIComponent(tmpl)}`;
-  window.open(url, '_blank');
-}
-function openWhatsAppGroup(){
-  // Linkki piilotettu koodiin, ei näy html:ssä
-  window.open(getWhatsAppLink(), '_blank');
-}
-
 </script>
 </body></html>
