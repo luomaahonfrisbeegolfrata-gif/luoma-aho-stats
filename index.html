@@ -133,7 +133,7 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 <a href="https://www.instagram.com/62830_frisbeegolfrata" target="_blank" title="Instagram" style="width:35px;height:35px;min-width:35px;background:#fff;border-radius:8px;display:grid;place-items:center;overflow:hidden;border:1px solid #333;flex-shrink:0"><img src="logot/instagram-logo.png" alt="Instagram" style="width:100%;height:100%;object-fit:cover;display:block" /></a>
 <a href="https://frisbeegolfradat.fi/rata/luoma-ahon-frisbeegolfrata/" target="_blank" title="FGR" style="width:35px;height:35px;min-width:35px;background:#fff;border-radius:8px;display:grid;place-items:center;overflow:hidden;border:1px solid #333;flex-shrink:0"><img src="logot/fgr-logo.png" alt="FGR" style="width:100%;height:100%;object-fit:cover;display:block" /></a>
 <a href="https://photos.google.com/share/AF1QipMlPCtWvfCrBkzBR-Sr-W7AG-f8ZBVQ0omErEqR-ZXVPqF-2uRionKk12oTV4R_Lw?key=VzR6XzJiU2dFa0RldW5NcHgxUW5weTVEbk1pYUdB" target="_blank" title="Rata-kuvat" style="width:70px;height:35px;min-width:70px;background:#fff;border-radius:8px;display:grid;place-items:center;overflow:hidden;border:1px solid #333;flex-shrink:0"><img src="logot/rata-kuvat-icon.jpg" alt="Rata-kuvat" style="width:100%;height:100%;object-fit:cover;display:block" /></a>
-<a href="./whatsapp.html" title="WhatsApp ryhmä & lähetys" style="width:35px;height:35px;min-width:35px;background:#25D366;border-radius:8px;display:grid;place-items:center;overflow:hidden;border:1px solid #333;flex-shrink:0;font-size:18px">💬</a>
+<a href="./whatsapp.html" title="WhatsApp ryhmä - Pakkassarja" style="width:35px;height:35px;min-width:35px;background:#25D366;border-radius:8px;display:grid;place-items:center;overflow:hidden;border:1px solid #333;flex-shrink:0"><img src="logot/whatsapp-logo.png" alt="WhatsApp" style="width:100%;height:100%;object-fit:cover;display:block" /></a>
 </div></header>
 <div class="wrap">
 <div class="grid-top">
@@ -227,7 +227,7 @@ function renderTiedotteet(data,source=""){
       const tSafeTitle = (t.title||"").replace(/'/g,"").substring(0,60);
       const tSafeMsg = (t.message||"").replace(/'/g,"").substring(0,200);
       const tSafeDate = (t.date||"").replace(/'/g,"");
-      div.innerHTML='<div class="tiedote-date">'+(t.date||"")+' <span onclick="shareWhatsAppTiedote({title:\''+tSafeTitle+'\',message:\''+tSafeMsg+'\',date:\''+tSafeDate+'\'})" style="float:right;background:#25D366;color:#fff;font-size:8px;padding:2px 6px;border-radius:10px;cursor:pointer">WhatsApp ↗</span></div><div class="tiedote-title">'+(t.title||"")+'</div><div class="tiedote-msg">'+(t.message||"")+'</div>';
+      div.innerHTML='<div class="tiedote-date">'+(t.date||"")+' <span onclick="shareWhatsAppTiedote({title:\''+tSafeTitle+'\',message:\''+tSafeMsg+'\',date:\''+tSafeDate+'\'})" style="float:right;background:#25D366;color:#fff;font-size:5px;padding:1px 2px;border-radius:5px;cursor:pointer;line-height:1;letter-spacing:0.2px">WhatsApp ↗</span></div><div class="tiedote-title">'+(t.title||"")+'</div><div class="tiedote-msg">'+(t.message||"")+'</div>';
       el.appendChild(div);
     });
     lastTiedotteet=valid;
@@ -350,7 +350,7 @@ function renderKilpailut(data){
       const safeDate = date.replace(/'/g,"");
       const safeCourse = course.replace(/'/g,"");
       const safeUrl = (k.url||"").replace(/'/g,"");
-      div.innerHTML='<div class="kilpailu-date">'+date+' '+(reg? '• ' + reg:"")+' '+(players? '• ' + players + ' hlö':"")+'</div><div class="kilpailu-name">'+name+'</div><div class="kilpailu-meta"><span class="kilpailu-course">'+course+' '+courseId+'</span><span class="kilpailu-link">Näytä tilanne →</span><span onclick="event.stopPropagation();shareWhatsAppKilpailu({name:\''+safeName+'\',date:\''+safeDate+'\',courseName:\''+safeCourse+'\',url:\''+safeUrl+'\'})" style="margin-left:auto;font-size:10px;background:#25D366;color:#fff;padding:2px 6px;border-radius:10px;cursor:pointer">WhatsApp ↗</span></div>';
+      div.innerHTML='<div class="kilpailu-date">'+date+' '+(reg? '• ' + reg:"")+' '+(players? '• ' + players + ' hlö':"")+'</div><div class="kilpailu-name">'+name+'</div><div class="kilpailu-meta"><span class="kilpailu-course">'+course+' '+courseId+'</span><span class="kilpailu-link">Näytä tilanne →</span><span onclick="event.stopPropagation();shareWhatsAppKilpailu({name:\''+safeName+'\',date:\''+safeDate+'\',courseName:\''+safeCourse+'\',url:\''+safeUrl+'\'})" style="margin-left:auto;font-size:6px;background:#25D366;color:#fff;padding:1px 3px;border-radius:6px;cursor:pointer;line-height:1;letter-spacing:0.2px">WhatsApp ↗</span></div>';
       div.addEventListener("click", ()=>{
         document.querySelectorAll(".kilpailu-item").forEach(e=>e.style.outline="");
         div.style.outline="1px solid #1aff1a";
@@ -533,6 +533,11 @@ async function refreshAll(){
 setInterval(refreshAll, 300000);
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")refreshAll();});
 
+// WhatsApp link piilotettu - rakennetaan sisään, ei näy HTML:ssä
+const _wB64 = 'aHR0cHM6Ly9jaGF0LndoYXRzYXBwLmNvbS9KN09acHVPRVpCWUJvUkhRbmlzQUlF';
+function getWhatsAppLink(){ try{ return atob(_wB64); }catch(e){ return 'https://chat.whatsapp.com/J7OZpuOEZBYBoRHQnisAIE'; } }
+function joinWhatsAppGroupDirect(){ window.open(getWhatsAppLink(), '_blank'); }
+
 // WhatsApp jako - tiedotteista ja kilpailuista
 function shareWhatsAppKilpailu(k){
   const tmpl = `🥏 Uusi kilpailu Luoma-ahossa!
@@ -558,16 +563,8 @@ ${t.date||""}
   window.open(url, '_blank');
 }
 function openWhatsAppGroup(){
-  fetch(`data/whatsapp.json?v=${Date.now()}`,{cache:"no-store"}).then(r=>r.json()).then(j=>{
-    const link = j.group && j.group.invite_link;
-    if(link && link.includes("chat.whatsapp.com")){
-      window.open(link, '_blank');
-    } else {
-      alert("WhatsApp ryhmälinkki ei vielä asetettu.\nAseta data/whatsapp.json -> group.invite_link\nTai liity: https://chat.whatsapp.com/REPLACE");
-    }
-  }).catch(()=>{
-    window.open("https://wa.me/?text="+encodeURIComponent("Luoma-ahon Frisbeegolfrata https://luomaahonfrisbeegolfrata-gif.github.io/luoma-aho-stats/"), '_blank');
-  });
+  // Linkki piilotettu koodiin, ei näy html:ssä
+  window.open(getWhatsAppLink(), '_blank');
 }
 
 </script>
