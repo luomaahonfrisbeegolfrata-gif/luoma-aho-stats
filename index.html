@@ -121,6 +121,33 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 .tilanne-empty{padding:20px 12px;text-align:center;color:#666;font-size:11px;line-height:1.4}
 .tilanne-header{font-size:9px;color:#888;padding:4px 8px;background:#111;border-bottom:1px solid #222;display:flex;justify-content:space-between}
 
+
+/* Sponsorit kortti - automaattisesti vaihtuvana - SAMA KOKO KUIN METRIX KORTTI (260x380) */
+#card-sponsorit{height:380px!important;min-height:380px!important;max-height:380px!important;padding:0!important;overflow:hidden!important;width:260px!important;min-width:260px!important;max-width:260px!important;display:flex!important;flex-direction:column!important;background:#151515;border:1px solid #242424;border-radius:10px}
+.sponsorit-header{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:#111;border-bottom:1px solid #242424;flex-shrink:0}
+.sponsorit-header h3{margin:0;font-size:11px;color:#fff;letter-spacing:0.5px}
+.sponsorit-body{flex:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#0f0f0f}
+.sponsor-slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:20px;padding:20px;opacity:0;transform:translateX(100%);transition:all 0.6s cubic-bezier(0.4,0,0.2,1)}
+.sponsor-slide.active{opacity:1;transform:translateX(0)}
+.sponsor-slide.prev{opacity:0;transform:translateX(-100%)}
+.sponsor-logo{width:120px;height:80px;background:#fff;border-radius:8px;display:grid;place-items:center;overflow:hidden;flex-shrink:0;border:1px solid #333}
+.sponsor-logo img{width:100%;height:100%;object-fit:contain;display:block}
+.sponsor-logo.placeholder{background:#1a1a1a;color:#1aff1a;font-size:24px;font-weight:900}
+.sponsor-info{flex:1;max-width:400px}
+.sponsor-name{font-size:18px;font-weight:800;color:#fff;margin:0 0 4px 0}
+.sponsor-tier{font-size:10px;color:#1aff1a;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
+.sponsor-desc{font-size:11px;color:#aaa;line-height:1.3}
+.sponsor-dots{display:flex;gap:6px;align-items:center}
+.sponsor-dot{width:6px;height:6px;border-radius:50%;background:#333;transition:all 0.3s;cursor:pointer}
+.sponsor-dot.active{background:#1aff1a;width:20px}
+.sponsor-progress{position:absolute;bottom:0;left:0;height:2px;background:#1aff1a;transition:width linear}
+@media (max-width:768px){
+  #card-sponsorit{height:380px!important;min-height:380px!important;max-height:380px!important;width:100%!important;min-width:100%!important;max-width:100%!important}
+  .sponsor-slide{gap:12px;padding:12px;flex-direction:column;text-align:center}
+  .sponsor-logo{width:120px;height:80px}
+  .sponsor-name{font-size:18px}
+}
+
 </style></head><body>
 <header><div class="brand"><div class="brand-logo"><img src="logot/l-a-friba-logo.jpg" alt="L-A FRIBA" style="width:35px;height:35px;object-fit:cover;display:block" /></div> Luoma-ahon Frisbeegolfrata</div><div class="header-icons"><a href="./palkintolaskuri.html" style="width:71px;height:35px;min-width:71px;background:#111;border:1px solid #1aff1a88;border-radius:8px;overflow:hidden;display:grid;place-items:center;text-decoration:none;margin-right:6px" title="Palkintolaskuri"><img src="logot/1000mrkkaa-70x35.jpg" alt="1000" style="width:71px;height:35px;object-fit:cover;display:block"/></a>
 <a href="https://www.google.com/maps/place/Luoma-ahon+Frisbeegolfrata/@63.0901676,23.8860139,12z/" target="_blank" title="Google Maps" style="width:35px;height:35px;min-width:35px;background:#fff;border-radius:8px;display:grid;place-items:center;overflow:hidden;border:1px solid #333;flex-shrink:0"><img src="logot/gmaps-logo.jpg" alt="Maps" style="width:100%;height:100%;object-fit:cover;display:block" /></a>
@@ -139,7 +166,7 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 <div class="card"><div class="bullet">Kallioisessa mäntymetsä maastossa</div><div class="bullet">Kompaktiin pakettiin suunniteltu ja toteutettu</div><div class="bullet">Huippu kuntoinen metsärata</div><div class="bullet">BB1 papereissa, A1 pituudessa, AA1 teknisyyksessä</div><div class="bullet">Vaylat 57 - 197m teknisiä ja kiekko kontrollia vaativia</div><div class="bullet">Tarkkuus, oikea kiekko ja heittovalinnat avainasemassa onnistumiseen</div><div class="bullet">Mukava rata kiertää joka soveltuu kaikille iästä ja taitotasosta riippumatta</div><div class="bullet">Korkeuserot, rehelliset selkeät linjat</div><div class="bullet">Kierros noin 1.5km peliaika noin tunti</div><div class="bullet">OB:t ja Mandot haastavat pelaajan päätöksentekoa</div></div>
 <div class="card"><div class="label">Metrix & UDisc tuloskirjattujen kierrosten määrä</div><div class="big-num" id="v-kierrokset">1221</div><div class="divider"></div><div class="label">Uniikit pelaajat</div><div class="big-num" style="font-size:36px" id="v-unique">133</div></div>
 <div class="card" style="width:200px;min-width:200px;max-width:200px"><div class="label">Hole in One</div><div class="vayla-big">5</div><div class="vayla-green">Väylä 4</div><div class="vayla-name">Benjamin Turja</div><div class="vayla-name">Julius Luoma-aho</div><div class="vayla-name">Juha Luoma-aho</div><div class="vayla-name">Aleksi Lassila</div><div class="vayla-green" style="margin-top:12px">Väylä 8</div><div class="vayla-name">Pentti Pitkäranta</div></div>
-<div id="c-midstack"><div class="mini"><div class="mini-label">Peliaika</div><div class="mini-val" id="v-peliaika">1627h</div></div><div class="mini"><div class="mini-label">Askelmäärä</div><div class="mini-val" id="v-askel">3 437 283</div></div><div class="mini"><div class="mini-label">Kilometrit</div><div class="mini-val" id="v-km">2506 km</div></div></div>
+<div id="c-midstack"><div class="mini"><div class="mini-label">Peliaika</div><div class="mini-val" id="v-peliaika">1630h</div></div><div class="mini"><div class="mini-label">Askelmäärä</div><div class="mini-val" id="v-askel">3 440 589</div></div><div class="mini"><div class="mini-label">Kilometrit</div><div class="mini-val" id="v-km">2506 km</div></div></div>
 <div class="card"><div class="top10-title"><span>TIEDOTTEET</span><b id="tiedote-badge">LIVE</b></div><div class="tiedote-list" id="list-tiedotteet"></div></div>
 <div id="foreca-stack" style="width:260px;min-width:260px;max-width:260px;height:320px;display:flex;flex-direction:column;gap:10px">
 <div class="card" id="card-foreca" style="height:160px;min-height:160px;max-height:160px;width:260px;min-width:260px;max-width:260px">
@@ -176,21 +203,14 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 </div>
 
 <div class="grid-bottom"><div class="card card-bottom" id="card-vayla"><div class="vayla-header"><h3>VÄYLÄTILASTO - LIVE</h3><div class="live-badge" id="vayla-badge">● LIVE</div></div><div class="vayla-table-wrap" id="vayla-wrap"><table class="vayla"><thead><tr><th>Vayla</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>Tot</th><th>%</th></tr></thead><tbody id="vayla-body"></tbody></table></div></div></div>
+
+<div class="grid-bottom" style="margin-top:10px;width:260px;min-width:260px;max-width:260px"><div class="card card-mid" id="card-sponsorit"><div class="sponsorit-header"><h3>SPONSORIT</h3><div style="display:flex;align-items:center;gap:10px"><div class="sponsor-dots" id="sponsor-dots"></div><div class="live-badge" style="background:#1aff1a;color:#000;font-size:10px;font-weight:800;padding:3px 10px;border-radius:12px">AUTOMAATTINEN</div></div></div><div class="sponsorit-body" id="sponsor-body"><div style="color:#666;font-size:12px">Ladataan sponsoreita...</div><div class="sponsor-progress" id="sponsor-progress" style="width:0%"></div></div></div></div>
+
+<div class="sponsorit-body" id="sponsor-body"><div style="color:#666;font-size:12px">Ladataan sponsoreita...</div><div class="sponsor-progress" id="sponsor-progress" style="width:0%"></div></div></div></div>
+
+<div class="sponsorit-body" id="sponsor-body"><div style="color:#666;font-size:12px">Ladataan sponsoreita...</div><div class="sponsor-progress" id="sponsor-progress" style="width:0%"></div></div></div></div>
 </div>
 <script>
-const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-async function refreshStatus(){
-  try{
-    const r = await fetch(`data/status.json?v=${Date.now()}`, {cache:"no-store"});
-    if(!r.ok) return;
-    const j = await r.json();
-    const t = new Date(j.generated_at); if(isNaN(t)) return;
-    const age = (Date.now() - t.getTime()) / 36e5;
-    const b = document.getElementById("vayla-badge"); if(!b) return;
-    if(age > 8){ b.textContent = "⚠ DATA " + Math.round(age) + "h VANHA"; b.style.background = "#ff9800"; }
-    else { b.textContent = "● PÄIVITETTY " + t.toLocaleTimeString("fi-FI",{hour:"2-digit",minute:"2-digit"}); b.style.background = ""; }
-  }catch(e){}
-}
 const LOCKED_PAR = ["4","3","3","3","3","3","3","3","4","3","5","4","41","-"];
 const LOCKED_PITUUS = ["125m","103m","72m","57m","94m","96m","103m","80m","116m","85m","197m","120m","1248m","-"];
 const fallback={
@@ -198,7 +218,7 @@ top44010:[{name:"Toni Luoma-aho",total:42,plus:"+1"},{name:"Eino Vistiaho",total
 top44763:[{name:"Timo Alalantela",total:82,plus:"E"},{name:"Aapo Penttilä",total:83,plus:"+1"},{name:"Evert Väkeväinen",total:85,plus:"+3"},{name:"Daniel Turja",total:87,plus:"+5"},{name:"Eero Tuohimaa",total:88,plus:"+6"},{name:"Marko Tuohimaa",total:90,plus:"+8"},{name:"Benjamin Turja",total:91,plus:"+9"},{name:"Aapo Viinamäki",total:91,plus:"+9"},{name:"Julius Luoma-aho",total:92,plus:"+10"},{name:"Eino Vistiaho",total:92,plus:"+10"}],
 topUdisc:[{name:"@kantanen8",total:35,plus:"-6",date:"4.7.2026"},{name:"@valkoparta",total:36,plus:"-5",date:"6.7.2026"},{name:"@mattiasss",total:36,plus:"-5",date:"19.8.2026"},{name:"@dashyy",total:38,plus:"-3",date:"13.9.2025"},{name:"@itkonenjere",total:38,plus:"-3",date:"29.4.2026"},{name:"@peetu7",total:39,plus:"-2",date:"24.7.2026"},{name:"@kimmoke",total:39,plus:"-2",date:"11.10.2026"},{name:"@taspak",total:42,plus:"+1",date:"16.7.2026"},{name:"@adusti",total:43,plus:"+2",date:"20.7.2026"},{name:"@tommivluoma",total:47,plus:"+6",date:"8.8.2026"}],
 tiedotteet:[{date:"09.10.2026",title:"Rata auki - syyskausi",message:"Luoma-ahon rata on nyt täydessä syyskunnossa. Väyläopasteet päivitetty.",type:"info"},{date:"05.10.2026",title:"Viikkokisat #3",message:"Aapo Penttilä voitti tuloksella 83 (+1). Seuraavat kisat 18.10.",type:"success"}],
-vayla:{pituus:LOCKED_PITUUS,par:LOCKED_PAR,avg:["4.49", "3.81", "3.52", "3.37", "3.56", "4.13", "4.05", "3.44", "4.65", "4.05", "6.04", "4.44", "49.55", "-"],avgCls:["cell-yellow", "cell-orange", "cell-orange", "cell-yellow", "cell-orange", "cell-red", "cell-red", "cell-yellow", "cell-orange", "cell-red", "cell-red", "cell-yellow", "cell-dark", "cell-dark"],diff:["4", "8", "5", "1", "6", "12", "10", "2", "7", "11", "9", "3", "78", "-"],diffCls:["cell-yellow", "cell-orange", "cell-yellow", "cell-green", "cell-yellow", "cell-red", "cell-red", "cell-green", "cell-orange", "cell-red", "cell-orange", "cell-green", "cell-dark", "cell-dark"],hio:[0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0, 0, 5, "0.0%"],birdie:[143, 45, 82, 295, 45, 45, 45, 136, 122, 45, 75, 247, 1325, "9.1%"],par0:[558, 436, 645, 384, 630, 353, 350, 564, 547, 367, 241, 531, 5606, "38.7%"],bogey:[328, 484, 312, 343, 358, 525, 527, 329, 349, 529, 506, 279, 4869, "33.6%"],dbl:[122, 180, 116, 128, 133, 196, 196, 122, 130, 197, 220, 104, 1844, "12.7%"],tpl:[38, 56, 36, 40, 41, 61, 61, 38, 40, 61, 69, 32, 573, "4.0%"],other:[19, 27, 17, 18, 21, 28, 29, 19, 20, 29, 32, 15, 274, "1.9%"]},
+vayla:{pituus:LOCKED_PITUUS,par:LOCKED_PAR,avg:["4.49", "3.81", "3.52", "3.37", "3.56", "4.13", "4.05", "3.44", "4.65", "4.05", "6.04", "4.44", "49.55", "-"],avgCls:["cell-yellow", "cell-orange", "cell-orange", "cell-yellow", "cell-orange", "cell-red", "cell-red", "cell-yellow", "cell-orange", "cell-red", "cell-red", "cell-yellow", "cell-dark", "cell-dark"],diff:["4", "8", "5", "1", "6", "12", "10", "2", "7", "11", "9", "3", "78", "-"],diffCls:["cell-yellow", "cell-orange", "cell-yellow", "cell-green", "cell-yellow", "cell-red", "cell-red", "cell-green", "cell-orange", "cell-red", "cell-orange", "cell-green", "cell-dark", "cell-dark"],hio:[0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0, 0, 5, "0.0%"],birdie:[147, 45, 84, 301, 45, 45, 45, 138, 124, 45, 77, 253, 1349, "9.2%"],par0:[557, 413, 648, 377, 613, 348, 345, 564, 548, 342, 301, 530, 5586, "38.1%"],bogey:[336, 494, 318, 351, 366, 537, 539, 337, 357, 541, 516, 285, 4977, "34.0%"],dbl:[124, 184, 118, 130, 135, 200, 200, 124, 132, 201, 224, 106, 1878, "12.8%"],tpl:[38, 58, 36, 40, 41, 63, 63, 38, 40, 63, 71, 32, 583, "4.0%"],other:[19, 27, 17, 18, 21, 28, 29, 19, 20, 29, 32, 15, 274, "1.9%"]},
 kilpailut:[
   {date:"07.11 - 19.12.2026",name:"PAKKASSARJA KOKO SARJA - 4 parasta 7:stä",course:"44010",courseName:"Luoma-aho",competitionId:"3819613",id:"3819613",type:"Sarja",url:"https://discgolfmetrix.com/3819613",reg:"Avoinna",players:1,isSeries:true},
   {date:"07.11.2026 12:00",name:"PAKKASSARJA #1 - 7.11",course:"44010",courseName:"Luoma-aho",competitionId:"3819645",id:"3819645",type:"Viikkokisa",url:"https://discgolfmetrix.com/3819645",reg:"Avoinna",players:1},
@@ -219,7 +239,7 @@ function renderTop(id,data){
   data.forEach((r,i)=>{
     const pc=r.plus&&r.plus.includes("-")?"neg":r.plus==="E"?"even":"pos";
     const d=document.createElement("div");d.className="trow";
-    d.innerHTML=`<span class="rank">${i+1}.</span><span class="name">${esc(r.name)}</span><span class="score">${esc(r.total)}</span><span class="plus ${pc}">${esc(r.plus||"")}</span>`;
+    d.innerHTML=`<span class="rank">${i+1}.</span><span class="name">${r.name}</span><span class="score">${r.total}</span><span class="plus ${pc}">${r.plus||""}</span>`;
     el.appendChild(d);
   });
 }
@@ -236,7 +256,7 @@ function renderTiedotteet(data,source=""){
     el.innerHTML="";
     valid.forEach(t=>{
       const div=document.createElement("div");div.className="tiedote-item";
-      div.innerHTML=`<div class="tiedote-date">${esc(t.date)}</div><div class="tiedote-title">${esc(t.title)}</div><div class="tiedote-msg">${esc(t.message)}</div>`;
+      div.innerHTML=`<div class="tiedote-date">${t.date||""}</div><div class="tiedote-title">${t.title||""}</div><div class="tiedote-msg">${t.message||""}</div>`;
       el.appendChild(div);
     });
     lastTiedotteet=valid;
@@ -323,7 +343,7 @@ function renderKilpailut(data){
       // Pakkassarja kisa kestää ~4h, joten +24h varmuudella ohi
       if(t + 24*60*60*1000 < now){
         // Jos on sarja (koko sarja), älä poista
-        /* sarja poistuu kun sen päättymisestä on yli 24 h */
+        if(k.isSeries) return false;
         return true;
       }
       // Jos reg on "Päättynyt" tai "Suljettu"
@@ -355,7 +375,7 @@ function renderKilpailut(data){
       const courseId = k.course||"";
       const reg = k.reg||"";
       const players = k.players||0;
-      div.innerHTML=`<div class="kilpailu-date">${esc(date)} ${reg? '• ' + esc(reg):""} ${players? '• ' + esc(players) + ' hlö':""}</div><div class="kilpailu-name">${esc(name)}</div><div class="kilpailu-meta"><span class="kilpailu-course">${esc(course)} ${esc(courseId)}</span><span class="kilpailu-link">Näytä tilanne →</span></div>`;
+      div.innerHTML=`<div class="kilpailu-date">${date} ${reg? '• ' + reg:""} ${players? '• ' + players + ' hlö':""}</div><div class="kilpailu-name">${name}</div><div class="kilpailu-meta"><span class="kilpailu-course">${course} ${courseId}</span><span class="kilpailu-link">Näytä tilanne →</span></div>`;
       div.addEventListener("click", ()=>{
         document.querySelectorAll(".kilpailu-item").forEach(e=>e.style.outline="");
         div.style.outline="1px solid #1aff1a";
@@ -366,7 +386,7 @@ function renderKilpailut(data){
     if(badge) badge.textContent=sorted.length; // näyttää vain aktiiviset, loppuneet poistettu
     // AUTO-LOAD: näytä tilanne suoraan korttiin ilman klikkausta - ensimmäinen aktiivinen
     if(sorted && sorted.length>0){
-      const keep = currentCompetition && sorted.find(x=>String(x.id)===String(currentCompetition.id)); setTimeout(()=>{ loadKilpailuTilanne(keep || sorted[0]); }, 100);
+      setTimeout(()=>{ loadKilpailuTilanne(sorted[0]); }, 100);
     }
   }catch(e){console.error(e);}
 }
@@ -391,7 +411,7 @@ async function loadKilpailuTilanne(k){
     const badge = document.getElementById("tilanne-badge");
     if(nameEl) nameEl.textContent = k.name||"Ladataan...";
     if(timeEl) timeEl.textContent = k.date||"";
-    if(listEl) listEl.innerHTML = `<div class="tilanne-empty">Haetaan tilannetta...</div>`;
+    if(listEl) listEl.innerHTML = `<div class="tilanne-empty">Haetaan tilannetta...<br>ID: ${compId}<br><br>api.php?content=result&id=${compId}</div>`;
     if(badge) badge.textContent = "⏳";
     try{
       const r = await fetch(`data/kilpailu_tilanne.json?v=${Date.now()}`,{cache:"no-store"});
@@ -433,10 +453,10 @@ async function loadKilpailuTilanne(k){
     if(listEl){
       // Näytä suoraan kortissa, ei LINKkiä - kuten viimeksi
       listEl.innerHTML = `<div class="tilanne-empty">
-        <span style="font-size:11px;color:#fff;font-weight:800">${esc(k.name||"Kilpailu")}</span><br>
-        <span style="font-size:9px;color:#888">${esc(k.date)}</span><br><br>
+        <span style="font-size:11px;color:#fff;font-weight:800">${k.name||"Kilpailu"}</span><br>
+        <span style="font-size:9px;color:#888">${k.date||""}</span><br><br>
         <span style="font-size:10px;color:#aaa">Ei tuloksia vielä</span><br>
-        <span style="font-size:9px;color:#555">${esc(k.courseName)} ${esc(compId)}</span><br><br>
+        <span style="font-size:9px;color:#555">${k.courseName||""} ${compId}</span><br><br>
         <span style="font-size:9px;color:#1aff1a">Päivittyy automaattisesti kun kisa alkaa</span>
       </div>`;
     }
@@ -459,11 +479,11 @@ function renderTilanne(comp){
       const status = comp.status || "Tulossa";
       const reg = comp.registered || 0;
       el.innerHTML = `<div class="tilanne-empty">
-        ${esc(status)}<br>
-        <span style="font-size:10px;color:#888">${esc(reg)} ilmoittautunut</span><br><br>
+        ${status}<br>
+        <span style="font-size:10px;color:#888">${reg} ilmoittautunut</span><br><br>
         <span style="font-size:11px;color:#aaa">Ei tuloksia vielä</span><br>
-        <span style="font-size:9px;color:#555">${esc(comp.name)}</span><br><br>
-        <span style="font-size:9px;color:#1aff1a">${esc(comp.date)}</span>
+        <span style="font-size:9px;color:#555">${comp.name||""}</span><br><br>
+        <span style="font-size:9px;color:#1aff1a">${comp.date||""}</span>
       </div>`;
       return;
     }
@@ -481,7 +501,7 @@ function renderTilanne(comp){
       const plus = r.plus || "";
       const isNeg = plus.includes("-");
       const pc = isNeg ? "neg" : (plus==="E" ? "" : "pos");
-      div.innerHTML = `<span class="tilanne-rank">${esc(rank)}.</span><span class="tilanne-name">${esc(name)}</span><span class="tilanne-score">${esc(total)}</span><span class="tilanne-plus ${pc}">${esc(plus)}</span>`;
+      div.innerHTML = `<span class="tilanne-rank">${rank}.</span><span class="tilanne-name">${name}</span><span class="tilanne-score">${total}</span><span class="tilanne-plus ${pc}">${plus}</span>`;
       el.appendChild(div);
     });
     const footer = document.createElement("div");
@@ -492,10 +512,132 @@ function renderTilanne(comp){
 }
 
 if(lastTiedotteet){renderTiedotteet(lastTiedotteet,"localStorage init");}
+loadSponsors();
 else{renderTiedotteet(fallback.tiedotteet,"fallback init");}
 renderTop("list-44010",fallback.top44010);renderTop("list-44763",fallback.top44763);renderTop("list-udisc",fallback.topUdisc);renderVayla(fallback.vayla);renderKilpailut(fallback.kilpailut);
 // Yritä ladata tilanne suoraan korttiin ilman Metrix-klikkausta
 (async()=>{ try{ const r=await fetch(`data/kilpailu_tilanne.json?v=${Date.now()}`,{cache:"no-store"}); if(r.ok){ const j=await r.json(); if(j.current){ renderTilanne(j.current); } else if(j.competitions && j.competitions[0]){ renderTilanne(j.competitions[0]); } } }catch(e){} })();
+
+
+// Sponsorit automaattisesti vaihtuvana
+const fallbackSponsors = [
+  {name:"Alajärven kaupunki",tier:"Pääsponsori",logo:"logot/l-a-friba-logo.jpg",url:"https://www.alajarvi.fi",desc:"Kaupungin tuki radalle"},
+  {name:"L-A Friba",tier:"Ratayhtiö",logo:"logot/l-a-friba-logo.jpg",url:"",desc:"Luoma-ahon Frisbeegolfrata - 12 väylää, 1248m, PAR 41"},
+  {name:"1000 Markkaa",tier:"Kisasponsori",logo:"logot/1000mrkkaa-70x35.jpg",url:"",desc:"Palkintolaskuri - 1000 mk jaossa"},
+  {name:"Tule sponsori!",tier:"Väyläsponsori",logo:"",url:"",desc:"Ota yhteyttä: sponsori@luoma-aho.fi - Tue paikallista rataa"},
+  {name:"Paikalliset yritykset",tier:"Yhteistyö",logo:"",url:"",desc:"Kiitos kaikille tukijoille ja talkoolaisille!"}
+];
+let sponsors = fallbackSponsors;
+let currentSponsor = 0;
+let sponsorInterval = null;
+let progressInterval = null;
+
+function renderSponsors(){
+  const body = document.getElementById("sponsor-body");
+  const dots = document.getElementById("sponsor-dots");
+  if(!body) return;
+  
+  body.innerHTML = '<div class="sponsor-progress" id="sponsor-progress" style="width:0%"></div>';
+  dots.innerHTML = "";
+  
+  sponsors.forEach((s,i)=>{
+    const slide = document.createElement("div");
+    slide.className = "sponsor-slide" + (i===0 ? " active" : "");
+    slide.dataset.index = i;
+    
+    const logoHtml = s.logo ? `<div class="sponsor-logo"><img src="${s.logo}" alt="${s.name}" onerror="this.parentElement.innerHTML='<div class=placeholder>'+s.name.charAt(0)+'</div>'"></div>` 
+                              : `<div class="sponsor-logo placeholder">${s.name.charAt(0)}</div>`;
+    
+    const linkStart = s.url ? `<a href="${s.url}" target="_blank" style="display:flex;gap:20px;align-items:center;text-decoration:none;color:inherit">` : '<div style="display:flex;gap:20px;align-items:center">';
+    const linkEnd = s.url ? '</a>' : '</div>';
+    
+    slide.innerHTML = linkStart + logoHtml + `<div class="sponsor-info"><div class="sponsor-tier">${s.tier||""}</div><div class="sponsor-name">${s.name}</div><div class="sponsor-desc">${s.desc||""}</div></div>` + linkEnd;
+    body.appendChild(slide);
+    
+    const dot = document.createElement("div");
+    dot.className = "sponsor-dot" + (i===0 ? " active" : "");
+    dot.onclick = ()=>goToSponsor(i);
+    dots.appendChild(dot);
+  });
+  
+  startSponsorRotation();
+}
+
+function goToSponsor(index){
+  const slides = document.querySelectorAll(".sponsor-slide");
+  const dots = document.querySelectorAll(".sponsor-dot");
+  if(index<0) index = sponsors.length-1;
+  if(index>=sponsors.length) index = 0;
+  
+  slides.forEach((s,i)=>{
+    s.classList.remove("active","prev");
+    if(i===currentSponsor) s.classList.add("prev");
+  });
+  dots.forEach(d=>d.classList.remove("active"));
+  
+  setTimeout(()=>{
+    slides.forEach(s=>s.classList.remove("prev"));
+    if(slides[index]) slides[index].classList.add("active");
+    if(dots[index]) dots[index].classList.add("active");
+  },50);
+  
+  currentSponsor = index;
+  resetProgress();
+}
+
+function nextSponsor(){
+  goToSponsor(currentSponsor+1);
+}
+
+function startSponsorRotation(){
+  if(sponsorInterval) clearInterval(sponsorInterval);
+  if(progressInterval) clearInterval(progressInterval);
+  
+  const interval = 4000;
+  sponsorInterval = setInterval(nextSponsor, interval);
+  resetProgress();
+}
+
+function resetProgress(){
+  const progress = document.getElementById("sponsor-progress");
+  if(!progress) return;
+  progress.style.transition = "none";
+  progress.style.width = "0%";
+  setTimeout(()=>{
+    progress.style.transition = "width 4s linear";
+    progress.style.width = "100%";
+  },50);
+}
+
+async function loadSponsors(){
+  try{
+    const r = await fetch(`data/sponsorit.json?v=${Date.now()}`,{cache:"no-store"});
+    if(r.ok){
+      const j = await r.json();
+      if(j.sponsors && j.sponsors.length>0){
+        sponsors = j.sponsors;
+        console.log(`Sponsorit ladattu: ${sponsors.length} kpl`);
+      }
+    }
+  }catch(e){console.log("Sponsorit fetch fail, käytetään fallback", e);}
+  renderSponsors();
+}
+
+// Pause on hover
+document.addEventListener("DOMContentLoaded", ()=>{
+  const card = document.getElementById("card-sponsorit");
+  if(card){
+    card.addEventListener("mouseenter", ()=>{
+      if(sponsorInterval) clearInterval(sponsorInterval);
+      if(progressInterval) clearInterval(progressInterval);
+      const progress = document.getElementById("sponsor-progress");
+      if(progress) progress.style.transition = "none";
+    });
+    card.addEventListener("mouseleave", ()=>{
+      startSponsorRotation();
+    });
+  }
+});
 
 async function refreshAll(){
   try{const r=await fetch(`data/metrix_44010.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.top10&&j.top10.length>0)renderTop("list-44010",j.top10.map(o=>({name:o.name,total:o.total,plus:o.plus_minus||o.plus||""})));}}catch(e){}
@@ -503,10 +645,10 @@ async function refreshAll(){
   try{const r=await fetch(`data/kierrokset.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.total_rounds){document.getElementById("v-kierrokset").textContent=j.total_rounds;document.getElementById("v-unique").textContent=j.unique_players;document.getElementById("v-peliaika").textContent=j.peliaika.display;document.getElementById("v-askel").textContent=j.askeleet.display;document.getElementById("v-km").textContent=j.kilometrit.display;}}}catch(e){}
   try{const r=await fetch(`data/vaylatilasto.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.pituus&&j.pituus.length>=12){j.par=LOCKED_PAR;j.pituus=LOCKED_PITUUS;renderVayla(j);}}}catch(e){}
   try{const r=await fetch(`data/udisc.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.top10&&j.top10.length>0)renderTop("list-udisc",j.top10.map(o=>({name:o.name,total:o.total,plus:o.plus_minus||o.plus||""})));}}catch(e){}
-  try{const r=await fetch(`data/metrix_kilpailut.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();const list=j.upcoming||j.kilpailut||j.events||[];if(list.length>0){ renderKilpailut(list); } else { renderKilpailut([]); } }}catch(e){ renderKilpailut(fallback.kilpailut); }
+  try{const r=await fetch(`data/metrix_kilpailut.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();const list=j.upcoming||j.kilpailut||j.events||[];if(list.length>0){ renderKilpailut(list); } else { renderKilpailut(fallback.kilpailut); } }}catch(e){ renderKilpailut(fallback.kilpailut); }
   // AUTO-LOAD tilanne suoraan korttiin ilman klikkausta
-  try{const r=await fetch(`data/kilpailu_tilanne.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();const cid = currentCompetition ? String(extractCompetitionId(currentCompetition)) : null; const pick = (j.competitions||[]).find(c=>String(c.id)===cid) || (cid ? null : j.current); if(pick){ renderTilanne(pick); } }}catch(e){}
-  try{const r=await fetch(`data/tiedotteet.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.tiedotteet&&Array.isArray(j.tiedotteet)&&j.tiedotteet.length>0){renderTiedotteet(j.tiedotteet,"live fetch");}else if(j.tiedotteet&&Array.isArray(j.tiedotteet)){lastTiedotteet=null;try{localStorage.removeItem("luoma_tiedotteet_v1");}catch(e){}const tl=document.getElementById("list-tiedotteet");if(tl)tl.innerHTML='<div class="tiedote-item"><div class="tiedote-msg">Ei tiedotteita</div></div>';}}}catch(e){}
+  try{const r=await fetch(`data/kilpailu_tilanne.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.current && j.current.results){ renderTilanne(j.current); } else if(j.competitions && j.competitions.length>0 && j.competitions[0].results){ renderTilanne(j.competitions[0]); } }}catch(e){}
+  try{const r=await fetch(`data/tiedotteet.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.tiedotteet&&Array.isArray(j.tiedotteet)&&j.tiedotteet.length>0){renderTiedotteet(j.tiedotteet,"live fetch");}}}catch(e){}
   try{
     const r=await fetch(`data/vieraskirja.json?v=${Date.now()}`,{cache:"no-store"});
     if(r.ok){
@@ -535,7 +677,7 @@ async function refreshAll(){
     }
   }catch(e){console.log("vieraskirja fetch fail", e);}
 }
-refreshAll(); refreshStatus(); setInterval(()=>{ refreshAll(); refreshStatus(); }, 180000);
+setInterval(refreshAll, 300000);
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")refreshAll();});
 </script>
 </body></html>
