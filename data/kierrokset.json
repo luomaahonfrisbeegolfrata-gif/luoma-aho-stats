@@ -3,15 +3,17 @@
   "total": 1221,
   "count": 1221,
   "metrix_total": 768,
+  "udisc_total": 453,
   "metrix_breakdown": {
     "44010": 619,
     "44763": 130,
     "48112": 19
   },
-  "udisc_total": 453,
   "udisc_breakdown": {
-    "virkistystunnit": 630,
-    "askeleet": 1344654
+    "rounds": 453,
+    "players": 70,
+    "hours": 630.0,
+    "steps": 1344654
   },
   "unique_players": 133,
   "peliaika": {
@@ -26,19 +28,18 @@
     "display": "2508 km",
     "km": 2508
   },
-  "updated": "19.10.2026 04:20 - MANUAALINEN KUVISTA",
-  "fetched_at": "2026-10-19T11:20:19.447907+00:00",
-  "version": "V4.0 REAL 48.74 - koko totuus painotettu",
-  "source": "MANUAALINEN: Metrix 768 (kuvasta) + UDisc 453 (kuvasta) = 1221 - PÄIVITETTY VAIN KUVISTA",
-  "locked": true,
-  "manual_only": true,
-  "automatic": false,
-  "note": "Total rounds EI AUTOMAATTINEN - päivitetään VAIN käyttäjän antamista Metrix ja UDisc kuvista",
-  "calculation": "(Metrix 49.55*768 + UDisc 47.37*453)/1221 = 48.74",
-  "previous": {
-    "total_rounds": 1221,
-    "metrix_total": 768,
-    "udisc_total": 453
+  "estimated": {
+    "unique_players": "Käsin arvioitu. Metrixin ja UDiscin pelaajia ei voi deduplikoida automaattisesti (eri tunnukset).",
+    "hours_steps": "käsin lukittu (config.manual_totals)",
+    "calculated_alternative": {
+      "hours": 1892,
+      "steps": 4038414,
+      "km": 2944
+    },
+    "km": "askeleet x 0.729 m"
   },
-  "avg_total": "48.74"
+  "as_of": "2026-10-19",
+  "version": "V2.0",
+  "updated": "19.10.2026 22:43",
+  "fetched_at": "2026-10-19T19:43:37.101677+00:00"
 }

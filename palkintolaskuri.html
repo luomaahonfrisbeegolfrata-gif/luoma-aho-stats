@@ -46,7 +46,7 @@ input[type="number"]:focus,select:focus{border-color:#1aff1a}
   .grid-laskuri{flex:1;display:flex;flex-direction:column;gap:6px;overflow:hidden;height:100%;grid-template-columns:1fr}
   .card-form{flex:0 0 48%;height:auto!important;min-height:0!important;max-height:48%;width:100%!important;min-width:100%!important;overflow:hidden}
   .card-list{flex:1 1 52%;height:auto!important;min-height:0!important;max-height:52%;width:100%!important;min-width:100%!important;overflow:hidden}
-  .form-body{padding:8px;overflow:hidden;gap:0}
+  .form-body{padding:8px;overflow-y:auto;gap:0}
   label{margin:5px 0 2px 0;font-size:9px}
   input[type="number"],select{padding:5px 8px;font-size:12px}
   .btn{margin-top:6px;padding:7px;font-size:11px}
@@ -68,19 +68,19 @@ input[type="number"]:focus,select:focus{border-color:#1aff1a}
 </div></header>
 <div class="wrap"><div class="grid-laskuri">
 <div class="card card-form"><div class="top10-title"><span>PALKINTOLASKURI</span><b>LIVE</b></div><div class="form-body">
-<label>Osallistujia</label><input type="number" id="p-count" min="1" max="500" value="20" oninput="calc()"/>
-<label>Maksu</label><select id="p-fee" onchange="calc()"><option value="2">2 €</option><option value="4">4 €</option><option value="5" selected>5 €</option><option value="6">6 €</option><option value="8">8 €</option><option value="10">10 €</option></select>
+<label for="p-count">Osallistujia</label><input type="number" id="p-count" min="1" max="500" value="20" oninput="calc()"/>
+<label for="p-fee">Maksu</label><select id="p-fee" onchange="calc()"><option value="2">2 €</option><option value="4">4 €</option><option value="5" selected>5 €</option><option value="6">6 €</option><option value="8">8 €</option><option value="10">10 €</option></select>
 <div style="background:#0a0a0a;border:1px solid #1e1e1e;border-radius:6px;padding:8px 10px;margin-top:8px">
 <div style="display:flex;justify-content:space-between;font-size:10px;color:#888;font-weight:700"><span>POTTI</span><span>JÄRJESTÄJÄLLE</span></div>
 <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:800;color:#1aff1a;margin-top:2px"><span>80%</span><span>20%</span></div>
-<div style="font-size:9px;color:#555;margin-top:6px;text-align:center">Jako lukittu: 1. 50% / 2. 30% / 3. 20% • Pyöristys alas 0,50 €</div>
+<div style="font-size:9px;color:#555;margin-top:6px;text-align:center">Jako 1. 50% / 2. 30% / 3. 20% • 2. ja 3. alas 0,50 €, 1. saa loppuosan • alle 3 hlö: jako vain sijoille</div>
 </div>
 <button class="btn" onclick="calc()">LASKE →</button>
 </div></div>
 <div class="card card-list"><div class="top10-title"><span>TULOS</span><b id="p-summary">20 x 5€</b></div>
 <div style="padding:6px 10px;text-align:center"><div class="big-pot" id="p-total">100 €</div></div>
 <div class="result-row"><span class="result-label">Järjestäjälle (20 % + pyöristys)</span><span class="result-val" id="p-org">20 €</span></div>
-<div class="result-row highlight"><span class="result-label">Potti 80%</span><span class="result-val green" id="p-prize">80 €</span></div>
+<div class="result-row highlight"><span class="result-label">Palkintopotti (80 %, pyöristetty alas)</span><span class="result-val green" id="p-prize">80 €</span></div>
 <div class="podium">
 <div class="podium-item first"><div class="podium-rank">1.</div><div class="podium-amount" id="p-1-amount">40 €</div></div>
 <div class="podium-item second"><div class="podium-rank">2.</div><div class="podium-amount" id="p-2-amount">24 €</div></div>
@@ -99,6 +99,18 @@ function fmt(v){
   if(s.endsWith(',0')) s = s.slice(0,-2);
   return s + ' €';
 }
+/* Puhdas laskenta (testattava). Palkinnot jaetaan vain olemassa oleville sijoille (alle 3 hlö: suhteessa 50/30/20).
+   2. ja 3. pyöristetään alas 0,50 €:iin, 1. saa loppuosan; palkinnot + järjestäjä = kerätty summa aina. */
+function computePayout(count,fee){
+  count=Math.max(0,Math.floor(count)||0); fee=Number(fee)||0;
+  const total=count*fee, prize=total*0.8;
+  const W=[50,30,20].slice(0,Math.min(count,3)), S=W.reduce((a,b)=>a+b,0);
+  const floorHalf=v=>Math.floor(v*2+1e-9)/2;
+  const pot=floorHalf(prize), a=[0,0,0];
+  for(let i=1;i<W.length;i++) a[i]=floorHalf(prize*W[i]/S);
+  if(W.length) a[0]=pot-a[1]-a[2];
+  return {total,prize,a1:a[0],a2:a[1],a3:a[2],org:total-pot};
+}
 function calc(){
   try{
     const countEl = document.getElementById('p-count');
@@ -106,20 +118,7 @@ function calc(){
     if(!countEl || !feeEl) return;
     const count = parseInt(countEl.value)||0;
     const fee = parseFloat(feeEl.value)||0;
-    // Lukittu: 80% pottiin, 20% järjestäjälle
-    const potPct = 80;
-    const p1 = 50;
-    const p2 = 30;
-    const p3 = 20;
-    const doRound = true; // 0,50€ pyöristys lukittu
-    const total = Math.max(0,count)*fee;
-    const prize = total*potPct/100;
-    // Palkinnot pyöristetään ALASPÄIN 0,50 €:iin ja 1. saa loppuosan, jottei maksettava summa ylitä pottia.
-    // Pyöristysjäännös menee järjestäjälle.
-    const floorHalf = v=>Math.floor(v*2+1e-9)/2;
-    const a2 = floorHalf(prize*p2/100), a3 = floorHalf(prize*p3/100);
-    const a1 = floorHalf(prize) - a2 - a3;
-    const org = total-(a1+a2+a3);
+    const {total,prize,a1,a2,a3,org} = computePayout(count,fee);
     const summary = document.getElementById('p-summary');
     if(summary) summary.textContent = count+' x '+fee+'€';
     const totalEl = document.getElementById('p-total');
@@ -127,13 +126,13 @@ function calc(){
     const orgEl = document.getElementById('p-org');
     if(orgEl) orgEl.textContent = fmt(org);
     const prizeEl = document.getElementById('p-prize');
-    if(prizeEl) prizeEl.textContent = fmt(prize);
+    if(prizeEl) prizeEl.textContent = fmt(a1+a2+a3);
     const a1El = document.getElementById('p-1-amount');
     if(a1El) a1El.textContent = fmt(a1);
     const a2El = document.getElementById('p-2-amount');
-    if(a2El) a2El.textContent = fmt(a2);
+    if(a2El) a2El.textContent = count>=2 ? fmt(a2) : '–';
     const a3El = document.getElementById('p-3-amount');
-    if(a3El) a3El.textContent = fmt(a3);
+    if(a3El) a3El.textContent = count>=3 ? fmt(a3) : '–';
   }catch(e){
     console.error('calc error', e);
   }

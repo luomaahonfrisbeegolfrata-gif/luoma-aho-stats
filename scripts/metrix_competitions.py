@@ -45,7 +45,7 @@ API = f"{BASE}/api.php"
 HEADERS = {"User-Agent": CFG.get("user_agent", "luoma-aho-stats/1.0")}
 FMT_FI = "%d.%m.%Y %H:%M"
 FMTS = ("%Y-%m-%d %H:%M:%S", "%Y-%m-%d %H:%M", "%Y-%m-%d", "%d.%m.%Y %H:%M", "%d.%m.%Y")
-HEARTBEAT = timedelta(hours=3)
+HEARTBEAT = timedelta(hours=24)  # status.json = elinmerkki, pitää repon aktiivisena
 
 
 print("=== metrix_competitions.py V1.1 FIXED start ===")
@@ -59,10 +59,16 @@ def load(p, default=None):
 
 
 def save(name, obj):
+    """Kirjoittaa vain jos sisältö muuttui ('updated'-leima ei lasketa) - ei turhia committeja."""
     p = DATA / name
+    old = load(p)
+    strip = lambda o: {k: v for k, v in o.items() if k != "updated"} if isinstance(o, dict) else o
+    if old is not None and strip(old) == strip(obj):
+        return False
     tmp = p.with_suffix(".tmp")
     tmp.write_text(json.dumps(obj, ensure_ascii=False, indent=2), encoding="utf-8")
     tmp.replace(p)
+    return True
 
 
 def now_fi():
