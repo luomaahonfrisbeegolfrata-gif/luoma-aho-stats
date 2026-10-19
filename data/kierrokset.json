@@ -1,7 +1,7 @@
 {
-  "total_rounds": 1208,
-  "total": 1208,
-  "count": 1208,
+  "total_rounds": 1217,
+  "total": 1217,
+  "count": 1217,
   "metrix_total": 764,
   "metrix_breakdown": {
     "44010": 615,
@@ -9,7 +9,7 @@
     "48112": 19,
     "parent_43119": 750
   },
-  "udisc_total": 444,
+  "udisc_total": 453,
   "udisc_breakdown": {
     "plays_per_hole": [
       34,
@@ -25,27 +25,37 @@
       31,
       31
     ],
-    "avg_total": 46.81
+    "avg_total": 46.81,
+    "virkistystunnit": 630,
+    "askeleet": 1344654
   },
-  "unique_players": 132,
+  "unique_players": 133,
   "peliaika": {
-    "display": "1610h",
-    "hours": 1610
+    "display": "1622h",
+    "hours": 1622
   },
   "askeleet": {
-    "display": "3 400 000",
-    "count": 3400000
+    "display": "3 426 384",
+    "count": 3426384
   },
   "kilometrit": {
-    "display": "2480 km",
-    "km": 2480
+    "display": "2498 km",
+    "km": 2498
   },
-  "updated": "13.10.2026 - V5.3.2 FINAL LOCKED 1208",
-  "source": "Metrix 764 + UDisc 444 = 1208 - LUKITTU",
-  "version": "V5.3.2 FINAL LOCKED - 1208 kierrosta, ei vaihtele",
+  "updated": "19.10.2026 06.03 - UDisc 444->453 päivitetty",
+  "source": "Metrix 764 + UDisc 453 = 1217 - Päivitetty 19.10.2026",
+  "version": "V6.1 - 1217 kierrosta (Metrix 764 + UDisc 453) - was 1208",
   "locked": true,
   "calculation": {
-    "method": "1000+ kierrosta",
-    "total_rounds": 1208
+    "method": "Metrix 44010 (615) + 44763 (130) + 48112 (19) = 764 + UDisc kuvasta 453 = 1217",
+    "total_rounds": 1217,
+    "peliaika": "Metrix 992h + UDisc 630h = 1622h",
+    "askeleet": "Metrix 2 081 730 + UDisc 1 344 654 = 3426384",
+    "km": "2498 km (0.729m per askel)"
+  },
+  "previous": {
+    "total_rounds": 1208,
+    "udisc_total": 444,
+    "updated": "13.10.2026"
   }
 }

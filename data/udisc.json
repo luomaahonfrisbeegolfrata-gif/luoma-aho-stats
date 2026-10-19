@@ -1,23 +1,23 @@
 {
   "course_id": "luoma-ahon-frisbeegolfrata-YNEx",
-  "total_rounds": 444,
-  "total": 444,
-  "unique_players": 69,
-  "virkistystunnit": 618,
+  "total_rounds": 453,
+  "total": 453,
+  "unique_players": 70,
+  "virkistystunnit": 630,
   "peliaika": {
-    "display": "618h",
-    "hours": 618
+    "display": "630h",
+    "hours": 630
   },
   "askeleet": {
-    "display": "1 318 270",
-    "count": 1318270
+    "display": "1 344 654",
+    "count": 1344654
   },
-  "askelten_maara": 1318270,
-  "updated": "13.10.2026 - Top10 lukittu V5.1, ei vaihtele enää",
-  "source": "UDisc Elinikäiset tilastot - lukittu oikea lista - V5.3.2",
-  "fetched_at": "2026-10-13T00:00:00",
-  "version": "V5.3.2 FINAL LOCKED - ei vaihtele",
-  "locked": true,
+  "askelten_maara": 1344654,
+  "updated": "19.10.2026 06.03 - Elinikäiset tilastot päivitetty kuvasta",
+  "source": "UDisc Elinikäiset tilastot - 453 kierrosta, 630h, 70 pelaajaa, 1 344 654 askelta - kuva 19.10.2026 06.03",
+  "fetched_at": "2026-10-19T06:03:00",
+  "version": "V6.1 - Päivitetty 19.10.2026 - 453 kierrosta (was 444)",
+  "locked": false,
   "top10": [
     {
       "rank": 1,
@@ -99,5 +99,12 @@
       "plus": "+6",
       "date": "8.8.2026"
     }
-  ]
+  ],
+  "previous": {
+    "total_rounds": 444,
+    "unique_players": 69,
+    "virkistystunnit": 618,
+    "askeleet": 1318270,
+    "updated": "13.10.2026"
+  }
 }
