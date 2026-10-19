@@ -1,39 +1,39 @@
 {
   "sponsors": [
     {
-      "name": "Alajärven kaupunki",
+      "name": "EU maaseuturahasto",
       "tier": "Pääsponsori",
-      "logo": "logot/l-a-friba-logo.jpg",
-      "url": "https://www.alajarvi.fi",
-      "desc": "Kaupungin tuki radalle"
+      "logo": "",
+      "url": "https://maaseutuverkosto.fi/projects/frisbeegolfrata-luoma-ahon-pururadalle/",
+      "desc": "Aisapari"
     },
     {
-      "name": "L-A Friba",
-      "tier": "Ratayhtiö",
-      "logo": "logot/l-a-friba-logo.jpg",
+      "name": "Mäkelä Alu Oy",
+      "tier": "Tiipaikka materiaali",
+      "logo": "",
       "url": "",
       "desc": "Luoma-ahon Frisbeegolfrata"
     },
     {
-      "name": "1000 Markkaa",
-      "tier": "Kisasponsori",
-      "logo": "logot/1000mrkkaa-70x35.jpg",
-      "url": "",
-      "desc": "Palkintolaskuri 1000 mk"
-    },
-    {
-      "name": "Paikallinen Yritys",
-      "tier": "Väyläsponsori",
+      "name": "Almen",
+      "tier": "Tiipaikkojen hitsaus",
       "logo": "",
       "url": "",
-      "desc": "Tule mukaan sponsoroimaan!"
+      "desc": ""
     },
     {
-      "name": "DiscGolf Park",
-      "tier": "Välineet",
+      "name": "Alumech",
+      "tier": "Tii & väyläopaste hitsaus",
       "logo": "",
       "url": "",
-      "desc": "Kiekot ja varusteet"
+      "desc": ""
+    },
+    {
+      "name": "Tule mukaan sponsoroimaan!",
+      "tier": "",
+      "logo": "",
+      "url": "",
+      "desc": ""
     }
   ],
   "rotation_interval": 4000,
