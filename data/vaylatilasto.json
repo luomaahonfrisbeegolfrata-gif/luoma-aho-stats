@@ -6,10 +6,10 @@
   "avg_total_calc": 49.55,
   "difficulty_total": "78",
   "over_par_total": "8.55",
-  "total_hole_attempts": 14604,
-  "total_rounds": 1217,
-  "total_rounds_est": 1217,
-  "calculation_method": "Painotettu keskiarvo Metrix 44010 (615), 44763 (130), 48112 (19), UDisc (453) = 1217 kierrosta",
+  "total_hole_attempts": 14652,
+  "total_rounds": 1221,
+  "total_rounds_est": 1221,
+  "calculation_method": "Painotettu keskiarvo Metrix 44010 (619), 44763 (130), 48112 (19), UDisc (453) = 1221 kierrosta",
   "pituus": [
     "125m",
     "103m",
@@ -219,8 +219,8 @@
     "1.9%"
   ],
   "fetched_at": "2026-10-19T06:03:00",
-  "version": "V6.1 - 1217 kierrosta - UDisc 453 päivitetty",
-  "source": "Metrix 44010 (615) + 44763 (130) + 48112 (19) + UDisc (453) = 1217 kierrosta - päivitetty 19.10.2026",
+  "version": "V6.2 - 1221 kierrosta - Metrix +4",
+  "source": "Metrix 44010 (619) + 44763 (130) + 48112 (19) + UDisc (453) = 1221 - päivitetty 19.10.2026 Metrix +4",
   "locked": true,
   "images_used": [
     "Metrix 44010 - Avg 4.7,3.8,3.7,3.4,3.6,4.3,4.2,3.6,5.2,4.3,6.6,4.4",
@@ -233,5 +233,5 @@
     "hio": "Palautettu 5 HIO (4 väylä 4, 1 väylä 8) - oli 0",
     "note": "Käyttäjä saanut useita birdiejä väylillä 2,5,10,11, edellisessä kartassa kymmeniä"
   },
-  "updated": "19.10.2026 06.03 - UDisc 444->453"
+  "updated": "19.10.2026 - Metrix +4 (615->619), total 1221"
 }

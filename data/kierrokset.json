@@ -1,10 +1,10 @@
 {
-  "total_rounds": 1217,
-  "total": 1217,
-  "count": 1217,
-  "metrix_total": 764,
+  "total_rounds": 1221,
+  "total": 1221,
+  "count": 1221,
+  "metrix_total": 768,
   "metrix_breakdown": {
-    "44010": 615,
+    "44010": 619,
     "44763": 130,
     "48112": 19,
     "parent_43119": 750
@@ -31,31 +31,31 @@
   },
   "unique_players": 133,
   "peliaika": {
-    "display": "1622h",
-    "hours": 1622
+    "display": "1627h",
+    "hours": 1627
   },
   "askeleet": {
-    "display": "3 426 384",
-    "count": 3426384
+    "display": "3 437 283",
+    "count": 3437283
   },
   "kilometrit": {
-    "display": "2498 km",
-    "km": 2498
+    "display": "2506 km",
+    "km": 2506
   },
-  "updated": "19.10.2026 06.03 - UDisc 444->453 päivitetty",
-  "source": "Metrix 764 + UDisc 453 = 1217 - Päivitetty 19.10.2026",
-  "version": "V6.1 - 1217 kierrosta (Metrix 764 + UDisc 453) - was 1208",
+  "updated": "19.10.2026 - Metrix +4 kierrosta (615->619), UDisc 453",
+  "source": "Metrix 768 (44010 619+44763 130+48112 19) + UDisc 453 = 1221",
+  "version": "V6.2 - 1221 kierrosta (Metrix 768 + UDisc 453) - Metrix +4",
   "locked": true,
   "calculation": {
-    "method": "Metrix 44010 (615) + 44763 (130) + 48112 (19) = 764 + UDisc kuvasta 453 = 1217",
-    "total_rounds": 1217,
-    "peliaika": "Metrix 992h + UDisc 630h = 1622h",
-    "askeleet": "Metrix 2 081 730 + UDisc 1 344 654 = 3426384",
+    "method": "Metrix 44010 (619) + 44763 (130) + 48112 (19) = 768 + UDisc 453 = 1221",
+    "total_rounds": 1221,
+    "peliaika": "Metrix 997h + UDisc 630h = 1627h",
+    "askeleet": "Metrix 2092629 + UDisc 1 344 654 = 3437283",
     "km": "2498 km (0.729m per askel)"
   },
   "previous": {
-    "total_rounds": 1208,
-    "udisc_total": 444,
-    "updated": "13.10.2026"
+    "total_rounds": 1217,
+    "metrix_total": 764,
+    "metrix_44010": 615
   }
 }
