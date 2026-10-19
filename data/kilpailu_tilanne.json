@@ -11,8 +11,7 @@
       "registered": 1,
       "results": [],
       "isLive": false,
-      "isUpcoming": true,
-      "directVisible": true
+      "isUpcoming": true
     },
     {
       "id": "3819645",
@@ -23,18 +22,9 @@
       "url": "https://discgolfmetrix.com/3819645",
       "status": "Avoinna",
       "registered": 1,
-      "results": [
-        {
-          "rank": 1,
-          "name": "Toni Luoma-aho",
-          "total": "-",
-          "plus": "-",
-          "status": "Ilmoittautunut"
-        }
-      ],
+      "results": [],
       "isLive": false,
-      "isUpcoming": true,
-      "directVisible": true
+      "isUpcoming": true
     },
     {
       "id": "3819646",
@@ -47,8 +37,7 @@
       "registered": 0,
       "results": [],
       "isLive": false,
-      "isUpcoming": true,
-      "directVisible": true
+      "isUpcoming": true
     },
     {
       "id": "3820197",
@@ -61,8 +50,7 @@
       "registered": 0,
       "results": [],
       "isLive": false,
-      "isUpcoming": true,
-      "directVisible": true
+      "isUpcoming": true
     },
     {
       "id": "3820198",
@@ -75,8 +63,7 @@
       "registered": 0,
       "results": [],
       "isLive": false,
-      "isUpcoming": true,
-      "directVisible": true
+      "isUpcoming": true
     },
     {
       "id": "3820199",
@@ -89,8 +76,7 @@
       "registered": 0,
       "results": [],
       "isLive": false,
-      "isUpcoming": true,
-      "directVisible": true
+      "isUpcoming": true
     },
     {
       "id": "3820200",
@@ -103,8 +89,7 @@
       "registered": 0,
       "results": [],
       "isLive": false,
-      "isUpcoming": true,
-      "directVisible": true
+      "isUpcoming": true
     },
     {
       "id": "3820202",
@@ -117,8 +102,7 @@
       "registered": 0,
       "results": [],
       "isLive": false,
-      "isUpcoming": true,
-      "directVisible": true
+      "isUpcoming": true
     }
   ],
   "current": {
@@ -130,22 +114,13 @@
     "url": "https://discgolfmetrix.com/3819645",
     "status": "Avoinna",
     "registered": 1,
-    "results": [
-      {
-        "rank": 1,
-        "name": "Toni Luoma-aho",
-        "total": "-",
-        "plus": "-",
-        "status": "Ilmoittautunut"
-      }
-    ],
+    "results": [],
     "isLive": false,
-    "isUpcoming": true,
-    "directVisible": true
+    "isUpcoming": true
   },
   "activeId": "3819645",
   "updated": "15.10.2026 23:26",
-  "source": "Direct visible in card - korjattu kuten viimeksi, ei LINK",
-  "version": "V2.1 - direct visible fixed, no LINK",
+  "source": "Käsin ylläpidetty; korvautuu scripts/metrix_competitions.py:n tuottamalla datalla",
+  "version": "V3.0-clean",
   "directVisible": true
 }
