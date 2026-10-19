@@ -1,42 +1,57 @@
 {
   "sponsors": [
     {
-      "name": "EU maaseuturahasto",
-      "tier": "Pääsponsori",
-      "logo": "",
-      "url": "https://maaseutuverkosto.fi/projects/frisbeegolfrata-luoma-ahon-pururadalle/",
-      "desc": "Aisapari"
-    },
-    {
-      "name": "Mäkelä Alu Oy",
-      "tier": "Tiipaikka materiaali",
-      "logo": "",
-      "url": "",
-      "desc": "Luoma-ahon Frisbeegolfrata"
-    },
-    {
-      "name": "Almen",
-      "tier": "Tiipaikkojen hitsaus",
-      "logo": "",
-      "url": "",
-      "desc": ""
-    },
-    {
       "name": "Alumech",
-      "tier": "Tii & väyläopaste hitsaus",
-      "logo": "",
-      "url": "",
-      "desc": ""
+      "tier": "Pääsponsori",
+      "logo": "logot/alumech-logo.jpg",
+      "url": "https://www.alumech.fi",
+      "desc": "Alumiinirakenteet ja koneistukset"
     },
     {
-      "name": "Tule mukaan sponsoroimaan!",
-      "tier": "",
-      "logo": "",
+      "name": "AL MEN",
+      "tier": "Väyläsponsori",
+      "logo": "logot/almen-logo.jpg",
       "url": "",
-      "desc": ""
+      "desc": "Alumiiniprofiilit - AL MEN"
+    },
+    {
+      "name": "Mäkelä Alu",
+      "tier": "Väyläsponsori",
+      "logo": "logot/makela-alu-logo.jpg",
+      "url": "https://www.makelaalu.fi",
+      "desc": "Mäkelä Alu - alumiiniratkaisut"
+    },
+    {
+      "name": "Aisapari",
+      "tier": "Leader-sponsori",
+      "logo": "logot/aisapari-logo.jpg",
+      "url": "https://www.aisapari.fi",
+      "desc": "LEADER Aisapari - maaseudun kehittäminen"
+    },
+    {
+      "name": "Alajärven kaupunki",
+      "tier": "Kaupunki",
+      "logo": "logot/l-a-friba-logo.jpg",
+      "url": "https://www.alajarvi.fi",
+      "desc": "Kaupungin tuki radalle"
+    },
+    {
+      "name": "L-A Friba",
+      "tier": "Ratayhtiö",
+      "logo": "logot/l-a-friba-logo.jpg",
+      "url": "",
+      "desc": "Luoma-ahon Frisbeegolfrata - 12 väylää, PAR 41"
+    },
+    {
+      "name": "1000 Markkaa",
+      "tier": "Kisasponsori",
+      "logo": "logot/1000mrkkaa-70x35.jpg",
+      "url": "",
+      "desc": "Palkintolaskuri - 1000 mk jaossa"
     }
   ],
   "rotation_interval": 4000,
-  "updated": "19.10.2026",
-  "version": "V1.0 - Sponsorit automaattinen"
+  "updated": "19.10.2026 - oikeat logot lisätty",
+  "version": "V2.0 - Oikeat sponsorit: Alumech, AL MEN, Mäkelä Alu, Aisapari",
+  "count": 7
 }
