@@ -2,10 +2,7 @@ name: Update stats
 
 on:
   schedule:
-    - cron: '*/30 * * * *'          # kilpailut ja tilanne; GitHub voi viivästyttää ajoa
-  push:
-    branches: [main]
-    paths: ['scripts/config.json', 'scripts/build_stats.py']
+    - cron: '*/30 * * * *'
   workflow_dispatch:
 
 concurrency:
@@ -26,23 +23,42 @@ jobs:
         with:
           python-version: '3.11'
 
-      - run: pip install requests beautifulsoup4
+      - name: Install deps
+        run: pip install requests beautifulsoup4 lxml
 
-      # Laskee kierrokset.json + vaylatilasto.json config.json:sta (kirjoittaa vain jos sisältö muuttui)
-      - name: Build stats
-        run: python scripts/build_stats.py
+      - name: Show structure
+        run: |
+          ls -la
+          ls -la data/ || echo "no data dir"
+          ls -la scripts/ || echo "no scripts dir"
 
-      - name: Metrix competitions and standings
-        id: comp
-        continue-on-error: true
-        run: python scripts/metrix_competitions.py
+      - name: Fetch Metrix kilpailut tilanne (direct to card)
+        run: |
+          if [ -f scripts/metrix_tilanne_fetcher.py ]; then
+            python scripts/metrix_tilanne_fetcher.py
+          elif [ -f metrix_tilanne_fetcher.py ]; then
+            python metrix_tilanne_fetcher.py
+          else
+            echo "metrix_tilanne_fetcher.py not found, skipping"
+          fi
 
-      # Valinnainen: top10-haku, jos scripts/metrix_fetcher.py on repossa
-      - name: Metrix top10
-        id: top10
+      - name: Fetch Metrix top10 (optional)
         continue-on-error: true
         run: |
-          if [ -f scripts/metrix_fetcher.py ]; then python scripts/metrix_fetcher.py; else echo "metrix_fetcher.py puuttuu, ohitetaan"; fi
+          if [ -f scripts/metrix_fetcher.py ]; then python scripts/metrix_fetcher.py || echo "metrix_fetcher failed, continue"
+          elif [ -f metrix_fetcher.py ]; then python metrix_fetcher.py || echo "metrix_fetcher failed"
+          else echo "metrix_fetcher.py puuttuu, ohitetaan"; fi
+
+      - name: Keep kierrokset locked (do not overwrite manual 1221)
+        run: |
+          echo "kierrokset.json pidetään lukittuna 1221 - ei ajeta kierrokset.py automaattisesti"
+          cat data/kierrokset.json || echo "no kierrokset"
+          cat data/udisc.json | head -20
+
+      - name: Show results
+        run: |
+          ls -lh data/
+          cat data/kilpailu_tilanne.json | head -100 || echo "no tilanne"
 
       - name: Commit changes
         run: |
@@ -50,16 +66,9 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/
           if git diff --cached --quiet; then echo "No changes"; exit 0; fi
-          git commit -m "Update data $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git commit -m "Update data $(date -u +%Y-%m-%dT%H:%M:%SZ) - tilanne + top10"
           for i in 1 2 3; do
             git pull --rebase origin main && git push && exit 0
             sleep 5
           done
-          exit 1
-
-      # Näkyviin Actions-listaan jos jokin haku kaatui (ei enää '|| true' -piilotusta)
-      - name: Fail if a fetch failed
-        if: steps.comp.outcome == 'failure' || steps.top10.outcome == 'failure'
-        run: |
-          echo "Jokin datahaku epäonnistui, katso edelliset vaiheet"
           exit 1
