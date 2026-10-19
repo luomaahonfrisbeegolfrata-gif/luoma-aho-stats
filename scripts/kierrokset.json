@@ -1,0 +1,42 @@
+{
+  "total_rounds": 1221,
+  "total": 1221,
+  "count": 1221,
+  "metrix_total": 768,
+  "udisc_total": 453,
+  "metrix_breakdown": {
+    "44010": 619,
+    "44763": 130,
+    "48112": 19
+  },
+  "udisc_breakdown": {
+    "rounds": 453,
+    "players": 70,
+    "hours": 630.0,
+    "steps": 1344654,
+    "measured": true
+  },
+  "unique_players": 133,
+  "peliaika": {
+    "display": "1892h",
+    "hours": 1892
+  },
+  "askeleet": {
+    "display": "4 038 414",
+    "count": 4038414
+  },
+  "kilometrit": {
+    "display": "2944 km",
+    "km": 2944
+  },
+  "estimated": {
+    "unique_players": "Käsin arvioitu. Metrixin ja UDiscin pelaajia ei voi deduplikoida automaattisesti (eri tunnukset).",
+    "metrix_hours_steps": "Arvio: Metrix-kierrokset (907.5 12-väyläkierrosta) x UDiscin keskiarvo (1.39 h, 2968 askelta/kierros)",
+    "km": "askeleet x 0.729 m"
+  },
+  "double_counting_warning": "Samat kierrokset voivat olla sekä Metrixissä että UDiscissä; kokonaismäärä on yläraja.",
+  "as_of": "2026-10-19",
+  "updated": "19.10.2026 07:38",
+  "fetched_at": "2026-10-19T07:38:20.850776+00:00",
+  "version": "V6.3 config-pohjainen"
+}
