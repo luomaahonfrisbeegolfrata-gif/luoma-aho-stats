@@ -6,56 +6,52 @@
   "metrix_breakdown": {
     "44010": 619,
     "44763": 130,
-    "48112": 19,
-    "parent_43119": 750
+    "48112": 19
   },
   "udisc_total": 453,
   "udisc_breakdown": {
-    "plays_per_hole": [
-      34,
-      34,
-      34,
-      34,
-      34,
-      34,
-      31,
-      31,
-      31,
-      31,
-      31,
-      31
-    ],
-    "avg_total": 46.81,
     "virkistystunnit": 630,
     "askeleet": 1344654
   },
   "unique_players": 133,
   "peliaika": {
-    "display": "1627h",
-    "hours": 1627
+    "display": "1630h",
+    "hours": 1630
   },
   "askeleet": {
-    "display": "3 437 283",
-    "count": 3437283
+    "display": "3 440 589",
+    "count": 3440589
   },
   "kilometrit": {
-    "display": "2506 km",
-    "km": 2506
+    "display": "2508 km",
+    "km": 2508
   },
-  "updated": "19.10.2026 - Metrix +4 kierrosta (615->619), UDisc 453",
-  "source": "Metrix 768 (44010 619+44763 130+48112 19) + UDisc 453 = 1221",
-  "version": "V6.2 - 1221 kierrosta (Metrix 768 + UDisc 453) - Metrix +4",
-  "locked": true,
+  "updated": "19.10.2026 02:35 - automaattinen + suoja",
+  "fetched_at": "2026-10-19T09:35:00.508645+00:00",
+  "version": "V6.3 AUTOMAATTINEN SUOJATTU - 1221 kierrosta (Metrix 768 + UDisc 453)",
+  "source": "Metrix 768 + UDisc 453 = 1221 - automaattinen, ylikirjoitus estetty",
+  "locked": false,
+  "protected": true,
+  "min_values": {
+    "total": 1221,
+    "metrix": 768,
+    "udisc": 453,
+    "peliaika": 1627,
+    "askeleet": 3437283,
+    "km": 2506,
+    "unique": 133
+  },
   "calculation": {
-    "method": "Metrix 44010 (619) + 44763 (130) + 48112 (19) = 768 + UDisc 453 = 1221",
+    "method": "Automaattinen: Metrix summa {'44010': 619, '44763': 130, '48112': 19} = 768 + UDisc 453 = 1221, suoja min 1221",
     "total_rounds": 1221,
-    "peliaika": "Metrix 997h + UDisc 630h = 1627h",
-    "askeleet": "Metrix 2092629 + UDisc 1 344 654 = 3437283",
-    "km": "2498 km (0.729m per askel)"
+    "peliaika": "1630h (suojattu min 1627)",
+    "askeleet": "3440589 (suojattu min 3437283)",
+    "km": "2508 km (suojattu min 2506)",
+    "protection": "Ei koskaan alaspäin: vanha 1221 -> uusi 1221, min 1221"
   },
   "previous": {
-    "total_rounds": 1217,
-    "metrix_total": 764,
-    "metrix_44010": 615
+    "total_rounds": 1221,
+    "metrix_total": 768,
+    "udisc_total": 453
   }
 }
