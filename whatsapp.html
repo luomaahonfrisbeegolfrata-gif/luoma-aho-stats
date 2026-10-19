@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>WhatsApp - Luoma-ahon Frisbeegolfrata</title>
+<html lang="fi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>WhatsApp - Luoma-ahon Frisbeegolfrata</title>
 <style>
 :root{--bg:#070708;--card:#151515;--border:#242424;--green:#1aff1a;--wa:#25D366}
 *{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:#fff;font-family:Inter,system-ui,sans-serif}
@@ -29,15 +29,15 @@ label{font-size:10px;color:#888;text-transform:uppercase;font-weight:700;margin-
 
 <div class="card">
 <h2>WhatsApp Ryhmä - Pakkassarja</h2>
-<p style="font-size:12px;color:#bbb;line-height:1.4">Liity suoraan ryhmään – tiedotteet ja uudet Pakkassarja-kilpailut tulevat suoraan WhatsAppiin. Linkki on piilotettu koodiin, ei näy julkisesti.</p>
-<div id="group-info" class="info">Ryhmä aktiivinen: Pakkassarja 2026-11 - 2026-12<br>Linkki piilotettu koodiin (base64) – kukaan ei näe sitä HTML:ssä eikä pääse muuttamaan.</div>
+<p style="font-size:12px;color:#bbb;line-height:1.4">Liity suoraan ryhmään – tiedotteet ja uudet Pakkassarja-kilpailut tulevat suoraan WhatsAppiin.</p>
+<div id="group-info" class="info">Ryhmä aktiivinen: Pakkassarja 2026-11 - 2026-12</div>
 <button class="btn btn-wa" onclick="joinGroup()"><img src="logot/whatsapp-logo.png" style="width:14px;height:14px;border-radius:3px"> Liity WhatsApp-ryhmään</button>
 <button class="btn btn-dark" onclick="shareGroupLink()">Jaa ryhmä muille (WhatsApp)</button>
 </div>
 
 <div class="card">
 <h2>Tallennetut numerot (Broadcast)</h2>
-<p style="font-size:11px;color:#888">Vaihtoehto ryhmälle: tallenna numerot ja lähetä yksitellen wa.me kautta.</p>
+<p style="font-size:11px;color:#888">Vaihtoehto ryhmälle: tallenna numerot ja lähetä yksitellen wa.me kautta. Tallenna vain numeroita, joilta on lupa viestittää. Numerot säilyvät vain tässä selaimessa.</p>
 <label>Uusi numero (+358...)</label>
 <div style="display:flex;gap:6px"><input type="text" id="new-number" placeholder="+358401234567" style="flex:1"><button onclick="addNumber()" style="background:#25D366;color:#000;border:0;border-radius:8px;padding:0 16px;font-weight:800">+</button></div>
 <div class="num-list" id="num-list"><div style="color:#666;font-size:11px;text-align:center;padding:20px">Ei tallennettuja numeroita</div></div>
@@ -58,21 +58,21 @@ label{font-size:10px;color:#888;text-transform:uppercase;font-weight:700;margin-
 Pakkassarja käynnissä! Katso kisat: https://luomaahonfrisbeegolfrata-gif.github.io/luoma-aho-stats/
 </textarea>
 <button class="btn btn-wa" onclick="sendToGroup()"><img src="logot/whatsapp-logo.png" style="width:14px;height:14px;border-radius:3px"> Lähetä ryhmään (WhatsApp)</button>
-<button class="btn btn-green" onclick="sendToAllNumbers()">Lähetä tallennettuihin numeroihin</button>
+<button class="btn btn-green" onclick="sendToAllNumbers()">Näytä lähetyslinkit numeroille</button>
+<div id="send-list" class="num-list" style="display:none"></div>
 <button class="btn btn-dark" onclick="copyMessage()">Kopioi viesti</button>
 <div class="info">
-<b>Miten toimii?</b><br>
-• Linkki piilotettu: atob('aHR0cHM6Ly9jaGF0...') – ei näy HTML:ssä selväkielisenä<br>
-• Kukaan ei näe linkkiä view-source:ssa eikä pääse muuttamaan<br>
-• Ryhmä: https://chat.whatsapp.com/J7OZpuOEZBYBoRHQnisAIE (piilotettu koodiin)
-</div>
+<b>Miten toimii?</b><br>• Viesti avautuu WhatsAppissa ja lähetät sen itse – sivu ei lähetä mitään automaattisesti<br>• Ryhmälinkki on julkisessa koodissa, joten sivu ei suojaa sitä. Jos ryhmään tulee roskaa, hae uusi linkki WhatsAppin ryhmäasetuksista ja päivitä se tähän tiedostoon</div>
 </div>
 
 </div>
 <script>
-const _wB64 = 'aHR0cHM6Ly9jaGF0LndoYXRzYXBwLmNvbS9KN09acHVPRVpCWUJvUkhRbmlzQUlF';
-function getWhatsAppLink(){ try{ return atob(_wB64); }catch(e){ return 'https://chat.whatsapp.com/J7OZpuOEZBYBoRHQnisAIE'; } }
-let savedNumbers = JSON.parse(localStorage.getItem('luoma_wa_numbers')||'[]');
+const WA_GROUP_LINK = 'https://chat.whatsapp.com/J7OZpuOEZBYBoRHQnisAIE';
+function getWhatsAppLink(){ return WA_GROUP_LINK; }
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const NUM_RE = /^\+\d{7,15}$/;
+let savedNumbers = [];
+try{ savedNumbers = JSON.parse(localStorage.getItem('luoma_wa_numbers')||'[]').filter(n=>NUM_RE.test(n)); }catch(e){}
 function joinGroup(){ window.location.href = getWhatsAppLink(); }
 function shareGroupLink(){
   const link = getWhatsAppLink();
@@ -82,13 +82,14 @@ function shareGroupLink(){
 function renderNumbers(){
   const el = document.getElementById('num-list');
   if(savedNumbers.length===0){ el.innerHTML='<div style="color:#666;font-size:11px;text-align:center;padding:20px">Ei tallennettuja numeroita</div>'; return; }
-  el.innerHTML = savedNumbers.map((n,i)=>`<div class="num-item"><span>${n}</span><span onclick="removeNumber(${i})" style="color:#ff4d4d;cursor:pointer">X</span></div>`).join('');
+  el.innerHTML = savedNumbers.map((n,i)=>`<div class="num-item"><span>${esc(n)}</span><span onclick="removeNumber(${i})" style="color:#ff4d4d;cursor:pointer">X</span></div>`).join('');
 }
 function addNumber(){
   const inp = document.getElementById('new-number');
   let num = inp.value.trim().replace(/\s/g,'');
   if(!num) return;
   if(!num.startsWith('+')) num = '+' + num;
+  if(!NUM_RE.test(num)){ alert('Anna numero muodossa +358401234567'); return; }
   if(!savedNumbers.includes(num)){
     savedNumbers.push(num);
     localStorage.setItem('luoma_wa_numbers', JSON.stringify(savedNumbers));
@@ -105,15 +106,15 @@ function loadSource(){
   if(type==='tiedote'){
     fetch(`data/tiedotteet.json?v=${Date.now()}`,{cache:"no-store"}).then(r=>r.json()).then(j=>{
       const arr = Array.isArray(j) ? j : j.tiedotteet || [];
-      list.innerHTML = arr.map((t,i)=>`<div class="num-item" onclick="selectTiedote(${i})" style="cursor:pointer"><span>${t.date||''} - ${t.title||''}</span><span class="badge">VALITSE</span></div>`).join('') || 'Ei tiedotteita';
+      list.innerHTML = arr.map((t,i)=>`<div class="num-item" onclick="selectTiedote(${i})" style="cursor:pointer"><span>${esc(t.date)} - ${esc(t.title)}</span><span class="badge">VALITSE</span></div>`).join('') || 'Ei tiedotteita';
       window._tiedotteet = arr;
     }).catch(()=>{ list.innerHTML='Ei tiedotteita'; });
   } else if(type==='kilpailu'){
     fetch(`data/metrix_kilpailut.json?v=${Date.now()}`,{cache:"no-store"}).then(r=>r.json()).then(j=>{
       const arr = j.upcoming || j.kilpailut || [];
-      list.innerHTML = arr.map((k,i)=>`<div class="num-item" onclick="selectKilpailu(${i})" style="cursor:pointer"><span>${k.date||''} ${k.name||''}</span><span class="badge">VALITSE</span></div>`).join('');
+      list.innerHTML = arr.map((k,i)=>`<div class="num-item" onclick="selectKilpailu(${i})" style="cursor:pointer"><span>${esc(k.date)} ${esc(k.name)}</span><span class="badge">VALITSE</span></div>`).join('');
       window._kilpailut = arr;
-    });
+    }).catch(()=>{ list.innerHTML='Ei kilpailuja'; });
   } else {
     list.innerHTML = '<div style="padding:10px;font-size:11px;color:#888">Kirjoita oma viesti alle</div>';
   }
@@ -150,18 +151,13 @@ function sendToGroup(){
 function sendToAllNumbers(){
   const msg = document.getElementById('wa-message').value;
   if(savedNumbers.length===0){ alert('Ei tallennettuja numeroita'); return; }
-  if(!confirm(`Lähetä ${savedNumbers.length} numerolle?`)) return;
-  savedNumbers.forEach((num, idx)=>{
-    setTimeout(()=>{
-      const clean = num.replace('+','').replace(/\s/g,'');
-      window.open(`https://wa.me/${clean}?text=${encodeURIComponent(msg)}`,'_blank');
-    }, idx*800);
-  });
+  const el = document.getElementById('send-list'); el.style.display='block';
+  el.innerHTML = savedNumbers.map(n=>`<div class="num-item"><span>${esc(n)}</span><a class="badge" style="text-decoration:none" target="_blank" rel="noopener" href="https://wa.me/${esc(n.replace('+',''))}?text=${encodeURIComponent(msg)}">AVAA</a></div>`).join('');
 }
 function copyMessage(){
   const ta = document.getElementById('wa-message');
-  ta.select(); document.execCommand('copy');
-  alert('Kopioitu!');
+  if(navigator.clipboard){ navigator.clipboard.writeText(ta.value).then(()=>alert('Kopioitu!'),()=>alert('Kopioi käsin')); }
+  else { ta.select(); document.execCommand('copy'); alert('Kopioitu!'); }
 }
 renderNumbers();
 loadSource();

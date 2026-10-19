@@ -73,13 +73,13 @@ input[type="number"]:focus,select:focus{border-color:#1aff1a}
 <div style="background:#0a0a0a;border:1px solid #1e1e1e;border-radius:6px;padding:8px 10px;margin-top:8px">
 <div style="display:flex;justify-content:space-between;font-size:10px;color:#888;font-weight:700"><span>POTTI</span><span>JÄRJESTÄJÄLLE</span></div>
 <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:800;color:#1aff1a;margin-top:2px"><span>80%</span><span>20%</span></div>
-<div style="font-size:9px;color:#555;margin-top:6px;text-align:center">Jako lukittu: 1. 50% / 2. 30% / 3. 20% • Pyöristys 0,50€</div>
+<div style="font-size:9px;color:#555;margin-top:6px;text-align:center">Jako lukittu: 1. 50% / 2. 30% / 3. 20% • Pyöristys alas 0,50 €</div>
 </div>
 <button class="btn" onclick="calc()">LASKE →</button>
 </div></div>
 <div class="card card-list"><div class="top10-title"><span>TULOS</span><b id="p-summary">20 x 5€</b></div>
 <div style="padding:6px 10px;text-align:center"><div class="big-pot" id="p-total">100 €</div></div>
-<div class="result-row"><span class="result-label">Järjestäjälle 20%</span><span class="result-val" id="p-org">20 €</span></div>
+<div class="result-row"><span class="result-label">Järjestäjälle (20 % + pyöristys)</span><span class="result-val" id="p-org">20 €</span></div>
 <div class="result-row highlight"><span class="result-label">Potti 80%</span><span class="result-val green" id="p-prize">80 €</span></div>
 <div class="podium">
 <div class="podium-item first"><div class="podium-rank">1.</div><div class="podium-amount" id="p-1-amount">40 €</div></div>
@@ -112,11 +112,14 @@ function calc(){
     const p2 = 30;
     const p3 = 20;
     const doRound = true; // 0,50€ pyöristys lukittu
-    const total = count*fee;
+    const total = Math.max(0,count)*fee;
     const prize = total*potPct/100;
-    const org = total-prize;
-    let a1 = prize*p1/100, a2 = prize*p2/100, a3 = prize*p3/100;
-    if(doRound){a1=roundToHalf(a1);a2=roundToHalf(a2);a3=roundToHalf(a3);}
+    // Palkinnot pyöristetään ALASPÄIN 0,50 €:iin ja 1. saa loppuosan, jottei maksettava summa ylitä pottia.
+    // Pyöristysjäännös menee järjestäjälle.
+    const floorHalf = v=>Math.floor(v*2+1e-9)/2;
+    const a2 = floorHalf(prize*p2/100), a3 = floorHalf(prize*p3/100);
+    const a1 = floorHalf(prize) - a2 - a3;
+    const org = total-(a1+a2+a3);
     const summary = document.getElementById('p-summary');
     if(summary) summary.textContent = count+' x '+fee+'€';
     const totalEl = document.getElementById('p-total');

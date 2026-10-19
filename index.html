@@ -178,6 +178,19 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 <div class="grid-bottom"><div class="card card-bottom" id="card-vayla"><div class="vayla-header"><h3>VÄYLÄTILASTO - LIVE</h3><div class="live-badge" id="vayla-badge">● LIVE</div></div><div class="vayla-table-wrap" id="vayla-wrap"><table class="vayla"><thead><tr><th>Vayla</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>Tot</th><th>%</th></tr></thead><tbody id="vayla-body"></tbody></table></div></div></div>
 </div>
 <script>
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+async function refreshStatus(){
+  try{
+    const r = await fetch(`data/status.json?v=${Date.now()}`, {cache:"no-store"});
+    if(!r.ok) return;
+    const j = await r.json();
+    const t = new Date(j.generated_at); if(isNaN(t)) return;
+    const age = (Date.now() - t.getTime()) / 36e5;
+    const b = document.getElementById("vayla-badge"); if(!b) return;
+    if(age > 8){ b.textContent = "⚠ DATA " + Math.round(age) + "h VANHA"; b.style.background = "#ff9800"; }
+    else { b.textContent = "● PÄIVITETTY " + t.toLocaleTimeString("fi-FI",{hour:"2-digit",minute:"2-digit"}); b.style.background = ""; }
+  }catch(e){}
+}
 const LOCKED_PAR = ["4","3","3","3","3","3","3","3","4","3","5","4","41","-"];
 const LOCKED_PITUUS = ["125m","103m","72m","57m","94m","96m","103m","80m","116m","85m","197m","120m","1248m","-"];
 const fallback={
@@ -206,7 +219,7 @@ function renderTop(id,data){
   data.forEach((r,i)=>{
     const pc=r.plus&&r.plus.includes("-")?"neg":r.plus==="E"?"even":"pos";
     const d=document.createElement("div");d.className="trow";
-    d.innerHTML=`<span class="rank">${i+1}.</span><span class="name">${r.name}</span><span class="score">${r.total}</span><span class="plus ${pc}">${r.plus||""}</span>`;
+    d.innerHTML=`<span class="rank">${i+1}.</span><span class="name">${esc(r.name)}</span><span class="score">${esc(r.total)}</span><span class="plus ${pc}">${esc(r.plus||"")}</span>`;
     el.appendChild(d);
   });
 }
@@ -223,7 +236,7 @@ function renderTiedotteet(data,source=""){
     el.innerHTML="";
     valid.forEach(t=>{
       const div=document.createElement("div");div.className="tiedote-item";
-      div.innerHTML=`<div class="tiedote-date">${t.date||""}</div><div class="tiedote-title">${t.title||""}</div><div class="tiedote-msg">${t.message||""}</div>`;
+      div.innerHTML=`<div class="tiedote-date">${esc(t.date)}</div><div class="tiedote-title">${esc(t.title)}</div><div class="tiedote-msg">${esc(t.message)}</div>`;
       el.appendChild(div);
     });
     lastTiedotteet=valid;
@@ -310,7 +323,7 @@ function renderKilpailut(data){
       // Pakkassarja kisa kestää ~4h, joten +24h varmuudella ohi
       if(t + 24*60*60*1000 < now){
         // Jos on sarja (koko sarja), älä poista
-        if(k.isSeries) return false;
+        /* sarja poistuu kun sen päättymisestä on yli 24 h */
         return true;
       }
       // Jos reg on "Päättynyt" tai "Suljettu"
@@ -342,7 +355,7 @@ function renderKilpailut(data){
       const courseId = k.course||"";
       const reg = k.reg||"";
       const players = k.players||0;
-      div.innerHTML=`<div class="kilpailu-date">${date} ${reg? '• ' + reg:""} ${players? '• ' + players + ' hlö':""}</div><div class="kilpailu-name">${name}</div><div class="kilpailu-meta"><span class="kilpailu-course">${course} ${courseId}</span><span class="kilpailu-link">Näytä tilanne →</span></div>`;
+      div.innerHTML=`<div class="kilpailu-date">${esc(date)} ${reg? '• ' + esc(reg):""} ${players? '• ' + esc(players) + ' hlö':""}</div><div class="kilpailu-name">${esc(name)}</div><div class="kilpailu-meta"><span class="kilpailu-course">${esc(course)} ${esc(courseId)}</span><span class="kilpailu-link">Näytä tilanne →</span></div>`;
       div.addEventListener("click", ()=>{
         document.querySelectorAll(".kilpailu-item").forEach(e=>e.style.outline="");
         div.style.outline="1px solid #1aff1a";
@@ -353,7 +366,7 @@ function renderKilpailut(data){
     if(badge) badge.textContent=sorted.length; // näyttää vain aktiiviset, loppuneet poistettu
     // AUTO-LOAD: näytä tilanne suoraan korttiin ilman klikkausta - ensimmäinen aktiivinen
     if(sorted && sorted.length>0){
-      setTimeout(()=>{ loadKilpailuTilanne(sorted[0]); }, 100);
+      const keep = currentCompetition && sorted.find(x=>String(x.id)===String(currentCompetition.id)); setTimeout(()=>{ loadKilpailuTilanne(keep || sorted[0]); }, 100);
     }
   }catch(e){console.error(e);}
 }
@@ -378,7 +391,7 @@ async function loadKilpailuTilanne(k){
     const badge = document.getElementById("tilanne-badge");
     if(nameEl) nameEl.textContent = k.name||"Ladataan...";
     if(timeEl) timeEl.textContent = k.date||"";
-    if(listEl) listEl.innerHTML = `<div class="tilanne-empty">Haetaan tilannetta...<br>ID: ${compId}<br><br>api.php?content=result&id=${compId}</div>`;
+    if(listEl) listEl.innerHTML = `<div class="tilanne-empty">Haetaan tilannetta...</div>`;
     if(badge) badge.textContent = "⏳";
     try{
       const r = await fetch(`data/kilpailu_tilanne.json?v=${Date.now()}`,{cache:"no-store"});
@@ -420,10 +433,10 @@ async function loadKilpailuTilanne(k){
     if(listEl){
       // Näytä suoraan kortissa, ei LINKkiä - kuten viimeksi
       listEl.innerHTML = `<div class="tilanne-empty">
-        <span style="font-size:11px;color:#fff;font-weight:800">${k.name||"Kilpailu"}</span><br>
-        <span style="font-size:9px;color:#888">${k.date||""}</span><br><br>
+        <span style="font-size:11px;color:#fff;font-weight:800">${esc(k.name||"Kilpailu")}</span><br>
+        <span style="font-size:9px;color:#888">${esc(k.date)}</span><br><br>
         <span style="font-size:10px;color:#aaa">Ei tuloksia vielä</span><br>
-        <span style="font-size:9px;color:#555">${k.courseName||""} ${compId}</span><br><br>
+        <span style="font-size:9px;color:#555">${esc(k.courseName)} ${esc(compId)}</span><br><br>
         <span style="font-size:9px;color:#1aff1a">Päivittyy automaattisesti kun kisa alkaa</span>
       </div>`;
     }
@@ -446,11 +459,11 @@ function renderTilanne(comp){
       const status = comp.status || "Tulossa";
       const reg = comp.registered || 0;
       el.innerHTML = `<div class="tilanne-empty">
-        ${status}<br>
-        <span style="font-size:10px;color:#888">${reg} ilmoittautunut</span><br><br>
+        ${esc(status)}<br>
+        <span style="font-size:10px;color:#888">${esc(reg)} ilmoittautunut</span><br><br>
         <span style="font-size:11px;color:#aaa">Ei tuloksia vielä</span><br>
-        <span style="font-size:9px;color:#555">${comp.name||""}</span><br><br>
-        <span style="font-size:9px;color:#1aff1a">${comp.date||""}</span>
+        <span style="font-size:9px;color:#555">${esc(comp.name)}</span><br><br>
+        <span style="font-size:9px;color:#1aff1a">${esc(comp.date)}</span>
       </div>`;
       return;
     }
@@ -468,7 +481,7 @@ function renderTilanne(comp){
       const plus = r.plus || "";
       const isNeg = plus.includes("-");
       const pc = isNeg ? "neg" : (plus==="E" ? "" : "pos");
-      div.innerHTML = `<span class="tilanne-rank">${rank}.</span><span class="tilanne-name">${name}</span><span class="tilanne-score">${total}</span><span class="tilanne-plus ${pc}">${plus}</span>`;
+      div.innerHTML = `<span class="tilanne-rank">${esc(rank)}.</span><span class="tilanne-name">${esc(name)}</span><span class="tilanne-score">${esc(total)}</span><span class="tilanne-plus ${pc}">${esc(plus)}</span>`;
       el.appendChild(div);
     });
     const footer = document.createElement("div");
@@ -490,10 +503,10 @@ async function refreshAll(){
   try{const r=await fetch(`data/kierrokset.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.total_rounds){document.getElementById("v-kierrokset").textContent=j.total_rounds;document.getElementById("v-unique").textContent=j.unique_players;document.getElementById("v-peliaika").textContent=j.peliaika.display;document.getElementById("v-askel").textContent=j.askeleet.display;document.getElementById("v-km").textContent=j.kilometrit.display;}}}catch(e){}
   try{const r=await fetch(`data/vaylatilasto.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.pituus&&j.pituus.length>=12){j.par=LOCKED_PAR;j.pituus=LOCKED_PITUUS;renderVayla(j);}}}catch(e){}
   try{const r=await fetch(`data/udisc.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.top10&&j.top10.length>0)renderTop("list-udisc",j.top10.map(o=>({name:o.name,total:o.total,plus:o.plus_minus||o.plus||""})));}}catch(e){}
-  try{const r=await fetch(`data/metrix_kilpailut.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();const list=j.upcoming||j.kilpailut||j.events||[];if(list.length>0){ renderKilpailut(list); } else { renderKilpailut(fallback.kilpailut); } }}catch(e){ renderKilpailut(fallback.kilpailut); }
+  try{const r=await fetch(`data/metrix_kilpailut.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();const list=j.upcoming||j.kilpailut||j.events||[];if(list.length>0){ renderKilpailut(list); } else { renderKilpailut([]); } }}catch(e){ renderKilpailut(fallback.kilpailut); }
   // AUTO-LOAD tilanne suoraan korttiin ilman klikkausta
-  try{const r=await fetch(`data/kilpailu_tilanne.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.current && j.current.results){ renderTilanne(j.current); } else if(j.competitions && j.competitions.length>0 && j.competitions[0].results){ renderTilanne(j.competitions[0]); } }}catch(e){}
-  try{const r=await fetch(`data/tiedotteet.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.tiedotteet&&Array.isArray(j.tiedotteet)&&j.tiedotteet.length>0){renderTiedotteet(j.tiedotteet,"live fetch");}}}catch(e){}
+  try{const r=await fetch(`data/kilpailu_tilanne.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();const cid = currentCompetition ? String(extractCompetitionId(currentCompetition)) : null; const pick = (j.competitions||[]).find(c=>String(c.id)===cid) || (cid ? null : j.current); if(pick){ renderTilanne(pick); } }}catch(e){}
+  try{const r=await fetch(`data/tiedotteet.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.tiedotteet&&Array.isArray(j.tiedotteet)&&j.tiedotteet.length>0){renderTiedotteet(j.tiedotteet,"live fetch");}else if(j.tiedotteet&&Array.isArray(j.tiedotteet)){lastTiedotteet=null;try{localStorage.removeItem("luoma_tiedotteet_v1");}catch(e){}const tl=document.getElementById("list-tiedotteet");if(tl)tl.innerHTML='<div class="tiedote-item"><div class="tiedote-msg">Ei tiedotteita</div></div>';}}}catch(e){}
   try{
     const r=await fetch(`data/vieraskirja.json?v=${Date.now()}`,{cache:"no-store"});
     if(r.ok){
@@ -522,7 +535,7 @@ async function refreshAll(){
     }
   }catch(e){console.log("vieraskirja fetch fail", e);}
 }
-setInterval(refreshAll, 300000);
+refreshAll(); refreshStatus(); setInterval(()=>{ refreshAll(); refreshStatus(); }, 180000);
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")refreshAll();});
 </script>
 </body></html>
