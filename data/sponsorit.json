@@ -1,0 +1,42 @@
+{
+  "sponsors": [
+    {
+      "name": "Alajärven kaupunki",
+      "tier": "Pääsponsori",
+      "logo": "logot/l-a-friba-logo.jpg",
+      "url": "https://www.alajarvi.fi",
+      "desc": "Kaupungin tuki radalle"
+    },
+    {
+      "name": "L-A Friba",
+      "tier": "Ratayhtiö",
+      "logo": "logot/l-a-friba-logo.jpg",
+      "url": "",
+      "desc": "Luoma-ahon Frisbeegolfrata"
+    },
+    {
+      "name": "1000 Markkaa",
+      "tier": "Kisasponsori",
+      "logo": "logot/1000mrkkaa-70x35.jpg",
+      "url": "",
+      "desc": "Palkintolaskuri 1000 mk"
+    },
+    {
+      "name": "Paikallinen Yritys",
+      "tier": "Väyläsponsori",
+      "logo": "",
+      "url": "",
+      "desc": "Tule mukaan sponsoroimaan!"
+    },
+    {
+      "name": "DiscGolf Park",
+      "tier": "Välineet",
+      "logo": "",
+      "url": "",
+      "desc": "Kiekot ja varusteet"
+    }
+  ],
+  "rotation_interval": 4000,
+  "updated": "19.10.2026",
+  "version": "V1.0 - Sponsorit automaattinen"
+}
