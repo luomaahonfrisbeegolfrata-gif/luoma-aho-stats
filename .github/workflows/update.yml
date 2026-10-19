@@ -1,39 +1,65 @@
-name: Update DiscGolf Stats V5.3.2 FINAL LOCKED
+name: Update stats
+
 on:
   schedule:
-    - cron: '0 */3 * * *'
+    - cron: '*/30 * * * *'          # kilpailut ja tilanne; GitHub voi viivästyttää ajoa
+  push:
+    branches: [main]
+    paths: ['scripts/config.json', 'scripts/build_stats.py']
   workflow_dispatch:
+
 concurrency:
   group: update-stats
   cancel-in-progress: false
+
+permissions:
+  contents: write
+
 jobs:
-  update-stats:
+  update:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
-        with: {python-version: '3.11'}
-      - run: pip install requests beautifulsoup4 lxml || true
-      - name: Show locked V5.3.2
+        with:
+          python-version: '3.11'
+
+      - run: pip install requests beautifulsoup4
+
+      # Laskee kierrokset.json + vaylatilasto.json config.json:sta (kirjoittaa vain jos sisältö muuttui)
+      - name: Build stats
+        run: python scripts/build_stats.py
+
+      - name: Metrix competitions and standings
+        id: comp
+        continue-on-error: true
+        run: python scripts/metrix_competitions.py
+
+      # Valinnainen: top10-haku, jos scripts/metrix_fetcher.py on repossa
+      - name: Metrix top10
+        id: top10
+        continue-on-error: true
         run: |
-          echo "V5.3.2 FINAL LOCKED - 1208/49.55/6/444"
-          cat data/kierrokset.json | grep -E "total_rounds|version|locked" || true
-          cat data/vaylatilasto.json | grep -E "avg_total|total_rounds|version|locked" || true
-          cat data/vieraskirja.json | grep -E "count|avg|version|locked" || true
-          cat data/udisc.json | grep -E "total_rounds|version|locked" || true
-      - name: Metrix LIVE top10 only (kierrokset lukittu 1208)
-        run: |
-          if [ -f scripts/metrix_fetcher.py ]; then python scripts/metrix_fetcher.py || true; fi
-          if [ -f metrix_fetcher.py ]; then python metrix_fetcher.py || true; fi
-      - name: Commit LIVE only - EI lukittuja
+          if [ -f scripts/metrix_fetcher.py ]; then python scripts/metrix_fetcher.py; else echo "metrix_fetcher.py puuttuu, ohitetaan"; fi
+
+      - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/metrix_*.json data/tiedotteet.json || true
-          git checkout HEAD -- data/kierrokset.json data/vaylatilasto.json data/vieraskirja.json data/udisc.json || echo "locked restored"
-          git diff --cached --quiet && echo "No changes" && exit 0
-          git commit -m "V5.3.2 FINAL LOCKED - Metrix live top10, 1208/49.55/6/444 locked - $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          git pull --rebase origin main || true
-          git push
+          git add data/
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "Update data $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && exit 0
+            sleep 5
+          done
+          exit 1
+
+      # Näkyviin Actions-listaan jos jokin haku kaatui (ei enää '|| true' -piilotusta)
+      - name: Fail if a fetch failed
+        if: steps.comp.outcome == 'failure' || steps.top10.outcome == 'failure'
+        run: |
+          echo "Jokin datahaku epäonnistui, katso edelliset vaiheet"
+          exit 1
