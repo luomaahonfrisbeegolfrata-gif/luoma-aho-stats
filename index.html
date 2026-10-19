@@ -121,30 +121,6 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 .tilanne-empty{padding:20px 12px;text-align:center;color:#666;font-size:11px;line-height:1.4}
 .tilanne-header{font-size:9px;color:#888;padding:4px 8px;background:#111;border-bottom:1px solid #222;display:flex;justify-content:space-between}
 
-
-/* Sponsorit - sama koko kuin Metrix 260x380 */
-#card-sponsorit{height:380px!important;min-height:380px!important;max-height:380px!important;padding:0!important;overflow:hidden!important;width:260px!important;min-width:260px!important;max-width:260px!important;display:flex!important;flex-direction:column!important;background:#151515;border:1px solid #242424;border-radius:10px}
-.sponsorit-header{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:#111;border-bottom:1px solid #242424;flex-shrink:0}
-.sponsorit-header h3{margin:0;font-size:11px;color:#fff;letter-spacing:0.5px}
-.sponsorit-body{flex:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#0f0f0f}
-.sponsor-slide{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px;opacity:0;transform:translateX(100%);transition:all 0.6s ease}
-.sponsor-slide.active{opacity:1;transform:translateX(0)}
-.sponsor-slide.prev{opacity:0;transform:translateX(-100%)}
-.sponsor-logo{width:140px;height:90px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid #333}
-.sponsor-logo img{max-width:100%;max-height:100%;object-fit:contain;display:block}
-.sponsor-logo.placeholder{background:#1a1a1a;color:#1aff1a;font-size:28px;font-weight:900}
-.sponsor-info{text-align:center}
-.sponsor-name{font-size:16px;font-weight:800;color:#fff;margin:2px 0}
-.sponsor-tier{font-size:9px;color:#1aff1a;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
-.sponsor-desc{font-size:10px;color:#aaa;line-height:1.2;margin-top:4px}
-.sponsor-dots{display:flex;gap:5px;align-items:center}
-.sponsor-dot{width:6px;height:6px;border-radius:50%;background:#333;cursor:pointer;transition:all 0.3s}
-.sponsor-dot.active{background:#1aff1a;width:18px}
-.sponsor-progress{position:absolute;bottom:0;left:0;height:2px;background:#1aff1a}
-@media (max-width:768px){
-  #card-sponsorit{width:100%!important;min-width:100%!important;max-width:100%!important}
-}
-
 </style></head><body>
 <header><div class="brand"><div class="brand-logo"><img src="logot/l-a-friba-logo.jpg" alt="L-A FRIBA" style="width:35px;height:35px;object-fit:cover;display:block" /></div> Luoma-ahon Frisbeegolfrata</div><div class="header-icons"><a href="./palkintolaskuri.html" style="width:71px;height:35px;min-width:71px;background:#111;border:1px solid #1aff1a88;border-radius:8px;overflow:hidden;display:grid;place-items:center;text-decoration:none;margin-right:6px" title="Palkintolaskuri"><img src="logot/1000mrkkaa-70x35.jpg" alt="1000" style="width:71px;height:35px;object-fit:cover;display:block"/></a>
 <a href="https://www.google.com/maps/place/Luoma-ahon+Frisbeegolfrata/@63.0901676,23.8860139,12z/" target="_blank" title="Google Maps" style="width:35px;height:35px;min-width:35px;background:#fff;border-radius:8px;display:grid;place-items:center;overflow:hidden;border:1px solid #333;flex-shrink:0"><img src="logot/gmaps-logo.jpg" alt="Maps" style="width:100%;height:100%;object-fit:cover;display:block" /></a>
@@ -160,10 +136,10 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 </div></header>
 <div class="wrap">
 <div class="grid-top">
-<div class="card"><div class="bullet">Kallioisessa mäntymetsä maastossa</div><div class="bullet">Kompaktiin pakettiin suunniteltu ja toteutettu</div><div class="bullet">Huippu kuntoinen metsärata</div><div class="bullet">Vaylat 57 - 197m teknisiä ja kiekko kontrollia vaativia</div><div class="bullet">Tarkkuus, oikea kiekko ja heittovalinnat avainasemassa onnistumiseen</div><div class="bullet">Mukava rata kiertää joka soveltuu kaikille iästä ja taitotasosta riippumatta</div><div class="bullet">Korkeuserot, rehelliset selkeät linjat</div><div class="bullet">Kierros noin 1.5km peliaika noin tunti</div><div class="bullet">OB:t ja Mandot haastavat pelaajan päätöksentekoa</div></div>
+<div class="card"><div class="bullet">Kallioisessa mäntymetsä maastossa</div><div class="bullet">Kompaktiin pakettiin suunniteltu ja toteutettu</div><div class="bullet">Huippu kuntoinen metsärata</div><div class="bullet">BB1 papereissa, A1 pituudessa, AA1 teknisyyksessä</div><div class="bullet">Vaylat 57 - 197m teknisiä ja kiekko kontrollia vaativia</div><div class="bullet">Tarkkuus, oikea kiekko ja heittovalinnat avainasemassa onnistumiseen</div><div class="bullet">Mukava rata kiertää joka soveltuu kaikille iästä ja taitotasosta riippumatta</div><div class="bullet">Korkeuserot, rehelliset selkeät linjat</div><div class="bullet">Kierros noin 1.5km peliaika noin tunti</div><div class="bullet">OB:t ja Mandot haastavat pelaajan päätöksentekoa</div></div>
 <div class="card"><div class="label">Metrix & UDisc tuloskirjattujen kierrosten määrä</div><div class="big-num" id="v-kierrokset">1221</div><div class="divider"></div><div class="label">Uniikit pelaajat</div><div class="big-num" style="font-size:36px" id="v-unique">133</div></div>
 <div class="card" style="width:200px;min-width:200px;max-width:200px"><div class="label">Hole in One</div><div class="vayla-big">5</div><div class="vayla-green">Väylä 4</div><div class="vayla-name">Benjamin Turja</div><div class="vayla-name">Julius Luoma-aho</div><div class="vayla-name">Juha Luoma-aho</div><div class="vayla-name">Aleksi Lassila</div><div class="vayla-green" style="margin-top:12px">Väylä 8</div><div class="vayla-name">Pentti Pitkäranta</div></div>
-<div id="c-midstack"><div class="mini"><div class="mini-label">Peliaika</div><div class="mini-val" id="v-peliaika">1630h</div></div><div class="mini"><div class="mini-label">Askelmäärä</div><div class="mini-val" id="v-askel">3 440 589</div></div><div class="mini"><div class="mini-label">Kilometrit</div><div class="mini-val" id="v-km">2508 km</div></div></div>
+<div id="c-midstack"><div class="mini"><div class="mini-label">Peliaika</div><div class="mini-val" id="v-peliaika">1627h</div></div><div class="mini"><div class="mini-label">Askelmäärä</div><div class="mini-val" id="v-askel">3 437 283</div></div><div class="mini"><div class="mini-label">Kilometrit</div><div class="mini-val" id="v-km">2506 km</div></div></div>
 <div class="card"><div class="top10-title"><span>TIEDOTTEET</span><b id="tiedote-badge">LIVE</b></div><div class="tiedote-list" id="list-tiedotteet"></div></div>
 <div id="foreca-stack" style="width:260px;min-width:260px;max-width:260px;height:320px;display:flex;flex-direction:column;gap:10px">
 <div class="card" id="card-foreca" style="height:160px;min-height:160px;max-height:160px;width:260px;min-width:260px;max-width:260px">
@@ -200,8 +176,6 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 </div>
 
 <div class="grid-bottom"><div class="card card-bottom" id="card-vayla"><div class="vayla-header"><h3>VÄYLÄTILASTO - LIVE</h3><div class="live-badge" id="vayla-badge">● LIVE</div></div><div class="vayla-table-wrap" id="vayla-wrap"><table class="vayla"><thead><tr><th>Vayla</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>Tot</th><th>%</th></tr></thead><tbody id="vayla-body"></tbody></table></div></div></div>
-
-<div class="grid-bottom" style="margin-top:10px;width:260px;min-width:260px;max-width:260px"><div class="card card-mid" id="card-sponsorit"><div class="sponsorit-header"><h3>SPONSORIT</h3><div style="display:flex;align-items:center;gap:8px"><div class="sponsor-dots" id="sponsor-dots"></div><div class="live-badge" style="background:#1aff1a;color:#000;font-size:10px;font-weight:800;padding:3px 8px;border-radius:10px">AUTO</div></div></div><div class="sponsorit-body" id="sponsor-body"><div style="color:#666;font-size:11px">Ladataan...</div><div class="sponsor-progress" id="sponsor-progress" style="width:0%"></div></div></div></div>
 </div>
 <script>
 const LOCKED_PAR = ["4","3","3","3","3","3","3","3","4","3","5","4","41","-"];
@@ -211,7 +185,7 @@ top44010:[{name:"Toni Luoma-aho",total:42,plus:"+1"},{name:"Eino Vistiaho",total
 top44763:[{name:"Timo Alalantela",total:82,plus:"E"},{name:"Aapo Penttilä",total:83,plus:"+1"},{name:"Evert Väkeväinen",total:85,plus:"+3"},{name:"Daniel Turja",total:87,plus:"+5"},{name:"Eero Tuohimaa",total:88,plus:"+6"},{name:"Marko Tuohimaa",total:90,plus:"+8"},{name:"Benjamin Turja",total:91,plus:"+9"},{name:"Aapo Viinamäki",total:91,plus:"+9"},{name:"Julius Luoma-aho",total:92,plus:"+10"},{name:"Eino Vistiaho",total:92,plus:"+10"}],
 topUdisc:[{name:"@kantanen8",total:35,plus:"-6",date:"4.7.2026"},{name:"@valkoparta",total:36,plus:"-5",date:"6.7.2026"},{name:"@mattiasss",total:36,plus:"-5",date:"19.8.2026"},{name:"@dashyy",total:38,plus:"-3",date:"13.9.2025"},{name:"@itkonenjere",total:38,plus:"-3",date:"29.4.2026"},{name:"@peetu7",total:39,plus:"-2",date:"24.7.2026"},{name:"@kimmoke",total:39,plus:"-2",date:"11.10.2026"},{name:"@taspak",total:42,plus:"+1",date:"16.7.2026"},{name:"@adusti",total:43,plus:"+2",date:"20.7.2026"},{name:"@tommivluoma",total:47,plus:"+6",date:"8.8.2026"}],
 tiedotteet:[{date:"09.10.2026",title:"Rata auki - syyskausi",message:"Luoma-ahon rata on nyt täydessä syyskunnossa. Väyläopasteet päivitetty.",type:"info"},{date:"05.10.2026",title:"Viikkokisat #3",message:"Aapo Penttilä voitti tuloksella 83 (+1). Seuraavat kisat 18.10.",type:"success"}],
-vayla:{pituus:LOCKED_PITUUS,par:LOCKED_PAR,avg:["4.49", "3.81", "3.52", "3.37", "3.56", "4.13", "4.05", "3.44", "4.65", "4.05", "6.04", "4.44", "49.55", "-"],avgCls:["cell-yellow", "cell-orange", "cell-orange", "cell-yellow", "cell-orange", "cell-red", "cell-red", "cell-yellow", "cell-orange", "cell-red", "cell-red", "cell-yellow", "cell-dark", "cell-dark"],diff:["4", "8", "5", "1", "6", "12", "10", "2", "7", "11", "9", "3", "78", "-"],diffCls:["cell-yellow", "cell-orange", "cell-yellow", "cell-green", "cell-yellow", "cell-red", "cell-red", "cell-green", "cell-orange", "cell-red", "cell-orange", "cell-green", "cell-dark", "cell-dark"],hio:[0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0, 0, 5, "0.0%"],birdie:[147, 45, 84, 301, 45, 45, 45, 138, 124, 45, 77, 253, 1349, "9.2%"],par0:[557, 413, 648, 377, 613, 348, 345, 564, 548, 342, 301, 530, 5586, "38.1%"],bogey:[336, 494, 318, 351, 366, 537, 539, 337, 357, 541, 516, 285, 4977, "34.0%"],dbl:[124, 184, 118, 130, 135, 200, 200, 124, 132, 201, 224, 106, 1878, "12.8%"],tpl:[38, 58, 36, 40, 41, 63, 63, 38, 40, 63, 71, 32, 583, "4.0%"],other:[19, 27, 17, 18, 21, 28, 29, 19, 20, 29, 32, 15, 274, "1.9%"]},
+vayla:{pituus:LOCKED_PITUUS,par:LOCKED_PAR,avg:["4.49", "3.81", "3.52", "3.37", "3.56", "4.13", "4.05", "3.44", "4.65", "4.05", "6.04", "4.44", "49.55", "-"],avgCls:["cell-yellow", "cell-orange", "cell-orange", "cell-yellow", "cell-orange", "cell-red", "cell-red", "cell-yellow", "cell-orange", "cell-red", "cell-red", "cell-yellow", "cell-dark", "cell-dark"],diff:["4", "8", "5", "1", "6", "12", "10", "2", "7", "11", "9", "3", "78", "-"],diffCls:["cell-yellow", "cell-orange", "cell-yellow", "cell-green", "cell-yellow", "cell-red", "cell-red", "cell-green", "cell-orange", "cell-red", "cell-orange", "cell-green", "cell-dark", "cell-dark"],hio:[0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0, 0, 5, "0.0%"],birdie:[143, 45, 82, 295, 45, 45, 45, 136, 122, 45, 75, 247, 1325, "9.1%"],par0:[558, 436, 645, 384, 630, 353, 350, 564, 547, 367, 241, 531, 5606, "38.7%"],bogey:[328, 484, 312, 343, 358, 525, 527, 329, 349, 529, 506, 279, 4869, "33.6%"],dbl:[122, 180, 116, 128, 133, 196, 196, 122, 130, 197, 220, 104, 1844, "12.7%"],tpl:[38, 56, 36, 40, 41, 61, 61, 38, 40, 61, 69, 32, 573, "4.0%"],other:[19, 27, 17, 18, 21, 28, 29, 19, 20, 29, 32, 15, 274, "1.9%"]},
 kilpailut:[
   {date:"07.11 - 19.12.2026",name:"PAKKASSARJA KOKO SARJA - 4 parasta 7:stä",course:"44010",courseName:"Luoma-aho",competitionId:"3819613",id:"3819613",type:"Sarja",url:"https://discgolfmetrix.com/3819613",reg:"Avoinna",players:1,isSeries:true},
   {date:"07.11.2026 12:00",name:"PAKKASSARJA #1 - 7.11",course:"44010",courseName:"Luoma-aho",competitionId:"3819645",id:"3819645",type:"Viikkokisa",url:"https://discgolfmetrix.com/3819645",reg:"Avoinna",players:1},
@@ -505,118 +479,10 @@ function renderTilanne(comp){
 }
 
 if(lastTiedotteet){renderTiedotteet(lastTiedotteet,"localStorage init");}
-loadSponsors();
 else{renderTiedotteet(fallback.tiedotteet,"fallback init");}
 renderTop("list-44010",fallback.top44010);renderTop("list-44763",fallback.top44763);renderTop("list-udisc",fallback.topUdisc);renderVayla(fallback.vayla);renderKilpailut(fallback.kilpailut);
 // Yritä ladata tilanne suoraan korttiin ilman Metrix-klikkausta
 (async()=>{ try{ const r=await fetch(`data/kilpailu_tilanne.json?v=${Date.now()}`,{cache:"no-store"}); if(r.ok){ const j=await r.json(); if(j.current){ renderTilanne(j.current); } else if(j.competitions && j.competitions[0]){ renderTilanne(j.competitions[0]); } } }catch(e){} })();
-
-
-// Sponsorit - sama koko kuin Metrix, automaattinen rotaatio
-var fallbackSponsors = [
-  {name:"Alumech",tier:"Pääsponsori",logo:"logot/alumech-logo.jpg",desc:"Alumiinirakenteet"},
-  {name:"AL MEN",tier:"Väyläsponsori",logo:"logot/almen-logo.jpg",desc:"Alumiiniprofiilit"},
-  {name:"Mäkelä Alu",tier:"Väyläsponsori",logo:"logot/makela-alu-logo.jpg",desc:"Alumiiniratkaisut"},
-  {name:"Aisapari",tier:"Leader",logo:"logot/aisapari-logo.jpg",desc:"LEADER Aisapari"},
-  {name:"Alajärven kaupunki",tier:"Kaupunki",logo:"logot/l-a-friba-logo.jpg",desc:"Kaupungin tuki"},
-  {name:"L-A Friba",tier:"Ratayhtiö",logo:"logot/l-a-friba-logo.jpg",desc:"12 väylää, PAR 41"},
-  {name:"1000 Markkaa",tier:"Kisa",logo:"logot/1000mrkkaa-70x35.jpg",desc:"Palkintolaskuri"}
-];
-var sponsors = fallbackSponsors;
-var currentSponsor = 0;
-var sponsorInterval = null;
-
-function renderSponsors(){
-  var body = document.getElementById("sponsor-body");
-  var dots = document.getElementById("sponsor-dots");
-  if(!body) return;
-  body.innerHTML = '<div class="sponsor-progress" id="sponsor-progress" style="width:0%"></div>';
-  if(dots) dots.innerHTML = "";
-  for(var i=0;i<sponsors.length;i++){
-    var s = sponsors[i];
-    var slide = document.createElement("div");
-    slide.className = "sponsor-slide" + (i===0 ? " active" : "");
-    var logoPart = "";
-    if(s.logo){
-      logoPart = '<div class="sponsor-logo"><img src="'+s.logo+'" alt="'+s.name+'"></div>';
-    } else {
-      logoPart = '<div class="sponsor-logo placeholder">'+s.name.charAt(0)+'</div>';
-    }
-    var infoPart = '<div class="sponsor-info"><div class="sponsor-tier">'+(s.tier||"")+'</div><div class="sponsor-name">'+s.name+'</div><div class="sponsor-desc">'+(s.desc||"")+'</div></div>';
-    if(s.url){
-      slide.innerHTML = '<a href="'+s.url+'" target="_blank" style="display:flex;flex-direction:column;align-items:center;gap:12px;text-decoration:none;color:inherit">'+logoPart+infoPart+'</a>';
-    } else {
-      slide.innerHTML = logoPart+infoPart;
-    }
-    body.appendChild(slide);
-    if(dots){
-      var dot = document.createElement("div");
-      dot.className = "sponsor-dot" + (i===0 ? " active" : "");
-      dot.onclick = (function(idx){ return function(){ goToSponsor(idx); }; })(i);
-      dots.appendChild(dot);
-    }
-  }
-  startSponsorRotation();
-}
-
-function goToSponsor(index){
-  var slides = document.querySelectorAll(".sponsor-slide");
-  var dots = document.querySelectorAll(".sponsor-dot");
-  if(index<0) index = sponsors.length-1;
-  if(index>=sponsors.length) index = 0;
-  for(var i=0;i<slides.length;i++){
-    slides[i].classList.remove("active","prev");
-    if(i===currentSponsor) slides[i].classList.add("prev");
-  }
-  for(var i=0;i<dots.length;i++) dots[i].classList.remove("active");
-  (function(idx){
-    setTimeout(function(){
-      var sl = document.querySelectorAll(".sponsor-slide");
-      var dt = document.querySelectorAll(".sponsor-dot");
-      for(var j=0;j<sl.length;j++) sl[j].classList.remove("prev");
-      if(sl[idx]) sl[idx].classList.add("active");
-      if(dt[idx]) dt[idx].classList.add("active");
-    },50);
-  })(index);
-  currentSponsor = index;
-  resetProgress();
-}
-
-function nextSponsor(){ goToSponsor(currentSponsor+1); }
-
-function startSponsorRotation(){
-  if(sponsorInterval) clearInterval(sponsorInterval);
-  sponsorInterval = setInterval(nextSponsor, 4000);
-  resetProgress();
-}
-
-function resetProgress(){
-  var progress = document.getElementById("sponsor-progress");
-  if(!progress) return;
-  progress.style.transition = "none";
-  progress.style.width = "0%";
-  setTimeout(function(){
-    var p = document.getElementById("sponsor-progress");
-    if(p){
-      p.style.transition = "width 4s linear";
-      p.style.width = "100%";
-    }
-  },50);
-}
-
-function loadSponsors(){
-  fetch("data/sponsorit.json?v="+Date.now(),{cache:"no-store"}).then(function(r){
-    if(r.ok) return r.json();
-    throw new Error("no json");
-  }).then(function(j){
-    if(j.sponsors && j.sponsors.length>0){
-      sponsors = j.sponsors;
-    }
-    renderSponsors();
-  }).catch(function(e){
-    renderSponsors();
-  });
-}
 
 async function refreshAll(){
   try{const r=await fetch(`data/metrix_44010.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.top10&&j.top10.length>0)renderTop("list-44010",j.top10.map(o=>({name:o.name,total:o.total,plus:o.plus_minus||o.plus||""})));}}catch(e){}
