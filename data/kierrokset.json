@@ -26,28 +26,18 @@
     "display": "2508 km",
     "km": 2508
   },
-  "updated": "19.10.2026 02:35 - automaattinen + suoja",
-  "fetched_at": "2026-10-19T09:35:00.508645+00:00",
-  "version": "V6.3 AUTOMAATTINEN SUOJATTU - 1221 kierrosta (Metrix 768 + UDisc 453)",
-  "source": "Metrix 768 + UDisc 453 = 1221 - automaattinen, ylikirjoitus estetty",
-  "locked": false,
-  "protected": true,
-  "min_values": {
-    "total": 1221,
-    "metrix": 768,
-    "udisc": 453,
-    "peliaika": 1627,
-    "askeleet": 3437283,
-    "km": 2506,
-    "unique": 133
-  },
+  "updated": "19.10.2026 04:20 - MANUAALINEN KUVISTA",
+  "fetched_at": "2026-10-19T11:20:19.447907+00:00",
+  "version": "V7.0 MANUAL - 1221 kierrosta (Metrix 768 + UDisc 453) - VAIN KUVISTA",
+  "source": "MANUAALINEN: Metrix 768 (kuvasta) + UDisc 453 (kuvasta) = 1221 - PÄIVITETTY VAIN KUVISTA",
+  "locked": true,
+  "manual_only": true,
+  "automatic": false,
+  "note": "Total rounds EI AUTOMAATTINEN - päivitetään VAIN käyttäjän antamista Metrix ja UDisc kuvista",
   "calculation": {
-    "method": "Automaattinen: Metrix summa {'44010': 619, '44763': 130, '48112': 19} = 768 + UDisc 453 = 1221, suoja min 1221",
+    "method": "MANUAALINEN KUVISTA: Metrix {'44010': 619, '44763': 130, '48112': 19} = 768 + UDisc 453 = 1221",
     "total_rounds": 1221,
-    "peliaika": "1630h (suojattu min 1627)",
-    "askeleet": "3440589 (suojattu min 3437283)",
-    "km": "2508 km (suojattu min 2506)",
-    "protection": "Ei koskaan alaspäin: vanha 1221 -> uusi 1221, min 1221"
+    "source": "KUVAT: Metrix kuvaruutukaappaus + UDisc Elinikäiset tilastot kuva"
   },
   "previous": {
     "total_rounds": 1221,

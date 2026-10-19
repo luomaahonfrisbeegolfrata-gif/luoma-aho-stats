@@ -17,7 +17,7 @@
   "source": "UDisc Elinikäiset tilastot - 453 kierrosta, 630h, 70 pelaajaa, 1 344 654 askelta - kuva 19.10.2026 06.03",
   "fetched_at": "2026-10-19T06:03:00",
   "version": "V6.1 - Päivitetty 19.10.2026 - 453 kierrosta (was 444)",
-  "locked": false,
+  "locked": true,
   "top10": [
     {
       "rank": 1,
@@ -106,5 +106,8 @@
     "virkistystunnit": 618,
     "askeleet": 1318270,
     "updated": "13.10.2026"
-  }
+  },
+  "manual_only": true,
+  "automatic": false,
+  "note": "UDisc päivitetään VAIN käyttäjän antamasta Elinikäiset tilastot KUVASTA - ei automaattinen"
 }
