@@ -178,7 +178,16 @@
     "default_course": {
       "id": "44010",
       "name": "Luoma-aho"
-    }
+    },
+    "series_points": [
+      10,
+      8,
+      6,
+      3,
+      2,
+      1
+    ],
+    "series_best_of": 4
   },
   "udisc_real_distribution_perc": {
     "1": {
@@ -310,5 +319,13 @@
     "peliaika_h": 1630,
     "askeleet": 3440589,
     "note": "Käsin lukittu. Poista tämä lohko, niin build_stats laskee arvot kaavalla (Metrix-kierrokset x UDisc-keskiarvo)."
-  }
+  },
+  "birdie_estimated_holes": [
+    2,
+    5,
+    6,
+    7,
+    10
+  ],
+  "_birdie_note": "Väylien 2,5,6,7,10 birdie-luku oli paikkamerkki 45; build_stats laskee sen UDiscin birdie-%:sta (x kierrokset). Poista väylä listasta, kun oikea luku on tiedossa ja kirjoitettu distribution.birdie-taulukkoon."
 }

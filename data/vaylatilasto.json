@@ -119,35 +119,35 @@
   ],
   "birdie": [
     147,
-    45,
+    37,
     84,
     301,
-    45,
-    45,
-    45,
+    49,
+    49,
+    37,
     138,
     124,
-    45,
+    49,
     77,
     253,
-    1349,
+    1345,
     "9.2%"
   ],
   "par0": [
     557,
-    413,
+    421,
     648,
     377,
-    613,
-    348,
-    345,
+    609,
+    344,
+    353,
     564,
     548,
-    342,
+    338,
     301,
     530,
-    5586,
-    "38.1%"
+    5590,
+    "38.2%"
   ],
   "bogey": [
     336,
@@ -213,6 +213,16 @@
     274,
     "1.9%"
   ],
+  "estimated": {
+    "birdie_holes": [
+      2,
+      5,
+      6,
+      7,
+      10
+    ],
+    "note": "Birdie-luvut väylillä 2, 5, 6, 7, 10 on arvioitu UDiscin jakaumasta (sama osuus kaikille kierroksille)."
+  },
   "calculation": {
     "formula": "(Metrix_avg * metrix_rounds + UDisc_avg * udisc_rounds) / total_rounds",
     "metrix_rounds": 768,
@@ -223,6 +233,6 @@
   },
   "as_of": "2026-10-19",
   "version": "V2.0",
-  "updated": "19.10.2026 22:43",
-  "fetched_at": "2026-10-19T19:43:37.101751+00:00"
+  "updated": "19.10.2026 23:09",
+  "fetched_at": "2026-10-19T20:09:24.179544+00:00"
 }

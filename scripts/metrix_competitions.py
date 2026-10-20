@@ -40,6 +40,8 @@ def find_data_comp():
 CFG_PATH = find_config_comp()
 DATA = find_data_comp()
 CFG = json.loads(CFG_PATH.read_text(encoding="utf-8"))["competitions"]
+PTS = CFG.get("series_points", [10, 8, 6, 3, 2, 1])
+BEST = CFG.get("series_best_of", 4)
 BASE = "https://discgolfmetrix.com"
 API = f"{BASE}/api.php"
 HEADERS = {"User-Agent": CFG.get("user_agent", "luoma-aho-stats/1.0")}
@@ -155,6 +157,29 @@ def parse_results(comp):
     return len(rows), ranked
 
 
+def series_standings(rounds, points, best):
+    """Sarjan kokonaistilanne. rounds = päättyneiden kisojen tulosrivit ({rank,name,...}).
+    Sijapisteet kisoittain (points[0] = 1. sija); tasapisteissä sama sija = samat pisteet; sija yli taulukon = 0 p.
+    Summa = parhaat `best` kisaa. Järjestys: summa, sitten kaikkien pisteiden summa; samat luvut = sama sija."""
+    table = {}
+    for rows in rounds:
+        for r in rows:
+            key = " ".join(str(r["name"]).split()).casefold()
+            p = points[r["rank"] - 1] if 1 <= r["rank"] <= len(points) else 0
+            table.setdefault(key, {"name": r["name"], "pts": []})["pts"].append(p)
+    rows = []
+    for e in table.values():
+        s = sorted(e["pts"], reverse=True)
+        rows.append({"name": e["name"], "total": sum(s[:best]), "all": sum(s), "rounds": len(s)})
+    rows.sort(key=lambda x: (-x["total"], -x["all"], x["name"].casefold()))
+    out, last, rank = [], None, 0
+    for i, x in enumerate(rows, 1):
+        if (x["total"], x["all"]) != last:
+            rank, last = i, (x["total"], x["all"])
+        out.append({"rank": rank, "name": x["name"], "total": x["total"], "plus": "", "rounds": x["rounds"]})
+    return out[:30]
+
+
 def main():
     if requests is None:
         sys.exit("requests puuttuu: pip install requests beautifulsoup4")
@@ -231,6 +256,10 @@ def main():
                 tilanne[sid]["status"] = sreg
                 tilanne[sid]["isLive"] = sreg == "Käynnissä"
                 tilanne[sid]["isUpcoming"] = now < lo
+                done = [k for k in kids if k in tilanne and tilanne[k]["status"] == "Päättynyt"]
+                tilanne[sid]["results"] = series_standings([tilanne[k]["results"] for k in done], PTS, BEST)
+                tilanne[sid]["isSeries"] = True
+                tilanne[sid]["scoring"] = f"Pisteet {'/'.join(map(str, PTS))} • {BEST} parasta {len(kids)}:stä • {len(done)}/{len(kids)} kisaa pelattu"
 
     def finished(cid):
         end = ends.get(cid) or (times[cid] + timedelta(hours=30) if times.get(cid) else None)

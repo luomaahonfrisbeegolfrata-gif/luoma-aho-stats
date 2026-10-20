@@ -110,7 +110,14 @@ def build_holes(total):
     diff = [0] * n
     for rank, idx in enumerate(sorted(range(n), key=lambda i: (over[i], i)), 1):
         diff[idx] = rank  # 1 = helpoin
-    dist = CFG["distribution"]
+    dist = {k: list(v) for k, v in CFG["distribution"].items()}
+    est = CFG.get("birdie_estimated_holes", [])
+    for h in est:  # birdie = UDiscin birdie-% x kierrokset; erotus par0:sta, jotta väyläsumma pysyy
+        i = h - 1
+        b = round(total * CFG["udisc_real_distribution_perc"][str(h)]["birdie"] / 100)
+        dist["par0"][i] -= b - dist["birdie"][i]
+        dist["birdie"][i] = b
+    est_info = {"estimated": {"birdie_holes": est, "note": f"Birdie-luvut väylillä {', '.join(map(str, est))} on arvioitu UDiscin jakaumasta (sama osuus kaikille kierroksille)."}} if est else {}
     rows = {"hio": [CFG["hole_in_one"].get(str(i + 1), 0) for i in range(n)], **dist}
     sums = [sum(r[i] for r in rows.values()) for i in range(n)]
     if sums != [total] * n:
@@ -129,6 +136,7 @@ def build_holes(total):
         "difficulty": [str(d) for d in diff] + ["-", "-"],
         "diffCls": [cls_diff(d) for d in diff] + ["cell-dark"] * 2,
         **out,
+        **est_info,
         "calculation": {
             "formula": "(Metrix_avg * metrix_rounds + UDisc_avg * udisc_rounds) / total_rounds",
             "metrix_rounds": wm, "udisc_rounds": wu, "total_rounds": total,

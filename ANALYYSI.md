@@ -48,7 +48,28 @@
 - **Mobiili:** lomakekortin `overflow:hidden` leikkasi kentät pienellä näytöllä tai kun näppäimistö on auki. Nyt rullattava.
 - Tekstiä tarkennettu: 1. sijalle menee pyöristysjäännös (siksi se on usein hieman yli 50 %).
 - Laskenta erotettu puhtaaksi funktioksi `computePayout()`, ja testattu kaikilla määrillä 0–500 ja kaikilla maksuilla: summa täsmää aina, ei negatiivisia, sijat laskevassa järjestyksessä, ja ≥3 pelaajalla tulos on identtinen alkuperäisen kanssa.
-- Maksuvaihtoehdot ovat kiinteät (2/4/5/6/8/10 €); muu maksu (esim. 7 €) ei onnistu.
+- Maksu on nyt vapaa kenttä (0–1000 €, 0,50 € askel, esim. 7,50 €). Testattu maksuilla 0–20 € ja 0–500 hengellä: summa täsmää, 2. ja 3. ovat aina 0,50 €:n kerrannaisia.
+
+## Uudet ominaisuudet
+### Pakkassarjan pisteet
+- Pisteet sijan mukaan **10 / 8 / 6 / 3 / 2 / 1** (sija 7+ = 0 p), sarjan tulos = **4 parasta 7 kisasta** (`config.json` → `competitions.series_points`, `series_best_of`).
+- Oletukset (kerro, jos haluat toisin): vain **päättyneet** kisat lasketaan (kesken olevan kisan välisijat eivät anna pisteitä); **tasatuloksessa kaikki saavat saman sijan pisteet** (kaksi jaettua 2. sijaa → molemmille 8 p, seuraava on 4.); pelaajat yhdistetään nimen perusteella (isot/pienet kirjaimet ja välilyönnit ei haittaa); sarjan tasapisteissä ratkaisee kaikkien pisteiden summa, sen jälkeen sama sija.
+- Testattu simuloidulla datalla (3 kisaa, tasapiste, nimen kirjoitusvariaatio): tulos täsmäsi käsin laskettuun. Oikeaa Metrix-API:a ei voitu testata.
+
+### Birdie-luvut
+- Väylien 2, 5, 6, 7 ja 10 birdie-luku (oli 45) lasketaan nyt UDiscin birdie-%:sta × kierrokset: 37 / 49 / 49 / 37 / 49. Erotus siirtyy par-riville, joten väyläsummat pysyvät 1221:ssä (build_stats tarkistaa).
+- **Tämä on arvio:** oletus on, että Metrix-kierrosten birdie-osuus on sama kuin UDiscissä, ja UDisc-prosentit on pyöristetty kokonaislukuihin (±6 kpl). Sivulle tulee tästä huomautus. Kun lähetät Metrixin oikeat birdie-luvut näille väylille, korvaan arviot ja poistan huomautuksen.
+- Tarkistus: jakaumarivit antavat väyläkeskiarvot, jotka poikkeavat julkaistuista enintään ±0,15 lyöntiä/väylä, eli taulukko on kokonaisuutena johdonmukainen.
+
+### Vieraskirjan tallennus (vaatii kertaluonteisen käyttöönoton)
+Toimintaperiaate: vieras lähettää viestin → Cloudflare Worker luo siitä GitHub-issuen → **sinä lisäät issueen tunnisteen `hyväksy`** → Action kirjoittaa viestin `data/vieraskirja.json`:iin ja sulkee issuen. Viesti ei näy sivulla ennen hyväksyntääsi (roskaviestit eivät pääse läpi).
+1. GitHub → Settings → Developer settings → **Fine-grained token**: vain tämä repo, oikeus *Issues: Read and write*.
+2. Cloudflare → Workers & Pages → Create Worker → liitä `worker/vieraskirja-worker.js`. Settings → Variables: `ALLOWED_ORIGIN` = `https://luomaahonfrisbeegolfrata-gif.github.io`, `REPO` = `omistaja/repon-nimi`, secret `GITHUB_TOKEN` = edellinen token.
+3. Liitä Workerin osoite `vieraskirja.html`:n riville `const ENDPOINT="";`.
+4. Kopioi `scripts/vieraskirja_import.py` ja `.github/workflows/vieraskirja.yml` repoon. Ensimmäisen viestin jälkeen lisää issueen tunniste `hyväksy`.
+- Suojaukset: sallittu vain sivusi osoitteesta (Origin), honeypot-kenttä, enintään 30/500 merkkiä, arvosana 1–5, lähetys 1 min välein selaimessa. Palvelinpuolen nopeusrajoitusta ei ole; roskaviestit saa silti torjuttua sulkemalla issue.
+- Kunnes `ENDPOINT` on asetettu, lomake kertoo, ettei lähetys ole vielä käytössä (ei enää näennäistä lähetystä).
+- Testattu: Worker (simuloitu GitHub-API: onnistuminen, honeypot, väärä Origin, liian lyhyt, huono arvosana, GitHub-virhe) ja tuontiskripti (lisäys, tilastojen päivitys, duplikaatti, virheelliset syötteet jättävät tiedoston ennalleen). Oikeaa Cloudflarea ja GitHubia ei voitu testata.
 
 ## Asennus
 `scripts/build_stats.py` + `scripts/config.json` (config samaan paikkaan kuin vanha), `index.html` juureen, `data/*.json` korvaavat nykyiset.

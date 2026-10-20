@@ -40,13 +40,13 @@ textarea{resize:none;flex:1;min-height:80px;line-height:1.4}
 <label for="v-name">Nimi / Nimimerkki</label><input type="text" id="v-name" placeholder="Esim. Jari - Seinäjoki" maxlength="30"/>
 <label>Arvostelu</label><div class="stars-input" id="stars-input"><span class="star-input" data-val="1">★</span><span class="star-input" data-val="2">★</span><span class="star-input" data-val="3">★</span><span class="star-input" data-val="4">★</span><span class="star-input" data-val="5">★</span><span id="rating-label" style="font-size:10px;color:#666;margin-left:6px">Valitse 1-5 tähteä</span></div>
 <label for="v-msg">Viesti</label><textarea id="v-msg" placeholder="Miten rata maistui?" maxlength="500"></textarea><div class="counter"><span id="v-counter">0</span> / 500</div>
-<button class="btn" id="v-send">LÄHETÄ VIESTI →</button>
+<button class="btn" id="v-send">LÄHETÄ VIESTI →</button><input type="text" id="v-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px"/><div id="v-status" role="status" style="font-size:11px;margin-top:8px"></div>
 <div class="json-box" id="json-box"><pre id="json-preview"></pre><div style="display:flex;gap:6px;margin-top:6px"><button class="btn-secondary" id="btn-download">⬇️ LATAA JSON</button><button class="btn-secondary" id="btn-copy">📋 KOPIOI</button></div></div>
 </div></div>
-<div class="card card-list"><div class="top10-title"><span>VIERASKIRJA - VIESTIT</span><b id="v-count">0 viestiä</b></div><div class="avg-box" id="avg-box" style="display:none"><span class="avg-stars" id="avg-stars"></span><span class="avg-text" id="avg-text">0.0</span><span class="avg-count" id="avg-count">(0 arvostelua)</span></div><div class="tiedote-list" id="v-list"><div class="empty">Ei vielä viestejä - ole ensimmäinen! ✨<br><small style="color:#444">Kirjoita vasemmalle ja tallenna JSON GitHubiin</small></div></div></div>
+<div class="card card-list"><div class="top10-title"><span>VIERASKIRJA - VIESTIT</span><b id="v-count">0 viestiä</b></div><div class="avg-box" id="avg-box" style="display:none"><span class="avg-stars" id="avg-stars"></span><span class="avg-text" id="avg-text">0.0</span><span class="avg-count" id="avg-count">(0 arvostelua)</span></div><div class="tiedote-list" id="v-list"><div class="empty">Ei vielä viestejä - ole ensimmäinen! ✨</div></div></div>
 </div></div>
 <script>
-const JSON_PATH="data/vieraskirja.json";let entries=[];let selectedRating=0;
+const JSON_PATH="data/vieraskirja.json";/* LIITÄ CLOUDFLARE WORKERIN OSOITE TÄHÄN (ks. ANALYYSI.md): */const ENDPOINT="";let entries=[];let selectedRating=0;
 function esc(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 function formatDate(){const d=new Date();return `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${d.getFullYear()}`;}
 function renderStars(n){let h="";for(let i=1;i<=5;i++)h+=`<span class="star-display ${i<=n?'filled':''}">★</span>`;return h;}
@@ -61,7 +61,7 @@ function parseDate(d){
 function render(){
   const list=document.getElementById("v-list"),countEl=document.getElementById("v-count"),avgBox=document.getElementById("avg-box");
   countEl.textContent=`${entries.length} viestiä`;
-  if(entries.length===0){list.innerHTML=`<div class="empty">Ei vielä viestejä - ole ensimmäinen! ✨<br><small style="color:#444">Kirjoita vasemmalle ja tallenna JSON GitHubiin</small></div>`;avgBox.style.display="none";return;}
+  if(entries.length===0){list.innerHTML=`<div class="empty">Ei vielä viestejä - ole ensimmäinen! ✨</div>`;avgBox.style.display="none";return;}
   const ratings=entries.filter(e=>e.rating>0).map(e=>e.rating);const avg=ratings.length?(ratings.reduce((a,b)=>a+b,0)/ratings.length):0;
   if(ratings.length>0){avgBox.style.display="flex";document.getElementById("avg-text").textContent=avg.toFixed(1);document.getElementById("avg-count").textContent=`(${ratings.length} arvostelua)`;document.getElementById("avg-stars").innerHTML=renderStars(Math.round(avg));}else avgBox.style.display="none";
   // UUSIN YLIMPÄNÄ: sorttaa päivämäärän mukaan laskevasti (uusin ensin)
@@ -77,11 +77,23 @@ async function loadJson(){try{const r=await fetch(`${JSON_PATH}?v=${Date.now()}`
 const stars=document.querySelectorAll('.star-input'),label=document.getElementById('rating-label');
 stars.forEach(s=>{s.addEventListener('click',()=>{selectedRating=parseInt(s.dataset.val);stars.forEach(x=>x.classList.toggle('active',parseInt(x.dataset.val)<=selectedRating));const texts=["","Huono 😞","Kohtalainen 😐","Hyvä 🙂","Erittäin hyvä 😊","Huippu! 🤩"];label.textContent=texts[selectedRating];label.style.color="#ffcc00";});});
 document.getElementById("v-msg").addEventListener("input",e=>{document.getElementById("v-counter").textContent=e.target.value.length;});
-document.getElementById("v-send").addEventListener("click",()=>{
+document.getElementById("v-send").addEventListener("click",async()=>{
+  const btn=document.getElementById("v-send"),st=document.getElementById("v-status");
   const name=document.getElementById("v-name").value.trim()||"Anonyymi",msg=document.getElementById("v-msg").value.trim();
-  if(msg.length<3){alert("Kirjoita vähintään 3 merkkiä");return;}if(selectedRating===0){alert("Valitse tähdet 1-5");return;}
-  const ne={date:formatDate(),name:name.slice(0,30),message:msg.slice(0,500),rating:selectedRating};entries.push(ne);render();updatePreview();
-  document.getElementById("v-name").value="";document.getElementById("v-msg").value="";document.getElementById("v-counter").textContent="0";selectedRating=0;stars.forEach(x=>x.classList.remove('active'));label.textContent="Valitse 1-5 tähteä";label.style.color="#666";
+  const say=(t,ok)=>{st.textContent=t;st.style.color=ok?"#1aff1a":"#ff4d4d";};
+  if(!ENDPOINT){say("Vieraskirjan lähetys ei ole vielä käytössä.",false);return;}
+  if(msg.length<3){say("Kirjoita vähintään 3 merkkiä",false);return;}if(selectedRating===0){say("Valitse tähdet 1-5",false);return;}
+  let last=0;try{last=+localStorage.getItem("v_last")||0;}catch(e){}
+  if(Date.now()-last<60000){say("Odota hetki ennen seuraavaa viestiä",false);return;}
+  btn.disabled=true;btn.textContent="LÄHETETÄÄN…";
+  try{
+    const r=await fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:name.slice(0,30),message:msg.slice(0,500),rating:selectedRating,website:document.getElementById("v-hp").value})});
+    if(!r.ok)throw new Error(r.status);
+    try{localStorage.setItem("v_last",String(Date.now()));}catch(e){}
+    say("Kiitos! Viesti julkaistaan tarkistuksen jälkeen.",true);
+    document.getElementById("v-name").value="";document.getElementById("v-msg").value="";document.getElementById("v-counter").textContent="0";selectedRating=0;stars.forEach(x=>x.classList.remove('active'));label.textContent="Valitse 1-5 tähteä";label.style.color="#666";
+  }catch(e){say("Lähetys epäonnistui, yritä myöhemmin uudelleen.",false);}
+  btn.disabled=false;btn.textContent="LÄHETÄ VIESTI →";
 });
 document.getElementById("btn-download").addEventListener("click",()=>{const txt=document.getElementById("json-preview").textContent;const blob=new Blob([txt],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="vieraskirja.json";a.click();URL.revokeObjectURL(url);});
 document.getElementById("btn-copy").addEventListener("click",async()=>{const txt=document.getElementById("json-preview").textContent;try{await navigator.clipboard.writeText(txt);document.getElementById("btn-copy").textContent="✓ KOPIOITU";setTimeout(()=>{document.getElementById("btn-copy").textContent="📋 KOPIOI"},1500);}catch(e){alert("Kopioi manuaalisesti");}});
