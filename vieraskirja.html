@@ -46,7 +46,7 @@ textarea{resize:none;flex:1;min-height:80px;line-height:1.4}
 <div class="card card-list"><div class="top10-title"><span>VIERASKIRJA - VIESTIT</span><b id="v-count">0 viestiä</b></div><div class="avg-box" id="avg-box" style="display:none"><span class="avg-stars" id="avg-stars"></span><span class="avg-text" id="avg-text">0.0</span><span class="avg-count" id="avg-count">(0 arvostelua)</span></div><div class="tiedote-list" id="v-list"><div class="empty">Ei vielä viestejä - ole ensimmäinen! ✨</div></div></div>
 </div></div>
 <script>
-const JSON_PATH="data/vieraskirja.json";/* LIITÄ CLOUDFLARE WORKERIN OSOITE TÄHÄN (ks. ANALYYSI.md): */const ENDPOINT="";let entries=[];let selectedRating=0;
+const JSON_PATH="data/vieraskirja.json";/* LIITÄ CLOUDFLARE WORKERIN OSOITE TÄHÄN (ks. ANALYYSI.md): */const ENDPOINT="https://royal-darkness-015f.luomaahonfrisbeegolfrata.workers.dev";let entries=[];let selectedRating=0;
 function esc(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 function formatDate(){const d=new Date();return `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${d.getFullYear()}`;}
 function renderStars(n){let h="";for(let i=1;i<=5;i++)h+=`<span class="star-display ${i<=n?'filled':''}">★</span>`;return h;}
