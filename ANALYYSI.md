@@ -71,5 +71,11 @@ Toimintaperiaate: vieras lähettää viestin → Cloudflare Worker luo siitä Gi
 - Kunnes `ENDPOINT` on asetettu, lomake kertoo, ettei lähetys ole vielä käytössä (ei enää näennäistä lähetystä).
 - Testattu: Worker (simuloitu GitHub-API: onnistuminen, honeypot, väärä Origin, liian lyhyt, huono arvosana, GitHub-virhe) ja tuontiskripti (lisäys, tilastojen päivitys, duplikaatti, virheelliset syötteet jättävät tiedoston ennalleen). Oikeaa Cloudflarea ja GitHubia ei voitu testata.
 
+## Väylätilaston nuolet ja X/12-vaikeus
+- **Avg-rivi:** värit poistettu; numeron oikealla puolella on nuoli: vihreä ▲ = keskiarvo pienentynyt aiemmasta, punainen ▼ = suurentunut. Ei muutosta = ei nuolta. Sama nuoli on myös Tot-sarakkeessa.
+- **Difficulty-rivi:** näyttää esim. `5/12` (sija / väylien määrä, 1 = helpoin); värikoodi ennallaan (1–3 vihreä, 4–6 keltainen, 7–9 oranssi, 10–12 punainen).
+- **Dynaamisuus:** taulukko piirretään kokonaan `data/vaylatilasto.json`:sta ja päivittyy sivun latauksessa sekä 5 min välein ilman uudelleenlatausta (testattu). `build_stats.py` tallentaa jokaisen keskiarvomuutoksen historiaan (`history`) ja kirjoittaa edellisen tilanteen kenttään `prev_avg`; nuolet lasketaan näistä. Ensimmäinen ajo vain tallentaa lähtötilanteen, joten nuolet ilmestyvät vasta seuraavan muutoksen jälkeen.
+- `update.yml` ajaa laskennan nyt myös heti, kun `config.json` tai `data/udisc.json` muuttuu (ennen: korkeintaan 30 min viive).
+
 ## Asennus
 `scripts/build_stats.py` + `scripts/config.json` (config samaan paikkaan kuin vanha), `index.html` juureen, `data/*.json` korvaavat nykyiset.
