@@ -53,21 +53,26 @@
     "48.74",
     "-"
   ],
-  "avgCls": [
-    "cell-yellow",
-    "cell-orange",
-    "cell-yellow",
-    "cell-yellow",
-    "cell-orange",
-    "cell-red",
-    "cell-orange",
-    "cell-yellow",
-    "cell-orange",
-    "cell-orange",
-    "cell-orange",
-    "cell-yellow",
-    "cell-dark",
-    "cell-dark"
+  "prev_avg": null,
+  "history": [
+    {
+      "date": "2026-10-21",
+      "avg": [
+        4.38,
+        3.81,
+        3.43,
+        3.38,
+        3.57,
+        4.11,
+        3.97,
+        3.37,
+        4.51,
+        3.92,
+        5.95,
+        4.33,
+        48.74
+      ]
+    }
   ],
   "difficulty": [
     "4",
@@ -233,6 +238,6 @@
   },
   "as_of": "2026-10-19",
   "version": "V2.0",
-  "updated": "19.10.2026 23:09",
-  "fetched_at": "2026-10-19T20:09:24.179544+00:00"
+  "updated": "21.10.2026 08:21",
+  "fetched_at": "2026-10-21T05:21:11.237119+00:00"
 }

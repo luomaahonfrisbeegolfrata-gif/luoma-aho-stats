@@ -110,6 +110,13 @@ def build_holes(total):
     diff = [0] * n
     for rank, idx in enumerate(sorted(range(n), key=lambda i: (over[i], i)), 1):
         diff[idx] = rank  # 1 = helpoin
+    old = load(DATA / "vaylatilasto.json") or {}
+    hist = old.get("history", [])
+    cur = [round(a, 2) for a in avg] + [round(sum(avg), 2)]  # näkyvät (2 desimaalin) arvot + yhteensä
+    if not hist or hist[-1]["avg"] != cur:
+        hist.append({"date": datetime.now(timezone.utc).strftime("%Y-%m-%d"), "avg": cur})
+    hist = hist[-30:]
+    prev = hist[-2]["avg"] if len(hist) > 1 else None
     dist = {k: list(v) for k, v in CFG["distribution"].items()}
     est = CFG.get("birdie_estimated_holes", [])
     for h in est:  # birdie = UDiscin birdie-% x kierrokset; erotus par0:sta, jotta väyläsumma pysyy
@@ -124,7 +131,6 @@ def build_holes(total):
         sys.exit(f"VIRHE: jakaumasummat {sums} != {total} - vaylatilasto.json jätetään ennalleen")
     grand = sum(sums)
     out = {k: r + [sum(r), f"{sum(r) / grand * 100:.1f}%"] for k, r in rows.items()}
-    cls_avg = lambda o: "cell-red" if o >= 1 else "cell-orange" if o >= .5 else "cell-yellow" if o >= .2 else "cell-green"
     cls_diff = lambda d: "cell-green" if d <= 3 else "cell-yellow" if d <= 6 else "cell-orange" if d <= 9 else "cell-red"
     return {
         "vayla_count": n, "par_total": str(sum(par)), "pituus_total": f"{sum(length)}m",
@@ -132,7 +138,8 @@ def build_holes(total):
         "pituus": [f"{x}m" for x in length] + [f"{sum(length)}m", "-"],
         "par": [str(p) for p in par] + [str(sum(par)), "-"],
         "avg": [f"{a:.2f}" for a in avg] + [f"{sum(avg):.2f}", "-"],
-        "avgCls": [cls_avg(o) for o in over] + ["cell-dark"] * 2,
+        "prev_avg": ([f"{x:.2f}" for x in prev] + ["-"]) if prev else None,  # edellinen keskiarvo -> nuolet sivulla
+        "history": hist,
         "difficulty": [str(d) for d in diff] + ["-", "-"],
         "diffCls": [cls_diff(d) for d in diff] + ["cell-dark"] * 2,
         **out,
