@@ -6,8 +6,13 @@
 <title>Frisbeegolfin opas - Luoma-ahon Frisbeegolfrata</title>
 <style>
 body{font-family:Inter,system-ui,sans-serif;max-width:860px;margin:0 auto;padding:24px 20px;color:#111;line-height:1.65;background:#fff}
-.header{display:flex;gap:16px;align-items:center;border-bottom:2px solid #111;padding-bottom:16px;margin-bottom:24px}
+.header{display:flex;gap:16px;align-items:center;justify-content:space-between;border-bottom:2px solid #111;padding-bottom:16px;margin-bottom:24px}
+.header-left{display:flex;gap:16px;align-items:center}
 .header img{width:86px;height:86px;object-fit:contain}
+.header-right{display:flex;gap:8px;align-items:center}
+.btn-home{display:flex;align-items:center;gap:6px;padding:0 12px;height:35px;min-width:71px;background:#111;color:#1aff1a;border:1px solid #1aff1a88;border-radius:8px;text-decoration:none;font-size:11px;font-weight:800;letter-spacing:0.5px;transition:all 0.2s}
+.btn-home:hover{background:#1aff1a;color:#000}
+.btn-home img{width:20px;height:20px;object-fit:cover;border-radius:50%}
 h1{font-size:32px;font-weight:800;margin:0;line-height:1;text-transform:uppercase}
 h1 .red{color:#ff2d2d}
 .sub{font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.6;font-weight:600;margin-top:4px}
@@ -23,10 +28,17 @@ td{padding:10px 12px;border-bottom:1px solid #eee;font-size:14px}
 </head>
 <body>
 <div class="header">
-  <img src="logo.png" alt="L-A FRIBA LUOMA-AHO">
-  <div>
-    <h1>FRISBEEGOLFIN <span class="red">OPAS</span></h1>
-    <div class="sub">LUOMA-AHON FRISBEEGOLFRATA</div>
+  <div class="header-left">
+    <a href="./index.html" style="display:block"><img src="logot/l-a-friba-logo.jpg" alt="L-A FRIBA LUOMA-AHO" style="width:86px;height:86px;object-fit:cover;border-radius:50%;border:2px solid #111"></a>
+    <div>
+      <h1>FRISBEEGOLFIN <span class="red">OPAS</span></h1>
+      <div class="sub">LUOMA-AHON FRISBEEGOLFRATA</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <a href="./index.html" class="btn-home" title="Palaa etusivulle">
+      <span>←</span> ETUSIVULLE
+    </a>
   </div>
 </div>
 <h2 id="kiekkotyypit">1. Kiekkotyypit</h2>
@@ -91,4 +103,9 @@ td{padding:10px 12px;border-bottom:1px solid #eee;font-size:14px}
 <li>PDGA:n viralliset säännöt ja kilpailuopas selittävät kaikki tilanteet drop zoneista mandoihin.</li>
 <li>Luoma-ahon Frisbeegolfradan ratakartta kertoo jokaisen väylän par-luvun, pituuden ja OB-linjat – lue ennen kierrosta.</li>
 </ul>
+<div style="margin-top:40px;padding-top:20px;border-top:2px solid #111;display:flex;justify-content:center">
+  <a href="./index.html" class="btn-home" style="height:42px;padding:0 20px;font-size:13px" title="Palaa etusivulle">
+    ← PALAA ETUSIVULLE
+  </a>
+</div>
 </body></html>
