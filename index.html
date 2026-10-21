@@ -130,6 +130,12 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 .tilanne-header{font-size:9px;color:#888;padding:4px 8px;background:#111;border-bottom:1px solid #222;display:flex;justify-content:space-between}
 
 .trend{margin-left:6px;font-size:.85em}.trend.good{color:#2ee06a}.trend.bad{color:#ff4d4d}
+
+/* SPARKLINE PRO - ei vaadi uutta dataa, käyttää olemassa olevaa vaylatilasto.json */
+.sparkline{width:100px;height:22px;display:block}
+.cell-trendi{background:#0f0f0f!important;border-left:2px solid #1aff1a!important;min-width:110px}
+.trendi-header{color:#1aff1a!important;background:#111!important;border-left:2px solid #1aff1a!important}
+
 </style></head><body>
 <header><div class="brand"><div class="brand-logo"><img src="logot/l-a-friba-logo.jpg" alt="L-A FRIBA" style="width:35px;height:35px;object-fit:cover;display:block" /></div> Luoma-ahon Frisbeegolfrata</div><div class="header-icons"><a href="./palkintolaskuri.html" style="width:71px;height:35px;min-width:71px;background:#111;border:1px solid #1aff1a88;border-radius:8px;overflow:hidden;display:grid;place-items:center;text-decoration:none;margin-right:6px" title="Palkintolaskuri"><img src="logot/1000mrkkaa-70x35.jpg" alt="1000" style="width:71px;height:35px;object-fit:cover;display:block"/></a>
 <a href="https://www.google.com/maps/place/Luoma-ahon+Frisbeegolfrata/@63.0901676,23.8860139,12z/" target="_blank" title="Google Maps" style="width:35px;height:35px;min-width:35px;background:#fff;border-radius:8px;display:grid;place-items:center;overflow:hidden;border:1px solid #333;flex-shrink:0"><img src="logot/gmaps-logo.jpg" alt="Maps" style="width:100%;height:100%;object-fit:cover;display:block" /></a>
@@ -243,6 +249,19 @@ function renderTiedotteet(data,source=""){
     try{localStorage.setItem("luoma_tiedotteet_v1",JSON.stringify(valid));}catch(e){}
   }catch(e){}
 }
+
+function sparklineSVG(data, color="#1aff1a", fill=true, w=100, h=22){
+  if(!data||data.length<2) return "";
+  const max=Math.max(...data), min=Math.min(...data), range=max-min||1;
+  const pts=data.map((v,i)=>{
+    const x=(i/(data.length-1))*w;
+    const y=h-((v-min)/range)*h*0.8-h*0.1;
+    return x.toFixed(1)+","+y.toFixed(1);
+  }).join(' ');
+  const area="0,"+h+" "+pts+" "+w+","+h;
+  return '<svg class="sparkline" viewBox="0 0 '+w+' '+h+'"><polygon points="'+area+'" fill="'+color+'" opacity="0.18"/><polyline points="'+pts+'" fill="none" stroke="'+color+'" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+}
+
 function renderVayla(v){
   try{
     if(!v) return;
@@ -264,21 +283,75 @@ function renderVayla(v){
     const body=document.getElementById("vayla-body");if(!body)return;
     body.innerHTML="";
     const rows=[["Pituus",...v.pituus],["Par",...v.par],["Avg",...v.avg],["Difficulty",...v.difficulty||v.diff],["Hole in one",...v.hio],["Birdie -1",...v.birdie],["Par 0",...v.par0],["Bogey 1",...v.bogey],["Dbl Bogey 2",...v.dbl],["Tpl Bogey 3",...v.tpl],["Other >3",...v.other]];
+    // SPARKLINE PRO - lasketaan olemassa olevasta datasta (v.birdie, v.difficulty, v.avg), ei uutta dataa
+    let birdiePctArr = [], diffNumsArr = [], avgNumsArr = [];
+    try{
+      const totalRounds = 1221;
+      birdiePctArr = v.birdie.slice(0,12).map(c=> (c/totalRounds*100));
+      diffNumsArr = (v.difficulty||v.diff||[]).slice(0,12).map(s=> parseInt(s));
+      avgNumsArr = v.avg.slice(0,12).map(s=> parseFloat(s));
+    }catch(e){}
+
+    const getCorr = (idx)=>{
+      try{
+        const pct = birdiePctArr[idx]||0;
+        const diff = diffNumsArr[idx]||6;
+        const expected = 25 - (diff-1)*2.2;
+        const delta = pct - expected;
+        if(delta > 5) return {cls:"cell-green", label:"YLI", delta};
+        if(delta > 2) return {cls:"cell-yellow", label:"OK+", delta};
+        if(delta > -2) return {cls:"cell-yellow", label:"BAL", delta};
+        if(delta > -5) return {cls:"cell-orange", label:"ALI", delta};
+        return {cls:"cell-red", label:"RANK", delta};
+      }catch(e){ return {cls:"cell-dark", label:"-", delta:0}; }
+    };
+    const corrArr = diffNumsArr.length ? diffNumsArr.map((_,i)=>getCorr(i)) : [];
+
     rows.forEach((row,ri)=>{
       const tr=document.createElement("tr");
       row.forEach((cell,ci)=>{
         const isD=ri===3&&ci>0&&ci<13;
-        const td=document.createElement("td");td.textContent=isD?`${cell}/${N}`:cell;   // vaikeus: sija/väylämäärä (1 = helpoin)
-        if(isD)td.className=v.diffCls[ci-1]||autoDiffCls(cell);
-        if(ri===2&&ci>0&&ci<14&&prev){   // Avg: nuoli numeron oikealla puolella (vihreä ▲ = pienentynyt, punainen ▼ = suurentunut)
+        const td=document.createElement("td");
+        if(isD && corrArr[ci-1]){
+          const corr = corrArr[ci-1];
+          td.innerHTML = cell + "/" + N + '<span style="font-size:8px;display:block;line-height:1.1;margin-top:2px;opacity:0.9">'+corr.label+' '+(corr.delta>0?'+':'')+corr.delta.toFixed(1)+'%</span>';
+          td.className = corr.cls;
+          td.title = 'Birdie '+birdiePctArr[ci-1].toFixed(1)+'% vs odotettu '+(25-(diffNumsArr[ci-1]-1)*2.2).toFixed(1)+'%';
+        }else{
+          td.textContent=isD?cell+"/"+N:cell;
+          if(isD)td.className=v.diffCls[ci-1]||autoDiffCls(cell);
+        }
+        if(ri===2&&ci>0&&ci<14&&prev){
           const c=Math.round(parseFloat(cell)*100),p=Math.round(parseFloat(prev[ci-1])*100);
-          if(!isNaN(c)&&!isNaN(p)&&c!==p){const a=document.createElement("span");a.className="trend "+(c<p?"good":"bad");a.textContent=c<p?"▲":"▼";a.title=`${prev[ci-1]} → ${cell}`;a.setAttribute("aria-label",c<p?"Avg pienentynyt":"Avg suurentunut");td.appendChild(a);}
+          if(!isNaN(c)&&!isNaN(p)&&c!==p){const a=document.createElement("span");a.className="trend "+(c<p?"good":"bad");a.textContent=c<p?"▲":"▼";a.title=prev[ci-1]+" → "+cell;td.appendChild(a);}
         }
         if(ci===0){td.style.textAlign="left";td.style.fontWeight="700";td.style.background="#111";}
         tr.appendChild(td);
       });
+      const trendTd=document.createElement("td");
+      trendTd.className="cell-trendi";
+      try{
+        if(ri===0) trendTd.innerHTML=sparklineSVG(v.pituus.slice(0,12).map(s=>parseInt(s)), "#888", true);
+        else if(ri===2) trendTd.innerHTML=sparklineSVG(avgNumsArr, "#ff9800", true);
+        else if(ri===3) trendTd.innerHTML=sparklineSVG(diffNumsArr, "#1aff1a", false);
+        else if(ri===5) trendTd.innerHTML=sparklineSVG(birdiePctArr, "#1aff1a", true);
+        else if(ri===7) trendTd.innerHTML=sparklineSVG(v.bogey.slice(0,12).map(c=>c/1221*100), "#ff4d4d", true);
+        else {trendTd.textContent="-"; trendTd.style.color="#333";}
+      }catch(e){ trendTd.textContent="-"; }
+      tr.appendChild(trendTd);
       body.appendChild(tr);
     });
+    
+    const headerRow=document.querySelector("table.vayla thead tr");
+    if(headerRow && !document.getElementById("th-trendi")){
+      const th=document.createElement("th");
+      th.id="th-trendi";
+      th.className="trendi-header";
+      th.textContent="TRENDI ✨ PRO";
+      th.style.minWidth="110px";
+      headerRow.appendChild(th);
+    }
+
     const nt=document.getElementById("vayla-note"); if(nt) nt.textContent=(v.estimated&&v.estimated.note)||"";
   }catch(e){console.error("renderVayla V5.2 fail", e);}
 }
