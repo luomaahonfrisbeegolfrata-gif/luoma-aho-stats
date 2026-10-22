@@ -1,13 +1,14 @@
 {
   "total_rounds": 1221,
-  "unique_players": 133,
+  "metrix_rounds": 768,
+  "udisc_rounds": 453,
   "peliaika": {
     "display": "1630h"
   },
   "askeleet": {
-    "display": "3 440 589"
+    "display": "3252744"
   },
   "kilometrit": {
-    "display": "2508 km"
+    "display": "2507km"
   }
 }

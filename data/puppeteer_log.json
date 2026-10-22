@@ -1,0 +1,14 @@
+{
+  "metrix_43119": {
+    "error": "page.waitForTimeout is not a function"
+  },
+  "metrix_44010": {
+    "error": "page.waitForTimeout is not a function"
+  },
+  "metrix_44763": {
+    "error": "page.waitForTimeout is not a function"
+  },
+  "udisc": {
+    "error": "page.waitForTimeout is not a function"
+  }
+}
