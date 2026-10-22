@@ -16,7 +16,7 @@ header{height:56px;min-height:56px;max-height:56px;background:#0f0f0f;border-bot
 .header-icons{display:flex;gap:6px;align-items:center;flex-wrap:nowrap;flex-shrink:0}
 .wrap{max-width:1920px;margin:0 auto;padding:10px}
 .grid-top{display:grid;grid-template-columns:260px 200px 200px 200px 260px 260px;gap:10px} /* LUKITTU - ÄLÄ SIIRRÄ */
-.grid-mid{display:grid;grid-template-columns:260px 260px 260px 260px 350px;gap:10px;margin-top:10px}
+.grid-mid{display:grid;grid-template-columns:260px 260px 260px 260px 350px 260px 260px;gap:10px;margin-top:10px}
 .grid-bottom{display:grid;grid-template-columns:1fr;margin-top:10px;width:100%;min-width:100%}
 .card{background:#151515;border:1px solid #242424;border-radius:10px;padding:10px 12px;overflow:hidden;height:320px;min-height:320px;max-height:320px;display:flex;flex-direction:column;width:260px;min-width:260px;max-width:260px}
 .card-mid{height:380px;min-height:380px;max-height:380px;width:260px;min-width:260px;max-width:260px}
@@ -136,6 +136,15 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 .cell-trendi{background:#0f0f0f!important;border-left:2px solid #1aff1a!important;min-width:110px}
 .trendi-header{color:#1aff1a!important;background:#111!important;border-left:2px solid #1aff1a!important}
 
+
+/* RATING MINIMAL */
+#card-rating .rating-input{width:100%;background:#0f0f0f;border:1px solid #333;border-radius:6px;color:#fff;padding:8px 10px;font-size:16px;font-weight:800;text-align:center;outline:none}
+#card-rating .rating-input:focus{border-color:#1aff1a}
+#card-rating .rating-big{font-size:32px;font-weight:800;color:#1aff1a;text-align:center;margin:8px 0;line-height:1}
+#card-rating .rating-table{width:100%;border-collapse:collapse;margin-top:6px}
+#card-rating .rating-table td{padding:3px 6px;font-size:10px;border-bottom:1px solid #1e1e1e}
+#card-rating .rating-table td:last-child{text-align:right;font-weight:700}
+
 </style></head><body>
 <header><div class="brand"><div class="brand-logo"><img src="logot/l-a-friba-logo.jpg" alt="L-A FRIBA" style="width:35px;height:35px;object-fit:cover;display:block" /></div> Luoma-ahon Frisbeegolfrata</div><div class="header-icons"><a href="./palkintolaskuri.html" style="width:71px;height:35px;min-width:71px;background:#111;border:1px solid #1aff1a88;border-radius:8px;overflow:hidden;display:grid;place-items:center;text-decoration:none;margin-right:6px" title="Palkintolaskuri"><img src="logot/1000mrkkaa-70x35.jpg" alt="1000" style="width:71px;height:35px;object-fit:cover;display:block"/></a>
 <a href="./opas.html" style="width:71px;height:35px;min-width:71px;background:#fff;border:1px solid #ff000088;border-radius:8px;overflow:hidden;display:grid;place-items:center;text-decoration:none;margin-right:6px" title="Frisbeegolfin opas"><img src="logot/opas-logo-70x35.png" alt="Opas" style="width:71px;height:35px;object-fit:contain;display:block;background:#fff"/></a>
@@ -183,12 +192,35 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 </div>
 
 </div>
+
+
+</div>
+
+</div>
+
 <div class="grid-mid">
 <div class="card card-mid"><div class="top10-title"><span>METRIX 44010 TOP 10</span><b>44010 ↗</b></div><div class="toplist" id="list-44010"></div></div>
 <div class="card card-mid"><div class="top10-title"><span>METRIX 44763 TOP 10</span><b>44763 ↗</b></div><div class="toplist" id="list-44763"></div></div>
 <div class="card card-mid"><div class="top10-title"><span>UDISC TOP 10</span><b>UDisc ↗</b></div><div class="toplist" id="list-udisc"></div></div>
 <div class="card card-mid" id="card-kilpailut"><div class="top10-title"><span>METRIX KILPAILUT</span><b id="kilpailut-badge">LIVE</b></div><div class="toplist" id="list-kilpailut" style="overflow-y:auto"><div class="kilpailu-empty">Ei aktiivisia kilpailuja<br><span style="font-size:9px;color:#555">Uusin aina ylimpänä<br>Loppuneet poistuu automaattisesti</span></div></div></div>
 <div class="card card-mid" id="card-tilanne" style="width:350px;min-width:350px;max-width:350px;height:380px;min-height:380px;max-height:380px"><div class="top10-title"><span>KILPAILUN TILANNE</span><b id="tilanne-badge">0</b></div><div class="tilanne-header"><span id="tilanne-competition-name">Pakkassarja</span><span id="tilanne-competition-time">07.11.2026</span></div><div class="toplist" id="list-tilanne" style="overflow-y:auto"><div class="tilanne-empty">Ei tuloksia vielä<br>Pakkassarja</div></div></div>
+</div>
+
+
+<div class="card card-mid" id="card-rating" style="width:260px;min-width:260px;max-width:260px;height:380px;min-height:380px;max-height:380px;padding:10px 12px;display:flex;flex-direction:column">
+  <div class="top10-title"><span>RATING</span><b style="color:#1aff1a">BB1</b></div>
+  <input id="rating-score" class="rating-input" type="number" value="41" min="30" max="70" oninput="updateRating()">
+  <div id="rating-out" class="rating-big">967</div>
+  <table class="rating-table">
+    <tr><td>35 (-6)</td><td>1058</td></tr>
+    <tr><td>38 (-3)</td><td>1013</td></tr>
+    <tr><td>41 PAR</td><td>967</td></tr>
+    <tr><td>44 (+3)</td><td>922</td></tr>
+    <tr><td>48 (+7)</td><td>862</td></tr>
+    <tr><td>52 (+11)</td><td>801</td></tr>
+  </table>
+</div>
+
 </div>
 
 <div class="grid-bottom"><div class="card card-bottom" id="card-vayla"><div class="vayla-header"><h3>VÄYLÄTILASTO - LIVE</h3><div class="live-badge" id="vayla-badge">● LIVE</div></div><div class="vayla-table-wrap" id="vayla-wrap"><table class="vayla"><thead><tr><th>Väylä</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>Tot</th><th>%</th></tr></thead><tbody id="vayla-body"></tbody></table></div><div id="vayla-note" style="font-size:9px;color:#777;padding:5px 12px;flex-shrink:0"></div></div></div>
@@ -249,6 +281,19 @@ function renderTiedotteet(data,source=""){
     lastTiedotteet=valid;
     try{localStorage.setItem("luoma_tiedotteet_v1",JSON.stringify(valid));}catch(e){}
   }catch(e){}
+}
+
+
+function calcRating(score){
+  const avg=48.74, base=850, factor=15.15;
+  return Math.round(base + (avg - score)*factor);
+}
+function updateRating(){
+  const inp=document.getElementById('rating-score');
+  const out=document.getElementById('rating-out');
+  const s=parseFloat(inp.value);
+  if(isNaN(s)){out.textContent='-';return;}
+  out.textContent=calcRating(s);
 }
 
 function sparklineSVG(data, color="#1aff1a", fill=true, w=100, h=22){
