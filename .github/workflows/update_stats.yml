@@ -1,43 +1,25 @@
-name: Update Stats
+vname: Update Luoma-aho Stats
+
 on:
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '0 */6 * * *' # 4x päivässä, 120 ajoa/kk
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths-ignore:
-      - 'data/**'
-      - '.nojekyll'
-      - 'index.html'
-      - 'opas.html'
-
-concurrency:
-  group: stats-update
-  cancel-in-progress: true
 
 jobs:
   update:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    permissions: { contents: write }
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - run: pip install requests
-      - name: Fetch Metrix
-        run: |
-          if [ -f scripts/metrix_fetcher.py ]; then python scripts/metrix_fetcher.py; fi
-          if [ -f scripts/fetch_metrix.py ]; then python scripts/fetch_metrix.py; fi
-        continue-on-error: true
-      - name: Build stats
-        run: |
-          if [ -f scripts/build_stats.py ]; then python scripts/build_stats.py; fi
-        continue-on-error: true
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npm ci
+      - run: npx puppeteer browsers install chrome # tärkeä!
+      - run: node scripts/fetch-puppeteer.js
+      - run: npm run build
       - name: Commit
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git add data/ || true
-          git diff --staged --quiet || (git commit -m "auto stats" && git push)
+          git config user.name "github-actions[bot]"
+          git config user.email "bot@users.noreply.github.com"
+          git add src/stats/ dist/data/
+          git diff --quiet || (git commit -m "auto: väylätilasto $(date)" && git push)
