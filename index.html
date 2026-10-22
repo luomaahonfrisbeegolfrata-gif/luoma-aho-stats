@@ -229,6 +229,12 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
     <span id="toggle-label">Kaikki 1221</span>
   </button>
   <span id="vayla-source-label" style="font-size:10px;color:#666">1221 kierrosta</span>
+  
+  <button id="toggle-rating" onclick="toggleRatingMode()" style="display:flex;align-items:center;gap:6px;padding:0 10px;height:35px;background:#111;color:#fff;border:1px solid #333;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer">
+    <span>Rating:</span>
+    <span id="rating-mode-label">850-base</span>
+  </button>
+
   <div id="vayla-rating-mini" style="margin-left:auto"></div>
 </div>
 <div class="card card-bottom" id="card-vayla"><div class="vayla-header"><h3>VÄYLÄTILASTO - LIVE</h3><div class="live-badge" id="vayla-badge">● LIVE</div></div><div class="vayla-table-wrap" id="vayla-wrap"><table class="vayla"><thead><tr><th>Väylä</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>Tot</th><th>%</th></tr></thead><tbody id="vayla-body"></tbody></table></div><div id="vayla-note" style="font-size:9px;color:#777;padding:5px 12px;flex-shrink:0"></div></div></div>
@@ -306,15 +312,32 @@ function updateRating(){
 
 
 // TOGGLE DATA - Kaikki 1221 vs Vain UDisc 453
-const VAYLA_KAIKKI = {"vayla_count": 12, "par_total": "41", "pituus_total": "1248m", "avg_total": "48.74", "avg_total_calc": 48.74, "over_par_total": "7.74", "pituus": ["125m", "103m", "72m", "57m", "94m", "96m", "103m", "80m", "116m", "85m", "197m", "120m", "1248m", "-"], "par": ["4", "3", "3", "3", "3", "3", "3", "3", "4", "3", "5", "4", "41", "-"], "avg": ["4.38", "3.81", "3.43", "3.38", "3.57", "4.11", "3.97", "3.37", "4.51", "3.92", "5.95", "4.33", "48.74", "-"], "prev_avg": null, "history": [{"date": "2026-10-21", "avg": [4.38, 3.81, 3.43, 3.38, 3.57, 4.11, 3.97, 3.37, 4.51, 3.92, 5.95, 4.33, 48.74]}], "difficulty": ["4", "8", "5", "3", "7", "12", "11", "2", "6", "9", "10", "1", "-", "-"], "diffCls": ["cell-yellow", "cell-orange", "cell-yellow", "cell-green", "cell-orange", "cell-red", "cell-red", "cell-green", "cell-yellow", "cell-orange", "cell-red", "cell-green", "cell-dark", "cell-dark"], "hio": [0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0, 0, 5, "0.0%"], "birdie": [147, 37, 84, 301, 49, 49, 37, 138, 124, 49, 77, 253, 1345, "9.2%"], "par0": [557, 421, 648, 377, 609, 344, 353, 564, 548, 338, 301, 530, 5590, "38.2%"], "bogey": [336, 494, 318, 351, 366, 537, 539, 337, 357, 541, 516, 285, 4977, "34.0%"], "dbl": [124, 184, 118, 130, 135, 200, 200, 124, 132, 201, 224, 106, 1878, "12.8%"], "tpl": [38, 58, 36, 40, 41, 63, 63, 38, 40, 63, 71, 32, 583, "4.0%"], "other": [19, 27, 17, 18, 21, 28, 29, 19, 20, 29, 32, 15, 274, "1.9%"], "estimated": {"birdie_holes": [2, 5, 6, 7, 10], "note": "Birdie-luvut väylillä 2, 5, 6, 7, 10 on arvioitu UDiscin jakaumasta (sama osuus kaikille kierroksille)."}, "calculation": {"formula": "(Metrix_avg * metrix_rounds + UDisc_avg * udisc_rounds) / total_rounds", "metrix_rounds": 768, "udisc_rounds": 453, "total_rounds": 1221, "metrix_avg_total": 49.55, "udisc_avg_total": 47.37}, "as_of": "2026-10-19", "version": "V2.0", "updated": "21.10.2026 08:21", "fetched_at": "2026-10-21T05:21:11.237119+00:00"};
-const VAYLA_UDISC = {"vayla_count": 12, "par_total": "41", "pituus_total": "1248m", "avg_total": "47.37", "avg_total_calc": 47.37, "over_par_total": "6.37", "pituus": ["125m", "103m", "72m", "57m", "94m", "96m", "103m", "80m", "116m", "85m", "197m", "120m", "1248m", "-"], "par": ["4", "3", "3", "3", "3", "3", "3", "3", "4", "3", "5", "4", "41", "-"], "avg": ["4.19", "3.81", "3.29", "3.39", "3.59", "4.08", "3.84", "3.26", "4.28", "3.70", "5.80", "4.14", "47.37", "-"], "prev_avg": null, "history": [{"date": "2026-10-22", "avg": [4.19, 3.81, 3.29, 3.39, 3.59, 4.08, 3.84, 3.26, 4.28, 3.7, 5.8, 4.14, 47.37]}], "difficulty": ["2", "10", "5", "6", "7", "12", "11", "3", "4", "8", "9", "1", "-", "-"], "diffCls": ["cell-green", "cell-red", "cell-yellow", "cell-yellow", "cell-orange", "cell-red", "cell-red", "cell-green", "cell-yellow", "cell-orange", "cell-orange", "cell-green", "cell-dark", "cell-dark"], "birdie": [109, 14, 54, 104, 18, 18, 14, 63, 104, 18, 50, 122, 688, "12.7%"], "par0": [203, 158, 254, 159, 227, 127, 167, 249, 191, 191, 141, 199, 2266, "41.7%"], "bogey": [100, 195, 113, 118, 149, 163, 177, 109, 104, 172, 149, 91, 1640, "30.2%"], "dbl": [27, 72, 23, 54, 41, 91, 68, 23, 36, 54, 77, 27, 593, "10.9%"], "other": [6, 6, 4, 7, 7, 22, 11, 4, 7, 7, 14, 6, 101, "1.9%"], "hio": [0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0, 0, 5, "0.1%"], "calculation": {"formula": "UDisc_avg only (453 kierrosta)", "udisc_rounds": 453, "udisc_avg_total": 47.37, "source": "udisc_real_distribution_perc from screenshots"}, "as_of": "2026-10-19", "version": "UDisc-only", "updated": "22.10.2026 07:04", "tpl": [8, 8, 5, 11, 11, 32, 16, 5, 11, 11, 22, 8, 148, "2.7%"]};
+let VAYLA_KAIKKI = {"vayla_count": 12, "par_total": "41", "pituus_total": "1248m", "avg_total": "48.74", "avg_total_calc": 48.74, "over_par_total": "7.74", "pituus": ["125m", "103m", "72m", "57m", "94m", "96m", "103m", "80m", "116m", "85m", "197m", "120m", "1248m", "-"], "par": ["4", "3", "3", "3", "3", "3", "3", "3", "4", "3", "5", "4", "41", "-"], "avg": ["4.38", "3.81", "3.43", "3.38", "3.57", "4.11", "3.97", "3.37", "4.51", "3.92", "5.95", "4.33", "48.74", "-"], "prev_avg": null, "history": [{"date": "2026-10-21", "avg": [4.38, 3.81, 3.43, 3.38, 3.57, 4.11, 3.97, 3.37, 4.51, 3.92, 5.95, 4.33, 48.74]}], "difficulty": ["4", "8", "5", "3", "7", "12", "11", "2", "6", "9", "10", "1", "-", "-"], "diffCls": ["cell-yellow", "cell-orange", "cell-yellow", "cell-green", "cell-orange", "cell-red", "cell-red", "cell-green", "cell-yellow", "cell-orange", "cell-red", "cell-green", "cell-dark", "cell-dark"], "hio": [0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0, 0, 5, "0.0%"], "birdie": [147, 37, 84, 301, 49, 49, 37, 138, 124, 49, 77, 253, 1345, "9.2%"], "par0": [557, 421, 648, 377, 609, 344, 353, 564, 548, 338, 301, 530, 5590, "38.2%"], "bogey": [336, 494, 318, 351, 366, 537, 539, 337, 357, 541, 516, 285, 4977, "34.0%"], "dbl": [124, 184, 118, 130, 135, 200, 200, 124, 132, 201, 224, 106, 1878, "12.8%"], "tpl": [38, 58, 36, 40, 41, 63, 63, 38, 40, 63, 71, 32, 583, "4.0%"], "other": [19, 27, 17, 18, 21, 28, 29, 19, 20, 29, 32, 15, 274, "1.9%"], "estimated": {"birdie_holes": [2, 5, 6, 7, 10], "note": "Birdie-luvut väylillä 2, 5, 6, 7, 10 on arvioitu UDiscin jakaumasta (sama osuus kaikille kierroksille)."}, "calculation": {"formula": "(Metrix_avg * metrix_rounds + UDisc_avg * udisc_rounds) / total_rounds", "metrix_rounds": 768, "udisc_rounds": 453, "total_rounds": 1221, "metrix_avg_total": 49.55, "udisc_avg_total": 47.37}, "as_of": "2026-10-19", "version": "V2.0", "updated": "21.10.2026 08:21", "fetched_at": "2026-10-21T05:21:11.237119+00:00"};
+let VAYLA_UDISC = {"vayla_count": 12, "par_total": "41", "pituus_total": "1248m", "avg_total": "47.37", "avg_total_calc": 47.37, "over_par_total": "6.37", "pituus": ["125m", "103m", "72m", "57m", "94m", "96m", "103m", "80m", "116m", "85m", "197m", "120m", "1248m", "-"], "par": ["4", "3", "3", "3", "3", "3", "3", "3", "4", "3", "5", "4", "41", "-"], "avg": ["4.19", "3.81", "3.29", "3.39", "3.59", "4.08", "3.84", "3.26", "4.28", "3.70", "5.80", "4.14", "47.37", "-"], "prev_avg": null, "history": [{"date": "2026-10-22", "avg": [4.19, 3.81, 3.29, 3.39, 3.59, 4.08, 3.84, 3.26, 4.28, 3.7, 5.8, 4.14, 47.37]}], "difficulty": ["2", "10", "5", "6", "7", "12", "11", "3", "4", "8", "9", "1", "-", "-"], "diffCls": ["cell-green", "cell-red", "cell-yellow", "cell-yellow", "cell-orange", "cell-red", "cell-red", "cell-green", "cell-yellow", "cell-orange", "cell-orange", "cell-green", "cell-dark", "cell-dark"], "birdie": [109, 14, 54, 104, 18, 18, 14, 63, 104, 18, 50, 122, 688, "12.7%"], "par0": [203, 158, 254, 159, 227, 127, 167, 249, 191, 191, 141, 199, 2266, "41.7%"], "bogey": [100, 195, 113, 118, 149, 163, 177, 109, 104, 172, 149, 91, 1640, "30.2%"], "dbl": [27, 72, 23, 54, 41, 91, 68, 23, 36, 54, 77, 27, 593, "10.9%"], "other": [6, 6, 4, 7, 7, 22, 11, 4, 7, 7, 14, 6, 101, "1.9%"], "hio": [0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0, 0, 5, "0.1%"], "calculation": {"formula": "UDisc_avg only (453 kierrosta)", "udisc_rounds": 453, "udisc_avg_total": 47.37, "source": "udisc_real_distribution_perc from screenshots"}, "as_of": "2026-10-19", "version": "UDisc-only", "updated": "22.10.2026 07:04", "tpl": [8, 8, 5, 11, 11, 32, 16, 5, 11, 11, 22, 8, 148, "2.7%"]};
 let currentMode = 'kaikki'; // 'kaikki' or 'udisc'
 
 function getCurrentVayla(){ return currentMode === 'kaikki' ? VAYLA_KAIKKI : VAYLA_UDISC; }
 
+let ratingMode = '850'; // '850' or '1000'
+
+function toggleRatingMode(){
+  ratingMode = ratingMode === '850' ? '1000' : '850';
+  const label = document.getElementById('rating-mode-label');
+  label.textContent = ratingMode === '850' ? '850-base' : '1000-base';
+  updateRatingMini();
+}
+
 function calcRatingForScore(score){
-  const avg = parseFloat(getCurrentVayla().avg_total);
-  return Math.round(850 + (avg - score)*15.15);
+  const v = getCurrentVayla();
+  const avg = parseFloat(v.avg_total);
+  if(ratingMode === '850'){
+    // avg = 850
+    return Math.round(850 + (avg - score)*15.15);
+  }else{
+    // SSA 40 = 1000
+    const SSA = 40;
+    return Math.round(1000 + (SSA - score)*15.15);
+  }
 }
 
 function updateRatingMini(){
@@ -322,7 +345,8 @@ function updateRatingMini(){
   const el = document.getElementById('vayla-rating-mini');
   if(!el) return;
   const scores = [35,38,41,44,48,52];
-  el.innerHTML = scores.map(s=> `<span>${s}:<b>${calcRatingForScore(s)}</b></span>`).join(' <span style="color:#333">|</span> ') + `<span style="margin-left:8px;color:#555">avg ${avg.toFixed(2)} = 850</span>`;
+  const now = new Date().toLocaleTimeString('fi-FI');
+  el.innerHTML = scores.map(s=> `<span>${s}:<b>${calcRatingForScore(s)}</b></span>`).join(' <span style="color:#333">|</span> ') + `<span style="margin-left:8px;color:#555">avg ${avg.toFixed(2)} = 850 • ${now} auto</span>`;
 }
 
 function toggleMode(){
@@ -659,10 +683,36 @@ async function refreshAll(){
   try{const r=await fetch(`data/metrix_44010.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.top10&&j.top10.length>0)renderTop("list-44010",j.top10.map(o=>({name:o.name,total:o.total,plus:o.plus_minus||o.plus||""})));}}catch(e){}
   try{const r=await fetch(`data/metrix_44763.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.top10&&j.top10.length>0)renderTop("list-44763",j.top10.map(o=>({name:o.name,total:o.total,plus:o.plus_minus||o.plus||""})));}}catch(e){}
   try{const r=await fetch(`data/kierrokset.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.total_rounds){document.getElementById("v-kierrokset").textContent=j.total_rounds;document.getElementById("v-unique").textContent=j.unique_players;document.getElementById("v-peliaika").textContent=j.peliaika.display;document.getElementById("v-askel").textContent=j.askeleet.display;document.getElementById("v-km").textContent=j.kilometrit.display;}}}catch(e){}
-  try{const r=await fetch(`data/vaylatilasto.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.pituus&&j.pituus.length>=12){renderVayla(j);}}}catch(e){} // V2.0 FIXED - ei ylikirjoita, käyttää data/vaylatilasto.json suoraan configista
+  try{
+    const r=await fetch(`data/vaylatilasto.json?v=${Date.now()}`,{cache:"no-store"});
+    if(r.ok){
+      const j=await r.json();
+      if(j.pituus&&j.pituus.length>=12){
+        VAYLA_KAIKKI=j;
+        console.log('[AUTO] Fetched KAIKKI', j.avg_total, 'mode', currentMode);
+        if(currentMode==='kaikki'){
+          renderVayla(j);
+          document.getElementById('vayla-source-label').textContent=`${j.calculation?.total_rounds||1221} kierrosta • auto ${new Date().toLocaleTimeString('fi-FI')}`;
+        }
+      }
+    }
+  }catch(e){}
+  try{
+    const r2=await fetch(`data/vaylatilasto_udisc_only.json?v=${Date.now()}`,{cache:"no-store"});
+    if(r2.ok){
+      const j2=await r2.json();
+      if(j2.pituus&&j2.pituus.length>=12){
+        VAYLA_UDISC=j2;
+        console.log('[AUTO] Fetched UDISC', j2.avg_total, 'mode', currentMode);
+        if(currentMode==='udisc'){
+          renderVayla(j2);
+          document.getElementById('vayla-source-label').textContent=`${j2.calculation?.udisc_rounds||453} kierrosta UDisc • auto ${new Date().toLocaleTimeString('fi-FI')}`;
+        }
+      }
+    }
+  }catch(e){}
   try{const r=await fetch(`data/udisc.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.top10&&j.top10.length>0)renderTop("list-udisc",j.top10.map(o=>({name:o.name,total:o.total,plus:o.plus_minus||o.plus||""})));}}catch(e){}
   try{const r=await fetch(`data/metrix_kilpailut.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();const list=j.upcoming||j.kilpailut||j.events||[];if(list.length>0){ renderKilpailut(list); } else { renderKilpailut(fallback.kilpailut); } }}catch(e){ renderKilpailut(fallback.kilpailut); }
-  // V2.0 FIXED - kilpailu_tilanne haetaan vain kerran (alla), duplikaatti poistettu
   try{const r=await fetch(`data/tiedotteet.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.tiedotteet&&Array.isArray(j.tiedotteet)&&j.tiedotteet.length>0){renderTiedotteet(j.tiedotteet,"live fetch");}}}catch(e){}
   try{
     const r=await fetch(`data/vieraskirja.json?v=${Date.now()}`,{cache:"no-store"});
@@ -670,19 +720,14 @@ async function refreshAll(){
       const j=await r.json();
       const entries=j.entries||[];
       const stats=j.stats||{};
-      // Käytä stats jos lukittu, muuten laske
       const ratings=entries.filter(e=>e.rating>0);
       const avgVal = stats.avg && stats.avg>0 ? stats.avg : (ratings.length?(ratings.reduce((a,b)=>a+b.rating,0)/ratings.length):0);
       const countVal = stats.ratings || ratings.length;
       const el=document.getElementById("extra-vieraskirja");
       const el2=document.getElementById("extra-vieraskirja-viimeisin");
-      if(el){
-        if(countVal>0){el.textContent=`⭐ ${avgVal.toFixed(1)}/5 (${countVal} arviota)`;}
-        else{el.textContent=`⭐ –/5`;}
-      }
+      if(el){el.textContent=countVal>0?`⭐ ${avgVal.toFixed(1)}/5 (${countVal} arviota)`:`⭐ –/5`;}
       if(el2){
         if(entries.length>0){
-          // UUSIN YLIMPÄNÄ: sorttaa ja ota uusin (kuten vieraskirja.html)
           const parseDate=(d)=>{try{const p=d.split('.');if(p.length===3)return new Date(parseInt(p[2]),parseInt(p[1])-1,parseInt(p[0])).getTime();}catch(e){}return 0;};
           const sorted=[...entries].sort((a,b)=>parseDate(b.date)-parseDate(a.date));
           const newest=sorted[0];
@@ -690,7 +735,8 @@ async function refreshAll(){
         }else{el2.textContent=`Ei vielä arvosteluja`;}
       }
     }
-  }catch(e){console.log("vieraskirja fetch fail", e);}
+  }catch(e){}
+  updateRatingMini();
 }
 refreshAll();
 setInterval(refreshAll, 300000);
