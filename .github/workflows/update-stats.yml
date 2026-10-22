@@ -1,0 +1,39 @@
+name: Update Stats 10/10
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'data/**'
+      - '.nojekyll'
+      - 'index.html'
+concurrency:
+  group: stats-update
+  cancel-in-progress: true
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: node puppeteer_fetcher.js
+        continue-on-error: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests beautifulsoup4
+      - run: python scripts/build_stats.py
+      - run: python scripts/metrix_competitions.py || true
+        continue-on-error: true
+      - run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/ || true
+          git diff --staged --quiet || (git commit -m "auto 10/10" && git push)
