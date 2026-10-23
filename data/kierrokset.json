@@ -1,13 +1,6 @@
 {
-  "total_rounds": 1221,
-  "unique_players": 133,
-  "peliaika": {
-    "display": "1630h"
-  },
-  "askeleet": {
-    "display": "3 440 589"
-  },
-  "kilometrit": {
-    "display": "2508 km"
-  }
+  "metrix": 768,
+  "udisc": 453,
+  "total": 1221,
+  "updated": "2026-10-23T05:35:25.320Z"
 }
