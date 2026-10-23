@@ -315,10 +315,6 @@
     6.04,
     4.44
   ],
-  "manual_totals": {
-    "peliaika_h": 1630,
-    "askeleet": 3440589,
-    "note": "Käsin lukittu. Poista tämä lohko, niin build_stats laskee arvot kaavalla (Metrix-kierrokset x UDisc-keskiarvo)."
   },
   "birdie_estimated_holes": [
     2,
