@@ -1,8 +1,4 @@
 {
-  "stats": {
-    "avg": 4.5,
-    "ratings": 6
-  },
   "entries": [
     {
       "date": "11.10.2026",
@@ -44,8 +40,6 @@
   "stats": {
     "count": 6,
     "avg": 4.3,
-    "ratings": 6,
-      "message": "Hyvässä kunnossa, kiva kiertää."
-    }
-  ]
+    "ratings": 6
+  }
 }
