@@ -17,21 +17,48 @@ PPS=15.15
 offset=(AVG_RATING-1000)/PPS
 ssa_holes=[round(a+offset/12,2) for a in avg_combined]
 ssa_total=round(sum(ssa_holes),2)
-over=[round(ssa_holes[i]-par[i],2) for i in range(12)]
-indexed=sorted([(over[i],i) for i in range(12)], reverse=True)
-rank=[0]*12
-for r,(v,idx) in enumerate(indexed):
-    rank[idx]=r+1
-def get_cls(r):
-    return "cell-red" if r<=3 else "cell-yellow" if r<=6 else "cell-orange" if r<=9 else "cell-green"
-diff_cls=[get_cls(r) for r in rank]
-dist=cfg["distribution"]
-birdie=dist["birdie"]
-hio=[0]*12
-for k,v in cfg["hole_in_one"].items():
-    hio[int(k)-1]=v
-birdie_pct=[b/total*100 for b in birdie]
-def get_luok(pct,p):
+# 100% AUTO - ei kovakoodia, säilyttää vanhat jos haku epäonnistuu
+udisc_path = data_dir / "udisc.json"
+metrix_files = {
+  "metrix_44010": data_dir / "metrix_44010.json",
+  "metrix_44763": data_dir / "metrix_44763.json", 
+  "metrix_48112": data_dir / "metrix_48112.json"
+}
+
+def get_cfg_rounds(key):
+  try: return cfg.get("layouts",{}).get(key,{}).get("rounds",0)
+  except: return 0
+
+udisc_rounds = get_cfg_rounds("udisc")
+m44010 = get_cfg_rounds("metrix_44010")
+m44763 = get_cfg_rounds("metrix_44763")
+m48112 = get_cfg_rounds("metrix_48112")
+
+def read_live(path):
+  try:
+    if path.exists():
+      j = load(path)
+      r = j.get("total_rounds") or j.get("rounds")
+      if isinstance(r,int) and r>0: return r
+  except: pass
+  return None
+
+# live voittaa cfg:n jos >0
+for k,p in [("udisc",udisc_path),("metrix_44010",metrix_files["metrix_44010"])]:
+  live = read_live(p)
+  # ... sama 44763,48112
+  if live: # päivitä vastaava muuttuja
+
+# fallback vanhaan kierrokset.json jos kaikki 0
+if (m44010+m44763+m48112+udisc_rounds)==0:
+  try:
+    old=load(data_dir/"kierrokset.json")
+    # säilytä old metrix_rounds, udisc_rounds, total_rounds
+  except: pass
+
+metrix_rounds = m44010+m44763+m48112
+total_rounds = metrix_rounds+udisc_rounds
+# jos vielä 0 -> säilytä vanha, älä poista
     if p>=4:
         return {"label":"HELPPO" if pct>=20 else "TEKNINEN" if pct>=10 else "EROTTELEVA" if pct>=5 else "VAIKEA", "cls":"cell-green" if pct>=20 else "cell-yellow" if pct>=10 else "cell-orange" if pct>=5 else "cell-red"}
     else:
