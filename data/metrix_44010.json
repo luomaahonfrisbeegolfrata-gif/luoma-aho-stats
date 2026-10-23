@@ -16,39 +16,39 @@
       "plus_minus": "+3"
     },
     {
-      "name": "Julius Luoma-aho",
-      "total": 45,
-      "plus_minus": "+4"
-    },
-    {
-      "name": "Juha Luoma-aho",
+      "name": "Jari Vistiaho",
       "total": 46,
       "plus_minus": "+5"
     },
     {
-      "name": "Aleksi Lassila",
+      "name": "Julius Luoma-aho",
       "total": 47,
       "plus_minus": "+6"
     },
     {
-      "name": "Mikko Koski",
-      "total": 48,
-      "plus_minus": "+7"
-    },
-    {
-      "name": "Pentti Pitkäranta",
+      "name": "Joakim Turja",
       "total": 49,
       "plus_minus": "+8"
     },
     {
-      "name": "Jonne Mäki",
-      "total": 50,
-      "plus_minus": "+9"
+      "name": "Jouni Peltomäki",
+      "total": 49,
+      "plus_minus": "+8"
     },
     {
-      "name": "Sanna Heikkilä",
+      "name": "Juha Luoma-aho",
       "total": 51,
       "plus_minus": "+10"
+    },
+    {
+      "name": "Juha Vainio",
+      "total": 55,
+      "plus_minus": "+14"
+    },
+    {
+      "name": "jari peltola",
+      "total": 56,
+      "plus_minus": "+15"
     }
   ],
   "course_id": 44010,
