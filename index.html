@@ -35,15 +35,11 @@ header{height:56px;min-height:56px;max-height:56px;background:#0f0f0f;border-bot
 .vayla-header h3{margin:0;font-size:11px;color:#fff;letter-spacing:0.5px}.live-badge{background:#1aff1a;color:#000;font-size:10px;font-weight:800;padding:3px 10px;border-radius:12px;flex-shrink:0}
 .vayla-table-wrap{flex:1;overflow:auto!important;background:#0a0a0a}
 table.vayla{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12px;min-width:960px}
-table.vayla th{background:#222;color:#fff;padding:8px 4px;text-align:center;border:1px solid #2a2a2a;min-width:60px;width:6.5%;position:sticky;top:0;z-index:3}
-table.vayla th:first-child{min-width:110px;width:9%;text-align:left;padding-left:12px;left:0;z-index:4}
-table.vayla th:nth-last-child(2){width:3.5%!important;min-width:35px!important;} /* % sarake kavennettu 50% */
-table.vayla th:last-child{width:9.5%!important;min-width:95px!important;} /* TRENDI levennetty */
-table.vayla td{padding:6px 4px;text-align:center;border:1px solid #1e1e1e;background:#0a0a0a;width:6.5%;}
-table.vayla td:first-child{text-align:left;padding-left:12px;background:#111;position:sticky;left:0;z-index:2;font-weight:700;width:9%;}
-table.vayla td:nth-last-child(2){width:3.5%!important;min-width:35px!important;font-size:11px;} /* % kavennettu */
-table.vayla td:last-child{width:9.5%!important;min-width:95px!important;} /* TRENDI levennetty */
-.cell-red{background:#e5534b!important;color:#000!important;font-weight:700;opacity:1!important}.cell-yellow{background:#ffeb3b!important;color:#000!important;font-weight:700;opacity:1!important}.cell-green{background:#66bb6a!important;color:#000!important;font-weight:700;opacity:1!important}.cell-orange{background:#ff9800!important;color:#000!important;font-weight:700;opacity:1!important}.cell-dark{background:#222!important;color:#888!important;opacity:1!important}
+table.vayla th{background:#222;color:#fff;padding:8px 4px;text-align:center;border:1px solid #2a2a2a;min-width:60px;position:sticky;top:0;z-index:3}
+table.vayla th:first-child{min-width:110px;text-align:left;padding-left:12px;left:0;z-index:4}
+table.vayla td{padding:6px 4px;text-align:center;border:1px solid #1e1e1e;background:#0a0a0a}
+table.vayla td:first-child{text-align:left;padding-left:12px;background:#111;position:sticky;left:0;z-index:2;font-weight:700}
+.cell-red{background:#e5534b!important;color:#000!important;font-weight:700}.cell-yellow{background:#ffeb3b!important;color:#000!important;font-weight:700}.cell-green{background:#66bb6a!important;color:#000!important;font-weight:700}.cell-orange{background:#ff9800!important;color:#000!important;font-weight:700}.cell-dark{background:#222!important;color:#888!important}
 .wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .grid-top,.grid-mid{width:max-content;min-width:100%}
 header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scrollbar{display:none}
@@ -135,33 +131,13 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 
 .trend{margin-left:6px;font-size:.85em}.trend.good{color:#2ee06a}.trend.bad{color:#ff4d4d}
 
-/* SPARKLINE PRO - ei vaadi uutta dataa, käyttää olemassa olevaa vaylatilasto.json */
+/* SPARKLINE PRO - korrelaatiovärit */
 .sparkline{width:100px;height:22px;display:block}
 .cell-trendi{background:#0f0f0f!important;border-left:2px solid #1aff1a!important;min-width:110px}
 .trendi-header{color:#1aff1a!important;background:#111!important;border-left:2px solid #1aff1a!important}
 
-
-/* RATING MINIMAL */
-#card-rating .rating-input{width:100%;background:#0f0f0f;border:1px solid #333;border-radius:6px;color:#fff;padding:8px 10px;font-size:16px;font-weight:800;text-align:center;outline:none}
-#card-rating .rating-input:focus{border-color:#1aff1a}
-#card-rating .rating-big{font-size:32px;font-weight:800;color:#1aff1a;text-align:center;margin:8px 0;line-height:1}
-#card-rating .rating-table{width:100%;border-collapse:collapse;margin-top:6px}
-#card-rating .rating-table td{padding:3px 6px;font-size:10px;border-bottom:1px solid #1e1e1e}
-#card-rating .rating-table td:last-child{text-align:right;font-weight:700}
-
-
-/* TOGGLE KAIKKI / UDISC */
-#toggle-kaikki-udisc{display:flex;align-items:center;gap:6px;padding:0 14px;height:35px;background:#111;color:#fff;border:1px solid #444;border-radius:8px;font-size:11px;font-weight:800;letter-spacing:0.5px;cursor:pointer;transition:all 0.2s}
-#toggle-kaikki-udisc.active{border-color:#1aff1a;color:#1aff1a;background:#111}
-#toggle-kaikki-udisc .dot{width:8px;height:8px;border-radius:50%;background:#555;transition:all 0.2s}
-#toggle-kaikki-udisc.active .dot{background:#1aff1a;box-shadow:0 0 6px #1aff1a}
-#vayla-toggle-wrap{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-#vayla-rating-mini{display:flex;gap:8px;align-items:center;font-size:10px;color:#888}
-#vayla-rating-mini b{color:#1aff1a}
-
 </style></head><body>
 <header><div class="brand"><div class="brand-logo"><img src="logot/l-a-friba-logo.jpg" alt="L-A FRIBA" style="width:35px;height:35px;object-fit:cover;display:block" /></div> Luoma-ahon Frisbeegolfrata</div><div class="header-icons"><a href="./palkintolaskuri.html" style="width:71px;height:35px;min-width:71px;background:#111;border:1px solid #1aff1a88;border-radius:8px;overflow:hidden;display:grid;place-items:center;text-decoration:none;margin-right:6px" title="Palkintolaskuri"><img src="logot/1000mrkkaa-70x35.jpg" alt="1000" style="width:71px;height:35px;object-fit:cover;display:block"/></a>
-<a href="./opas.html" style="width:71px;height:35px;min-width:71px;background:#fff;border:1px solid #ff000088;border-radius:8px;overflow:hidden;display:grid;place-items:center;text-decoration:none;margin-right:6px" title="Frisbeegolfin opas"><img src="logot/opas-logo-70x35.png" alt="Opas" style="width:71px;height:35px;object-fit:contain;display:block;background:#fff"/></a>
 <a href="https://www.google.com/maps/place/Luoma-ahon+Frisbeegolfrata/@63.0901676,23.8860139,12z/" target="_blank" title="Google Maps" style="width:35px;height:35px;min-width:35px;background:#fff;border-radius:8px;display:grid;place-items:center;overflow:hidden;border:1px solid #333;flex-shrink:0"><img src="logot/gmaps-logo.jpg" alt="Maps" style="width:100%;height:100%;object-fit:cover;display:block" /></a>
 <a href="https://discgolfmetrix.com/course/44010" target="_blank" title="Metrix 70px" style="width:70px;height:35px;min-width:70px;background:#ff6a00;border-radius:8px;display:grid;place-items:center;overflow:hidden;border:1px solid #333;flex-shrink:0"><img src="logot/metrix-logo.png" alt="Metrix" style="width:100%;height:100%;object-fit:contain;display:block;background:#ff6a00" /></a>
 <a href="https://photos.google.com/share/AF1QipPwBhzcZ3Nf0BEpLICSkhQSFIuTA1VO3i1W_u0l_4oY_ZfytXxa21wqxIx4RqRepA" target="_blank" title="Väyläopasteet" style="width:70px;height:35px;min-width:70px;background:#0a2e1f;border-radius:8px;display:grid;place-items:center;overflow:hidden;border:1px solid #333;flex-shrink:0"><img src="logot/parkdly-logo.png" alt="parkdly" style="width:100%;height:100%;object-fit:cover;display:block" /></a>
@@ -206,12 +182,6 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 </div>
 
 </div>
-
-
-</div>
-
-</div>
-
 <div class="grid-mid">
 <div class="card card-mid"><div class="top10-title"><span>METRIX 44010 TOP 10</span><b>44010 ↗</b></div><div class="toplist" id="list-44010"></div></div>
 <div class="card card-mid"><div class="top10-title"><span>METRIX 44763 TOP 10</span><b>44763 ↗</b></div><div class="toplist" id="list-44763"></div></div>
@@ -220,28 +190,7 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 <div class="card card-mid" id="card-tilanne" style="width:350px;min-width:350px;max-width:350px;height:380px;min-height:380px;max-height:380px"><div class="top10-title"><span>KILPAILUN TILANNE</span><b id="tilanne-badge">0</b></div><div class="tilanne-header"><span id="tilanne-competition-name">Pakkassarja</span><span id="tilanne-competition-time">07.11.2026</span></div><div class="toplist" id="list-tilanne" style="overflow-y:auto"><div class="tilanne-empty">Ei tuloksia vielä<br>Pakkassarja</div></div></div>
 </div>
 
-
-
-</div>
-
-<div class="grid-bottom">
-
-<div id="vayla-toggle-wrap">
-  <button id="toggle-kaikki-udisc" onclick="toggleMode()" class="">
-    <span class="dot"></span>
-    <span>Näytä:</span>
-    <span id="toggle-label">Kaikki 1221</span>
-  </button>
-  <span id="vayla-source-label" style="font-size:10px;color:#666">1221 kierrosta</span>
-  
-  <button id="toggle-rating" onclick="toggleRatingMode()" style="display:flex;align-items:center;gap:6px;padding:0 10px;height:35px;background:#111;color:#fff;border:1px solid #333;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer">
-    <span>Rating:</span>
-    <span id="rating-mode-label">850-base</span>
-  </button>
-
-  <div id="vayla-rating-mini" style="margin-left:auto"></div>
-</div>
-<div class="card card-bottom" id="card-vayla"><div class="vayla-header"><h3>VÄYLÄTILASTO - LIVE</h3><div class="live-badge" id="vayla-badge">● LIVE</div></div><div class="vayla-table-wrap" id="vayla-wrap"><table class="vayla"><thead><tr><th>Väylä</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>Tot</th><th>%</th></tr></thead><tbody id="vayla-body"></tbody></table></div><div id="vayla-note" style="font-size:9px;color:#777;padding:5px 12px;flex-shrink:0"></div></div></div>
+<div class="grid-bottom"><div class="card card-bottom" id="card-vayla"><div class="vayla-header"><h3>VÄYLÄTILASTO - LIVE</h3><div class="live-badge" id="vayla-badge">● LIVE</div></div><div class="vayla-table-wrap" id="vayla-wrap"><table class="vayla"><thead><tr><th>Väylä</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>Tot</th><th>%</th></tr></thead><tbody id="vayla-body"></tbody></table></div><div id="vayla-note" style="font-size:9px;color:#777;padding:5px 12px;flex-shrink:0"></div></div></div>
 </div>
 <script>
 const LOCKED_PAR = ["4","3","3","3","3","3","3","3","4","3","5","4","41","-"];
@@ -301,123 +250,6 @@ function renderTiedotteet(data,source=""){
   }catch(e){}
 }
 
-
-function calcRating(score){
-  const avg=48.74, base=850, factor=15.15;
-  return Math.round(base + (avg - score)*factor);
-}
-function updateRating(){
-  const inp=document.getElementById('rating-score');
-  const out=document.getElementById('rating-out');
-  const s=parseFloat(inp.value);
-  if(isNaN(s)){out.textContent='-';return;}
-  out.textContent=calcRating(s);
-}
-
-
-// TOGGLE DATA - Kaikki 1221 vs Vain UDisc 453
-let VAYLA_KAIKKI = {"vayla_count": 12, "par_total": "41", "pituus_total": "1248m", "avg_total": "48.74", "avg_total_calc": 48.74, "over_par_total": "7.74", "pituus": ["125m", "103m", "72m", "57m", "94m", "96m", "103m", "80m", "116m", "85m", "197m", "120m", "1248m", "-"], "par": ["4", "3", "3", "3", "3", "3", "3", "3", "4", "3", "5", "4", "41", "-"], "avg": ["4.38", "3.81", "3.43", "3.38", "3.57", "4.11", "3.97", "3.37", "4.51", "3.92", "5.95", "4.33", "48.74", "-"], "prev_avg": null, "history": [{"date": "2026-10-21", "avg": [4.38, 3.81, 3.43, 3.38, 3.57, 4.11, 3.97, 3.37, 4.51, 3.92, 5.95, 4.33, 48.74]}], "difficulty": ["4", "8", "5", "3", "7", "12", "11", "2", "6", "9", "10", "1", "-", "-"], "diffCls": ["cell-yellow", "cell-orange", "cell-yellow", "cell-green", "cell-orange", "cell-red", "cell-red", "cell-green", "cell-yellow", "cell-orange", "cell-red", "cell-green", "cell-dark", "cell-dark"], "hio": [0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0, 0, 5, "0.0%"], "birdie": [147, 37, 84, 301, 49, 49, 37, 138, 124, 49, 77, 253, 1345, "9.2%"], "par0": [557, 421, 648, 377, 609, 344, 353, 564, 548, 338, 301, 530, 5590, "38.2%"], "bogey": [336, 494, 318, 351, 366, 537, 539, 337, 357, 541, 516, 285, 4977, "34.0%"], "dbl": [124, 184, 118, 130, 135, 200, 200, 124, 132, 201, 224, 106, 1878, "12.8%"], "tpl": [38, 58, 36, 40, 41, 63, 63, 38, 40, 63, 71, 32, 583, "4.0%"], "other": [19, 27, 17, 18, 21, 28, 29, 19, 20, 29, 32, 15, 274, "1.9%"], "estimated": {"birdie_holes": [2, 5, 6, 7, 10], "note": "Birdie-luvut väylillä 2, 5, 6, 7, 10 on arvioitu UDiscin jakaumasta (sama osuus kaikille kierroksille)."}, "calculation": {"formula": "(Metrix_avg * metrix_rounds + UDisc_avg * udisc_rounds) / total_rounds", "metrix_rounds": 768, "udisc_rounds": 453, "total_rounds": 1221, "metrix_avg_total": 49.55, "udisc_avg_total": 47.37}, "as_of": "2026-10-19", "version": "V2.0", "updated": "21.10.2026 08:21", "fetched_at": "2026-10-21T05:21:11.237119+00:00"};
-let VAYLA_UDISC = {"vayla_count": 12, "par_total": "41", "pituus_total": "1248m", "avg_total": "47.37", "avg_total_calc": 47.37, "over_par_total": "6.37", "pituus": ["125m", "103m", "72m", "57m", "94m", "96m", "103m", "80m", "116m", "85m", "197m", "120m", "1248m", "-"], "par": ["4", "3", "3", "3", "3", "3", "3", "3", "4", "3", "5", "4", "41", "-"], "avg": ["4.19", "3.81", "3.29", "3.39", "3.59", "4.08", "3.84", "3.26", "4.28", "3.70", "5.80", "4.14", "47.37", "-"], "prev_avg": null, "history": [{"date": "2026-10-22", "avg": [4.19, 3.81, 3.29, 3.39, 3.59, 4.08, 3.84, 3.26, 4.28, 3.7, 5.8, 4.14, 47.37]}], "difficulty": ["2", "10", "5", "6", "7", "12", "11", "3", "4", "8", "9", "1", "-", "-"], "diffCls": ["cell-green", "cell-red", "cell-yellow", "cell-yellow", "cell-orange", "cell-red", "cell-red", "cell-green", "cell-yellow", "cell-orange", "cell-orange", "cell-green", "cell-dark", "cell-dark"], "birdie": [109, 14, 54, 104, 18, 18, 14, 63, 104, 18, 50, 122, 688, "12.7%"], "par0": [203, 158, 254, 159, 227, 127, 167, 249, 191, 191, 141, 199, 2266, "41.7%"], "bogey": [100, 195, 113, 118, 149, 163, 177, 109, 104, 172, 149, 91, 1640, "30.2%"], "dbl": [27, 72, 23, 54, 41, 91, 68, 23, 36, 54, 77, 27, 593, "10.9%"], "other": [6, 6, 4, 7, 7, 22, 11, 4, 7, 7, 14, 6, 101, "1.9%"], "hio": [0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0, 0, 5, "0.1%"], "calculation": {"formula": "UDisc_avg only (453 kierrosta)", "udisc_rounds": 453, "udisc_avg_total": 47.37, "source": "udisc_real_distribution_perc from screenshots"}, "as_of": "2026-10-19", "version": "UDisc-only", "updated": "22.10.2026 07:04", "tpl": [8, 8, 5, 11, 11, 32, 16, 5, 11, 11, 22, 8, 148, "2.7%"]};
-let currentMode = 'kaikki';
-let useAuthentic = true; // true = lähempänä autenttista PDGA totuutta
- // 'kaikki' or 'udisc'
-
-
-// AUTHENTIC PDGA SSA CALCULATION - lähempänä totuutta
-// Formula: SSA_total = avg_total + (avg_rating - 1000)/PPS
-// PPS = 15.15 for Luoma-aho BB1 (short course 44-48 => 13-15p per throw)
-// avg_rating: Metrix local ~850, UDisc world ~900, Combined weighted ~868.6
-const PPS_AUTHENTIC = 15.15;
-const AVG_RATING_METRIX = 850;
-const AVG_RATING_UDISC = 900;
-const AVG_RATING_COMBINED = 868.6;
-
-function computeAuthenticSSA(avgList, avgTotal, avgRating){
-  const offsetTotal = (avgRating - 1000)/PPS_AUTHENTIC;
-  const ssaTotal = avgTotal + offsetTotal;
-  const offsetPerHole = offsetTotal/12;
-  let ssaHoles = avgList.map(a => a + offsetPerHole);
-  // correct sum
-  const diff = ssaTotal - ssaHoles.reduce((s,v)=>s+v,0);
-  ssaHoles[0] += diff;
-  ssaHoles = ssaHoles.map(v=> Math.round(v*100)/100);
-  return {ssaHoles, ssaTotal: Math.round(ssaTotal*100)/100, offsetTotal};
-}
-
-function getAuthenticDifficulty(ssaHoles, par){
-  const over = ssaHoles.map((s,i)=> Math.round((s-par[i])*100)/100);
-  const indexed = over.map((v,i)=> ({i, v})).sort((a,b)=> b.v - a.v);
-  const rank = new Array(12);
-  indexed.forEach((obj, idx)=> { rank[obj.i] = idx+1; });
-  return {rank, over};
-}
-
-function getAuthenticCellCls(rank){
-  if(rank<=3) return "cell-green";
-  if(rank<=6) return "cell-yellow";
-  if(rank<=9) return "cell-orange";
-  return "cell-red";
-}
-
-function getCurrentVayla(){ return currentMode === 'kaikki' ? VAYLA_KAIKKI : VAYLA_UDISC; }
-
-let ratingMode = '850'; // '850' or '1000'
-
-function toggleRatingMode(){
-  ratingMode = ratingMode === '850' ? '1000' : '850';
-  const label = document.getElementById('rating-mode-label');
-  label.textContent = ratingMode === '850' ? '850-base' : '1000-base';
-  updateRatingMini();
-}
-
-function calcRatingForScore(score){
-  const v = getCurrentVayla();
-  const avg = parseFloat(v.avg_total);
-  if(ratingMode === '850'){
-    // avg = 850
-    return Math.round(850 + (avg - score)*15.15);
-  }else{
-    // SSA 40 = 1000
-    const SSA = 40;
-    return Math.round(1000 + (SSA - score)*15.15);
-  }
-}
-
-function updateRatingMini(){
-  const avg = parseFloat(getCurrentVayla().avg_total);
-  const el = document.getElementById('vayla-rating-mini');
-  if(!el) return;
-  const scores = [35,38,41,44,48,52];
-  const now = new Date().toLocaleTimeString('fi-FI');
-  const v = getCurrentVayla();
-  const ssa = v.ssaTotal || parseFloat(v.avg_total);
-  el.innerHTML = scores.map(s=> `<span>${s}:<b>${calcRatingForScore(s)}</b></span>`).join(' <span style="color:#333">|</span> ') + `<span style="margin-left:8px;color:#555">avg ${avg.toFixed(2)} = 850 | SSA ${ssa.toFixed(2)} = 1000 • ${now} auto • AUTHENTIC</span>`;
-}
-
-function toggleMode(){
-  currentMode = currentMode === 'kaikki' ? 'udisc' : 'kaikki';
-  const btn = document.getElementById('toggle-kaikki-udisc');
-  const label = document.getElementById('toggle-label');
-  if(currentMode === 'kaikki'){
-    btn.classList.remove('active');
-    label.textContent = 'Kaikki 1221';
-    document.getElementById('vayla-source-label').textContent = '1221 kierrosta';
-  }else{
-    btn.classList.add('active');
-    label.textContent = 'Vain UDisc 453';
-    document.getElementById('vayla-source-label').textContent = '453 kierrosta UDisc';
-  }
-  // Re-render with current data
-  const v = getCurrentVayla();
-  // Update global for other functions if needed
-  window.__currentVayla = v;
-  renderVayla(v);
-  updateRatingMini();
-}
-
-// Override original fetch to use toggle data
-const originalFetchVayla = null;
-
 function sparklineSVG(data, color="#1aff1a", fill=true, w=100, h=22){
   if(!data||data.length<2) return "";
   const max=Math.max(...data), min=Math.min(...data), range=max-min||1;
@@ -430,116 +262,115 @@ function sparklineSVG(data, color="#1aff1a", fill=true, w=100, h=22){
   return '<svg class="sparkline" viewBox="0 0 '+w+' '+h+'"><polygon points="'+area+'" fill="'+color+'" opacity="0.18"/><polyline points="'+pts+'" fill="none" stroke="'+color+'" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 }
 
-
-    const autoDiffCls = (diff) => {
-      const n = parseInt(diff);
-      if(isNaN(n)) return "cell-dark";
-      if(n <= 3) return "cell-red";        // 1-3 vaikein punainen
-      if(n <= 6) return "cell-yellow";     // 4-6 keltainen
-      if(n <= 9) return "cell-orange";     // 7-9 oranssi
-      return "cell-green";                 // 10-12 helpoin vihreä
+function renderVayla(v){
+  try{
+    if(!v) return;
+    // V5.2 FIX: LOCKED_PAR ja PITUUS, mutta avg/diff laskenta korjattu
+    v.par = (v.par&&v.par.length>=12)?v.par:LOCKED_PAR;
+    v.pituus = (v.pituus&&v.pituus.length>=12)?v.pituus:LOCKED_PITUUS;
+    if(!v.pituus || v.pituus.length<12)return;
+    // Bug1 FIX: Difficulty väri ranking logiikalla 1-3 vihreä, 4-6 keltainen, 7-9 oranssi, 10-12 punainen
+    const autoDiffCls=(diff)=>{
+      const n=parseInt(diff);
+      if(isNaN(n))return"cell-dark";
+      if(n<=3)return"cell-green";      // 1-3 helpoimmat = vihreä
+      if(n<=6)return"cell-yellow";     // 4-6 keskitaso keltainen
+      if(n<=9)return"cell-orange";     // 7-9 vaikeat oranssi
+      return"cell-red";                // 10-12 vaikeimmat punainen
     };
+    if(!v.diffCls||v.diffCls.length<12){v.diffCls=(v.difficulty||v.diff||[]).slice(0,12).map(d=>autoDiffCls(d));}
+    const N=v.vayla_count||12, prev=v.prev_avg;
+    const body=document.getElementById("vayla-body");if(!body)return;
+    body.innerHTML="";
+    const rows=[["Pituus",...v.pituus],["Par",...v.par],["Avg",...v.avg],["Difficulty",...v.difficulty||v.diff],["Hole in one",...v.hio],["Birdie -1",...v.birdie],["Par 0",...v.par0],["Bogey 1",...v.bogey],["Dbl Bogey 2",...v.dbl],["Tpl Bogey 3",...v.tpl],["Other >3",...v.other]];
+    // KORRELAATIO laskenta - säilyy auto-päivittyvänä koska käyttää v.birdie ja v.difficulty joka tulee vaylatilasto.json:ista
+    const totalRounds = 1221;
+    let birdiePctArr = [];
+    let diffNumsArr = [];
+    let avgNumsArr = [];
+    try{
+      birdiePctArr = v.birdie.slice(0,12).map(c=> (c/totalRounds*100));
+      diffNumsArr = (v.difficulty||v.diff||[]).slice(0,12).map(s=> parseInt(s));
+      avgNumsArr = v.avg.slice(0,12).map(s=> parseFloat(s));
+    }catch(e){}
 
-    function renderVayla(v){
-      if(!v) return;
-      if(!v.pituus || v.pituus.length<12) return;
-      // Ensure diffCls reversed 1-3 red, 10-12 green
-      if(!v.diffCls || v.diffCls.length<12){
-        v.diffCls = (v.difficulty||v.diff||[]).slice(0,12).map(d=>autoDiffCls(d));
-      } else {
-        // overwrite with reversed logic to be sure
-        v.diffCls = (v.difficulty||v.diff||[]).slice(0,12).map(d=>autoDiffCls(d));
-      }
-      const N=v.vayla_count||12;
-      const body=document.getElementById("vayla-body");if(!body)return;
-      body.innerHTML="";
-      let birdiePctArr = [], diffNumsArr = [], avgNumsArr = [], parNumsArr = [];
+    const getCorr = (idx)=>{
       try{
-        const totalRounds = (currentMode === 'udisc' ? 453 : 1221);
-        birdiePctArr = v.birdie.slice(0,12).map(c=> (c/totalRounds*100));
-        diffNumsArr = (v.difficulty||v.diff||[]).slice(0,12).map(d=>parseInt((d+'').split('/')[0])||6);
-        avgNumsArr = v.avg.slice(0,12).map(s=>parseFloat(s));
-        parNumsArr = v.par.slice(0,12).map(s=>parseInt(s));
-      }catch(e){}
+        const pct = birdiePctArr[idx]||0;
+        const diff = diffNumsArr[idx]||6;
+        const expected = 25 - (diff-1)*2.2;
+        const delta = pct - expected;
+        if(delta > 5) return {cls:"cell-green", label:"YLI", delta, color:"#1aff1a"};
+        if(delta > 2) return {cls:"cell-yellow", label:"OK+", delta, color:"#aaff00"};
+        if(delta > -2) return {cls:"cell-yellow", label:"BAL", delta, color:"#ffeb3b"};
+        if(delta > -5) return {cls:"cell-orange", label:"ALI", delta, color:"#ff9800"};
+        return {cls:"cell-red", label:"RANK", delta, color:"#e5534b"};
+      }catch(e){ return {cls:"cell-dark", label:"-", delta:0, color:"#555"}; }
+    };
+    const corrArr = diffNumsArr.length ? diffNumsArr.map((_,i)=>getCorr(i)) : [];
 
-      const getLuokitus = (pct, par) => {
-        const isPar4 = par>=4;
-        if(isPar4){
-          if(pct >= 20) return {label:"HELPPO", cls:"cell-green"};
-          if(pct >= 10) return {label:"TEKNINEN", cls:"cell-yellow"};
-          if(pct >= 5) return {label:"EROTTELEVA", cls:"cell-orange"};
-          return {label:"VAIKEA", cls:"cell-red"};
-        } else {
-          if(pct >= 15) return {label:"HELPPO", cls:"cell-green"};
-          if(pct >= 8) return {label:"TEKNINEN", cls:"cell-yellow"};
-          if(pct >= 5) return {label:"EROTTELEVA", cls:"cell-orange"};
-          return {label:"VAIKEA", cls:"cell-red"};
+    rows.forEach((row,ri)=>{
+      const tr=document.createElement("tr");
+      row.forEach((cell,ci)=>{
+        const isD=ri===3&&ci>0&&ci<13;
+        const td=document.createElement("td");
+        if(isD && corrArr[ci-1]){
+          const corr = corrArr[ci-1];
+          td.innerHTML = cell + "/" + N + '<span style="font-size:8px;display:block;line-height:1.1;margin-top:2px;opacity:0.9">'+corr.label+' '+(corr.delta>0?'+':'')+corr.delta.toFixed(1)+'%</span>';
+          td.className = corr.cls;
+          td.title = 'Birdie '+birdiePctArr[ci-1].toFixed(1)+'% vs odotettu '+(25-(diffNumsArr[ci-1]-1)*2.2).toFixed(1)+'%';
+        }else{
+          td.textContent=isD?cell+"/"+N:cell;
+          if(isD)td.className=v.diffCls[ci-1]||autoDiffCls(cell);
         }
-      };
-      let luokitusArr = birdiePctArr.map((pct,i)=> getLuokitus(pct, parNumsArr[i]||3));
-
-      const rows=[["Pituus",...v.pituus],["Par",...v.par],["Avg",...v.avg],["Luokitus",...luokitusArr.map(o=>o.label)],["Difficulty",...v.difficulty||v.diff],["Hole in one",...v.hio],["Birdie -1",...v.birdie],["Par 0",...v.par0],["Bogey 1",...v.bogey],["Dbl Bogey 2",...v.dbl],["Tpl Bogey 3",...(v.tpl||Array(12).fill(0))],["Other >3",...v.other]];
-
-      rows.forEach((row,ri)=>{
-        const tr=document.createElement("tr");
-        row.forEach((cell,ci)=>{
-          const isLuokitus = ri===3 && ci>0 && ci<13;
-          const isD=ri===4&&ci>0&&ci<13;
-          const td=document.createElement("td");
-          if(isLuokitus){
-            const lu = luokitusArr[ci-1];
-            td.className = lu ? lu.cls : "cell-dark";
-            td.title = `Birdie ${birdiePctArr[ci-1].toFixed(1)}% (900) → ${lu.label} Par ${parNumsArr[ci-1]}`;
-            td.innerHTML = `${lu.label}<span style="font-size:8px;display:block;line-height:1.1;margin-top:2px;opacity:0.8;color:#000;font-weight:700">${birdiePctArr[ci-1].toFixed(1)}%</span>`;
-          } else if(isD){
-            let num = 0;
-            let raw = cell;
-            if(typeof raw === 'string'){
-              raw = raw.replace('/12/12','/12').split('/')[0].trim();
-            }
-            num = parseInt(raw) || ci;
-            let cls = "cell-dark";
-            if(num <= 3) cls = "cell-red";
-            else if(num <= 6) cls = "cell-yellow";
-            else if(num <= 9) cls = "cell-orange";
-            else cls = "cell-green";
-            let display = cell;
-            if(typeof display === 'string'){
-              display = display.replace('/12/12','/12');
-              if(!display.includes('/12')) display = display + '/12';
-            }
-            td.textContent = display;
-            td.className = cls;
-            td.title = `Vaikeus ${display} 1=vaikein punainen 12=helpoin vihreä`;
-          }else{
-            let base2 = isD ? (cell.includes('/') ? cell : cell+"/"+N) : cell;
-            td.textContent=base2;
-            if(isD)td.className=v.diffCls[ci-1]||autoDiffCls(cell);
-          }
-          if(ri===2&&ci>0&&ci<14&&v.prev_avg){
-            const c=Math.round(parseFloat(cell)*100),p=Math.round(parseFloat(v.prev_avg[ci-1])*100);
-            if(!isNaN(c)&&!isNaN(p)&&c!==p){const a=document.createElement("span");a.className="trend "+(c<p?"good":"bad");a.textContent=c<p?"▲":"▼";a.title=v.prev_avg[ci-1]+" → "+cell;td.appendChild(a);}
-          }
-          tr.appendChild(td);
-        });
-        // TRENDI - kaikki samassa sarakkeessa, yksi per rivi, ei rowspan
-        const trendTd=document.createElement("td");
-        trendTd.className="cell-trendi";
-        trendTd.style.verticalAlign="middle";
-        try{
-          if(ri===0) trendTd.innerHTML=sparklineSVG(v.pituus.slice(0,12).map(s=>parseInt(s)), "#888", true);
-          else if(ri===2) trendTd.innerHTML=sparklineSVG(avgNumsArr, "#ff9800", true);
-          else if(ri===3) trendTd.innerHTML=sparklineSVG(birdiePctArr, "#66bb6a", true);
-          else if(ri===4) trendTd.innerHTML=sparklineSVG(diffNumsArr, "#1aff1a", true);
-          else if(ri===6) trendTd.innerHTML=sparklineSVG(birdiePctArr, "#1aff1a", true);
-          else if(ri===8) trendTd.innerHTML=sparklineSVG(v.bogey.slice(0,12).map(c=>c/1221*100), "#ff4d4d", true);
-          else {trendTd.textContent="-"; trendTd.style.color="#333";}
-        }catch(e){ trendTd.textContent="-"; }
-        tr.appendChild(trendTd);
-        body.appendChild(tr);
+        if(ri===2&&ci>0&&ci<14&&prev){
+          const c=Math.round(parseFloat(cell)*100),p=Math.round(parseFloat(prev[ci-1])*100);
+          if(!isNaN(c)&&!isNaN(p)&&c!==p){const a=document.createElement("span");a.className="trend "+(c<p?"good":"bad");a.textContent=c<p?"▲":"▼";a.title=prev[ci-1]+" → "+cell;td.appendChild(a);}
+        }
+        if(ci===0){td.style.textAlign="left";td.style.fontWeight="700";td.style.background="#111";}
+        tr.appendChild(td);
       });
+      const trendTd=document.createElement("td");
+      trendTd.className="cell-trendi";
+      try{
+        if(ri===0) trendTd.innerHTML=sparklineSVG(v.pituus.slice(0,12).map(s=>parseInt(s)), "#888", true);
+        else if(ri===2) trendTd.innerHTML=sparklineSVG(avgNumsArr, "#ff9800", true);
+        else if(ri===3) trendTd.innerHTML=sparklineSVG(diffNumsArr, "#1aff1a", false);
+        else if(ri===5) trendTd.innerHTML=sparklineSVG(birdiePctArr, "#1aff1a", true);
+        else if(ri===7) trendTd.innerHTML=sparklineSVG(v.bogey.slice(0,12).map(c=>c/1221*100), "#ff4d4d", true);
+        else {trendTd.textContent="-"; trendTd.style.color="#333";}
+      }catch(e){ trendTd.textContent="-"; }
+      tr.appendChild(trendTd);
+      body.appendChild(tr);
+    });
+    
+    const headerRow=document.querySelector("table.vayla thead tr");
+    if(headerRow && !document.getElementById("th-trendi")){
+      const th=document.createElement("th");
+      th.id="th-trendi";
+      th.className="trendi-header";
+      th.textContent="TRENDI ✨ PRO";
+      th.style.minWidth="110px";
+      headerRow.appendChild(th);
     }
-}
+    
+    let corrDiv=document.getElementById("sparkline-correlation");
+    if(!corrDiv){
+      corrDiv=document.createElement("div");
+      corrDiv.id="sparkline-correlation";
+      corrDiv.style.cssText="margin-top:8px;background:#0f0f0f;border:1px solid #1e1e1e;border-radius:8px;padding:8px 10px;";
+      const wrap=document.querySelector(".vayla-table-wrap");
+      if(wrap) wrap.after(corrDiv);
+    }
+    if(corrDiv && birdiePctArr.length){
+      const sorted = diffNumsArr.map((d,i)=>({x:d, y:birdiePctArr[i], hole:i+1})).sort((a,b)=>a.x-b.x);
+      const maxY=Math.max(...birdiePctArr);
+      corrDiv.innerHTML='<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><div style="display:flex;align-items:center;gap:6px"><b style="font-size:8px;color:#666;letter-spacing:0.6px">KORRELAATIO AUTO</b><span style="font-size:8px;color:#444">päivittyy kun data päivittyy</span></div><div style="display:flex;gap:3px;align-items:flex-end;flex:1;min-width:180px;max-width:320px">'+sorted.map(p=>{
+            const h=(p.y/maxY)*18+4;
+            const col=p.y>15?"#1aff1a":p.y>8?"#ffeb3b":p.y>4?"#ff9800":"#e5534b";
+            return '<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px" title="V'+p.hole+': '+p.y.toFixed(1)+'% birdie, vaikeus '+p.x+'/12"><div style="width:100%;height:'+h+'px;background:'+col+';border-radius:2px;opacity:0.9"></div><span style="font-size:6px;color:#555">V'+p.hole+'</span></div>';
+          }).join('')+'</div></div>';
+    }
 
     const nt=document.getElementById("vayla-note"); if(nt) nt.textContent=(v.estimated&&v.estimated.note)||"";
   }catch(e){console.error("renderVayla V5.2 fail", e);}
@@ -745,86 +576,34 @@ renderTop("list-44010",fallback.top44010);renderTop("list-44763",fallback.top447
 // Yritä ladata tilanne suoraan korttiin ilman Metrix-klikkausta
 (async()=>{ try{ const r=await fetch(`data/kilpailu_tilanne.json?v=${Date.now()}`,{cache:"no-store"}); if(r.ok){ const j=await r.json(); if(j.current){ renderTilanne(j.current); } else if(j.competitions && j.competitions[0]){ renderTilanne(j.competitions[0]); } } }catch(e){} })();
 
-
 async function refreshAll(){
-  const base = './data/'; // GitHub Pages: relative to index.html in /luoma-aho-stats/
-  const bust = `?v=${Date.now()}`;
-  console.log('[REFRESH] start, mode', currentMode, 'base', base);
-  
-  // Helper safe fetch
-  async function safeFetch(file, label){
-    try{
-      const url = base + file + bust;
-      console.log(`[FETCH] ${label} -> ${url}`);
-      const r = await fetch(url, {cache:"no-store"});
-      console.log(`[FETCH] ${label} status`, r.status, r.ok);
-      if(!r.ok) throw new Error(`HTTP ${r.status}`);
-      const j = await r.json();
-      console.log(`[FETCH] ${label} ok, keys`, Object.keys(j).slice(0,5));
-      return j;
-    }catch(e){
-      console.warn(`[FETCH] ${label} FAIL:`, e.message);
-      return null;
-    }
-  }
-
-  try{const j=await safeFetch('metrix_44010.json','metrix_44010'); if(j&&j.top10&&j.top10.length>0)renderTop("list-44010",j.top10.map(o=>({name:o.name,total:o.total,plus:o.plus_minus||o.plus||""})));}catch(e){}
-  try{const j=await safeFetch('metrix_44763.json','metrix_44763'); if(j&&j.top10&&j.top10.length>0)renderTop("list-44763",j.top10.map(o=>({name:o.name,total:o.total,plus:o.plus_minus||o.plus||""})));}catch(e){}
-  try{const j=await safeFetch('kierrokset.json','kierrokset'); if(j&&j.total_rounds){document.getElementById("v-kierrokset").textContent=j.total_rounds;document.getElementById("v-unique").textContent=j.unique_players;document.getElementById("v-peliaika").textContent=j.peliaika.display;document.getElementById("v-askel").textContent=j.askeleet.display;document.getElementById("v-km").textContent=j.kilometrit.display;}}catch(e){}
-  
-  // 100% EHDOLLINEN - GitHub fix: päivitä globaali aina, render vain aktiivinen moodi
+  try{const r=await fetch(`data/metrix_44010.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.top10&&j.top10.length>0)renderTop("list-44010",j.top10.map(o=>({name:o.name,total:o.total,plus:o.plus_minus||o.plus||""})));}}catch(e){}
+  try{const r=await fetch(`data/metrix_44763.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.top10&&j.top10.length>0)renderTop("list-44763",j.top10.map(o=>({name:o.name,total:o.total,plus:o.plus_minus||o.plus||""})));}}catch(e){}
+  try{const r=await fetch(`data/kierrokset.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.total_rounds){document.getElementById("v-kierrokset").textContent=j.total_rounds;document.getElementById("v-unique").textContent=j.unique_players;document.getElementById("v-peliaika").textContent=j.peliaika.display;document.getElementById("v-askel").textContent=j.askeleet.display;document.getElementById("v-km").textContent=j.kilometrit.display;}}}catch(e){}
+  try{const r=await fetch(`data/vaylatilasto.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.pituus&&j.pituus.length>=12){renderVayla(j);}}}catch(e){} // V2.0 FIXED - ei ylikirjoita, käyttää data/vaylatilasto.json suoraan configista
+  try{const r=await fetch(`data/udisc.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.top10&&j.top10.length>0)renderTop("list-udisc",j.top10.map(o=>({name:o.name,total:o.total,plus:o.plus_minus||o.plus||""})));}}catch(e){}
+  try{const r=await fetch(`data/metrix_kilpailut.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();const list=j.upcoming||j.kilpailut||j.events||[];if(list.length>0){ renderKilpailut(list); } else { renderKilpailut(fallback.kilpailut); } }}catch(e){ renderKilpailut(fallback.kilpailut); }
+  // V2.0 FIXED - kilpailu_tilanne haetaan vain kerran (alla), duplikaatti poistettu
+  try{const r=await fetch(`data/tiedotteet.json?v=${Date.now()}`,{cache:"no-store"});if(r.ok){const j=await r.json();if(j.tiedotteet&&Array.isArray(j.tiedotteet)&&j.tiedotteet.length>0){renderTiedotteet(j.tiedotteet,"live fetch");}}}catch(e){}
   try{
-    const j = await safeFetch('vaylatilasto.json','vaylatilasto Kaikki');
-    if(j && j.pituus && j.pituus.length>=12){
-      VAYLA_KAIKKI = j;
-      console.log('[AUTO] VAYLA_KAIKKI päivitetty', j.avg_total, 'mode', currentMode);
-      if(currentMode==='kaikki'){
-        renderVayla(j);
-        const label = document.getElementById('vayla-source-label');
-        if(label) label.textContent = `${j.calculation?.total_rounds||1221} kierrosta • auto ${new Date().toLocaleTimeString('fi-FI')}`;
-        updateRatingMini();
-      }
-    }
-  }catch(e){ console.warn('Kaikki fetch outer fail', e); }
-  
-  try{
-    const j2 = await safeFetch('vaylatilasto_udisc_only.json','vaylatilasto UDisc');
-    if(j2 && j2.pituus && j2.pituus.length>=12){
-      // varmista tpl olemassaolo (GitHub vanha versio ilman tpl kaatuu)
-      if(!j2.tpl || j2.tpl.length<12){ j2.tpl = j2.other ? j2.other.slice() : Array(12).fill(0); console.log('[FIX] lisätty puuttuva tpl'); }
-      VAYLA_UDISC = j2;
-      console.log('[AUTO] VAYLA_UDISC päivitetty', j2.avg_total, 'mode', currentMode);
-      if(currentMode==='udisc'){
-        renderVayla(j2);
-        const label = document.getElementById('vayla-source-label');
-        if(label) label.textContent = `${j2.calculation?.udisc_rounds||453} kierrosta UDisc • auto ${new Date().toLocaleTimeString('fi-FI')}`;
-        updateRatingMini();
-      }
-    } else {
-      console.warn('[AUTO] UDisc JSON puuttuu tai invalid, käytetään embedattua');
-      // jos tiedosto puuttuu GitHubista, käytä embedattua VAYLA_UDISC ja renderöi jos moodi udisc
-      if(currentMode==='udisc'){
-        renderVayla(VAYLA_UDISC);
-      }
-    }
-  }catch(e){ console.warn('UDisc fetch outer fail', e); if(currentMode==='udisc'){ renderVayla(VAYLA_UDISC); } }
-
-  try{const j=await safeFetch('udisc.json','udisc'); if(j&&j.top10&&j.top10.length>0)renderTop("list-udisc",j.top10.map(o=>({name:o.name,total:o.total,plus:o.plus_minus||o.plus||""})));}catch(e){}
-  try{const j=await safeFetch('metrix_kilpailut.json','kilpailut'); if(j){ const list=j.upcoming||j.kilpailut||j.events||[]; if(list.length>0){ renderKilpailut(list); } else { renderKilpailut(fallback.kilpailut); } }}catch(e){ renderKilpailut(fallback.kilpailut); }
-  try{const j=await safeFetch('tiedotteet.json','tiedotteet'); if(j&&j.tiedotteet&&Array.isArray(j.tiedotteet)&&j.tiedotteet.length>0){renderTiedotteet(j.tiedotteet,"live fetch");}}catch(e){}
-  try{
-    const j=await safeFetch('vieraskirja.json','vieraskirja');
-    if(j){
+    const r=await fetch(`data/vieraskirja.json?v=${Date.now()}`,{cache:"no-store"});
+    if(r.ok){
+      const j=await r.json();
       const entries=j.entries||[];
       const stats=j.stats||{};
+      // Käytä stats jos lukittu, muuten laske
       const ratings=entries.filter(e=>e.rating>0);
       const avgVal = stats.avg && stats.avg>0 ? stats.avg : (ratings.length?(ratings.reduce((a,b)=>a+b.rating,0)/ratings.length):0);
       const countVal = stats.ratings || ratings.length;
       const el=document.getElementById("extra-vieraskirja");
       const el2=document.getElementById("extra-vieraskirja-viimeisin");
-      if(el){el.textContent=countVal>0?`⭐ ${avgVal.toFixed(1)}/5 (${countVal} arviota)`:`⭐ –/5`;}
+      if(el){
+        if(countVal>0){el.textContent=`⭐ ${avgVal.toFixed(1)}/5 (${countVal} arviota)`;}
+        else{el.textContent=`⭐ –/5`;}
+      }
       if(el2){
         if(entries.length>0){
+          // UUSIN YLIMPÄNÄ: sorttaa ja ota uusin (kuten vieraskirja.html)
           const parseDate=(d)=>{try{const p=d.split('.');if(p.length===3)return new Date(parseInt(p[2]),parseInt(p[1])-1,parseInt(p[0])).getTime();}catch(e){}return 0;};
           const sorted=[...entries].sort((a,b)=>parseDate(b.date)-parseDate(a.date));
           const newest=sorted[0];
@@ -832,21 +611,10 @@ async function refreshAll(){
         }else{el2.textContent=`Ei vielä arvosteluja`;}
       }
     }
-  }catch(e){}
-
-  // rating päivittyy aina
-  try{ updateRatingMini(); }catch(e){}
-  console.log('[REFRESH] done');
+  }catch(e){console.log("vieraskirja fetch fail", e);}
 }
-
 refreshAll();
 setInterval(refreshAll, 300000);
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")refreshAll();});
 </script>
-
-<script>
-// Init toggle rating mini after first render
-setTimeout(()=>{ updateRatingMini(); }, 500);
-</script>
-
 </body></html>

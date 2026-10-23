@@ -4,8 +4,6 @@
   "pituus_total": "1248m",
   "avg_total": "47.37",
   "avg_total_calc": 47.37,
-  "over_par_total": "6.37",
-  "ssa_total_authentic": 40.77,
   "pituus": [
     "125m",
     "103m",
@@ -99,8 +97,8 @@
     18,
     50,
     122,
-    688,
-    "12.7%"
+    0,
+    "-"
   ],
   "par0": [
     0,
@@ -199,7 +197,6 @@
     0
   ],
   "calculation": {
-    "udisc_rounds": 453,
-    "avg_total": 47.37
+    "udisc_rounds": 453
   }
 }

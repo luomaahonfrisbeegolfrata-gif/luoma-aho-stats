@@ -1,1 +1,20 @@
-{"upcoming": []}
+{
+  "upcoming": [
+    {
+      "date": "07.11 - 19.12.2026",
+      "name": "PAKKASSARJA KOKO SARJA",
+      "course": "44010",
+      "reg": "Avoinna",
+      "isSeries": true,
+      "url": "https://discgolfmetrix.com/3819613"
+    },
+    {
+      "date": "07.11.2026 12:00",
+      "name": "PAKKASSARJA #1",
+      "course": "44010",
+      "reg": "Avoinna",
+      "isSeries": false,
+      "url": "https://discgolfmetrix.com/3819645"
+    }
+  ]
+}
