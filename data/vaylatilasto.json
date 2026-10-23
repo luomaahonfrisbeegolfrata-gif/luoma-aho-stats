@@ -3,7 +3,10 @@
   "par_total": "41",
   "pituus_total": "1248m",
   "avg_total": "48.73",
+  "avg_total_calc": 48.73,
+  "over_par_total": "7.73",
   "ssa_total_authentic": 40.09,
+  "ssa_offset": -8.67,
   "pituus": [
     "125m",
     "103m",
@@ -52,6 +55,38 @@
     "48.73",
     "-"
   ],
+  "ssa": [
+    "3.66",
+    "3.09",
+    "2.71",
+    "2.66",
+    "2.85",
+    "3.39",
+    "3.25",
+    "2.65",
+    "3.79",
+    "3.20",
+    "5.23",
+    "3.61",
+    "40.09",
+    "-"
+  ],
+  "over_par": [
+    -0.34,
+    0.09,
+    -0.29,
+    -0.34,
+    -0.15,
+    0.39,
+    0.25,
+    -0.35,
+    -0.21,
+    0.2,
+    0.23,
+    -0.39,
+    7.73,
+    "-"
+  ],
   "difficulty": [
     "10",
     "5",
@@ -85,18 +120,54 @@
     "cell-dark"
   ],
   "luokitus": [
-    "TEKNINEN",
-    "VAIKEA",
-    "EROTTELEVA",
-    "HELPPO",
-    "VAIKEA",
-    "VAIKEA",
-    "VAIKEA",
-    "TEKNINEN",
-    "TEKNINEN",
-    "VAIKEA",
-    "EROTTELEVA",
-    "HELPPO"
+    {
+      "label": "TEKNINEN",
+      "cls": "cell-yellow"
+    },
+    {
+      "label": "VAIKEA",
+      "cls": "cell-red"
+    },
+    {
+      "label": "EROTTELEVA",
+      "cls": "cell-orange"
+    },
+    {
+      "label": "HELPPO",
+      "cls": "cell-green"
+    },
+    {
+      "label": "VAIKEA",
+      "cls": "cell-red"
+    },
+    {
+      "label": "VAIKEA",
+      "cls": "cell-red"
+    },
+    {
+      "label": "VAIKEA",
+      "cls": "cell-red"
+    },
+    {
+      "label": "TEKNINEN",
+      "cls": "cell-yellow"
+    },
+    {
+      "label": "TEKNINEN",
+      "cls": "cell-yellow"
+    },
+    {
+      "label": "VAIKEA",
+      "cls": "cell-red"
+    },
+    {
+      "label": "EROTTELEVA",
+      "cls": "cell-orange"
+    },
+    {
+      "label": "HELPPO",
+      "cls": "cell-green"
+    }
   ],
   "hio": [
     0,

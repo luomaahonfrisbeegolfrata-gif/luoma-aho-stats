@@ -4,6 +4,53 @@
       "name": "@kantanen8",
       "total": 35,
       "plus_minus": "-6"
+    },
+    {
+      "name": "@luomaaho",
+      "total": 38,
+      "plus_minus": "-3"
+    },
+    {
+      "name": "Toni L.",
+      "total": 40,
+      "plus_minus": "-1"
+    },
+    {
+      "name": "Eino V.",
+      "total": 42,
+      "plus_minus": "+1"
+    },
+    {
+      "name": "Benjamin T.",
+      "total": 44,
+      "plus_minus": "+3"
+    },
+    {
+      "name": "Julius L.",
+      "total": 45,
+      "plus_minus": "+4"
+    },
+    {
+      "name": "Juha L.",
+      "total": 46,
+      "plus_minus": "+5"
+    },
+    {
+      "name": "Mikko K.",
+      "total": 48,
+      "plus_minus": "+7"
+    },
+    {
+      "name": "Sanna H.",
+      "total": 50,
+      "plus_minus": "+9"
+    },
+    {
+      "name": "Pentti P.",
+      "total": 52,
+      "plus_minus": "+11"
     }
-  ]
+  ],
+  "course_id": "luoma-aho",
+  "total_rounds": 453
 }

@@ -430,170 +430,116 @@ function sparklineSVG(data, color="#1aff1a", fill=true, w=100, h=22){
   return '<svg class="sparkline" viewBox="0 0 '+w+' '+h+'"><polygon points="'+area+'" fill="'+color+'" opacity="0.18"/><polyline points="'+pts+'" fill="none" stroke="'+color+'" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 }
 
-function renderVayla(v){
-  try{
-    if(!v) return;
-    // V5.2 FIX: LOCKED_PAR ja PITUUS, mutta avg/diff laskenta korjattu
-    v.par = (v.par&&v.par.length>=12)?v.par:LOCKED_PAR;
-    v.pituus = (v.pituus&&v.pituus.length>=12)?v.pituus:LOCKED_PITUUS;
-    if(!v.pituus || v.pituus.length<12)return;
-    // Bug1 FIX: Difficulty väri ranking logiikalla 1-3 vihreä, 4-6 keltainen, 7-9 oranssi, 10-12 punainen
-    const autoDiffCls=(diff)=>{
-      const n=parseInt(diff);
-      if(isNaN(n))return"cell-dark";
-      if(n<=3)return"cell-green";      // 1-3 helpoimmat = vihreä
-      if(n<=6)return"cell-yellow";     // 4-6 keskitaso keltainen
-      if(n<=9)return"cell-orange";     // 7-9 vaikeat oranssi
-      return"cell-red";                // 10-12 vaikeimmat punainen
-    };
-    // AUTHENTIC SSA-BASED DIFFICULTY - korvaa vanha avg - par ranking
-    if(useAuthentic){
-      try{
-        const avgNums = v.avg.slice(0,12).map(s=> parseFloat(s));
-        const parNums = v.par.slice(0,12).map(s=> parseInt(s));
-        const avgRating = currentMode==='kaikki' ? AVG_RATING_COMBINED : (currentMode==='udisc' ? AVG_RATING_UDISC : AVG_RATING_METRIX);
-        const avgTotal = parseFloat(v.avg_total);
-        const {ssaHoles, ssaTotal} = computeAuthenticSSA(avgNums, avgTotal, avgRating);
-        const {rank, over} = getAuthenticDifficulty(ssaHoles, parNums);
-        v.difficulty = rank.map(r=> `${r}`); // pelkkä numero, render lisää /12
-        v.diffCls = rank.map(r=> getAuthenticCellCls(r));
-        v.ssaHoles = ssaHoles;
-        v.ssaTotal = ssaTotal;
-        v.ssaOver = over;
-        // päivitä Tot sarake näyttämään SSA total
-        // v.avg_total pysyy alkuperäisenä, mutta lisätään tooltip
-      }catch(e){ console.log("authentic calc fail", e); }
-    }
-    if(!v.diffCls||v.diffCls.length<12){v.diffCls=(v.difficulty||v.diff||[]).slice(0,12).map(d=>autoDiffCls(d));}
-    const N=v.vayla_count||12, prev=v.prev_avg;
-    const body=document.getElementById("vayla-body");if(!body)return;
-    body.innerHTML="";
-    // SPARKLINE + LUOKITUS - lasketaan ensin, jotta Luokitus rivi päivittyy automaattisesti
-    let birdiePctArr = [], diffNumsArr = [], avgNumsArr = [], parNumsArr = [];
-    try{
-      const totalRounds = (currentMode === 'udisc' ? 453 : 1221);
-      birdiePctArr = v.birdie.slice(0,12).map(c=> (c/totalRounds*100));
-      diffNumsArr = (v.difficulty||v.diff||[]).slice(0,12).map(s=> parseInt(s));
-      avgNumsArr = v.avg.slice(0,12).map(s=> parseFloat(s));
-      parNumsArr = v.par.slice(0,12).map(s=> parseInt(s));
-    }catch(e){}
 
-    // 900 TASO - birdie% vaihtuu UDisc/Metrix togglessa, mutta rajat ovat 900 tason
-    const getLuokitus = (pct, par) => {
-      const isPar4 = par>=4;
-      if(isPar4){
-        if(pct >= 20) return {label:"HELPPO", cls:"cell-green"};
-        if(pct >= 10) return {label:"TEKNINEN", cls:"cell-yellow"};
-        if(pct >= 5) return {label:"EROTTELEVA", cls:"cell-orange"};
-        return {label:"VAIKEA", cls:"cell-red"};
+    const autoDiffCls = (diff) => {
+      const n = parseInt(diff);
+      if(isNaN(n)) return "cell-dark";
+      if(n <= 3) return "cell-red";        // 1-3 vaikein punainen
+      if(n <= 6) return "cell-yellow";     // 4-6 keltainen
+      if(n <= 9) return "cell-orange";     // 7-9 oranssi
+      return "cell-green";                 // 10-12 helpoin vihreä
+    };
+
+    function renderVayla(v){
+      if(!v) return;
+      if(!v.pituus || v.pituus.length<12) return;
+      // Ensure diffCls reversed 1-3 red, 10-12 green
+      if(!v.diffCls || v.diffCls.length<12){
+        v.diffCls = (v.difficulty||v.diff||[]).slice(0,12).map(d=>autoDiffCls(d));
       } else {
-        if(pct >= 15) return {label:"HELPPO", cls:"cell-green"};
-        if(pct >= 8) return {label:"TEKNINEN", cls:"cell-yellow"};
-        if(pct >= 5) return {label:"EROTTELEVA", cls:"cell-orange"};
-        return {label:"VAIKEA", cls:"cell-red"};
+        // overwrite with reversed logic to be sure
+        v.diffCls = (v.difficulty||v.diff||[]).slice(0,12).map(d=>autoDiffCls(d));
       }
-    };
-    // birdie% tulee aktiivisesta moodista, jotta toggle vaihtaa % ja merkityksen
-    let birdie900PctArr = birdiePctArr; // nykyinen moodi = 900 taso UDiscissa, 850 taso Kaikissa mutta rajat 900
-
-    let luokitusArr = birdie900PctArr.map((pct,i)=> getLuokitus(pct, parNumsArr[i]||3));
-    // säilytetään myös nykyisen moodin birdie% vertailuun
-    let luokitusCurrentPct = birdiePctArr;
-    let luokitusLabels = luokitusArr.map(o=> o.label);
-    let luokitusCls = luokitusArr.map(o=> o.cls);
-
-    const rows=[["Pituus",...v.pituus],["Par",...v.par],["Avg",...v.avg],["Luokitus",...luokitusLabels],["Difficulty",...v.difficulty||v.diff],["Hole in one",...v.hio],["Birdie -1",...v.birdie],["Par 0",...v.par0],["Bogey 1",...v.bogey],["Dbl Bogey 2",...v.dbl],["Tpl Bogey 3",...(v.tpl||Array(12).fill(0))],["Other >3",...v.other]];
-
-
-    const getCorr = (idx)=>{
+      const N=v.vayla_count||12;
+      const body=document.getElementById("vayla-body");if(!body)return;
+      body.innerHTML="";
+      let birdiePctArr = [], diffNumsArr = [], avgNumsArr = [], parNumsArr = [];
       try{
-        const pct = birdiePctArr[idx]||0;
-        const diff = diffNumsArr[idx]||6;
-        const expected = 25 - (diff-1)*2.2;
-        const delta = pct - expected;
-        if(delta > 5) return {cls:"cell-green", label:"YLI", delta};
-        if(delta > 2) return {cls:"cell-yellow", label:"OK+", delta};
-        if(delta > -2) return {cls:"cell-yellow", label:"BAL", delta};
-        if(delta > -5) return {cls:"cell-orange", label:"ALI", delta};
-        return {cls:"cell-red", label:"RANK", delta};
-      }catch(e){ return {cls:"cell-dark", label:"-", delta:0}; }
-    };
-    const corrArr = diffNumsArr.length ? diffNumsArr.map((_,i)=>getCorr(i)) : [];
+        const totalRounds = (currentMode === 'udisc' ? 453 : 1221);
+        birdiePctArr = v.birdie.slice(0,12).map(c=> (c/totalRounds*100));
+        diffNumsArr = (v.difficulty||v.diff||[]).slice(0,12).map(d=>parseInt((d+'').split('/')[0])||6);
+        avgNumsArr = v.avg.slice(0,12).map(s=>parseFloat(s));
+        parNumsArr = v.par.slice(0,12).map(s=>parseInt(s));
+      }catch(e){}
 
-    rows.forEach((row,ri)=>{
-      const tr=document.createElement("tr");
-      row.forEach((cell,ci)=>{
-        const isLuokitus = ri===3 && ci>0 && ci<13;
-        const isD=ri===4&&ci>0&&ci<13;
-        const td=document.createElement("td");
-        if(isLuokitus){
-          const lu = luokitusArr[ci-1];
-          td.textContent = lu ? lu.label : cell;
-          td.className = lu ? lu.cls : "cell-dark";
-          td.title = `Birdie 900-taso ${birdie900PctArr[ci-1].toFixed(1)}% (nykyinen ${birdiePctArr[ci-1].toFixed(1)}%) → ${lu.label} (Par ${parNumsArr[ci-1]})`;
-          // pieni % alle
-          td.innerHTML = `${lu.label}<span style="font-size:8px;display:block;line-height:1.1;margin-top:2px;opacity:0.8">${birdie900PctArr[ci-1].toFixed(1)}% (900)</span>`;
-        } else if(isD && corrArr[ci-1]){
-          const corr = corrArr[ci-1];
-          const base = cell.includes('/') ? cell : cell + "/" + N;
-          // FIX: background = difficulty rank (vihreä=helpoin 1-3), pieni teksti = korrelaatio
-          // Difficulty: ei värillisiä tekstejä, yhtä suuri kuin muut sarakkeet, neutral
-          td.textContent = base;
-          td.className = "cell-dark"; // neutral, ei väriä
-          td.title = `Vaikeus ${base} (1=vaikein, 12=helpoin) | SSA ${v.ssaHoles ? v.ssaHoles[ci-1] : ''}`;
-        }else{
-          const base2 = isD ? (cell.includes('/') ? cell : cell+"/"+N) : cell;
-          td.textContent=base2;
-          if(isD)td.className=v.diffCls[ci-1]||autoDiffCls(cell);
+      const getLuokitus = (pct, par) => {
+        const isPar4 = par>=4;
+        if(isPar4){
+          if(pct >= 20) return {label:"HELPPO", cls:"cell-green"};
+          if(pct >= 10) return {label:"TEKNINEN", cls:"cell-yellow"};
+          if(pct >= 5) return {label:"EROTTELEVA", cls:"cell-orange"};
+          return {label:"VAIKEA", cls:"cell-red"};
+        } else {
+          if(pct >= 15) return {label:"HELPPO", cls:"cell-green"};
+          if(pct >= 8) return {label:"TEKNINEN", cls:"cell-yellow"};
+          if(pct >= 5) return {label:"EROTTELEVA", cls:"cell-orange"};
+          return {label:"VAIKEA", cls:"cell-red"};
         }
-        if(ri===2&&ci>0&&ci<14&&prev){
-          const c=Math.round(parseFloat(cell)*100),p=Math.round(parseFloat(prev[ci-1])*100);
-          if(!isNaN(c)&&!isNaN(p)&&c!==p){const a=document.createElement("span");a.className="trend "+(c<p?"good":"bad");a.textContent=c<p?"▲":"▼";a.title=prev[ci-1]+" → "+cell;td.appendChild(a);}
-        }
-        if(ci===0){td.style.textAlign="left";td.style.fontWeight="700";td.style.background="#111";}
-        tr.appendChild(td);
-      });
-      // TRENDI - Luokitus ja Difficulty samassa rivissä (rowspan 2)
-      const isLuokitusRow = (ri===3);
-      const isDifficultyRow = (ri===4);
-      if(isDifficultyRow){
-        // Difficulty trendi jo Luokitus solussa, skipataan oma solu jotta samassa rivissä
-        const ph = document.createElement("td");
-        ph.style.display="none";
-        tr.appendChild(ph);
-      } else {
+      };
+      let luokitusArr = birdiePctArr.map((pct,i)=> getLuokitus(pct, parNumsArr[i]||3));
+
+      const rows=[["Pituus",...v.pituus],["Par",...v.par],["Avg",...v.avg],["Luokitus",...luokitusArr.map(o=>o.label)],["Difficulty",...v.difficulty||v.diff],["Hole in one",...v.hio],["Birdie -1",...v.birdie],["Par 0",...v.par0],["Bogey 1",...v.bogey],["Dbl Bogey 2",...v.dbl],["Tpl Bogey 3",...(v.tpl||Array(12).fill(0))],["Other >3",...v.other]];
+
+      rows.forEach((row,ri)=>{
+        const tr=document.createElement("tr");
+        row.forEach((cell,ci)=>{
+          const isLuokitus = ri===3 && ci>0 && ci<13;
+          const isD=ri===4&&ci>0&&ci<13;
+          const td=document.createElement("td");
+          if(isLuokitus){
+            const lu = luokitusArr[ci-1];
+            td.className = lu ? lu.cls : "cell-dark";
+            td.title = `Birdie ${birdiePctArr[ci-1].toFixed(1)}% (900) → ${lu.label} Par ${parNumsArr[ci-1]}`;
+            td.innerHTML = `${lu.label}<span style="font-size:8px;display:block;line-height:1.1;margin-top:2px;opacity:0.8;color:#000;font-weight:700">${birdiePctArr[ci-1].toFixed(1)}%</span>`;
+          } else if(isD){
+            let num = 0;
+            let raw = cell;
+            if(typeof raw === 'string'){
+              raw = raw.replace('/12/12','/12').split('/')[0].trim();
+            }
+            num = parseInt(raw) || ci;
+            let cls = "cell-dark";
+            if(num <= 3) cls = "cell-red";
+            else if(num <= 6) cls = "cell-yellow";
+            else if(num <= 9) cls = "cell-orange";
+            else cls = "cell-green";
+            let display = cell;
+            if(typeof display === 'string'){
+              display = display.replace('/12/12','/12');
+              if(!display.includes('/12')) display = display + '/12';
+            }
+            td.textContent = display;
+            td.className = cls;
+            td.title = `Vaikeus ${display} 1=vaikein punainen 12=helpoin vihreä`;
+          }else{
+            let base2 = isD ? (cell.includes('/') ? cell : cell+"/"+N) : cell;
+            td.textContent=base2;
+            if(isD)td.className=v.diffCls[ci-1]||autoDiffCls(cell);
+          }
+          if(ri===2&&ci>0&&ci<14&&v.prev_avg){
+            const c=Math.round(parseFloat(cell)*100),p=Math.round(parseFloat(v.prev_avg[ci-1])*100);
+            if(!isNaN(c)&&!isNaN(p)&&c!==p){const a=document.createElement("span");a.className="trend "+(c<p?"good":"bad");a.textContent=c<p?"▲":"▼";a.title=v.prev_avg[ci-1]+" → "+cell;td.appendChild(a);}
+          }
+          tr.appendChild(td);
+        });
+        // TRENDI - kaikki samassa sarakkeessa, yksi per rivi, ei rowspan
         const trendTd=document.createElement("td");
         trendTd.className="cell-trendi";
+        trendTd.style.verticalAlign="middle";
         try{
           if(ri===0) trendTd.innerHTML=sparklineSVG(v.pituus.slice(0,12).map(s=>parseInt(s)), "#888", true);
           else if(ri===2) trendTd.innerHTML=sparklineSVG(avgNumsArr, "#ff9800", true);
-          else if(ri===3){
-            // samassa rivissä 2 trendiä: Luokitus + Difficulty
-            trendTd.rowSpan=2;
-            trendTd.style.verticalAlign="middle";
-            trendTd.style.padding="4px";
-            const w1 = sparklineSVG(birdiePctArr, "#66bb6a", true);
-            const w2 = sparklineSVG(diffNumsArr, "#1aff1a", false);
-            trendTd.innerHTML = `<div style="display:flex;flex-direction:column;gap:4px;justify-content:center;">${w1}${w2}</div>`;
-          }
+          else if(ri===3) trendTd.innerHTML=sparklineSVG(birdiePctArr, "#66bb6a", true);
+          else if(ri===4) trendTd.innerHTML=sparklineSVG(diffNumsArr, "#1aff1a", true);
           else if(ri===6) trendTd.innerHTML=sparklineSVG(birdiePctArr, "#1aff1a", true);
           else if(ri===8) trendTd.innerHTML=sparklineSVG(v.bogey.slice(0,12).map(c=>c/1221*100), "#ff4d4d", true);
           else {trendTd.textContent="-"; trendTd.style.color="#333";}
         }catch(e){ trendTd.textContent="-"; }
         tr.appendChild(trendTd);
-      }
-      body.appendChild(tr);
-    });
-    
-    const headerRow=document.querySelector("table.vayla thead tr");
-    if(headerRow && !document.getElementById("th-trendi")){
-      const th=document.createElement("th");
-      th.id="th-trendi";
-      th.className="trendi-header";
-      th.textContent="TRENDI ✨ PRO";
-      th.style.minWidth="110px";
-      headerRow.appendChild(th);
+        body.appendChild(tr);
+      });
     }
+}
 
     const nt=document.getElementById("vayla-note"); if(nt) nt.textContent=(v.estimated&&v.estimated.note)||"";
   }catch(e){console.error("renderVayla V5.2 fail", e);}
