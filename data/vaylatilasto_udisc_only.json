@@ -84,21 +84,85 @@
     "cell-dark",
     "cell-dark"
   ],
+  "luokitus": [
+    {
+      "label": "TEKNINEN",
+      "cls": "cell-yellow"
+    },
+    {
+      "label": "VAIKEA",
+      "cls": "cell-red"
+    },
+    {
+      "label": "EROTTELEVA",
+      "cls": "cell-orange"
+    },
+    {
+      "label": "HELPPO",
+      "cls": "cell-green"
+    },
+    {
+      "label": "VAIKEA",
+      "cls": "cell-red"
+    },
+    {
+      "label": "VAIKEA",
+      "cls": "cell-red"
+    },
+    {
+      "label": "VAIKEA",
+      "cls": "cell-red"
+    },
+    {
+      "label": "TEKNINEN",
+      "cls": "cell-yellow"
+    },
+    {
+      "label": "TEKNINEN",
+      "cls": "cell-yellow"
+    },
+    {
+      "label": "VAIKEA",
+      "cls": "cell-red"
+    },
+    {
+      "label": "EROTTELEVA",
+      "cls": "cell-orange"
+    },
+    {
+      "label": "HELPPO",
+      "cls": "cell-green"
+    }
+  ],
+  "birdie_pct": [
+    12.0,
+    3.7,
+    6.9,
+    24.7,
+    3.7,
+    3.7,
+    3.7,
+    11.3,
+    10.2,
+    3.7,
+    6.3,
+    20.7
+  ],
   "birdie": [
-    109,
-    14,
-    54,
-    104,
-    18,
-    18,
-    14,
-    63,
-    104,
-    18,
-    50,
-    122,
     0,
-    "-"
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
   ],
   "par0": [
     0,

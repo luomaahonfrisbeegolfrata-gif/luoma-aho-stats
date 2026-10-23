@@ -62,20 +62,25 @@ v={
     "calculation":{"total_rounds":total,"metrix_rounds":metrix_rounds,"udisc_rounds":udisc_rounds}
 }
 (DATA/"vaylatilasto.json").write_text(json.dumps(v, ensure_ascii=False, indent=2), encoding='utf-8')
+# UDisc only
+udisc_avg_total=round(sum(udisc_avg),2)
 v2={
     "vayla_count":12,
     "par_total":str(sum(par)),
     "pituus_total":f"{sum(length)}m",
-    "avg_total":f"{round(sum(udisc_avg),2):.2f}",
-    "avg_total_calc":round(sum(udisc_avg),2),
+    "avg_total":f"{udisc_avg_total:.2f}",
+    "avg_total_calc":udisc_avg_total,
     "pituus":[f"{m}m" for m in length]+[f"{sum(length)}m","-"],
     "par":[str(p) for p in par]+[str(sum(par)),"-"],
-    "avg":[f"{a:.2f}" for a in udisc_avg]+[f"{round(sum(udisc_avg),2):.2f}","-"],
+    "avg":[f"{a:.2f}" for a in udisc_avg]+[f"{udisc_avg_total:.2f}","-"],
     "difficulty":[f"{r}" for r in rank]+["-","-"],
     "diffCls":diff_cls+["cell-dark","cell-dark"],
-    "birdie":[round(cfg["udisc_real_distribution_perc"][str(i+1)]["birdie"]/100*udisc_rounds) for i in range(12)]+[0,"-"],
-    "par0":[0]*14,"bogey":[0]*14,"dbl":[0]*14,"tpl":[0]*14,"other":[0]*14,"hio":[0]*14,
+    "luokitus":luokitus,
+    "birdie_pct":[round(p,1) for p in birdie_pct],
+    "birdie":[0]*14,"par0":[0]*14,"bogey":[0]*14,"dbl":[0]*14,"tpl":[0]*14,"other":[0]*14,"hio":[0]*14,
     "calculation":{"udisc_rounds":udisc_rounds}
 }
 (DATA/"vaylatilasto_udisc_only.json").write_text(json.dumps(v2, ensure_ascii=False, indent=2), encoding='utf-8')
-print(f"Built total {total}")
+kierrokset={"total_rounds":total,"metrix_rounds":metrix_rounds,"udisc_rounds":udisc_rounds,"unique_players":133,"peliaika":{"display":f"{int(total*1.335)}h"},"askeleet":{"display":f"{total*2664}"},"kilometrit":{"display":f"{int(total*2.054)}km"}}
+(DATA/"kierrokset.json").write_text(json.dumps(kierrokset, ensure_ascii=False, indent=2), encoding='utf-8')
+print(f"Built {total}")

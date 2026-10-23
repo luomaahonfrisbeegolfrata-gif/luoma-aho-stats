@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+
 import requests, json, pathlib
 from bs4 import BeautifulSoup
 BASE=pathlib.Path("data")
