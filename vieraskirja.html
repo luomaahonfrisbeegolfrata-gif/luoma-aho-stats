@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vieraskirja - Luoma-ahon Frisbeegolfrata</title>
+<style>
+:root{--bg:#070708;--card:#151515;--border:#242424;--green:#1aff1a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#fff;font-family:Inter,system-ui,sans-serif}
+header{height:56px;background:#0f0f0f;border-bottom:1px solid #242424;display:flex;align-items:center;justify-content:space-between;padding:0 12px;position:sticky;top:0;z-index:100}
+.brand{font-weight:700;font-size:17px;display:flex;align-items:center;gap:10px}
+a.btn{padding:8px 14px;border-radius:8px;background:var(--green);color:#000;font-weight:800;text-decoration:none;font-size:12px}
+.wrap{max-width:1200px;margin:0 auto;padding:12px;display:grid;grid-template-columns:280px 1fr;gap:12px}
+@media(max-width:768px){.wrap{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px}
+input,textarea,select{width:100%;background:#0a0a0a;border:1px solid #2a2a2a;border-radius:8px;color:#fff;padding:10px;font-size:13px}
+label{font-size:10px;color:#888;text-transform:uppercase;font-weight:700;display:block;margin:10px 0 4px}
+.stars{font-size:22px;cursor:pointer;color:#444}
+.stars span.active{color:#ffb400}
+.entry{border-bottom:1px solid #1e1e1e;padding:12px 0}
+.entry:last-child{border:none}
+.name{font-weight:800;color:#1aff1a;font-size:13px}
+.meta{font-size:10px;color:#666}
+.msg{font-size:13px;color:#ddd;margin-top:6px;line-height:1.4}
+.badge{background:#1aff1a;color:#000;font-size:10px;font-weight:800;padding:3px 10px;border-radius:12px}
+</style>
+</head><body>
+<header><div class="brand"><div style="width:28px;height:28px;background:#fff;border-radius:50%;display:grid;place-items:center;color:#000;font-weight:900">L</div> Luoma-ahon Frisbeegolfrata</div><a class="btn" href="./index.html">ETUSIVU</a></header>
+<div class="wrap">
+<div class="card">
+<div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:10px;color:#888;font-weight:700">VIERASKIRJA - KIRJOITA</div><div style="font-size:9px;color:var(--green);font-weight:800">LIVE</div></div>
+<label>NIMI / NIMIMERKKI</label><input id="inp-name" placeholder="Esim. Jari - Seinäjoki" maxlength="30" autocomplete="nickname"><input id="inp-website" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+<label>ARVOSTELU</label><div class="stars" id="stars"><span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span></div><div style="font-size:10px;color:#666" id="star-label">Valitse 1-5 tähteä</div>
+<label>VIESTI</label><textarea id="inp-msg" rows="10" placeholder="Miten rata maistui?" maxlength="500"></textarea><div style="font-size:10px;color:#666;text-align:right"><span id="char-count">0</span> / 500</div>
+<button id="btn-send" style="width:100%;margin-top:12px;height:38px;background:var(--green);color:#000;border:none;border-radius:8px;font-weight:800;cursor:pointer">LÄHETÄ VIESTI →</button>
+<div style="font-size:10px;color:#666;margin-top:8px" id="send-status">Viesti julkaistaan, kun ylläpito on hyväksynyt sen.</div>
+</div>
+<div class="card">
+<div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:10px;color:#888;font-weight:700">VIERASKIRJA - VIESTIT</div><div style="font-size:9px;color:var(--green);font-weight:800" id="viesti-count">0 viestiä</div></div>
+<div id="stats" style="margin:10px 0;padding:10px;background:#0f0f0f;border-radius:8px;border:1px solid #222"></div>
+<div id="list"></div>
+</div>
+</div>
+<script>
+const esc=s=>String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+let selectedRating=0;
+const starsEl=document.getElementById('stars');
+starsEl.addEventListener('click', e=>{
+  if(e.target.dataset.v){ selectedRating=parseInt(e.target.dataset.v); updateStars(); }
+});
+function updateStars(){
+  starsEl.querySelectorAll('span').forEach(s=>{
+    s.classList.toggle('active', parseInt(s.dataset.v)<=selectedRating);
+  });
+  document.getElementById('star-label').textContent = selectedRating? `${selectedRating}/5 tähteä` : 'Valitse 1-5 tähteä';
+}
+document.getElementById('inp-msg').addEventListener('input', e=>{
+  document.getElementById('char-count').textContent=e.target.value.length;
+});
+
+async function loadVieraskirja(){
+  try{
+    const r=await fetch('./data/vieraskirja.json?v='+Date.now(), {cache:'no-store'});
+    if(!r.ok) throw new Error(r.status);
+    const j=await r.json();
+    const entries=j.entries||[];
+    const stats=j.stats||{};
+    const avg = stats.avg || (entries.length? (entries.reduce((a,b)=>a+(Number(b.rating)||0),0)/entries.length).toFixed(1) : '-');
+    document.getElementById('stats').innerHTML=`<span style="color:#ffb400">★★★★★</span> <b>${avg}</b> (${stats.ratings||entries.length} arvostelua)`;
+    document.getElementById('viesti-count').textContent=`${entries.length} viestiä`;
+    const list=document.getElementById('list');
+    list.innerHTML='';
+    // sort newest first by date dd.mm.yyyy
+    const parseDate=(d)=>{try{const p=d.split('.');if(p.length===3)return new Date(parseInt(p[2]),parseInt(p[1])-1,parseInt(p[0])).getTime();}catch(e){}return 0;};
+    const sorted=[...entries].sort((a,b)=>parseDate(b.date)-parseDate(a.date));
+    sorted.forEach(e=>{
+      const div=document.createElement('div'); div.className='entry';
+      const r=Math.max(0,Math.min(5,parseInt(e.rating)||0));
+      div.innerHTML=`<div class="meta">${esc(e.date)}</div><div class="name">${esc(e.name)} ${'★'.repeat(r)}${'☆'.repeat(5-r)}</div><div class="msg">${esc(e.message)}</div>`;
+      list.appendChild(div);
+    });
+  }catch(e){
+    document.getElementById('list').innerHTML=`<div style="color:#ff4d4d;font-size:12px">Ei voitu ladata: ${esc(e.message)}</div>`;
+  }
+}
+loadVieraskirja();
+
+// Cloudflare Workerin osoite (ks. worker/vieraskirja-worker.js ja VIERASKIRJA-OHJE.md)
+const WORKER_URL = 'https://royal-darkness-015f.luomaahonfrisbeegolfrata.workers.dev';
+function setStatus(txt,color){const el=document.getElementById('send-status');el.textContent=txt;el.style.color=color||'#666';}
+document.getElementById('btn-send').addEventListener('click', async ()=>{
+  const name=document.getElementById('inp-name').value.trim();
+  const msg=document.getElementById('inp-msg').value.trim();
+  const website=document.getElementById('inp-website').value;
+  if(!name || msg.length<3 || selectedRating===0){ setStatus('Täytä nimi, viesti (väh. 3 merkkiä) ja tähdet.','#ff4d4d'); return; }
+  const btn=document.getElementById('btn-send');
+  btn.disabled=true; btn.textContent='LÄHETETÄÄN...';
+  try{
+    const r=await fetch(WORKER_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({name, message:msg, rating:selectedRating, website})});
+    let j={}; try{ j=await r.json(); }catch(_){}
+    if(!r.ok) throw new Error(j.message||('palvelin '+r.status));
+    setStatus('Kiitos viestistä! Se näkyy täällä, kun ylläpito on hyväksynyt sen.','#1aff1a');
+    document.getElementById('inp-name').value=''; document.getElementById('inp-msg').value=''; document.getElementById('char-count').textContent='0'; selectedRating=0; updateStars();
+  }catch(e){
+    setStatus('Lähetys epäonnistui ('+(e.message||'yhteysvirhe')+'). Viestiä ei tallennettu – yritä myöhemmin uudelleen.','#ff4d4d');
+  }finally{ btn.disabled=false; btn.textContent='LÄHETÄ VIESTI →'; }
+});
+</script>
+</body></html>

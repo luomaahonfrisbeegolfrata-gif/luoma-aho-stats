@@ -1,0 +1,78 @@
+{
+  "course_id": 44010,
+  "total_rounds": 630,
+  "top10": [
+    {
+      "name": "Toni Luoma-aho",
+      "total": 42,
+      "plus_minus": "+1",
+      "date": "29.4.2026 18:00",
+      "metrix_rank": 1
+    },
+    {
+      "name": "Eino Vistiaho",
+      "total": 43,
+      "plus_minus": "+2",
+      "date": "29.4.2026 18:00",
+      "metrix_rank": 2
+    },
+    {
+      "name": "Benjamin Turja",
+      "total": 44,
+      "plus_minus": "+3",
+      "date": "5.10.2025 16:00",
+      "metrix_rank": 3
+    },
+    {
+      "name": "Jouni Peltomäki",
+      "total": 44,
+      "plus_minus": "+3",
+      "date": "23.10.2026 16:10",
+      "metrix_rank": 3
+    },
+    {
+      "name": "Juha Luoma-aho",
+      "total": 45,
+      "plus_minus": "+4",
+      "date": "23.10.2026 16:10",
+      "metrix_rank": 5
+    },
+    {
+      "name": "Jari Vistiaho",
+      "total": 46,
+      "plus_minus": "+5",
+      "date": "29.4.2026 18:00",
+      "metrix_rank": 5
+    },
+    {
+      "name": "Julius Luoma-aho",
+      "total": 47,
+      "plus_minus": "+6",
+      "date": "7.10.2025 17:00",
+      "metrix_rank": 7
+    },
+    {
+      "name": "Joakim Turja",
+      "total": 49,
+      "plus_minus": "+8",
+      "date": "5.10.2025 16:00",
+      "metrix_rank": 11
+    },
+    {
+      "name": "Juha Vainio",
+      "total": 55,
+      "plus_minus": "+14",
+      "date": "5.10.2025 16:00",
+      "metrix_rank": 23
+    },
+    {
+      "name": "jari peltola",
+      "total": 56,
+      "plus_minus": "+15",
+      "date": "23.5.2026 16:30",
+      "metrix_rank": 24
+    }
+  ],
+  "par_rating": 990,
+  "source": "Metrix: Parhaat tulokset (paras tulos per pelaaja)"
+}

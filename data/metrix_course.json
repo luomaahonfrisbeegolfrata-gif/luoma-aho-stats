@@ -1,0 +1,848 @@
+{
+  "fetched_at": "2026-10-26T11:41:28+00:00",
+  "parent_course_id": 43119,
+  "total_rounds": 761,
+  "training_rounds": 617,
+  "competition_rounds": 144,
+  "layouts_fetched": [
+    {
+      "course_id": 43773,
+      "holes": 12,
+      "par": 41,
+      "length_m": null,
+      "par_rating": null,
+      "total_rounds": 2,
+      "training_rounds": 2,
+      "competition_rounds": 0
+    },
+    {
+      "course_id": 44010,
+      "holes": 12,
+      "par": 41,
+      "length_m": 1248,
+      "par_rating": 990,
+      "total_rounds": 630,
+      "training_rounds": 572,
+      "competition_rounds": 58
+    },
+    {
+      "course_id": 44026,
+      "holes": 22,
+      "par": 78,
+      "length_m": null,
+      "par_rating": null,
+      "total_rounds": 19,
+      "training_rounds": 13,
+      "competition_rounds": 6
+    },
+    {
+      "course_id": 44565,
+      "holes": 12,
+      "par": 45,
+      "length_m": null,
+      "par_rating": null,
+      "total_rounds": 16,
+      "training_rounds": 5,
+      "competition_rounds": 11
+    },
+    {
+      "course_id": 44763,
+      "holes": 24,
+      "par": 82,
+      "length_m": 2494,
+      "par_rating": 972,
+      "total_rounds": 61,
+      "training_rounds": 13,
+      "competition_rounds": 48
+    },
+    {
+      "course_id": 45261,
+      "holes": 20,
+      "par": 72,
+      "length_m": null,
+      "par_rating": null,
+      "total_rounds": 9,
+      "training_rounds": 0,
+      "competition_rounds": 9
+    },
+    {
+      "course_id": 45536,
+      "holes": 9,
+      "par": 32,
+      "length_m": 728,
+      "par_rating": null,
+      "total_rounds": 6,
+      "training_rounds": 6,
+      "competition_rounds": 0
+    },
+    {
+      "course_id": 45537,
+      "holes": 24,
+      "par": 76,
+      "length_m": null,
+      "par_rating": null,
+      "total_rounds": 10,
+      "training_rounds": 5,
+      "competition_rounds": 5
+    },
+    {
+      "course_id": 48112,
+      "holes": 18,
+      "par": 60,
+      "length_m": 1795,
+      "par_rating": null,
+      "total_rounds": 8,
+      "training_rounds": 1,
+      "competition_rounds": 7
+    }
+  ],
+  "other_layouts_rounds": 0,
+  "monthly_unique_sum_NOT_DEDUPED": 194,
+  "hole_stats_12": [
+    {
+      "n": 121,
+      "strokes": 538,
+      "counts": {
+        "hio": 0,
+        "eagle": 0,
+        "birdie": 21,
+        "par": 52,
+        "bogey": 26,
+        "dbl": 18,
+        "tpl": 3,
+        "other": 1
+      }
+    },
+    {
+      "n": 121,
+      "strokes": 457,
+      "counts": {
+        "hio": 0,
+        "eagle": 0,
+        "birdie": 0,
+        "par": 45,
+        "bogey": 60,
+        "dbl": 14,
+        "tpl": 2,
+        "other": 0
+      }
+    },
+    {
+      "n": 121,
+      "strokes": 426,
+      "counts": {
+        "hio": 0,
+        "eagle": 0,
+        "birdie": 8,
+        "par": 66,
+        "bogey": 27,
+        "dbl": 16,
+        "tpl": 4,
+        "other": 0
+      }
+    },
+    {
+      "n": 121,
+      "strokes": 414,
+      "counts": {
+        "hio": 1,
+        "eagle": 0,
+        "birdie": 27,
+        "par": 24,
+        "bogey": 61,
+        "dbl": 5,
+        "tpl": 3,
+        "other": 0
+      }
+    },
+    {
+      "n": 121,
+      "strokes": 428,
+      "counts": {
+        "hio": 0,
+        "eagle": 0,
+        "birdie": 5,
+        "par": 63,
+        "bogey": 40,
+        "dbl": 9,
+        "tpl": 4,
+        "other": 0
+      }
+    },
+    {
+      "n": 121,
+      "strokes": 512,
+      "counts": {
+        "hio": 0,
+        "eagle": 0,
+        "birdie": 1,
+        "par": 32,
+        "bogey": 49,
+        "dbl": 22,
+        "tpl": 11,
+        "other": 6
+      }
+    },
+    {
+      "n": 121,
+      "strokes": 454,
+      "counts": {
+        "hio": 0,
+        "eagle": 0,
+        "birdie": 4,
+        "par": 49,
+        "bogey": 45,
+        "dbl": 19,
+        "tpl": 4,
+        "other": 0
+      }
+    },
+    {
+      "n": 121,
+      "strokes": 404,
+      "counts": {
+        "hio": 0,
+        "eagle": 0,
+        "birdie": 14,
+        "par": 62,
+        "bogey": 36,
+        "dbl": 8,
+        "tpl": 1,
+        "other": 0
+      }
+    },
+    {
+      "n": 121,
+      "strokes": 555,
+      "counts": {
+        "hio": 0,
+        "eagle": 0,
+        "birdie": 17,
+        "par": 50,
+        "bogey": 34,
+        "dbl": 11,
+        "tpl": 4,
+        "other": 5
+      }
+    },
+    {
+      "n": 121,
+      "strokes": 511,
+      "counts": {
+        "hio": 0,
+        "eagle": 0,
+        "birdie": 0,
+        "par": 30,
+        "bogey": 45,
+        "dbl": 37,
+        "tpl": 7,
+        "other": 2
+      }
+    },
+    {
+      "n": 121,
+      "strokes": 763,
+      "counts": {
+        "hio": 0,
+        "eagle": 0,
+        "birdie": 5,
+        "par": 24,
+        "bogey": 43,
+        "dbl": 33,
+        "tpl": 10,
+        "other": 6
+      }
+    },
+    {
+      "n": 121,
+      "strokes": 523,
+      "counts": {
+        "hio": 0,
+        "eagle": 0,
+        "birdie": 20,
+        "par": 57,
+        "bogey": 35,
+        "dbl": 5,
+        "tpl": 2,
+        "other": 2
+      }
+    }
+  ],
+  "best_rounds_12": {
+    "course_id": 44010,
+    "par_rating": 990,
+    "par": 41,
+    "rounds": [
+      {
+        "name": "Toni Luoma-aho",
+        "date": "4/29/26 18:00",
+        "total": 42,
+        "scores": [
+          4,
+          4,
+          3,
+          2,
+          4,
+          3,
+          4,
+          2,
+          4,
+          3,
+          6,
+          3
+        ]
+      },
+      {
+        "name": "Eino Vistiaho",
+        "date": "4/29/26 18:00",
+        "total": 43,
+        "scores": [
+          4,
+          3,
+          4,
+          3,
+          3,
+          2,
+          3,
+          4,
+          4,
+          3,
+          6,
+          4
+        ]
+      },
+      {
+        "name": "Jouni Peltomäki",
+        "date": "10/23/26 16:10",
+        "total": 44,
+        "scores": [
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          4,
+          4,
+          4,
+          4,
+          6,
+          5
+        ]
+      },
+      {
+        "name": "Benjamin Turja",
+        "date": "10/5/25 16:00",
+        "total": 44,
+        "scores": [
+          4,
+          3,
+          3,
+          4,
+          3,
+          3,
+          3,
+          2,
+          5,
+          4,
+          6,
+          4
+        ]
+      },
+      {
+        "name": "Toni Luoma-aho",
+        "date": "4/3/26 14:00",
+        "total": 45,
+        "scores": [
+          4,
+          4,
+          3,
+          4,
+          3,
+          4,
+          3,
+          3,
+          4,
+          3,
+          6,
+          4
+        ]
+      },
+      {
+        "name": "Juha Luoma-aho",
+        "date": "10/23/26 16:10",
+        "total": 45,
+        "scores": [
+          3,
+          4,
+          4,
+          4,
+          3,
+          4,
+          3,
+          4,
+          4,
+          4,
+          5,
+          3
+        ]
+      },
+      {
+        "name": "Toni Luoma-aho",
+        "date": "10/25/26 15:20",
+        "total": 45,
+        "scores": [
+          4,
+          3,
+          2,
+          2,
+          4,
+          4,
+          4,
+          4,
+          5,
+          3,
+          7,
+          3
+        ]
+      },
+      {
+        "name": "Jari Vistiaho",
+        "date": "4/29/26 18:00",
+        "total": 46,
+        "scores": [
+          5,
+          4,
+          3,
+          2,
+          3,
+          5,
+          3,
+          3,
+          4,
+          3,
+          7,
+          4
+        ]
+      },
+      {
+        "name": "Toni Luoma-aho",
+        "date": "5/23/26 17:51",
+        "total": 46,
+        "scores": [
+          3,
+          4,
+          4,
+          3,
+          4,
+          3,
+          3,
+          3,
+          4,
+          4,
+          7,
+          4
+        ]
+      },
+      {
+        "name": "Toni Luoma-aho",
+        "date": "10/25/26 14:00",
+        "total": 46,
+        "scores": [
+          3,
+          5,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          4,
+          3,
+          8,
+          7
+        ]
+      },
+      {
+        "name": "Jouni Peltomäki",
+        "date": "10/25/26 14:00",
+        "total": 46,
+        "scores": [
+          4,
+          3,
+          5,
+          4,
+          3,
+          4,
+          3,
+          2,
+          4,
+          3,
+          7,
+          4
+        ]
+      },
+      {
+        "name": "Julius Luoma-aho",
+        "date": "10/7/25 17:00",
+        "total": 47,
+        "scores": [
+          4,
+          3,
+          4,
+          2,
+          3,
+          3,
+          4,
+          2,
+          6,
+          4,
+          8,
+          4
+        ]
+      },
+      {
+        "name": "Toni Luoma-aho",
+        "date": "10/23/26 16:10",
+        "total": 47,
+        "scores": [
+          5,
+          4,
+          5,
+          3,
+          3,
+          4,
+          3,
+          3,
+          3,
+          3,
+          6,
+          5
+        ]
+      },
+      {
+        "name": "Benjamin Turja",
+        "date": "5/23/26 16:30",
+        "total": 48,
+        "scores": [
+          5,
+          3,
+          3,
+          2,
+          3,
+          5,
+          4,
+          4,
+          4,
+          4,
+          6,
+          5
+        ]
+      },
+      {
+        "name": "Toni Luoma-aho",
+        "date": "5/23/26 16:30",
+        "total": 48,
+        "scores": [
+          4,
+          3,
+          3,
+          4,
+          5,
+          4,
+          5,
+          3,
+          4,
+          3,
+          6,
+          4
+        ]
+      },
+      {
+        "name": "Toni Luoma-aho",
+        "date": "4/22/26 18:00",
+        "total": 48,
+        "scores": [
+          3,
+          4,
+          3,
+          2,
+          3,
+          4,
+          6,
+          3,
+          4,
+          6,
+          6,
+          4
+        ]
+      },
+      {
+        "name": "Benjamin Turja",
+        "date": "5/23/26 17:51",
+        "total": 49,
+        "scores": [
+          5,
+          3,
+          2,
+          3,
+          4,
+          7,
+          5,
+          3,
+          6,
+          3,
+          5,
+          3
+        ]
+      },
+      {
+        "name": "Jouni Peltomäki",
+        "date": "10/25/26 15:20",
+        "total": 49,
+        "scores": [
+          4,
+          4,
+          6,
+          2,
+          3,
+          4,
+          5,
+          3,
+          4,
+          3,
+          7,
+          4
+        ]
+      },
+      {
+        "name": "Joakim Turja",
+        "date": "10/5/25 16:00",
+        "total": 49,
+        "scores": [
+          5,
+          3,
+          3,
+          2,
+          4,
+          4,
+          5,
+          5,
+          5,
+          4,
+          5,
+          4
+        ]
+      },
+      {
+        "name": "Juha Luoma-aho",
+        "date": "10/25/26 15:20",
+        "total": 49,
+        "scores": [
+          4,
+          4,
+          3,
+          2,
+          3,
+          4,
+          3,
+          5,
+          5,
+          4,
+          7,
+          5
+        ]
+      },
+      {
+        "name": "Jouni Peltomäki",
+        "date": "5/23/26 16:30",
+        "total": 49,
+        "scores": [
+          4,
+          4,
+          3,
+          4,
+          4,
+          5,
+          3,
+          3,
+          5,
+          4,
+          7,
+          3
+        ]
+      },
+      {
+        "name": "Toni Luoma-aho",
+        "date": "10/7/25 17:00",
+        "total": 49,
+        "scores": [
+          6,
+          4,
+          3,
+          2,
+          3,
+          4,
+          5,
+          3,
+          5,
+          4,
+          7,
+          3
+        ]
+      },
+      {
+        "name": "Eino Vistiaho",
+        "date": "5/23/26 17:51",
+        "total": 49,
+        "scores": [
+          5,
+          3,
+          5,
+          3,
+          3,
+          3,
+          2,
+          4,
+          8,
+          3,
+          5,
+          5
+        ]
+      },
+      {
+        "name": "Juha Luoma-aho",
+        "date": "10/25/26 14:00",
+        "total": 50,
+        "scores": [
+          3,
+          4,
+          3,
+          4,
+          3,
+          7,
+          4,
+          5,
+          3,
+          3,
+          6,
+          5
+        ]
+      },
+      {
+        "name": "Julius Luoma-aho",
+        "date": "10/5/25 16:00",
+        "total": 50,
+        "scores": [
+          6,
+          4,
+          3,
+          4,
+          3,
+          5,
+          4,
+          3,
+          3,
+          4,
+          6,
+          5
+        ]
+      },
+      {
+        "name": "Juha Luoma-aho",
+        "date": "4/29/26 18:00",
+        "total": 51,
+        "scores": [
+          4,
+          3,
+          3,
+          4,
+          3,
+          5,
+          5,
+          4,
+          4,
+          5,
+          6,
+          5
+        ]
+      },
+      {
+        "name": "Juha Luoma-aho",
+        "date": "4/3/26 14:00",
+        "total": 51,
+        "scores": [
+          7,
+          5,
+          3,
+          4,
+          4,
+          3,
+          4,
+          4,
+          3,
+          5,
+          6,
+          3
+        ]
+      },
+      {
+        "name": "Julius Luoma-aho",
+        "date": "4/29/26 18:00",
+        "total": 51,
+        "scores": [
+          5,
+          3,
+          4,
+          3,
+          4,
+          4,
+          4,
+          3,
+          4,
+          4,
+          8,
+          5
+        ]
+      },
+      {
+        "name": "Jouni Peltomäki",
+        "date": "4/3/26 14:00",
+        "total": 52,
+        "scores": [
+          4,
+          5,
+          3,
+          3,
+          5,
+          6,
+          3,
+          4,
+          4,
+          4,
+          6,
+          5
+        ]
+      },
+      {
+        "name": "Toni Luoma-aho",
+        "date": "10/5/25 16:00",
+        "total": 53,
+        "scores": [
+          5,
+          4,
+          3,
+          4,
+          3,
+          3,
+          5,
+          3,
+          6,
+          5,
+          8,
+          4
+        ]
+      }
+    ]
+  }
+}
