@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T12:53:41+02:00",
+  "generated_at": "2026-10-30T12:49:37+02:00",
   "current": {
     "id": "3819645",
     "competitionId": "3819645",
@@ -107,8 +107,8 @@
       "players": 0,
       "results": [],
       "scoring": "Heittoja yhteensä, pienin voittaa",
-      "reg": "Tulossa",
-      "status": "Tulossa"
+      "reg": "Avoinna",
+      "status": "Avoinna"
     },
     {
       "id": "3820199",
