@@ -1,9 +1,9 @@
 {
-  "fetched_at": "2026-10-31T18:41:13+00:00",
+  "fetched_at": "2026-11-01T11:13:08+00:00",
   "parent_course_id": 43119,
-  "total_rounds": 761,
+  "total_rounds": 762,
   "training_rounds": 617,
-  "competition_rounds": 144,
+  "competition_rounds": 145,
   "layouts_fetched": [
     {
       "course_id": 43773,
@@ -21,9 +21,9 @@
       "par": 41,
       "length_m": 1248,
       "par_rating": 990,
-      "total_rounds": 630,
+      "total_rounds": 631,
       "training_rounds": 572,
-      "competition_rounds": 58
+      "competition_rounds": 59
     },
     {
       "course_id": 44026,
@@ -97,7 +97,7 @@
     }
   ],
   "other_layouts_rounds": 0,
-  "monthly_unique_sum_NOT_DEDUPED": 194,
+  "monthly_unique_sum_NOT_DEDUPED": 195,
   "hole_stats_12": [
     {
       "n": 121,
