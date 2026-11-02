@@ -338,7 +338,7 @@ function renderVayla(v){
         }
         if(ri===2&&ci>0&&ci<14&&prev){
           const c=Math.round(parseFloat(cell)*100),p=Math.round(parseFloat(prev[ci-1])*100);
-          if(!isNaN(c)&&!isNaN(p)&&c!==p){const a=document.createElement("span");a.className="trend "+(c<p?"good":"bad");const d=(c-p)/100;a.textContent=(d>0?"+":"−")+Math.abs(d).toFixed(2);a.title=prev[ci-1]+" → "+cell;td.appendChild(a);}
+          if(!isNaN(c)&&!isNaN(p)&&c!==p){const a=document.createElement("span");a.className="trend "+(c<p?"good":"bad");const d=Math.abs(c-p)/100;a.textContent=(c<p?"▲":"▼")+d.toFixed(2);td.appendChild(a);}
         }
         if(ci===0){td.style.textAlign="left";td.style.fontWeight="700";td.style.background="#111";}
         tr.appendChild(td);
