@@ -178,7 +178,7 @@ header{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}header::-webkit-scr
 <div class="card card-mid" id="card-tilanne" style="width:350px;min-width:350px;max-width:350px;height:380px;min-height:380px;max-height:380px"><div class="top10-title"><span>KILPAILUN TILANNE</span><b id="tilanne-badge">0</b></div><div class="tilanne-header"><span id="tilanne-competition-name">Pakkassarja</span><span id="tilanne-competition-time">07.11.2026</span></div><div class="toplist" id="list-tilanne" style="overflow-y:auto"><div class="tilanne-empty">Ei tuloksia vielä<br>Pakkassarja</div></div></div>
 </div>
 
-<div class="grid-bottom"><div class="card card-bottom" id="card-vayla"><div class="vayla-header"><h3>VÄYLÄTILASTO</h3><div class="live-badge" id="vayla-badge">…</div></div><div class="vayla-table-wrap" id="vayla-wrap"><table class="vayla"><thead><tr><th>Väylä</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>Tot</th><th>%</th></tr></thead><tbody id="vayla-body"></tbody></table></div><div id="vayla-note" style="font-size:9px;color:#777;padding:5px 12px;flex-shrink:0"></div></div></div>
+<div class="grid-bottom"><div class="card card-bottom" id="card-vayla"><div class="vayla-header"><h3>VÄYLÄTILASTO</h3><div class="live-badge" id="vayla-badge">…</div></div><div class="vayla-table-wrap" id="vayla-wrap"><table class="vayla"><thead><tr><th>Väylä</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>Tot</th><th>%</th></tr></thead><tbody id="vayla-body"></tbody></table></div></div></div>
 </div>
 <script>
 const LOCKED_PAR = ["4","3","3","3","3","3","3","3","4","3","5","4","41","-"];
@@ -374,7 +374,6 @@ function renderVayla(v){
           }).join('')+'</div></div>';
     }
 
-    const nt=document.getElementById("vayla-note"); if(nt) nt.textContent=(v.estimated&&v.estimated.note)||"";
   }catch(e){console.error("renderVayla V5.2 fail", e);}
 }
 function renderKilpailut(data){
