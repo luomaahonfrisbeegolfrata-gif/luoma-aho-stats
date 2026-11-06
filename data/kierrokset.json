@@ -1,30 +1,30 @@
 {
-  "generated_at": "2026-11-02T06:35:34+00:00",
-  "total_rounds": 1235,
+  "generated_at": "2026-11-06T07:28:49+00:00",
+  "total_rounds": 1241,
   "metrix_rounds": 768,
-  "udisc_rounds": 467,
-  "lap_equivalents": 1330.3,
+  "udisc_rounds": 473,
+  "lap_equivalents": 1336.3,
   "unique_players": 133,
   "unique_players_estimated": true,
   "peliaika": {
-    "hours": 1812,
-    "display": "1812h",
+    "hours": 1817,
+    "display": "1817h",
     "estimated": true
   },
   "askeleet": {
-    "value": 3936721,
-    "display": "3 936 721",
+    "value": 3961686,
+    "display": "3 961 686",
     "estimated": true
   },
   "kilometrit": {
-    "value": 2870,
-    "display": "2870 km",
+    "value": 2888,
+    "display": "2888 km",
     "estimated": true
   },
   "per_lap": {
-    "minutes": 81.7,
-    "steps": 2959,
+    "minutes": 81.6,
+    "steps": 2965,
     "km": 2.16,
-    "source": "UDisc 2026-11-02"
+    "source": "UDisc 2026-11-06"
   }
 }
