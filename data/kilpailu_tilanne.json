@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-06T13:59:33+02:00",
+  "generated_at": "2026-11-07T12:59:13+02:00",
   "current": {
     "id": "3819645",
     "competitionId": "3819645",
@@ -13,10 +13,20 @@
     "type": "Kisa",
     "registered": 1,
     "players": 1,
-    "results": [],
+    "results": [
+      {
+        "uid": "162571",
+        "name": "Toni Luoma-aho",
+        "total": 40,
+        "diff": -1,
+        "cls": "",
+        "rank": 1,
+        "plus": "-1"
+      }
+    ],
     "scoring": "Heittoja yhteensä, pienin voittaa",
-    "reg": "Avoinna",
-    "status": "Avoinna"
+    "reg": "Käynnissä",
+    "status": "Käynnissä"
   },
   "competitions": [
     {
@@ -51,10 +61,20 @@
       "type": "Kisa",
       "registered": 1,
       "players": 1,
-      "results": [],
+      "results": [
+        {
+          "uid": "162571",
+          "name": "Toni Luoma-aho",
+          "total": 40,
+          "diff": -1,
+          "cls": "",
+          "rank": 1,
+          "plus": "-1"
+        }
+      ],
       "scoring": "Heittoja yhteensä, pienin voittaa",
-      "reg": "Avoinna",
-      "status": "Avoinna"
+      "reg": "Käynnissä",
+      "status": "Käynnissä"
     },
     {
       "id": "3819646",
@@ -62,8 +82,8 @@
       "name": "Pakkassarja → 2 osakilpailu",
       "start": "2026-11-14T12:00:00+02:00",
       "date": "14.11.2026 12:00",
-      "course": "44010",
-      "courseName": "Luoma-ahon Frisbeegolfrata → Väyläopaste",
+      "course": "48112",
+      "courseName": "Luoma-ahon Frisbeegolfrata → 18 väylän special",
       "url": "https://discgolfmetrix.com/3819646",
       "isSeries": false,
       "type": "Kisa",
@@ -80,8 +100,8 @@
       "name": "Pakkassarja → 3. osakilpailu",
       "start": "2026-11-21T12:00:00+02:00",
       "date": "21.11.2026 12:00",
-      "course": "44010",
-      "courseName": "Luoma-ahon Frisbeegolfrata → Väyläopaste",
+      "course": "48112",
+      "courseName": "Luoma-ahon Frisbeegolfrata → 18 väylän special",
       "url": "https://discgolfmetrix.com/3820197",
       "isSeries": false,
       "type": "Kisa",
@@ -98,8 +118,8 @@
       "name": "Pakkassarja → 4. osakilpailu",
       "start": "2026-11-28T12:00:00+02:00",
       "date": "28.11.2026 12:00",
-      "course": "44010",
-      "courseName": "Luoma-ahon Frisbeegolfrata → Väyläopaste",
+      "course": "48112",
+      "courseName": "Luoma-ahon Frisbeegolfrata → 18 väylän special",
       "url": "https://discgolfmetrix.com/3820198",
       "isSeries": false,
       "type": "Kisa",
