@@ -1,6 +1,6 @@
 {
   "method": 4,
-  "generated_at": "2026-11-07T10:59:13+00:00",
+  "generated_at": "2026-11-07T14:40:39+00:00",
   "vayla_count": 12,
   "par_total": "41",
   "pituus_total": "1248m",
@@ -492,10 +492,10 @@
     "note": "Väyläjakaumat: Metrixin hole-by-hole -otos (n≈128 pelattua väylää/väylä). Hole in one -luvut koko historiasta (Metrix + UDisc). Vaikeus = odotettu tulos 900-tasolla (Metrixin 30 parhaan kilpailukierroksen regressio, ±0.2 heittoa/väylä; PAR rating 990, 15.15 p/heitto). UDisc-väyläkeskiarvot n=29/väylä."
   },
   "calculation": {
-    "total_rounds": 1244,
-    "metrix_rounds": 771,
+    "total_rounds": 1248,
+    "metrix_rounds": 775,
     "udisc_rounds": 473,
-    "lap_equivalents": 1339.3333333333335,
+    "lap_equivalents": 1343.3333333333335,
     "avg_weights": {
       "metrix_per_hole": [
         128,
